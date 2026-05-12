@@ -10,7 +10,8 @@
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"],
+.iicon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'asernet' !important;
   speak: never;
@@ -32,5 +33,15 @@
   content: "\e901";
 }
 .icon-talk:before {
+  content: "\e902";
+}
+
+.con-check:before {
+  content: "\e900";
+}
+.con-phone:before {
+  content: "\e901";
+}
+.con-talk:before {
   content: "\e902";
 }

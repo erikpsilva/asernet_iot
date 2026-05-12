@@ -1,4 +1,244 @@
 //BANNER
 .home {
+    background: #06142b;
+    color: @white;
 
+    &__hero {
+        min-height: 505px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background:
+            linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .88) 31%, rgba(3, 11, 27, .34) 48%, rgba(3, 11, 27, .1) 100%),
+            url("../images/imgBannerTopoHome.png") right center / auto 100% no-repeat,
+            #06142b;
+
+        &:before {
+            content: "";
+            width: 46%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: radial-gradient(circle at left center, rgba(8, 114, 255, .24), rgba(8, 114, 255, 0) 68%);
+            pointer-events: none;
+        }
+
+        &:after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, .72);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    &__content {
+        padding: 38px 0 28px;
+    }
+
+    &__title {
+        max-width: 510px;
+        color: @white;
+        font-size: 43px;
+        font-weight: @semi-bold;
+        line-height: 1.18;
+        letter-spacing: 0;
+
+        strong {
+            display: block;
+            color: #0872ff;
+            font: inherit;
+        }
+    }
+
+    &__text {
+        max-width: 445px;
+        margin: 22px 0 0;
+        color: rgba(255, 255, 255, .92);
+        font-size: 20px;
+        font-weight: @regular;
+        line-height: 1.55;
+    }
+
+    &__features {
+        max-width: 470px;
+        margin: 22px 0 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, auto);
+        grid-auto-flow: column;
+        gap: 13px 28px;
+    }
+
+    &__feature {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: rgba(255, 255, 255, .95);
+        font-size: 17px;
+        font-weight: @semi-bold;
+        line-height: 1.2;
+
+        .iicon {
+            flex: 0 0 auto;
+            color: #0872ff;
+            font-size: 18px;
+        }
+    }
+
+    &__actions {
+        margin-top: 36px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    &__button {
+        min-height: 60px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border-radius: 8px;
+        padding: 0 22px;
+        color: @white;
+        font-size: 16px;
+        font-weight: @semi-bold;
+        line-height: 1;
+        transition: transform .2s ease, box-shadow .2s ease;
+
+        .iicon {
+            font-size: 23px;
+        }
+
+        &:hover {
+            color: @white;
+            transform: translateY(-1px);
+        }
+
+        &--primary {
+            background: #0872ff;
+            box-shadow: 0 13px 28px rgba(8, 114, 255, .3);
+        }
+
+        &--outline {
+            min-width: 238px;
+            border: 2px solid rgba(255, 255, 255, .58);
+            background: rgba(3, 11, 27, .62);
+            box-shadow: inset 0 0 0 1px rgba(8, 114, 255, .2);
+            font-size: 20px;
+        }
+    }
+
+    @media @notebook-small {
+        &__hero {
+            background:
+                linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .88) 35%, rgba(3, 11, 27, .32) 66%, rgba(3, 11, 27, .2) 100%),
+                url("../images/imgBannerTopoHome.png") 64% center / auto 100% no-repeat,
+                #06142b;
+        }
+
+        &__title {
+            font-size: 40px;
+        }
+    }
+
+    @media @tablet {
+        &__hero {
+            min-height: auto;
+            background:
+                linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .86) 58%, rgba(3, 11, 27, .62) 100%),
+                url("../images/imgBannerTopoHome.png") center bottom / auto 100% no-repeat,
+                #06142b;
+        }
+
+        &__content {
+            padding: 62px 0;
+        }
+
+        &__title {
+            font-size: 38px;
+        }
+    }
+
+    @media @mobile-large {
+        &__hero {
+            background:
+                linear-gradient(180deg, rgba(3, 11, 27, .97) 0%, rgba(3, 11, 27, .9) 58%, rgba(3, 11, 27, .45) 100%),
+                url("../images/imgBannerTopoHome.png") center bottom / 100% auto no-repeat,
+                #06142b;
+        }
+
+        &__content {
+            padding: 20px 0 245px;
+        }
+
+        &__title {
+            max-width: 280px;
+            font-size: 26px;
+            line-height: 1.35;
+        }
+
+        &__text {
+            max-width: 280px;
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+
+        &__features {
+            grid-template-columns: 1fr;
+            grid-template-rows: none;
+            grid-auto-flow: row;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        &__feature {
+            font-size: 14px;
+        }
+
+        &__actions {
+            margin-top: 20px;
+            align-items: stretch;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        &__button {
+            width: 100%;
+            min-height: 49px;
+            font-size: 15px;
+            border-radius: 5px;
+
+            &--primary {
+                position: relative;
+
+                &:after {
+                    content: "\2192";
+                    font-size: 31px;
+                    font-weight: @regular;
+                    line-height: 1;
+                    position: absolute;
+                    right: 19px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+
+            &--outline {
+                min-width: 0;
+                font-size: 17px;
+            }
+        }
+    }
 }
