@@ -2,11 +2,13 @@
 
 define('ROOT', __DIR__);
 
-// Detecta ambiente
+// Detecta ambiente: local → dev → produção
 if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
     define('BASE_URL', 'http://localhost/asernet_iot');
+} elseif (strpos($_SERVER['REQUEST_URI'], '/dev') === 0) {
+    define('BASE_URL', 'https://asernet.com.br/dev');
 } else {
-    define('BASE_URL', 'https://www.meusite.com.br');
+    define('BASE_URL', 'https://asernet.com.br');
 }
 
 define('ADMIN_BASE_URL', BASE_URL . '/admin');

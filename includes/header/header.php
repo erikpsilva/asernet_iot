@@ -12,17 +12,27 @@
             </button>
 
             <nav class="header__nav" aria-label="Menu principal">
-                <a class="header__nav-link" href="<?= BASE_URL ?>/residencial">Residencial</a>
-                <a class="header__nav-link" href="<?= BASE_URL ?>/empresas">Empresas (PME)</a>
-                <a class="header__nav-link header__nav-link--active" href="<?= BASE_URL ?>/solucoes">Soluções</a>
-                <a class="header__nav-link" href="<?= BASE_URL ?>/sobre">Sobre a AserNet</a>
-                <a class="header__nav-link" href="<?= BASE_URL ?>/suporte">Suporte</a>
+                <?php
+                $activeRoute = $mainRoute ?? '';
+                $navLinks = [
+                    'residencial' => ['label' => 'Residencial',    'href' => BASE_URL . '/residencial'],
+                    'empresas'    => ['label' => 'Empresas (PME)', 'href' => BASE_URL . '/empresas'],
+                    'solucoes'    => ['label' => 'Soluções',       'href' => BASE_URL . '/solucoes'],
+                    'sobre'       => ['label' => 'Sobre a AserNet','href' => BASE_URL . '/sobre'],
+                    'suporte'     => ['label' => 'Suporte',        'href' => BASE_URL . '/suporte'],
+                ];
+                foreach ($navLinks as $route => $link):
+                    $active = $activeRoute === $route ? ' header__nav-link--active' : '';
+                ?>
+                <a class="header__nav-link<?= $active ?>" href="<?= $link['href'] ?>"><?= $link['label'] ?></a>
+                <?php endforeach; ?>
             </nav>
 
             <a class="header__phone" href="tel:08002225262">
-                <i class="iicon con-phone" aria-hidden="true"></i>
+                <i class="icon icon-phone" aria-hidden="true"></i>
                 <span>0800 222 5262</span>
             </a>
         </div>
     </div>
 </header>
+
