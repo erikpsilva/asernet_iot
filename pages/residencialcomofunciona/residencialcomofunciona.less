@@ -1,0 +1,1004 @@
+.residential-how {
+    background: #f8fbff;
+    color: #06133c;
+
+    &__hero {
+        min-height: 560px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background:
+            linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .9) 30%, rgba(3, 11, 27, .42) 47%, rgba(3, 11, 27, .1) 72%, rgba(3, 11, 27, 0) 100%),
+            url("../images/residencialcomofunciona/imgBannerTopo.png") 70% center / auto 112% no-repeat,
+            #030b1b;
+        color: @white;
+
+        &:before {
+            content: "";
+            width: 46%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: radial-gradient(circle at left center, rgba(8, 114, 255, .24), rgba(8, 114, 255, 0) 68%);
+            pointer-events: none;
+        }
+
+        &:after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, .72);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    &__hero-copy {
+        padding: 42px 0 34px;
+    }
+
+    &__eyebrow {
+        display: block;
+        margin-bottom: 16px;
+        color: #0872ff;
+        font-size: 13px;
+        font-weight: @semi-bold;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    &__hero-title {
+        color: @white;
+        max-width: 520px;
+        font-size: 52px;
+        font-weight: @bold;
+        line-height: 1.08;
+
+        strong {
+            display: block;
+            color: #0872ff;
+            font: inherit;
+        }
+    }
+
+    &__hero-text {
+        max-width: 505px;
+        margin-top: 22px;
+        color: rgba(255, 255, 255, .94);
+        font-size: 18px;
+        line-height: 1.65;
+    }
+
+    &__hero-features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 34px;
+        max-width: 430px;
+        margin-top: 36px;
+
+        article {
+            color: @white;
+            font-size: 13px;
+            font-weight: @semi-bold;
+            line-height: 1.4;
+        }
+
+        i {
+            min-height: 38px;
+            display: block;
+            margin-bottom: 12px;
+            color: #0872ff;
+            font-size: 36px;
+        }
+    }
+
+    &__body {
+        background: #f8fbff;
+    }
+
+    &__section {
+        padding: 36px 0 40px;
+        border-bottom: 1px solid #dbe6f5;
+        background: #fbfdff;
+    }
+
+    &__section--problem {
+        padding-top: 42px;
+    }
+
+    &__section--practice {
+        padding-bottom: 48px;
+    }
+
+    &__title {
+        color: #06133c;
+        font-size: 30px;
+        font-weight: @bold;
+        line-height: 1.18;
+    }
+
+    &__lead,
+    &__text {
+        margin-top: 12px;
+        color: #06133c;
+        font-size: 15px;
+        line-height: 1.55;
+    }
+
+    &__lead strong {
+        font-weight: @bold;
+    }
+
+    &__problem-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 22px;
+
+        article {
+            min-height: 150px;
+            display: grid;
+            grid-template-columns: 70px minmax(0, 1fr);
+            gap: 18px;
+            align-items: center;
+            padding: 24px 32px;
+            border: 1px solid #cfddee;
+            border-radius: 8px;
+            background: @white;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 58px;
+        }
+
+        h3 {
+            color: #06133c;
+            font-size: 16px;
+            font-weight: @bold;
+            line-height: 1.22;
+        }
+
+        p {
+            margin-top: 8px;
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+    }
+
+    &__solution-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 34px;
+        margin-top: 42px;
+
+        article {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr);
+            gap: 18px;
+        }
+
+        i {
+            width: 72px;
+            height: 72px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #075fff;
+            border-radius: 5px;
+            color: #075fff;
+            font-size: 48px;
+        }
+
+        h3 {
+            color: #06133c;
+            font-size: 17px;
+            font-weight: @bold;
+        }
+
+        p {
+            margin-top: 8px;
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+    }
+
+    &__practice {
+        margin-top: 26px;
+    }
+
+    &__practice-stage {
+        height: 610px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__house {
+        width: 660px;
+        height: 440px;
+        position: absolute;
+        left: 50%;
+        top: 98px;
+        transform: translateX(-50%);
+        background: url("../images/residencialcomofunciona/imgComoFuncionaNaPratica.png") center / contain no-repeat;
+    }
+
+    &__practice-lines {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+
+        path {
+            fill: none;
+            stroke: #075fff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        circle {
+            fill: #075fff;
+            stroke: @white;
+            stroke-width: 3;
+        }
+    }
+
+    &__callout {
+        width: 170px;
+        position: absolute;
+        z-index: 3;
+        padding: 14px 15px;
+        border: 1px solid #d8e4f4;
+        border-radius: 8px;
+        background: @white;
+        box-shadow: 0 12px 28px rgba(0, 42, 120, .08);
+        color: #06133c;
+
+        span {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background: #075fff;
+            color: @white;
+        }
+
+        i {
+            font-size: 25px;
+        }
+
+        h3 {
+            color: #06133c;
+            font-size: 14px;
+            font-weight: @bold;
+            line-height: 1.3;
+        }
+
+        p {
+            margin-top: 6px;
+            color: #06133c;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        &--fiber {
+            left: 66px;
+            top: 90px;
+        }
+
+        &--entry {
+            left: 68px;
+            top: 262px;
+        }
+
+        &--equipment {
+            left: 68px;
+            top: 408px;
+        }
+
+        &--cable {
+            right: 60px;
+            top: 104px;
+        }
+
+        &--mesh {
+            right: 60px;
+            top: 252px;
+        }
+
+        &--devices {
+            right: 60px;
+            top: 406px;
+        }
+    }
+
+    &__legend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 52px;
+        margin-top: -12px;
+        color: #06133c;
+        font-size: 13px;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        b {
+            width: 36px;
+            height: 4px;
+            display: inline-block;
+            border-radius: 4px;
+            background: #18b65a;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 28px;
+        }
+    }
+
+    &__plans {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        margin-top: 28px;
+    }
+
+    &__plan {
+        min-height: 448px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        padding: 30px 26px 22px;
+        border: 1px solid #cbd9eb;
+        border-radius: 8px;
+        background: @white;
+        text-align: center;
+
+        > span {
+            min-width: 125px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: -10px;
+            transform: translateX(-50%);
+            border-radius: 12px;
+            background: #08a65c;
+            color: @white;
+            font-size: 10px;
+            font-weight: @bold;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            color: #06133c;
+            font-size: 24px;
+            font-weight: @bold;
+            line-height: 1.08;
+        }
+
+        h3 strong {
+            color: #075fff;
+        }
+
+        p {
+            margin-top: 8px;
+            color: #06133c;
+            font-size: 13px;
+        }
+
+        > i {
+            margin-top: 28px;
+            color: #075fff;
+            font-size: 42px;
+        }
+
+        > strong {
+            margin-top: 7px;
+            color: #06133c;
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        small {
+            color: #06133c;
+            font-size: 12px;
+        }
+
+        ul {
+            width: 100%;
+            margin-top: 26px;
+            text-align: left;
+        }
+
+        li {
+            display: flex;
+            gap: 8px;
+            margin-top: 9px;
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.3;
+
+            &::before {
+                content: "\e91e";
+                color: #075fff;
+                font-family: 'asernet' !important;
+                font-size: 12px;
+                line-height: 1.4;
+            }
+        }
+
+        div {
+            margin-top: auto;
+            color: #06133c;
+            font-size: 13px;
+        }
+
+        b {
+            color: #06133c;
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        a {
+            width: 100%;
+            min-height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+            border-radius: 6px;
+            background: #075fff;
+            color: @white;
+            font-size: 14px;
+            font-weight: @semi-bold;
+        }
+
+        &--featured {
+            border-color: #08a65c;
+
+            h3 strong,
+            > i,
+            li::before {
+                color: #08a65c;
+            }
+
+            a {
+                background: #08a65c;
+            }
+        }
+
+        &--purple {
+            h3,
+            h3 strong,
+            > i,
+            li::before {
+                color: #4913cc;
+            }
+
+            a {
+                background: #4913cc;
+            }
+        }
+    }
+
+    &__benefits {
+        padding: 34px 0 38px;
+        border-bottom: 1px solid #dbe6f5;
+        background: #fbfdff;
+    }
+
+    &__benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 24px;
+
+        article {
+            display: grid;
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: 12px;
+            align-items: center;
+            color: #06133c;
+            font-size: 12px;
+            font-weight: @semi-bold;
+            line-height: 1.35;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 34px;
+        }
+    }
+
+    &__cta {
+        padding: 36px 0 26px;
+        background: #030b1b;
+        color: @white;
+    }
+
+    &__cta-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 34px;
+        align-items: center;
+
+        h2 {
+            max-width: 375px;
+            color: @white;
+            font-size: 31px;
+            font-weight: @bold;
+            line-height: 1.2;
+        }
+
+        p {
+            max-width: 420px;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, .9);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+    }
+
+    &__cta-actions {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__cta-button {
+        min-width: 288px;
+        min-height: 78px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 0 24px;
+        border: 1px solid #075fff;
+        border-radius: 7px;
+        color: @white;
+        font-size: 14px;
+        line-height: 1.3;
+
+        &:hover {
+            color: @white;
+        }
+
+        i {
+            font-size: 34px;
+        }
+
+        strong {
+            display: block;
+            color: @white;
+            font-size: 22px;
+        }
+
+        &--whatsapp {
+            border-color: #0abf54;
+            background: #0abf54;
+        }
+    }
+
+    &__cta-notes {
+        display: flex;
+        justify-content: flex-end;
+        gap: 42px;
+        margin-top: 28px;
+        color: rgba(255, 255, 255, .92);
+        font-size: 12px;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        i {
+            color: #80b5ff;
+            font-size: 20px;
+        }
+    }
+
+    @media @notebook-small {
+        &__hero {
+            background:
+                linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .9) 35%, rgba(3, 11, 27, .34) 66%, rgba(3, 11, 27, .18) 100%),
+                url("../images/residencialcomofunciona/imgBannerTopo.png") 68% center / auto 108% no-repeat,
+                #06142b;
+        }
+
+        &__hero-title {
+            font-size: 46px;
+        }
+
+        &__practice-stage {
+            height: 570px;
+        }
+
+        &__house {
+            width: 590px;
+            height: 400px;
+            top: 108px;
+        }
+
+        &__callout {
+            width: 150px;
+        }
+
+        &__callout--fiber,
+        &__callout--entry,
+        &__callout--equipment {
+            left: 18px;
+        }
+
+        &__callout--cable,
+        &__callout--mesh,
+        &__callout--devices {
+            right: 18px;
+        }
+    }
+
+    @media @tablet {
+        &__hero {
+            min-height: auto;
+            background:
+                linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .88) 54%, rgba(3, 11, 27, .55) 100%),
+                url("../images/residencialcomofunciona/imgBannerTopo.png") center bottom / auto 100% no-repeat,
+                #06142b;
+        }
+
+        &__hero-title {
+            font-size: 42px;
+        }
+
+        &__problem-grid,
+        &__solution-grid,
+        &__plans {
+            grid-template-columns: 1fr;
+        }
+
+        &__benefits-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        &__practice-stage {
+            height: auto;
+            padding-top: 410px;
+            overflow: visible;
+        }
+
+        &__house {
+            width: min(100%, 620px);
+            height: 390px;
+            top: 0;
+        }
+
+        &__practice-lines {
+            display: none;
+        }
+
+        &__callout {
+            width: auto;
+            position: static;
+            display: grid;
+            grid-template-columns: 36px minmax(0, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+            padding: 14px 16px;
+        }
+
+        &__callout span {
+            grid-row: span 2;
+            width: 36px;
+            height: 36px;
+            margin: 0;
+        }
+
+        &__callout--entry,
+        &__callout--equipment,
+        &__callout--cable,
+        &__callout--mesh,
+        &__callout--devices {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        &__cta-box {
+            grid-template-columns: 1fr;
+        }
+
+        &__cta-actions {
+            flex-direction: column;
+        }
+
+        &__cta-button {
+            width: 100%;
+            min-width: 0;
+        }
+    }
+
+    @media @mobile-large {
+        &__hero {
+            min-height: 690px;
+            align-items: flex-start;
+            background:
+                linear-gradient(180deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .96) 54%, rgba(3, 11, 27, .55) 74%, rgba(3, 11, 27, .12) 100%),
+                url("../images/residencialcomofunciona/imgBannerTopo.png") center bottom / 145% auto no-repeat,
+                #030b1b;
+        }
+
+        &__hero-copy {
+            padding: 84px 0 260px;
+        }
+
+        &__eyebrow {
+            font-size: 10px;
+        }
+
+        &__hero-title {
+            max-width: 290px;
+            font-size: 28px;
+            line-height: 1.12;
+        }
+
+        &__hero-text {
+            max-width: 285px;
+            margin-top: 13px;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        &__hero-features {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            max-width: 230px;
+            margin-top: 22px;
+
+            article {
+                display: grid;
+                grid-template-columns: 38px minmax(0, 1fr);
+                gap: 12px;
+                align-items: center;
+                font-size: 12px;
+            }
+
+            i {
+                min-height: 0;
+                margin: 0;
+                font-size: 30px;
+            }
+        }
+
+        &__section {
+            padding: 22px 0;
+        }
+
+        &__practice {
+            margin-top: 18px;
+        }
+
+        &__practice-stage {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 0;
+        }
+
+        &__house {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: none;
+            margin: 0 auto 8px;
+            background-size: contain;
+        }
+
+        &__callout {
+            margin-top: 0;
+        }
+
+        &__legend {
+            flex-wrap: wrap;
+            gap: 12px 22px;
+            margin-top: 16px;
+            font-size: 11px;
+        }
+
+        &__title {
+            font-size: 22px;
+        }
+
+        &__lead,
+        &__text {
+            font-size: 12px;
+        }
+
+        &__problem-grid {
+            gap: 8px;
+            margin-top: 14px;
+
+            article {
+                min-height: 0;
+                grid-template-columns: 42px minmax(0, 1fr);
+                gap: 12px;
+                padding: 14px;
+            }
+
+            i {
+                font-size: 36px;
+            }
+
+            h3 {
+                font-size: 12px;
+            }
+
+            p {
+                font-size: 11px;
+            }
+        }
+
+        &__solution-grid {
+            gap: 18px;
+            margin-top: 20px;
+
+            article {
+                grid-template-columns: 48px minmax(0, 1fr);
+                gap: 14px;
+            }
+
+            i {
+                width: 48px;
+                height: 48px;
+                font-size: 32px;
+            }
+
+            h3 {
+                font-size: 13px;
+            }
+
+            p {
+                font-size: 11px;
+            }
+        }
+
+        &__section--practice {
+            display: block;
+        }
+
+        &__plans {
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        &__plan {
+            min-height: 0;
+            padding: 18px 16px 14px;
+
+            h3 {
+                font-size: 17px;
+            }
+
+            p,
+            li,
+            div {
+                font-size: 11px;
+            }
+
+            > i {
+                margin-top: 12px;
+                font-size: 26px;
+            }
+
+            > strong {
+                font-size: 18px;
+            }
+
+            small,
+            ul {
+                display: none;
+            }
+
+            b {
+                font-size: 23px;
+            }
+
+            a {
+                min-height: 42px;
+                margin-top: 10px;
+                font-size: 12px;
+            }
+        }
+
+        &__benefits {
+            padding: 20px 0;
+        }
+
+        &__benefits .residential-how__title {
+            display: none;
+        }
+
+        &__benefits-grid {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 0;
+
+            article {
+                display: block;
+                text-align: center;
+                font-size: 7px;
+                line-height: 1.2;
+            }
+
+            i {
+                display: block;
+                min-height: 27px;
+                margin-bottom: 5px;
+                font-size: 25px;
+            }
+        }
+
+        &__cta {
+            padding: 25px 0 18px;
+        }
+
+        &__cta-box {
+            gap: 16px;
+
+            h2 {
+                max-width: 250px;
+                font-size: 22px;
+            }
+
+            p {
+                display: none;
+            }
+        }
+
+        &__cta-button {
+            min-height: 58px;
+            font-size: 12px;
+
+            i {
+                font-size: 28px;
+            }
+
+            strong {
+                font-size: 16px;
+            }
+        }
+
+        &__cta-notes {
+            display: grid;
+            gap: 7px;
+            justify-content: flex-start;
+            margin-top: 16px;
+            font-size: 10px;
+        }
+    }
+}
