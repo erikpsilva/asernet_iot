@@ -389,7 +389,7 @@
             border-radius: 12px;
             background: #08a65c;
             color: @white;
-            font-size: 10px;
+            font-size: 14px;
             font-weight: @bold;
             text-transform: uppercase;
         }
@@ -755,7 +755,7 @@
         }
 
         &__eyebrow {
-            font-size: 10px;
+            font-size: 14px;
         }
 
         &__hero-title {
@@ -827,7 +827,7 @@
             flex-wrap: wrap;
             gap: 12px 22px;
             margin-top: 16px;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         &__title {
@@ -855,11 +855,11 @@
             }
 
             h3 {
-                font-size: 12px;
+                font-size: 14px;
             }
 
             p {
-                font-size: 11px;
+                font-size: 12px;
             }
         }
 
@@ -879,11 +879,11 @@
             }
 
             h3 {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             p {
-                font-size: 11px;
+                font-size: 12px;
             }
         }
 
@@ -907,7 +907,7 @@
             p,
             li,
             div {
-                font-size: 11px;
+                font-size: 12px;
             }
 
             > i {
@@ -944,15 +944,25 @@
         }
 
         &__benefits-grid {
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 14px 8px;
             margin-top: 0;
 
             article {
                 display: block;
+                grid-column: span 2;
                 text-align: center;
-                font-size: 7px;
+                font-size: 12px;
+                font-weight: @regular;
                 line-height: 1.2;
+
+                &:nth-child(4) {
+                    grid-column: 2 / span 2;
+                }
+
+                &:nth-child(5) {
+                    grid-column: 4 / span 2;
+                }
             }
 
             i {
@@ -998,7 +1008,7 @@
             gap: 7px;
             justify-content: flex-start;
             margin-top: 16px;
-            font-size: 10px;
+            font-size: 12px;
         }
     }
 }

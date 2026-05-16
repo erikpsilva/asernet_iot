@@ -40,8 +40,8 @@
                                 <ul class="header__mega-list">
                                     <li><a href="<?= BASE_URL ?>/residencial"><i class="icon-wifi" aria-hidden="true"></i><span><strong>Internet residencial</strong><small>Planos de alta velocidade</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/cameradeseguranca"><i class="icon-casino-cctv" aria-hidden="true"></i><span><strong>Câmeras de segurança</strong><small>Monitore de onde estiver</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-wifimesh" aria-hidden="true"></i><span><strong>Wi-Fi Mesh</strong><small>Cobertura total em todos os ambientes</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/residencial"><i class="icon-mobile-phone" aria-hidden="true"></i><span><strong>Plano móvel</strong><small>Internet para levar com você</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/wifimesh"><i class="icon-wifimesh" aria-hidden="true"></i><span><strong>Wi-Fi Mesh</strong><small>Cobertura total em todos os ambientes</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/planomovel"><i class="icon-mobile-phone" aria-hidden="true"></i><span><strong>Plano móvel</strong><small>Internet para levar com você</small></span></a></li>
                                 </ul>
 
                                 <a class="header__mega-card header__mega-card--best" href="<?= BASE_URL ?>/solucoes">
@@ -82,13 +82,13 @@
                                 </div>
 
                                 <ul class="header__mega-list header__mega-list--combo">
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-camwifi" aria-hidden="true"></i><em>+</em><span><strong>Internet + Câmeras</strong><small>Segurança e conexão juntas</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-wifipro" aria-hidden="true"></i><em>+</em><span><strong>Internet + Wi-Fi Pro</strong><small>Cobertura e performance de verdade</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-wifiphone" aria-hidden="true"></i><em>+</em><span><strong>Internet + Telefonia</strong><small>Conectividade e comunicação profissional</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-wificelphone" aria-hidden="true"></i><em>+</em><span><strong>Internet + Mobile</strong><small>Conexão dentro e fora de casa</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/combo"><i class="icon-camwifi" aria-hidden="true"></i><em>+</em><span><strong>Internet + Câmeras</strong><small>Segurança e conexão juntas</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/combo"><i class="icon-wifipro" aria-hidden="true"></i><em>+</em><span><strong>Internet + Wi-Fi Pro</strong><small>Cobertura e performance de verdade</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/combo"><i class="icon-wifiphone" aria-hidden="true"></i><em>+</em><span><strong>Internet + Telefonia</strong><small>Conectividade e comunicação profissional</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/combo"><i class="icon-wificelphone" aria-hidden="true"></i><em>+</em><span><strong>Internet + Mobile</strong><small>Conexão dentro e fora de casa</small></span></a></li>
                                 </ul>
 
-                                <a class="header__mega-outline" href="<?= BASE_URL ?>/solucoes">Ver todos os combos <span aria-hidden="true">›</span></a>
+                                <a class="header__mega-outline" href="<?= BASE_URL ?>/combo">Ver todos os combos <span aria-hidden="true">›</span></a>
                             </section>
 
                             <aside class="header__mega-feature">
@@ -102,7 +102,7 @@
                                     <li><i class="icon-customersupport" aria-hidden="true"></i><span><strong>Suporte local</strong><small>Atendimento rápido e especializado</small></span></li>
                                 </ul>
 
-                                <a href="<?= BASE_URL ?>/residencialcomofunciona">Entenda como funciona <span aria-hidden="true">›</span></a>
+                                <a href="<?= BASE_URL ?>/residencialcomofunciona">Saiba como funciona <span aria-hidden="true">›</span></a>
                             </aside>
                         </div>
                     </div>

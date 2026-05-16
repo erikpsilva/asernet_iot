@@ -416,7 +416,7 @@
                 content: "\e91e";
                 color: #075fff;
                 font-family: 'asernet' !important;
-                font-size: 11px;
+                font-size: 12px;
             }
         }
 
@@ -862,20 +862,20 @@
             li {
                 gap: 8px;
                 margin-top: 8px;
-                font-size: 11px;
+                font-size: 12px;
             }
 
             i {
                 width: 17px;
                 height: 17px;
                 flex-basis: 17px;
-                font-size: 8px;
+                font-size: 12px;
             }
         }
 
         &__hero-price {
             margin-top: 13px;
-            font-size: 11px;
+            font-size: 12px;
 
             strong {
                 margin-top: 4px;
@@ -896,7 +896,7 @@
             width: 100%;
             min-width: 0;
             min-height: 46px;
-            font-size: 11px;
+            font-size: 12px;
             border-radius: 5px;
         }
 
@@ -922,7 +922,7 @@
                 gap: 8px;
                 align-items: center;
                 text-align: left;
-                font-size: 10px;
+                font-size: 12px;
                 line-height: 1.2;
             }
 
@@ -968,7 +968,7 @@
 
             span {
                 max-width: 185px;
-                font-size: 10px;
+                font-size: 12px;
             }
 
             img {
@@ -981,7 +981,7 @@
         }
 
         &__text {
-            font-size: 11px;
+            font-size: 12px;
         }
 
         &__plans-section .camera-security__title {
@@ -1039,7 +1039,7 @@
 
         &__plan p {
             max-width: 170px;
-            font-size: 10px;
+            font-size: 12px;
         }
 
         &__price {
@@ -1054,7 +1054,7 @@
 
         &__price span,
         &__price small {
-            font-size: 11px;
+            font-size: 12px;
         }
 
         &__plans-section .container:after {
@@ -1072,23 +1072,37 @@
         }
 
         &__steps {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 8px;
+            grid-template-columns: 1fr;
+            gap: 12px;
             margin-top: 18px;
 
-            article + article:before,
-            span {
+            article + article:before {
                 display: none;
             }
 
+            article {
+                display: grid;
+                grid-template-columns: 50px 28px minmax(0, 1fr);
+                gap: 10px;
+                align-items: center;
+                text-align: left;
+            }
+
             i {
-                width: 44px;
-                height: 44px;
-                font-size: 25px;
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
             }
 
             b {
-                margin-top: 7px;
+                margin: 0;
+            }
+
+            span {
+                display: block;
+                max-width: none;
+                margin: 0;
+                font-size: 12px;
             }
         }
 
@@ -1106,7 +1120,7 @@
             }
 
             li {
-                font-size: 10px;
+                font-size: 12px;
             }
 
             img {
@@ -1120,38 +1134,54 @@
         }
 
         &__differentials-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
-            border: 0;
-            background: transparent;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border: 1px solid #dce7f5;
+            border-radius: 8px;
+            background: @white;
 
             article {
-                min-height: 0;
-                padding: 0;
-                text-align: center;
+                min-height: 118px;
+                display: grid;
+                grid-template-columns: 52px minmax(0, 1fr);
+                grid-template-areas:
+                    "icon title"
+                    "icon text";
+                gap: 4px 16px;
+                align-content: center;
+                padding: 22px 24px;
+                text-align: left;
 
                 + article {
-                    border: 0;
+                    border-top: 1px solid #dce7f5;
                 }
             }
 
             i {
+                grid-area: icon;
                 float: none;
-                width: 42px;
-                height: 42px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
+                width: 52px;
+                height: auto;
+                display: block;
                 margin: 0;
-                border: 1px solid #dce7f5;
-                border-radius: 8px;
-                background: @white;
-                font-size: 24px;
+                border: 0;
+                border-radius: 0;
+                background: transparent;
+                font-size: 32px;
             }
 
-            h3,
+            h3 {
+                grid-area: title;
+                display: block;
+                font-size: 14px;
+            }
+
             p {
-                display: none;
+                grid-area: text;
+                display: block;
+                clear: none;
+                margin-top: 0;
+                font-size: 12px;
             }
         }
 
