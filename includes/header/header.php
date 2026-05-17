@@ -18,7 +18,7 @@
                 ?>
 
                 <a class="header__nav-link<?= $activeRoute === 'residencial' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
-                <a class="header__nav-link<?= $activeRoute === 'empresas' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/empresas">Empresas (PME)</a>
+                <a class="header__nav-link<?= $activeRoute === 'empresas' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a>
 
                 <div class="header__mega">
                     <a class="header__nav-link header__nav-link--mega<?= $solutionActive ?>" href="<?= BASE_URL ?>/solucoes" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +60,7 @@
                                 </div>
 
                                 <ul class="header__mega-list">
-                                    <li><a href="<?= BASE_URL ?>/empresas"><i class="icon-construcao" aria-hidden="true"></i><span><strong>Internet PME</strong><small>Estabilidade para sua empresa</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/internetpme"><i class="icon-construcao" aria-hidden="true"></i><span><strong>Internet PME</strong><small>Estabilidade para sua empresa</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-wifi" aria-hidden="true"></i><span><strong>Wi-Fi Profissional</strong><small>Rede de alta performance</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-phone" aria-hidden="true"></i><span><strong>Telefonia empresarial</strong><small>Comunicação profissional e ilimitada</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-servidor" aria-hidden="true"></i><span><strong>Link dedicado</strong><small>Máxima estabilidade para operações críticas</small></span></a></li>
