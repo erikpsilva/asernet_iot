@@ -1,0 +1,856 @@
+.telefonia-page {
+    background: #fbfdff;
+    color: #06133c;
+
+    &__hero {
+        min-height: 585px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background:
+            linear-gradient(90deg, rgba(3, 11, 27, .99) 0%, rgba(3, 11, 27, .94) 32%, rgba(3, 11, 27, .45) 61%, rgba(3, 11, 27, .04) 100%),
+            url("../images/telefoniaempresarial/imgTopoBanner.png") right center / auto 104% no-repeat,
+            #030b1b;
+    }
+
+    &__hero-copy {
+        max-width: 620px;
+        padding: 35px 0;
+
+        > span {
+            display: block;
+            margin-bottom: 18px;
+            color: #075fff;
+            font-size: 15px;
+            font-weight: @semi-bold;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: @white;
+            font-size: 52px;
+            font-weight: @semi-bold;
+            line-height: 1.1;
+        }
+
+        strong {
+            color: #075fff;
+            font: inherit;
+        }
+
+        p {
+            max-width: 600px;
+            margin-top: 24px;
+            color: @white;
+            font-size: 17px;
+            line-height: 1.45;
+        }
+
+        ul {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px 34px;
+            max-width: 590px;
+            margin-top: 28px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: @white;
+            font-size: 15px;
+        }
+
+        li i {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #075fff;
+            color: @white;
+            font-size: 9px;
+        }
+    }
+
+    &__hero-actions,
+    &__cta-actions {
+        display: flex;
+        gap: 18px;
+    }
+
+    &__hero-actions {
+        margin-top: 43px;
+    }
+
+    &__button,
+    &__cta-button {
+        min-height: 65px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 0 33px;
+        border-radius: 7px;
+        color: @white;
+        font-size: 16px;
+        font-weight: @semi-bold;
+
+        &:hover {
+            color: @white;
+        }
+    }
+
+    &__button--primary {
+        min-width: 260px;
+        background: #075fff;
+
+        span {
+            font-size: 28px;
+            line-height: 1;
+        }
+    }
+
+    &__button--outline {
+        min-width: 255px;
+        border: 1px solid rgba(255, 255, 255, .72);
+        background: rgba(3, 11, 27, .25);
+        font-size: 19px;
+
+        i {
+            font-size: 27px;
+        }
+    }
+
+    &__pain {
+        padding: 26px 0 23px;
+    }
+
+    &__pain-box {
+        display: grid;
+        grid-template-columns: 128px minmax(0, 1fr) minmax(300px, .88fr);
+        gap: 34px;
+        align-items: center;
+        padding: 30px 68px;
+        border-radius: 12px;
+        background: #f7faff;
+        box-shadow: 0 16px 36px rgba(12, 51, 111, .05);
+
+        > i {
+            width: 112px;
+            height: 112px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #075fff;
+            border-radius: 50%;
+            color: #075fff;
+            font-size: 62px;
+        }
+
+        h2 {
+            max-width: 470px;
+            color: #06133c;
+            font-size: 31px;
+            font-weight: @semi-bold;
+            line-height: 1.16;
+        }
+
+        p {
+            max-width: 420px;
+            margin-top: 12px;
+            color: #06133c;
+            font-size: 15px;
+            line-height: 1.45;
+        }
+    }
+
+    &__bad-list {
+        display: grid;
+        gap: 14px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: #06133c;
+            font-size: 15px;
+        }
+
+        i {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #ff314f;
+            color: @white;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: @bold;
+            line-height: 1;
+        }
+    }
+
+    &__section-header {
+        margin-bottom: 30px;
+        text-align: center;
+
+        h2 {
+            color: #0751d6;
+            font-size: 26px;
+            font-weight: @semi-bold;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-top: 8px;
+            color: #06133c;
+            font-size: 13px;
+        }
+    }
+
+    &__solutions {
+        padding: 0 0 33px;
+    }
+
+    &__solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+
+        article {
+            min-height: 205px;
+            display: grid;
+            grid-template-columns: 170px minmax(0, 1fr);
+            gap: 20px;
+            align-items: center;
+            padding: 22px;
+            border: 1px solid #d6e4f8;
+            border-radius: 8px;
+            background: @white;
+        }
+
+        article:not(:first-child) {
+            grid-template-columns: 120px minmax(0, 1fr);
+        }
+
+        img {
+            width: 170px;
+            max-width: 100%;
+            display: block;
+        }
+
+        article > i {
+            color: #075fff;
+            font-size: 96px;
+            text-align: center;
+        }
+
+        h3 {
+            color: #06133c;
+            font-size: 17px;
+            font-weight: @semi-bold;
+        }
+
+        p {
+            margin-top: 12px;
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        a {
+            display: inline-flex;
+            gap: 9px;
+            margin-top: 18px;
+            color: #075fff;
+            font-size: 12px;
+            font-weight: @semi-bold;
+        }
+    }
+
+    &__analysis {
+        width: min(455px, 100%);
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        margin: 23px auto 0;
+        border: 1px solid #075fff;
+        border-radius: 6px;
+        color: #075fff;
+        font-size: 14px;
+        font-weight: @semi-bold;
+    }
+
+    &__features {
+        padding-bottom: 31px;
+    }
+
+    &__features-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+
+        article {
+            min-height: 237px;
+            padding: 34px 30px;
+            border: 1px solid #d6e4f8;
+            border-radius: 8px;
+            background: @white;
+            text-align: center;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 56px;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #06133c;
+            font-size: 16px;
+            font-weight: @semi-bold;
+        }
+
+        p {
+            margin-top: 15px;
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+    }
+
+    &__resources {
+        padding-bottom: 21px;
+    }
+
+    &__resources-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr);
+        gap: 32px;
+        align-items: center;
+        padding: 20px 44px;
+        border-radius: 8px;
+        background: #f4f8ff;
+
+        h2 {
+            color: #06133c;
+            font-size: 22px;
+            font-weight: @semi-bold;
+        }
+
+        ul {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px 25px;
+            margin-top: 21px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.25;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 20px;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            border-radius: 7px;
+        }
+    }
+
+    &__flow {
+        padding-bottom: 25px;
+    }
+
+    &__flow-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 28px;
+
+        article {
+            position: relative;
+            display: grid;
+            justify-items: center;
+            gap: 14px;
+            color: #06133c;
+            font-size: 12px;
+            font-weight: @semi-bold;
+            text-align: center;
+
+            &:not(:last-child):after {
+                content: "";
+                width: 70px;
+                height: 1px;
+                background: #075fff;
+                position: absolute;
+                top: 24px;
+                right: -48px;
+            }
+        }
+
+        i {
+            color: #075fff;
+            font-size: 45px;
+        }
+    }
+
+    &__benefits {
+        padding-bottom: 18px;
+    }
+
+    &__benefits-box {
+        overflow: hidden;
+        border-radius: 8px;
+        background:
+            linear-gradient(90deg, rgba(0, 22, 61, .98), rgba(0, 40, 103, .92)),
+            url("../images/telefoniaempresarial/imgTopoBanner.png") right center / auto 120% no-repeat,
+            #00163d;
+        color: @white;
+
+        h2 {
+            padding-top: 14px;
+            color: @white;
+            font-size: 24px;
+            font-weight: @semi-bold;
+            text-align: center;
+        }
+
+        > div {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            padding: 15px 34px 28px;
+        }
+
+        article {
+            display: grid;
+            grid-template-columns: 46px minmax(0, 1fr);
+            gap: 13px;
+            padding: 0 24px;
+            border-left: 1px solid rgba(255, 255, 255, .13);
+
+            &:first-child {
+                border-left: 0;
+            }
+        }
+
+        i {
+            color: #5ea0ff;
+            font-size: 36px;
+        }
+
+        strong {
+            grid-column: 2;
+            color: @white;
+            font-size: 14px;
+            font-weight: @semi-bold;
+        }
+
+        span {
+            grid-column: 2;
+            display: block;
+            margin-top: 6px;
+            color: @white;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+    }
+
+    &__trust {
+        padding-bottom: 19px;
+    }
+
+    &__trust-grid {
+        display: grid;
+        grid-template-columns: 1.2fr repeat(3, 1fr);
+        align-items: center;
+        border-bottom: 1px solid #dce7f4;
+
+        > * {
+            min-height: 74px;
+            display: grid;
+            align-items: center;
+            padding: 0 28px;
+            border-left: 1px solid #dce7f4;
+            color: #06133c;
+            font-size: 13px;
+            font-weight: @semi-bold;
+            line-height: 1.25;
+
+            &:first-child {
+                border-left: 0;
+            }
+        }
+
+        article {
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 14px;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 34px;
+        }
+    }
+
+    &__google {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 15px;
+
+        img {
+            width: 48px;
+        }
+
+        p {
+            color: #06133c;
+            font-size: 13px;
+            line-height: 1.25;
+        }
+
+        strong {
+            display: inline-block;
+            margin-right: 7px;
+            font-size: 16px;
+        }
+
+        p:after {
+            content: " \2605\2605\2605\2605\2605";
+            color: #ffb100;
+            letter-spacing: 2px;
+        }
+    }
+
+    &__cta-box {
+        min-height: 116px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 570px;
+        gap: 26px;
+        align-items: center;
+        padding: 22px 48px;
+        border-radius: 8px 8px 0 0;
+        background: #00163d;
+        color: @white;
+
+        h2 {
+            color: @white;
+            font-size: 25px;
+            font-weight: @semi-bold;
+            line-height: 1.22;
+        }
+
+        p {
+            margin-top: 8px;
+            color: @white;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+    }
+
+    &__cta-button {
+        flex: 1 1 0;
+        min-height: 65px;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, .5);
+        background: rgba(2, 16, 43, .35);
+        font-size: 13px;
+        line-height: 1.2;
+
+        i {
+            font-size: 29px;
+        }
+
+        span,
+        strong {
+            display: block;
+        }
+
+        strong {
+            font-size: 18px;
+        }
+
+        &--whatsapp {
+            border-color: #0abf54;
+            background: #0abf54;
+        }
+    }
+
+    @media @notebook-small {
+        &__pain-box,
+        &__resources-box,
+        &__cta-box {
+            grid-template-columns: 1fr;
+        }
+
+        &__features-grid,
+        &__benefits-box > div,
+        &__trust-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &__solutions-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media @tablet {
+        &__hero {
+            min-height: 660px;
+            align-items: flex-start;
+            background:
+                linear-gradient(180deg, rgba(3, 11, 27, 1) 0%, rgba(3, 11, 27, .98) 57%, rgba(3, 11, 27, .55) 78%, rgba(3, 11, 27, .1) 100%),
+                url("../images/telefoniaempresarial/imgTopoBanner.png") center bottom / 100% auto no-repeat,
+                #030b1b;
+        }
+
+        &__flow-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            article:after {
+                display: none;
+            }
+        }
+    }
+
+    @media @mobile-large {
+        &__hero {
+            min-height: 683px;
+        }
+
+        &__hero-copy {
+            padding: 19px 0 245px;
+
+            > span {
+                margin-bottom: 13px;
+                font-size: 12px;
+            }
+
+            h1 {
+                max-width: 335px;
+                font-size: 31px;
+            }
+
+            p {
+                max-width: 330px;
+                margin-top: 17px;
+                font-size: 13px;
+            }
+
+            ul {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 19px;
+            }
+
+            li {
+                font-size: 12px;
+            }
+
+            li i {
+                width: 18px;
+                height: 18px;
+                font-size: 8px;
+            }
+        }
+
+        &__hero-actions {
+            display: grid;
+            gap: 11px;
+            margin-top: 22px;
+        }
+
+        &__button {
+            min-height: 52px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        &__button--primary,
+        &__button--outline {
+            min-width: 0;
+        }
+
+        &__button--outline {
+            font-size: 14px;
+
+            i {
+                font-size: 22px;
+            }
+        }
+
+        &__pain,
+        &__resources,
+        &__flow,
+        &__benefits,
+        &__trust {
+            display: none;
+        }
+
+        &__solutions {
+            padding: 26px 0 29px;
+        }
+
+        &__section-header {
+            margin-bottom: 17px;
+
+            h2 {
+                color: #06133c;
+                font-size: 17px;
+            }
+
+            p {
+                display: none;
+            }
+        }
+
+        &__solutions-grid {
+            gap: 12px;
+
+            article,
+            article:not(:first-child) {
+                min-height: 112px;
+                grid-template-columns: 55px minmax(0, 1fr) 12px;
+                gap: 13px;
+                padding: 17px 15px;
+
+                &:after {
+                    content: "\203A";
+                    align-self: center;
+                    color: #075fff;
+                    font-size: 20px;
+                }
+            }
+
+            img {
+                display: none;
+            }
+
+            article:first-child:before {
+                content: "\e901";
+                color: #075fff;
+                font-family: 'asernet' !important;
+                font-size: 42px;
+                line-height: 1;
+            }
+
+            article > i {
+                font-size: 42px;
+            }
+
+            h3 {
+                font-size: 12px;
+            }
+
+            p {
+                margin-top: 5px;
+                font-size: 11px;
+                line-height: 1.35;
+            }
+
+            a {
+                display: none;
+            }
+        }
+
+        &__analysis {
+            min-height: 42px;
+            margin-top: 13px;
+            font-size: 12px;
+        }
+
+        &__features {
+            padding-bottom: 30px;
+        }
+
+        &__features .telefonia-page__section-header {
+            text-align: center;
+        }
+
+        &__features-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+
+            article {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: 46px minmax(0, 1fr);
+                gap: 13px;
+                padding: 0;
+                border: 0;
+                background: transparent;
+                text-align: left;
+            }
+
+            i {
+                font-size: 32px;
+            }
+
+            h3 {
+                margin-top: 0;
+                font-size: 12px;
+            }
+
+            p {
+                margin-top: 3px;
+                font-size: 11px;
+                line-height: 1.35;
+            }
+        }
+
+        &__cta {
+            padding-bottom: 24px;
+        }
+
+        &__cta-box {
+            min-height: 0;
+            display: block;
+            padding: 28px 18px;
+            border-radius: 8px;
+
+            h2 {
+                max-width: 300px;
+                margin: 0 auto;
+                font-size: 16px;
+                text-align: center;
+            }
+
+            p {
+                display: none;
+            }
+        }
+
+        &__cta-actions {
+            display: grid;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        &__cta-button {
+            min-height: 55px;
+            border-radius: 5px;
+            font-size: 12px;
+
+            i {
+                font-size: 25px;
+            }
+
+            strong {
+                font-size: 16px;
+            }
+        }
+    }
+}

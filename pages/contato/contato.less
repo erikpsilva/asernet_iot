@@ -1,0 +1,676 @@
+.contact-page {
+    background: #fbfdff;
+    color: #06133c;
+
+    &__hero {
+        min-height: 620px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background:
+            linear-gradient(90deg, rgba(3, 11, 27, 1) 0%, rgba(3, 11, 27, .94) 36%, rgba(3, 11, 27, .42) 62%, rgba(3, 11, 27, .04) 100%),
+            url("../images/contato/imgBanner Topo.png") right center / auto 105% no-repeat,
+            #030b1b;
+    }
+
+    &__hero-copy {
+        max-width: 560px;
+        padding: 42px 0 56px;
+
+        h1 {
+            color: @white;
+            font-size: 60px;
+            font-weight: @semi-bold;
+            line-height: 1.12;
+        }
+
+        p {
+            margin-top: 22px;
+            color: @white;
+            font-size: 24px;
+            line-height: 1.35;
+        }
+
+        ul {
+            display: grid;
+            gap: 17px;
+            margin-top: 34px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: @white;
+            font-size: 18px;
+        }
+
+        li i {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #075fff;
+            color: @white;
+            font-size: 12px;
+        }
+    }
+
+    &__hero-actions {
+        display: grid;
+        gap: 12px;
+        max-width: 390px;
+        margin-top: 45px;
+    }
+
+    &__button,
+    &__cta-button {
+        min-height: 72px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        border-radius: 8px;
+        color: @white;
+        font-size: 22px;
+        font-weight: @semi-bold;
+
+        &:hover {
+            color: @white;
+        }
+
+        i {
+            font-size: 31px;
+        }
+    }
+
+    &__button--whatsapp,
+    &__cta-button--whatsapp {
+        background: #0abf54;
+    }
+
+    &__button--outline {
+        border: 1px solid #075fff;
+        background: rgba(3, 11, 27, .28);
+    }
+
+    &__response {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        margin-top: 20px;
+        color: @white;
+        font-size: 15px;
+
+        i {
+            font-size: 20px;
+        }
+    }
+
+    &__form-section {
+        margin-top: -8px;
+        padding-bottom: 0;
+    }
+
+    &__form {
+        padding: 45px 49px 34px;
+        border: 1px solid #dce7f4;
+        border-radius: 13px 13px 0 0;
+        background: @white;
+        box-shadow: 0 -12px 38px rgba(4, 32, 78, .08);
+
+        h2 {
+            color: #06133c;
+            font-size: 28px;
+            font-weight: @semi-bold;
+        }
+
+        > p {
+            margin-top: 11px;
+            color: #06133c;
+            font-size: 16px;
+        }
+
+        > label {
+            display: block;
+            margin-top: 22px;
+            color: #06133c;
+            font-size: 13px;
+            font-weight: @semi-bold;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            height: 47px;
+            display: block;
+            margin-top: 8px;
+            padding: 0 18px;
+            border: 1px solid #cfdced;
+            border-radius: 6px;
+            color: #06133c;
+            font-family: @font;
+            font-size: 14px;
+            outline: none;
+        }
+
+        fieldset {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px 14px;
+            margin-top: 24px;
+            border: 0;
+        }
+
+        legend {
+            grid-column: 1 / -1;
+            margin-bottom: 8px;
+            color: #06133c;
+            font-size: 13px;
+            font-weight: @semi-bold;
+        }
+
+        fieldset label {
+            min-height: 62px;
+            display: grid;
+            grid-template-columns: 40px minmax(0, 1fr) 22px;
+            gap: 14px;
+            align-items: center;
+            padding: 0 18px;
+            border: 1px solid #cfdced;
+            border-radius: 6px;
+            color: #06133c;
+            font-size: 14px;
+            font-weight: @semi-bold;
+        }
+
+        fieldset i {
+            color: #075fff;
+            font-size: 28px;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #075fff;
+        }
+
+        button {
+            width: 100%;
+            min-height: 61px;
+            margin-top: 28px;
+            border: 0;
+            border-radius: 6px;
+            background: #075fff;
+            color: @white;
+            font-family: @font;
+            font-size: 20px;
+            font-weight: @semi-bold;
+            cursor: pointer;
+        }
+
+        small {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 17px;
+            color: #06133c;
+            font-size: 13px;
+        }
+    }
+
+    &__trust {
+        background: #00163d;
+    }
+
+    &__trust-grid {
+        display: grid;
+        grid-template-columns: 1.45fr repeat(2, 1fr);
+        align-items: center;
+
+        > * {
+            min-height: 137px;
+            display: grid;
+            align-items: center;
+            padding: 0 44px;
+            border-left: 1px solid rgba(255, 255, 255, .18);
+            color: @white;
+            font-size: 18px;
+            font-weight: @semi-bold;
+            line-height: 1.28;
+
+            &:first-child {
+                border-left: 0;
+            }
+        }
+
+        article {
+            grid-template-columns: 50px minmax(0, 1fr);
+            gap: 18px;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 43px;
+        }
+    }
+
+    &__google {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 19px;
+
+        img {
+            width: 70px;
+        }
+
+        p,
+        strong {
+            color: @white;
+            font-size: 19px;
+        }
+
+        strong {
+            margin-right: 8px;
+        }
+
+        &:after {
+            content: "\2605\2605\2605\2605\2605";
+            color: #ffb100;
+            font-size: 24px;
+            letter-spacing: 3px;
+            position: absolute;
+            transform: translate(118px, -25px);
+        }
+    }
+
+    &__why {
+        padding: 46px 0 38px;
+    }
+
+    &__why-grid {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+        gap: 58px;
+        align-items: center;
+
+        h2 {
+            color: #06133c;
+            font-size: 35px;
+            font-weight: @semi-bold;
+            line-height: 1.14;
+        }
+
+        strong {
+            color: #075fff;
+            font: inherit;
+        }
+
+        p {
+            margin-top: 23px;
+            color: #06133c;
+            font-size: 18px;
+            line-height: 1.55;
+        }
+
+        a {
+            display: none;
+        }
+
+        ul {
+            display: grid;
+            gap: 17px;
+            margin-top: 35px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: #06133c;
+            font-size: 17px;
+        }
+
+        i {
+            color: #075fff;
+            font-size: 25px;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+    }
+
+    &__cta {
+        background: #00163d;
+    }
+
+    &__cta-box {
+        padding: 43px 0 35px;
+        color: @white;
+
+        h2 {
+            color: @white;
+            font-size: 33px;
+            font-weight: @semi-bold;
+        }
+
+        > p {
+            max-width: 520px;
+            margin-top: 13px;
+            color: @white;
+            font-size: 18px;
+            line-height: 1.45;
+        }
+    }
+
+    &__cta-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+        max-width: 850px;
+        margin-top: 31px;
+    }
+
+    &__cta-button {
+        min-height: 80px;
+        border: 1px solid #075fff;
+        background: rgba(3, 11, 27, .3);
+        font-size: 15px;
+        line-height: 1.2;
+
+        span,
+        strong {
+            display: block;
+        }
+
+        strong {
+            color: @white;
+            font-size: 22px;
+        }
+    }
+
+    &__cta-benefits {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+        margin-top: 34px;
+
+        span {
+            min-height: 62px;
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 14px;
+            align-items: center;
+            padding: 0 36px;
+            border-left: 1px solid rgba(255, 255, 255, .2);
+            color: @white;
+            font-size: 16px;
+            line-height: 1.3;
+
+            &:first-child {
+                border-left: 0;
+                padding-left: 0;
+            }
+        }
+
+        i {
+            color: #5ea0ff;
+            font-size: 35px;
+        }
+    }
+
+    &__cta-box small {
+        display: block;
+        margin-top: 18px;
+        color: @white;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    @media @tablet {
+        &__hero {
+            min-height: 610px;
+            align-items: flex-start;
+            background:
+                linear-gradient(180deg, rgba(3, 11, 27, 1) 0%, rgba(3, 11, 27, .98) 68%, rgba(3, 11, 27, .58) 84%, rgba(3, 11, 27, .15) 100%),
+                url("../images/contato/imgBanner Topo.png") center bottom / 100% auto no-repeat,
+                #030b1b;
+        }
+
+        &__why-grid,
+        &__trust-grid {
+            grid-template-columns: 1fr;
+        }
+
+        &__trust-grid > * {
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            border-left: 0;
+        }
+    }
+
+    @media @mobile-large {
+        &__hero {
+            min-height: auto;
+            background: #030b1b;
+        }
+
+        &__hero-copy {
+            padding: 24px 0 26px;
+
+            h1 {
+                max-width: 330px;
+                font-size: 34px;
+            }
+
+            p {
+                margin-top: 13px;
+                font-size: 18px;
+            }
+
+            ul {
+                gap: 13px;
+                margin-top: 25px;
+            }
+
+            li {
+                font-size: 14px;
+            }
+        }
+
+        &__hero-actions {
+            max-width: none;
+            margin-top: 27px;
+        }
+
+        &__button {
+            min-height: 53px;
+            border-radius: 5px;
+            font-size: 15px;
+
+            i {
+                font-size: 25px;
+            }
+        }
+
+        &__response {
+            font-size: 12px;
+        }
+
+        &__form-section {
+            margin-top: 0;
+            padding: 18px 0 0;
+            background: #f4f8ff;
+        }
+
+        &__form {
+            padding: 26px 18px 22px;
+            border-radius: 10px;
+
+            h2 {
+                font-size: 20px;
+            }
+
+            > p {
+                font-size: 13px;
+                line-height: 1.45;
+            }
+
+            > label {
+                margin-top: 17px;
+                font-size: 12px;
+            }
+
+            input[type="text"],
+            input[type="tel"] {
+                height: 42px;
+                font-size: 12px;
+            }
+
+            fieldset {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            fieldset label {
+                min-height: 42px;
+                grid-template-columns: 28px minmax(0, 1fr) 18px;
+                padding: 0 11px;
+                font-size: 12px;
+            }
+
+            fieldset i {
+                font-size: 20px;
+            }
+
+            button {
+                min-height: 46px;
+                font-size: 14px;
+            }
+
+            small {
+                max-width: 190px;
+                margin-inline: auto;
+                font-size: 11px;
+                line-height: 1.25;
+                text-align: center;
+            }
+        }
+
+        &__trust {
+            border-radius: 9px 9px 0 0;
+            overflow: hidden;
+        }
+
+        &__trust-grid > * {
+            min-height: 72px;
+            grid-template-columns: 43px minmax(0, 1fr);
+            padding: 0 18px;
+            font-size: 14px;
+        }
+
+        &__google {
+            img {
+                width: 42px;
+            }
+
+            p,
+            strong {
+                font-size: 13px;
+            }
+
+            &:after {
+                font-size: 16px;
+                transform: translate(70px, -18px);
+            }
+        }
+
+        &__why {
+            padding: 16px 0;
+            background: #f4f8ff;
+        }
+
+        &__why-grid {
+            gap: 16px;
+            padding: 20px 16px;
+            border: 1px solid #dce7f4;
+            border-radius: 10px;
+            background: @white;
+
+            h2 {
+                font-size: 23px;
+            }
+
+            p {
+                margin-top: 14px;
+                font-size: 14px;
+            }
+
+            a {
+                display: inline-flex;
+                gap: 8px;
+                margin-top: 14px;
+                color: #075fff;
+                font-size: 13px;
+                font-weight: @semi-bold;
+            }
+
+            ul {
+                display: none;
+            }
+
+            img {
+                order: 2;
+            }
+        }
+
+        &__cta-box {
+            padding: 24px 0 20px;
+
+            h2 {
+                font-size: 23px;
+            }
+
+            > p {
+                display: none;
+            }
+        }
+
+        &__cta-actions {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        &__cta-button {
+            min-height: 58px;
+            border-radius: 5px;
+            font-size: 12px;
+
+            strong {
+                font-size: 16px;
+            }
+        }
+
+        &__cta-benefits {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 18px;
+
+            span {
+                min-height: 0;
+                grid-template-columns: 30px minmax(0, 1fr);
+                padding: 0;
+                border-left: 0;
+                font-size: 13px;
+            }
+
+            i {
+                font-size: 24px;
+            }
+        }
+    }
+}

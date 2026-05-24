@@ -14,7 +14,8 @@
             <nav class="header__nav" aria-label="Menu principal">
                 <?php
                 $activeRoute = $mainRoute ?? '';
-                $solutionActive = $activeRoute === 'solucoes' ? ' header__nav-link--active' : '';
+                $solutionActiveRoutes = ['solucoes', 'internetpme', 'wifiprofissional', 'telefoniaempresarial', 'linkdedicado', 'rastreamentoveicular'];
+                $solutionActive = in_array($activeRoute, $solutionActiveRoutes, true) ? ' header__nav-link--active' : '';
                 ?>
 
                 <a class="header__nav-link<?= $activeRoute === 'residencial' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
@@ -42,6 +43,7 @@
                                     <li><a href="<?= BASE_URL ?>/cameradeseguranca"><i class="icon-casino-cctv" aria-hidden="true"></i><span><strong>Câmeras de segurança</strong><small>Monitore de onde estiver</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/wifimesh"><i class="icon-wifimesh" aria-hidden="true"></i><span><strong>Wi-Fi Mesh</strong><small>Cobertura total em todos os ambientes</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/planomovel"><i class="icon-mobile-phone" aria-hidden="true"></i><span><strong>Plano móvel</strong><small>Internet para levar com você</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/rastreamentoveicular"><i class="icon-carpin" aria-hidden="true"></i><span><strong>Rastreamento veicular</strong><small>Segurança e controle em tempo real</small></span></a></li>
                                 </ul>
 
                                 <a class="header__mega-card header__mega-card--best" href="<?= BASE_URL ?>/solucoes">
@@ -61,9 +63,9 @@
 
                                 <ul class="header__mega-list">
                                     <li><a href="<?= BASE_URL ?>/internetpme"><i class="icon-construcao" aria-hidden="true"></i><span><strong>Internet PME</strong><small>Estabilidade para sua empresa</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-wifi" aria-hidden="true"></i><span><strong>Wi-Fi Profissional</strong><small>Rede de alta performance</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-phone" aria-hidden="true"></i><span><strong>Telefonia empresarial</strong><small>Comunicação profissional e ilimitada</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/solucoes"><i class="icon-servidor" aria-hidden="true"></i><span><strong>Link dedicado</strong><small>Máxima estabilidade para operações críticas</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/wifiprofissional"><i class="icon-wifi" aria-hidden="true"></i><span><strong>Wi-Fi Profissional</strong><small>Rede de alta performance</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/telefoniaempresarial"><i class="icon-phone" aria-hidden="true"></i><span><strong>Telefonia empresarial</strong><small>Comunicação profissional e ilimitada</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/linkdedicado"><i class="icon-servidor" aria-hidden="true"></i><span><strong>Link dedicado</strong><small>Máxima estabilidade para operações críticas</small></span></a></li>
                                 </ul>
 
                                 <a class="header__mega-card header__mega-card--business" href="<?= BASE_URL ?>/empresas">
@@ -108,8 +110,8 @@
                     </div>
                 </div>
 
-                <a class="header__nav-link<?= $activeRoute === 'sobre' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/sobre">Sobre a AserNet</a>
-                <a class="header__nav-link<?= $activeRoute === 'suporte' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/suporte">Suporte</a>
+                <a class="header__nav-link<?= $activeRoute === 'sobreasernet' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a>
+                <a class="header__nav-link<?= $activeRoute === 'faq' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/faq">Suporte</a>
             </nav>
 
             <div class="header__actions">
