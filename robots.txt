@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /services/
+Disallow: /config/
+Disallow: /carrinho/
+
+Sitemap: https://asernet.com.br/sitemap.xml

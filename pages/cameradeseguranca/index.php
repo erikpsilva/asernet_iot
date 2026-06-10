@@ -107,7 +107,7 @@
                             <li>Acesso remoto pelo app</li>
                             <li>Armazenamento em nuvem</li>
                         </ul>
-                        <a href="<?= BASE_URL ?>/contato">Contratar</a>
+                        <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="camera-1" data-cart-group="cameras-seguranca" data-cart-title="C&acirc;meras - 1 ponto" data-cart-subtitle="Monitoramento inicial" data-cart-price="R$ 49,90/m&ecirc;s" data-cart-icon="icon-casino-cctv" data-cart-url="<?= BASE_URL ?>/cameradeseguranca">Contratar</a>
                     </article>
 
                     <article class="camera-security__plan camera-security__plan--featured">
@@ -124,7 +124,7 @@
                             <li>Acesso remoto pelo app</li>
                             <li>Armazenamento em nuvem</li>
                         </ul>
-                        <a href="<?= BASE_URL ?>/contato">Contratar</a>
+                        <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="camera-2" data-cart-group="cameras-seguranca" data-cart-title="C&acirc;meras - 2 pontos" data-cart-subtitle="Mais cobertura para casa" data-cart-price="R$ 99,80/m&ecirc;s" data-cart-icon="icon-casino-cctv" data-cart-url="<?= BASE_URL ?>/cameradeseguranca">Contratar</a>
                     </article>
 
                     <article class="camera-security__plan camera-security__plan--orange">
@@ -142,7 +142,7 @@
                             <li>Acesso remoto pelo app</li>
                             <li>Armazenamento em nuvem</li>
                         </ul>
-                        <a href="<?= BASE_URL ?>/contato">Contratar</a>
+                        <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="camera-3" data-cart-group="cameras-seguranca" data-cart-title="C&acirc;meras - 3 pontos" data-cart-subtitle="Cobertura ampliada" data-cart-price="R$ 119,70/m&ecirc;s" data-cart-icon="icon-casino-cctv" data-cart-url="<?= BASE_URL ?>/cameradeseguranca">Contratar</a>
                     </article>
                 </div>
 

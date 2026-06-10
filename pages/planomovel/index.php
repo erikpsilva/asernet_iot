@@ -73,7 +73,7 @@
                                 <li><i class="icon-checkmark" aria-hidden="true"></i>SMS ilimitado</li>
                                 <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura nacional</li>
                             </ul>
-                            <a href="<?= BASE_URL ?>/contato">Solicitar chip</a>
+                            <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="mobile-20gb" data-cart-group="aser-mobile" data-cart-title="Aser Mobile - 20 GB" data-cart-subtitle="15 GB + 5 GB b&ocirc;nus portabilidade" data-cart-price="R$ 39,90/m&ecirc;s" data-cart-icon="icon-mobile-phone" data-cart-url="<?= BASE_URL ?>/planomovel">Solicitar chip</a>
                         </article>
 
                         <article class="mobile-plan__plan mobile-plan__plan--featured">
@@ -89,7 +89,7 @@
                                 <li><i class="icon-checkmark" aria-hidden="true"></i>SMS ilimitado</li>
                                 <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura nacional</li>
                             </ul>
-                            <a href="<?= BASE_URL ?>/contato">Solicitar chip</a>
+                            <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="mobile-25gb" data-cart-group="aser-mobile" data-cart-title="Aser Mobile - 25 GB" data-cart-subtitle="20 GB + 5 GB b&ocirc;nus portabilidade" data-cart-price="R$ 59,90/m&ecirc;s" data-cart-icon="icon-mobile-phone" data-cart-url="<?= BASE_URL ?>/planomovel">Solicitar chip</a>
                         </article>
 
                         <article class="mobile-plan__plan">
@@ -104,7 +104,7 @@
                                 <li><i class="icon-checkmark" aria-hidden="true"></i>SMS ilimitado</li>
                                 <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura nacional</li>
                             </ul>
-                            <a href="<?= BASE_URL ?>/contato">Solicitar chip</a>
+                            <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="mobile-30gb" data-cart-group="aser-mobile" data-cart-title="Aser Mobile - 30 GB" data-cart-subtitle="25 GB + 5 GB b&ocirc;nus portabilidade" data-cart-price="R$ 69,90/m&ecirc;s" data-cart-icon="icon-mobile-phone" data-cart-url="<?= BASE_URL ?>/planomovel">Solicitar chip</a>
                         </article>
                     </div>
 

@@ -27,7 +27,7 @@
                 </ul>
 
                 <div class="telefonia-page__hero-actions">
-                    <a class="telefonia-page__button telefonia-page__button--primary" href="<?= BASE_URL ?>/contato">Solicitar proposta <span aria-hidden="true">-&gt;</span></a>
+                    <a class="telefonia-page__button telefonia-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20solicitar%20uma%20proposta%20de%20Telefonia%20Empresarial." target="_blank" rel="noopener">Solicitar proposta <i class="icon-arrowright" aria-hidden="true"></i></a>
                     <a class="telefonia-page__button telefonia-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
                 </div>
             </div>
@@ -63,19 +63,19 @@
                 <div class="telefonia-page__solutions-grid">
                     <article>
                         <img src="<?= BASE_URL ?>/images/telefoniaempresarial/imgLinhaEmpresarial.png" alt="Telefone empresarial">
-                        <div><h3>Linha empresarial</h3><p>Ideal para empresas que precisam de comunica&ccedil;&atilde;o est&aacute;vel e profissional.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div>
+                        <div><h3>Linha empresarial</h3><p>Ideal para empresas que precisam de comunica&ccedil;&atilde;o est&aacute;vel e profissional.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20na%20solu%C3%A7%C3%A3o%20de%20Linha%20Empresarial." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div>
                     </article>
                     <article>
                         <i class="icon-customersupport" aria-hidden="true"></i>
-                        <div><h3>N&uacute;mero 0800</h3><p>Atendimento gratuito para seus clientes e fortalecimento da marca.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div>
+                        <div><h3>N&uacute;mero 0800</h3><p>Atendimento gratuito para seus clientes e fortalecimento da marca.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20no%20N%C3%BAmero%200800%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div>
                     </article>
                     <article>
                         <i class="icon-talk" aria-hidden="true"></i>
-                        <div><h3>N&uacute;mero 4000</h3><p>Mais credibilidade e presen&ccedil;a regional para sua empresa.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div>
+                        <div><h3>N&uacute;mero 4000</h3><p>Mais credibilidade e presen&ccedil;a regional para sua empresa.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20no%20N%C3%BAmero%204000%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div>
                     </article>
                 </div>
 
-                <a class="telefonia-page__analysis" href="<?= BASE_URL ?>/contato">Solicitar an&aacute;lise da melhor solu&ccedil;&atilde;o <span aria-hidden="true">-&gt;</span></a>
+                <a class="telefonia-page__analysis" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20da%20melhor%20solu%C3%A7%C3%A3o%20de%20Telefonia%20Empresarial." target="_blank" rel="noopener">Solicitar an&aacute;lise da melhor solu&ccedil;&atilde;o <i class="icon-arrowright" aria-hidden="true"></i></a>
             </div>
         </section>
 

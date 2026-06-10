@@ -30,7 +30,7 @@
                         <p class="wifi-mesh__hero-price">A partir de <strong><span>R$</span> 139,90<small>/mês</small></strong></p>
 
                         <div class="wifi-mesh__hero-actions">
-                            <a class="wifi-mesh__button wifi-mesh__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-wifi" aria-hidden="true"></i>Quero Wi-Fi em toda a casa</a>
+                            <a class="wifi-mesh__button wifi-mesh__button--primary" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="wifi-mesh-kit" data-cart-group="wifi-mesh" data-cart-title="Wi-Fi Mesh" data-cart-subtitle="Cobertura inteligente residencial" data-cart-price="A partir de R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifimesh" data-cart-url="<?= BASE_URL ?>/wifimesh"><i class="icon-wifi" aria-hidden="true"></i>Quero Wi-Fi em toda a casa</a>
                             <a class="wifi-mesh__button wifi-mesh__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                     <h2>Sua casa inteira conectada de verdade.</h2>
                     <div class="wifi-mesh__cta-actions">
                         <a class="wifi-mesh__cta-button wifi-mesh__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
-                        <a class="wifi-mesh__cta-button" href="<?= BASE_URL ?>/contato"><i class="icon-calendar" aria-hidden="true"></i><span>Solicitar análise técnica</span></a>
+                        <a class="wifi-mesh__cta-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="wifi-mesh-kit" data-cart-group="wifi-mesh" data-cart-title="Wi-Fi Mesh" data-cart-subtitle="Cobertura inteligente residencial" data-cart-price="A partir de R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifimesh" data-cart-url="<?= BASE_URL ?>/wifimesh"><i class="icon-calendar" aria-hidden="true"></i><span>Solicitar análise técnica</span></a>
                     </div>
                 </div>
             </div>

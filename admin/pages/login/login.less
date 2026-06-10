@@ -1,10 +1,95 @@
 .adminLogin {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    background: @white;
+
    &__content {
-        width: 600px;
-        .center-all;
+        width: min(100%, 470px);
+        position: relative;
+
+        .formGroup {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: #001b58;
+            color: @white;
+            padding: 42px 42px 36px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, .35);
+            .radius(16px);
+
+            &:before {
+                content: "";
+                width: 210px;
+                height: 210px;
+                position: absolute;
+                right: -80px;
+                top: -80px;
+                border-radius: 50%;
+                background: rgba(7, 95, 255, .22);
+                pointer-events: none;
+            }
+
+            &__divisor h3 {
+                border-bottom-color: rgba(255, 255, 255, .22);
+                color: @white;
+                font-size: 28px;
+                font-weight: @regular;
+                text-align: center;
+
+                span {
+                    color: @white;
+                    font-weight: @semiBold;
+                }
+            }
+
+            &__item {
+                label {
+                    color: @white;
+                }
+
+                input {
+                    border-color: rgba(255, 255, 255, .18);
+                    background: @white;
+                    color: #06133c;
+
+                    &:focus-visible {
+                        border-color: @white;
+                        box-shadow: 0 0 0 4px rgba(255, 255, 255, .22);
+                    }
+                }
+            }
+
+            .btn {
+                width: 100%;
+                float: none;
+                min-height: 54px;
+                margin-top: 4px;
+                border-color: @white;
+                background: @white;
+                color: #075fff;
+                box-shadow: 0 14px 30px rgba(0, 0, 0, .15);
+
+                &:hover {
+                    background: #06133c;
+                    border-color: #06133c;
+                    color: @white;
+                }
+            }
+        }
+
         &__logo {
             display: block;
-            margin: 0 auto 15px auto;
+            max-width: 210px;
+            margin: 0 auto 24px auto;
+        }
+   }
+
+   @media @mobileSM {
+        &__content .formGroup {
+            padding: 30px 20px 26px;
         }
    }
 }

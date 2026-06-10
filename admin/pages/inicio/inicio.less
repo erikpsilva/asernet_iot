@@ -1,0 +1,254 @@
+.adminInicio {
+
+    &__welcome {
+        margin-bottom: 24px;
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 4px;
+            span { color: @primary; font-weight: @bold; }
+        }
+
+        p {
+            margin: 0;
+            color: #8a9ab8;
+            font-size: 14px;
+        }
+    }
+
+    &__stats {
+        margin-bottom: 24px;
+    }
+
+    &__body {
+        margin-bottom: 24px;
+    }
+
+    // ── Quick access (existing campaign nav) ─────────────────────────────
+    &__section {
+        margin-bottom: 32px;
+    }
+
+    &__sectionTitle {
+        color: @colorFont;
+        font-size: 13px;
+        font-weight: @bold;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid @borderColor;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    &__card {
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 16px;
+        border: 1px solid @borderColor;
+        border-radius: 10px;
+        background: @white;
+        text-decoration: none;
+        text-align: center;
+        .transition();
+
+        &:hover {
+            border-color: @primary;
+            box-shadow: 0 4px 16px rgba(7, 95, 255, .1);
+        }
+
+        &__label {
+            color: @colorFont;
+            font-size: 13px;
+            font-weight: @bold;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+
+            .adminInicio__card:hover & { color: @primary; }
+        }
+    }
+
+    @media @tabletSM {
+        &__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media @mobileLG {
+        &__grid { grid-template-columns: 1fr; }
+    }
+}
+
+// ── Stat Cards ────────────────────────────────────────────────────────────────
+
+.dashStat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 110px;
+    padding: 22px 24px;
+    border: 1px solid @borderColor;
+    border-radius: 12px;
+    background: @white;
+    border-left-width: 4px;
+    box-shadow: 0 8px 24px rgba(0, 42, 120, .06);
+    margin-bottom: 20px;
+
+    &__value {
+        display: block;
+        font-size: 34px;
+        font-weight: @bold;
+        line-height: 1;
+        margin-bottom: 6px;
+
+        &--date {
+            font-size: 22px;
+            font-weight: @semiBold;
+        }
+    }
+
+    &__label {
+        font-size: 12px;
+        font-weight: @semiBold;
+        text-transform: uppercase;
+        letter-spacing: .07em;
+        color: #8a9ab8;
+    }
+
+    &--blue   { border-left-color: @primary;  .dashStat__value { color: @primary;  } }
+    &--green  { border-left-color: #00a859;   .dashStat__value { color: #00a859;   } }
+    &--orange { border-left-color: #f59e0b;   .dashStat__value { color: #f59e0b;   } }
+    &--purple { border-left-color: #7c3aed;   .dashStat__value { color: #7c3aed;   } }
+}
+
+// ── Perfil ────────────────────────────────────────────────────────────────────
+
+.dashPerfil {
+    height: 100%;
+
+    &__title {
+        font-size: 15px;
+        font-weight: @bold;
+        color: @colorFont;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid @borderColor;
+    }
+
+    &__list {
+        margin-bottom: 24px;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 10px 0;
+            border-bottom: 1px solid @borderColor;
+
+            &:last-child { border-bottom: 0; }
+        }
+    }
+
+    &__key {
+        font-size: 11px;
+        font-weight: @bold;
+        text-transform: uppercase;
+        letter-spacing: .07em;
+        color: #8a9ab8;
+    }
+
+    &__val {
+        font-size: 14px;
+        color: @colorFont;
+        word-break: break-word;
+    }
+
+    .btn { float: none; width: 100%; }
+}
+
+.dashNivel {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: @bold;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+
+    &--admin  { background: rgba(7, 95, 255, .1);   color: @primary; }
+    &--editor { background: rgba(0, 168, 89, .1);   color: #00a859; }
+    &--leitor { background: rgba(120,120,140, .1);  color: #78788c; }
+}
+
+// ── Últimos participantes ─────────────────────────────────────────────────────
+
+.dashRecentes {
+    height: 100%;
+
+    &__title {
+        font-size: 15px;
+        font-weight: @bold;
+        color: @colorFont;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid @borderColor;
+    }
+
+    &__empty {
+        color: #8a9ab8;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    &__wrap {
+        overflow-x: auto;
+    }
+}
+
+.dashTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th {
+        padding: 8px 12px;
+        background: @softBlue;
+        border-bottom: 2px solid @borderColor;
+        color: #8a9ab8;
+        font-size: 11px;
+        font-weight: @bold;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        white-space: nowrap;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid @borderColor;
+        color: @colorFont;
+        vertical-align: middle;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    tr:hover td { background: @softBlue; }
+
+    &__badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 26px;
+        height: 22px;
+        padding: 0 7px;
+        border-radius: 999px;
+        background: rgba(7, 95, 255, .1);
+        color: @primary;
+        font-size: 11px;
+        font-weight: @bold;
+    }
+}

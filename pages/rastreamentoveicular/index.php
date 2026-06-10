@@ -55,10 +55,10 @@
                 </header>
 
                 <div class="tracking-page__category-grid">
-                    <article><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgCarros.png" alt="Carro com rastreador"><div><h3>Carros</h3><p>Prote&ccedil;&atilde;o contra roubo, furto e uso n&atilde;o autorizado.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div></article>
-                    <article><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgMotos.png" alt="Moto com rastreador"><div><h3>Motos</h3><p>Mais seguran&ccedil;a para o seu dia a dia sobre duas rodas.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div></article>
-                    <article><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgCaminhoes.png" alt="Caminh&atilde;o com rastreador"><div><h3>Caminh&otilde;es</h3><p>Gest&atilde;o de frota, rotas e seguran&ccedil;a da carga.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div></article>
-                    <article class="tracking-page__category-featured"><span>Destaque</span><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgBicicletaEletrica.png" alt="Bicicleta el&eacute;trica com rastreador"><div><h3>Bicicletas El&eacute;tricas</h3><p>Seguran&ccedil;a contra roubo e controle completo para pais.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">-&gt;</span></a></div></article>
+                    <article><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgCarros.png" alt="Carro com rastreador"><div><h3>Carros</h3><p>Prote&ccedil;&atilde;o contra roubo, furto e uso n&atilde;o autorizado.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
+                    <article><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgMotos.png" alt="Moto com rastreador"><div><h3>Motos</h3><p>Mais seguran&ccedil;a para o seu dia a dia sobre duas rodas.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
+                    <article><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgCaminhoes.png" alt="Caminh&atilde;o com rastreador"><div><h3>Caminh&otilde;es</h3><p>Gest&atilde;o de frota, rotas e seguran&ccedil;a da carga.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
+                    <article class="tracking-page__category-featured"><span>Destaque</span><img src="<?= BASE_URL ?>/images/rastreamentoveicular/imgBicicletaEletrica.png" alt="Bicicleta el&eacute;trica com rastreador"><div><h3>Bicicletas El&eacute;tricas</h3><p>Seguran&ccedil;a contra roubo e controle completo para pais.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
                 </div>
 
                 <div class="tracking-page__more-grid">
@@ -115,7 +115,7 @@
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Cerca eletr&ocirc;nica</li>
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Relat&oacute;rios completos</li>
                         </ul>
-                        <a href="<?= BASE_URL ?>/contato">Assinar plano</a>
+                        <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="rastreador-veicular" data-cart-group="rastreamento" data-cart-title="Rastreamento veicular" data-cart-subtitle="Plano para carro ou moto" data-cart-price="R$ 49,90/m&ecirc;s" data-cart-icon="icon-carpin" data-cart-url="<?= BASE_URL ?>/rastreamentoveicular">Assinar plano</a>
                     </article>
 
                     <article class="tracking-page__plan tracking-page__plan--featured">
@@ -131,7 +131,7 @@
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Alerta de proximidade</li>
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Bateria de longa dura&ccedil;&atilde;o</li>
                         </ul>
-                        <a href="<?= BASE_URL ?>/contato">Assinar plano</a>
+                        <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="rastreador-premium" data-cart-group="rastreamento" data-cart-title="Rastreamento premium" data-cart-subtitle="Plano veicular completo" data-cart-price="R$ 69,90/m&ecirc;s" data-cart-icon="icon-carpin" data-cart-url="<?= BASE_URL ?>/rastreamentoveicular">Assinar plano</a>
                     </article>
 
                     <article class="tracking-page__plan tracking-page__plan--tag">
@@ -146,7 +146,7 @@
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Bateria de longa dura&ccedil;&atilde;o</li>
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Compat&iacute;vel com o app</li>
                         </ul>
-                        <a href="<?= BASE_URL ?>/contato">Assinar plano</a>
+                        <a href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="tag-localizadora" data-cart-group="rastreamento" data-cart-title="Tag localizadora" data-cart-subtitle="Objetos, bolsas, malas e equipamentos" data-cart-price="R$ 19,90/m&ecirc;s" data-cart-icon="icon-pin" data-cart-url="<?= BASE_URL ?>/rastreamentoveicular">Assinar plano</a>
                     </article>
                 </div>
 

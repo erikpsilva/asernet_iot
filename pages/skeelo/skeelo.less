@@ -1,0 +1,791 @@
+.skeelo-page {
+    background: #fbfdff;
+    color: #06133c;
+
+    &__hero {
+        min-height: 560px;
+        display: flex;
+        align-items: center;
+        background:
+            linear-gradient(90deg, rgba(1, 14, 38, .98) 0%, rgba(1, 14, 38, .93) 33%, rgba(1, 14, 38, .18) 63%, rgba(1, 14, 38, .08) 100%),
+            url("../images/skeelo/bannerTopo.png") right center / auto 100% no-repeat,
+            #010e26;
+        overflow: hidden;
+    }
+
+    &__hero-content {
+        max-width: 560px;
+        padding: 62px 0 50px;
+        color: @white;
+    }
+
+    &__logo {
+        width: 262px;
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    &__hero h1 {
+        color: @white;
+        font-size: 44px;
+        font-weight: @semi-bold;
+        line-height: 1.06;
+
+        strong {
+            color: #075fff;
+            font: inherit;
+        }
+    }
+
+    &__hero p {
+        max-width: 510px;
+        margin-top: 24px;
+        color: @white;
+        font-size: 17px;
+        line-height: 1.55;
+    }
+
+    &__hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-top: 30px;
+    }
+
+    &__button {
+        min-height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        border-radius: 8px;
+        color: @white;
+        font-size: 16px;
+        font-weight: @semi-bold;
+
+        &:hover {
+            color: @white;
+        }
+
+        &--primary {
+            min-width: 248px;
+            background: #075fff;
+            box-shadow: 0 12px 30px rgba(7, 95, 255, .28);
+
+            i {
+                font-size: 27px;
+            }
+        }
+
+        &--play {
+            min-height: 42px;
+            gap: 12px;
+            padding: 0;
+            background: transparent;
+
+            span {
+                width: 42px;
+                height: 42px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid rgba(255, 255, 255, .68);
+                border-radius: 50%;
+                background: rgba(7, 95, 255, .24);
+
+                &:before {
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    margin-left: 3px;
+                    border-top: 8px solid transparent;
+                    border-bottom: 8px solid transparent;
+                    border-left: 12px solid @white;
+                }
+            }
+        }
+    }
+
+    &__moments {
+        padding: 29px 0 20px;
+        background: @white;
+    }
+
+    &__section-head {
+        text-align: center;
+
+        span {
+            color: #075fff;
+            font-size: 13px;
+            font-weight: @semi-bold;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin-top: 8px;
+            color: #06133c;
+            font-size: 31px;
+            font-weight: @semi-bold;
+            line-height: 1.18;
+        }
+    }
+
+    &__features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: 28px;
+
+        article {
+            min-height: 156px;
+            display: grid;
+            align-content: start;
+            padding: 25px 24px 22px;
+            border: 1px solid #dce7f4;
+            border-radius: 8px;
+            background: @white;
+            box-shadow: 0 12px 24px rgba(0, 42, 120, .03);
+        }
+
+        i {
+            color: #075fff;
+            font-size: 31px;
+        }
+
+        h3 {
+            margin-top: 13px;
+            color: #06133c;
+            font-size: 20px;
+            font-weight: @semi-bold;
+            line-height: 1.25;
+        }
+
+        p {
+            margin-top: 11px;
+            color: #06133c;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+    }
+
+    &__routine {
+        padding: 21px 0 20px;
+        background: linear-gradient(180deg, @white 0%, #f7faff 100%);
+    }
+
+    &__routine-grid {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 22px;
+        align-items: stretch;
+    }
+
+    &__routine-copy,
+    &__how {
+        border-radius: 8px;
+        background: @white;
+        box-shadow: 0 13px 30px rgba(0, 42, 120, .05);
+    }
+
+    &__routine-copy {
+        padding: 34px 26px;
+
+        span {
+            color: #075fff;
+            font-size: 14px;
+            font-weight: @semi-bold;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin-top: 15px;
+            color: #06133c;
+            font-size: 28px;
+            font-weight: @semi-bold;
+            line-height: 1.22;
+
+            strong {
+                color: #075fff;
+                font: inherit;
+            }
+        }
+
+        p {
+            margin-top: 26px;
+            color: #06133c;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+
+        article {
+            overflow: hidden;
+            border: 1px solid #dce7f4;
+            border-radius: 8px;
+            background: @white;
+            box-shadow: 0 13px 30px rgba(0, 42, 120, .05);
+        }
+
+        img {
+            width: 100%;
+            height: 150px;
+            display: block;
+            object-fit: cover;
+        }
+
+        div {
+            padding: 0 16px 18px;
+        }
+
+        i {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -23px;
+            border: 1px solid #dce7f4;
+            border-radius: 50%;
+            background: @white;
+            color: #075fff;
+            font-size: 25px;
+        }
+
+        h3 {
+            margin-top: 10px;
+            color: #075fff;
+            font-size: 20px;
+            font-weight: @semi-bold;
+            line-height: 1.25;
+        }
+
+        p {
+            margin-top: 8px;
+            color: #06133c;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+    }
+
+    &__how-row {
+        margin-top: 22px;
+    }
+
+    &__how {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 20px;
+        align-items: center;
+        padding: 28px 24px 22px;
+
+        > span {
+            grid-column: span 2;
+            display: block;
+            color: #075fff;
+            font-size: 14px;
+            font-weight: @semi-bold;
+            text-transform: uppercase;
+        }
+
+        ol {
+            grid-column: span 7;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 0;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: 32px minmax(0, 1fr);
+            gap: 10px 12px;
+            align-items: start;
+        }
+
+        b {
+            width: 32px;
+            height: 32px;
+            grid-row: span 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #075fff;
+            color: @white;
+            font-size: 15px;
+            font-weight: @semi-bold;
+        }
+
+        strong {
+            color: #06133c;
+            font-size: 18px;
+            font-weight: @semi-bold;
+        }
+
+        small {
+            color: #06133c;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+
+        a {
+            grid-column: span 3;
+            min-height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            width: 100%;
+            margin-top: 0;
+            padding: 0 18px 0 22px;
+            border-radius: 6px;
+            background: #075fff;
+            color: @white;
+            font-size: 16px;
+            font-weight: @semi-bold;
+            line-height: 1.15;
+            text-align: left;
+            box-shadow: 0 12px 24px rgba(7, 95, 255, .24);
+
+            i {
+                flex: 0 0 auto;
+                font-size: 25px;
+                line-height: 1;
+            }
+
+            &:hover {
+                background: #004fe0;
+                color: @white;
+            }
+        }
+    }
+
+    &__benefits {
+        padding: 0 0 18px;
+        background: #f7faff;
+    }
+
+    &__benefits-box {
+        display: grid;
+        grid-template-columns: 150px repeat(4, minmax(0, 1fr));
+        gap: 22px;
+        align-items: center;
+        padding: 25px 30px;
+        border: 1px solid #dce7f4;
+        border-radius: 8px;
+        background: @white;
+
+        h2 {
+            color: #075fff;
+            font-size: 16px;
+            font-weight: @semi-bold;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        article {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: 15px;
+            align-items: center;
+        }
+
+        i {
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dce7f4;
+            border-radius: 50%;
+            color: #075fff;
+            font-size: 24px;
+        }
+
+        h3 {
+            color: #06133c;
+            font-size: 18px;
+            font-weight: @semi-bold;
+            line-height: 1.25;
+        }
+
+        p {
+            margin-top: 4px;
+            color: #06133c;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+    }
+
+    &__trust {
+        padding: 0 0 20px;
+        background: #f7faff;
+    }
+
+    &__trust-box {
+        min-height: 74px;
+        display: grid;
+        grid-template-columns: 1.2fr repeat(2, 1fr);
+        align-items: center;
+        gap: 20px;
+        padding: 0 28px;
+        border-radius: 8px;
+        background: #011633;
+        color: @white;
+    }
+
+    &__google,
+    &__trust article {
+        display: grid;
+        grid-template-columns: 50px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+    }
+
+    &__google {
+        img {
+            width: 42px;
+            display: block;
+        }
+
+        p {
+            color: @white;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+    }
+
+    &__trust article {
+        color: @white;
+        font-size: 16px;
+        font-weight: @semi-bold;
+
+        i {
+            color: @white;
+            font-size: 29px;
+        }
+    }
+
+    @media @notebook-small {
+        &__routine-grid {
+            grid-template-columns: 280px minmax(0, 1fr);
+        }
+
+        &__cards {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+
+            h3 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        &__how {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+
+            > span {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+
+            ol {
+                grid-column: span 8;
+            }
+
+            a {
+                grid-column: span 4;
+                max-width: 360px;
+                justify-self: end;
+            }
+        }
+
+        &__benefits-box {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            h2 {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+        }
+    }
+
+    @media @tablet {
+        &__hero {
+            min-height: 720px;
+            align-items: flex-start;
+            background:
+                linear-gradient(180deg, rgba(1, 14, 38, .98) 0%, rgba(1, 14, 38, .94) 42%, rgba(1, 14, 38, .18) 63%, rgba(1, 14, 38, .92) 100%),
+                url("../images/skeelo/bannerTopo.png") center bottom / auto 58% no-repeat,
+                #010e26;
+        }
+
+        &__hero-content {
+            max-width: 460px;
+            padding: 24px 0 0;
+        }
+
+        &__logo {
+            width: 170px;
+            margin-bottom: 14px;
+        }
+
+        &__hero h1 {
+            font-size: 32px;
+        }
+
+        &__hero p {
+            max-width: 390px;
+            margin-top: 14px;
+            font-size: 16px;
+        }
+
+        &__hero-actions {
+            display: grid;
+            justify-items: start;
+            gap: 13px;
+            margin-top: 17px;
+        }
+
+        &__button--primary {
+            min-width: 265px;
+            min-height: 47px;
+        }
+
+        &__moments {
+            padding: 24px 0 18px;
+        }
+
+        &__section-head {
+            span {
+                display: none;
+            }
+
+            h2 {
+                max-width: 285px;
+                margin: 0 auto;
+                font-size: 23px;
+            }
+        }
+
+        &__features {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+
+            article {
+                min-height: 0;
+                padding: 20px 16px 18px;
+                text-align: center;
+            }
+
+            i {
+                font-size: 26px;
+            }
+
+            h3 {
+                margin-top: 10px;
+                font-size: 20px;
+            }
+
+            p {
+                margin-top: 8px;
+                font-size: 16px;
+            }
+        }
+
+        &__routine-copy,
+        &__how {
+            text-align: center;
+        }
+
+        &__routine-grid {
+            grid-template-columns: 1fr;
+        }
+
+        &__routine-copy {
+            padding: 22px 18px;
+
+            h2 {
+                max-width: 420px;
+                margin: 10px auto 0;
+                font-size: 24px;
+            }
+
+            p {
+                max-width: 440px;
+                margin: 12px auto 0;
+            }
+        }
+
+        &__cards {
+            margin-inline: -15px;
+            padding-inline: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 260px);
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-snap-type: x proximity;
+
+            article {
+                scroll-snap-align: start;
+            }
+        }
+
+        &__how {
+            padding: 24px 18px 18px;
+            grid-template-columns: 1fr;
+            text-align: center;
+
+            > span,
+            ol,
+            a {
+                grid-column: auto;
+            }
+
+            a {
+                max-width: 420px;
+                justify-self: center;
+            }
+
+            ol {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 14px;
+            }
+
+            li {
+                display: block;
+                text-align: center;
+            }
+
+            b {
+                margin: 0 auto 9px;
+            }
+
+            strong,
+            small {
+                display: block;
+            }
+        }
+
+        &__benefits-box {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px 10px;
+            padding: 21px 12px;
+
+            article {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        &__trust-box {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 14px 18px;
+        }
+    }
+
+    @media @mobile-large {
+        &__hero {
+            min-height: 665px;
+            background:
+                linear-gradient(180deg, rgba(1, 14, 38, .98) 0%, rgba(1, 14, 38, .94) 44%, rgba(1, 14, 38, .12) 64%, rgba(1, 14, 38, .95) 100%),
+                url("../images/skeelo/bannerTopo.png") 57% bottom / auto 52% no-repeat,
+                #010e26;
+        }
+
+        &__hero h1 {
+            max-width: 335px;
+            font-size: 26px;
+        }
+
+        &__hero p {
+            max-width: 320px;
+            font-size: 16px;
+        }
+
+        &__features {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 0 10px;
+            scroll-snap-type: x proximity;
+
+            article {
+                min-width: 230px;
+                scroll-snap-align: start;
+            }
+        }
+
+        &__cards {
+            grid-template-columns: repeat(4, 260px);
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-snap-type: x proximity;
+
+            article {
+                scroll-snap-align: start;
+            }
+
+            img {
+                height: 150px;
+            }
+
+            div {
+                padding: 0 14px 16px;
+            }
+
+            i {
+                width: 42px;
+                height: 42px;
+                margin-top: -21px;
+                font-size: 23px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        &__how {
+            ol {
+                grid-template-columns: 1fr;
+            }
+
+            small {
+                font-size: 16px;
+            }
+        }
+
+        &__benefits-box {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            i {
+                width: 41px;
+                height: 41px;
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+}

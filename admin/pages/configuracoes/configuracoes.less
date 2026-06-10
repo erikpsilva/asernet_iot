@@ -1,0 +1,25 @@
+.configPage {
+
+    &__textarea {
+        height: auto;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    &__hint {
+        display: block;
+        margin-top: 6px;
+        color: @textLight;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    &__feedback {
+        margin-left: 14px;
+        font-size: 13px;
+        font-weight: @semibold;
+
+        &.is-success { color: #0abf54; }
+        &.is-error   { color: @error; }
+    }
+}

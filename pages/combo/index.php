@@ -75,7 +75,7 @@
                                         <li>Acesso remoto pelo app</li>
                                         <li>Gravação em nuvem opcional</li>
                                     </ul>
-                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a>
+                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                                 </div>
                             </article>
 
@@ -93,7 +93,7 @@
                                         <li>Sem pontos de sombra</li>
                                         <li>Mais estabilidade para todos</li>
                                     </ul>
-                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a>
+                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                                 </div>
                             </article>
                         </div>
@@ -120,7 +120,7 @@
                                         <li>Mais desempenho para sua equipe</li>
                                         <li>Ideal para múltiplos dispositivos</li>
                                     </ul>
-                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a>
+                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                                 </div>
                             </article>
 
@@ -135,7 +135,7 @@
                                         <li>Mais profissionalismo para sua empresa</li>
                                         <li>Recursos avançados</li>
                                     </ul>
-                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a>
+                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                                 </div>
                             </article>
 
@@ -150,7 +150,7 @@
                                         <li>Ideal para sistemas e servidores</li>
                                         <li>IP fixo incluso</li>
                                     </ul>
-                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a>
+                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                                 </div>
                             </article>
                         </div>
@@ -180,7 +180,7 @@
                                         <li>Mais dados e liberdade</li>
                                         <li>Gestão tudo em um só lugar</li>
                                     </ul>
-                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a>
+                                    <a href="<?= BASE_URL ?>/contato">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                                 </div>
                             </article>
 

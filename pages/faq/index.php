@@ -1,3 +1,29 @@
+<?php
+$_faqDefaults = ['categorias' => [
+    ['id'=>'internet',   'icone'=>'icon-home',         'card_modifiers'=>'',             'titulo'=>'Internet Residencial',    'descricao'=>'Planos, instalação, cobertura e mais.',             'perguntas'=>[['q'=>'Todos os planos possuem 1 Giga?','a'=>'Consulte a disponibilidade para seu endereço. Nossa equipe indica o plano ideal para sua região.'],['q'=>'Qual a diferença entre os planos?','a'=>'Os planos variam por velocidade, serviços inclusos e soluções adicionais.'],['q'=>'A instalação está inclusa?','a'=>'A instalação pode variar conforme campanha e viabilidade técnica.'],['q'=>'Posso usar meu próprio roteador?','a'=>'Sim, desde que o equipamento seja compatível e configurado corretamente.']]],
+    ['id'=>'wifi',       'icone'=>'icon-wifi',          'card_modifiers'=>'purple',       'titulo'=>'Wi-Fi e Cobertura',        'descricao'=>'Tudo sobre Wi-Fi, Mesh e sinal.',                   'perguntas'=>[['q'=>'O que é Wi-Fi Mesh?','a'=>'É uma tecnologia que amplia a cobertura usando pontos integrados para melhorar o sinal.'],['q'=>'O Wi-Fi chega em toda a casa?','a'=>'Depende do tamanho e das paredes do ambiente. Podemos dimensionar a melhor solução.'],['q'=>'Muitos dispositivos podem deixar o Wi-Fi lento?','a'=>'Sim. Para muitos dispositivos, recomendamos soluções como Mesh ou Wi-Fi Profissional.']]],
+    ['id'=>'mobile',     'icone'=>'icon-mobile-phone',  'card_modifiers'=>'compact purple','titulo'=>'Mobile',                  'descricao'=>'Planos, portabilidade, cobertura e bônus.',         'perguntas'=>[['q'=>'Posso manter meu número atual?','a'=>'Sim, fazemos portabilidade conforme regras da operadora.'],['q'=>'O plano possui cobertura nacional?','a'=>'Sim, conforme área de cobertura móvel disponível.'],['q'=>'Como funciona o bônus de portabilidade?','a'=>'O bônus é aplicado em planos elegíveis após a portabilidade.']]],
+    ['id'=>'empresarial','icone'=>'icon-office',         'card_modifiers'=>'compact green', 'titulo'=>'Empresarial',             'descricao'=>'Soluções para empresas, PME e Link Dedicado.',       'perguntas'=>[['q'=>'Qual a diferença entre internet PME e Link Dedicado?','a'=>'Internet PME atende empresas do dia a dia; Link Dedicado oferece banda exclusiva para operações críticas.'],['q'=>'O Wi-Fi Pro é indicado para muitos dispositivos?','a'=>'Sim, ele foi pensado para ambientes com alta demanda de conexão.'],['q'=>'Vocês atendem hotéis, clínicas e empresas?','a'=>'Sim. Projetamos soluções conforme o tamanho e necessidade do negócio.']]],
+    ['id'=>'seguranca',  'icone'=>'icon-security',       'card_modifiers'=>'compact orange','titulo'=>'Câmeras e Rastreamento',  'descricao'=>'Segurança, câmeras, rastreadores e tags.',           'perguntas'=>[['q'=>'Posso acessar as câmeras pelo celular?','a'=>'Sim, o acesso pode ser feito por aplicativo compatível.'],['q'=>'O rastreador funciona para motos e bicicletas elétricas?','a'=>'Sim, temos soluções para carros, motos, caminhões, bicicletas elétricas e tags.'],['q'=>'A Tag Localizadora serve para quê?','a'=>'Serve para acompanhar objetos, bolsas, mochilas, malas e outros pertences.']]],
+    ['id'=>'financeiro', 'icone'=>'icon-payment',        'card_modifiers'=>'wide cyan',    'titulo'=>'Financeiro e Suporte',    'descricao'=>'Pagamentos, faturas, suporte e atendimento.',        'perguntas'=>[['q'=>'Como emitir segunda via?','a'=>'A segunda via pode ser solicitada pela central do cliente ou canais de atendimento.'],['q'=>'Como falar com o suporte?','a'=>'Você pode falar pelo WhatsApp, telefone ou canais oficiais da AserNet.'],['q'=>'Posso alterar a data de vencimento?','a'=>'Consulte nossa equipe para verificar disponibilidade de alteração.']]],
+]];
+$_faqContent = $_faqDefaults;
+try {
+    require_once ROOT . '/config/database.php';
+    $_pdo = getDbConnection();
+    $_row = $_pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'faq_content' LIMIT 1")->fetch();
+    if ($_row && !empty($_row['setting_value'])) {
+        $_db = json_decode($_row['setting_value'], true);
+        if (is_array($_db) && !empty($_db['categorias'])) { $_faqContent = $_db; }
+    }
+    unset($_pdo, $_row, $_db);
+} catch (Throwable $_e) { unset($_e); }
+function _faqCardClass(string $m): string {
+    $cls = ['faq-page__question-card'];
+    foreach (array_filter(explode(' ', trim($m))) as $p) { $cls[] = 'faq-page__question-card--' . $p; }
+    return implode(' ', $cls);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,12 +66,14 @@
         <section class="faq-page__categories">
             <div class="container">
                 <div class="faq-page__category-grid">
-                    <article><i class="icon-home" aria-hidden="true"></i><h2>Internet Residencial</h2><p>Planos, instala&ccedil;&atilde;o, cobertura e mais.</p><a href="#internet">Ver perguntas <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><i class="icon-wifi" aria-hidden="true"></i><h2>Wi-Fi e Cobertura</h2><p>Tudo sobre Wi-Fi, Mesh e sinal.</p><a href="#wifi">Ver perguntas <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><i class="icon-mobile-phone" aria-hidden="true"></i><h2>Mobile</h2><p>Planos, portabilidade, cobertura e b&ocirc;nus.</p><a href="#mobile">Ver perguntas <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><i class="icon-office" aria-hidden="true"></i><h2>Empresarial</h2><p>Solu&ccedil;&otilde;es para empresas, PME e Link Dedicado.</p><a href="#empresarial">Ver perguntas <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><i class="icon-security" aria-hidden="true"></i><h2>C&acirc;meras e Rastreamento</h2><p>Seguran&ccedil;a, c&acirc;meras, rastreadores e tags.</p><a href="#seguranca">Ver perguntas <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><i class="icon-payment" aria-hidden="true"></i><h2>Financeiro e Suporte</h2><p>Pagamentos, faturas, suporte e atendimento.</p><a href="#financeiro">Ver perguntas <span aria-hidden="true">-&gt;</span></a></article>
+                    <?php foreach ($_faqContent['categorias'] as $_cat): ?>
+                    <article>
+                        <i class="<?= htmlspecialchars($_cat['icone']) ?>" aria-hidden="true"></i>
+                        <h2><?= htmlspecialchars($_cat['titulo']) ?></h2>
+                        <p><?= htmlspecialchars($_cat['descricao']) ?></p>
+                        <a href="#<?= htmlspecialchars($_cat['id']) ?>">Ver perguntas <i class="icon-arrowright" aria-hidden="true"></i></a>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
                 <button class="faq-page__all-categories" type="button">Ver todas as categorias <span aria-hidden="true">⌄</span></button>
             </div>
@@ -54,48 +82,17 @@
         <section class="faq-page__questions">
             <div class="container">
                 <div class="faq-page__question-grid">
-                    <article class="faq-page__question-card" id="internet">
-                        <h2><i class="icon-home" aria-hidden="true"></i>Internet Residencial</h2>
-                        <details><summary>Todos os planos possuem 1 Giga?</summary><p>Consulte a disponibilidade para seu endere&ccedil;o. Nossa equipe indica o plano ideal para sua regi&atilde;o.</p></details>
-                        <details><summary>Qual a diferen&ccedil;a entre os planos?</summary><p>Os planos variam por velocidade, servi&ccedil;os inclusos e solu&ccedil;&otilde;es adicionais.</p></details>
-                        <details><summary>A instala&ccedil;&atilde;o est&aacute; inclusa?</summary><p>A instala&ccedil;&atilde;o pode variar conforme campanha e viabilidade t&eacute;cnica.</p></details>
-                        <details><summary>Posso usar meu pr&oacute;prio roteador?</summary><p>Sim, desde que o equipamento seja compat&iacute;vel e configurado corretamente.</p></details>
+                    <?php foreach ($_faqContent['categorias'] as $_cat): ?>
+                    <article class="<?= _faqCardClass($_cat['card_modifiers'] ?? '') ?>" id="<?= htmlspecialchars($_cat['id']) ?>">
+                        <h2><i class="<?= htmlspecialchars($_cat['icone']) ?>" aria-hidden="true"></i><?= htmlspecialchars($_cat['titulo']) ?></h2>
+                        <?php foreach ($_cat['perguntas'] as $_pq): ?>
+                        <details>
+                            <summary><?= htmlspecialchars($_pq['q']) ?></summary>
+                            <p><?= htmlspecialchars($_pq['a']) ?></p>
+                        </details>
+                        <?php endforeach; ?>
                     </article>
-
-                    <article class="faq-page__question-card faq-page__question-card--purple" id="wifi">
-                        <h2><i class="icon-wifi" aria-hidden="true"></i>Wi-Fi e Cobertura</h2>
-                        <details><summary>O que &eacute; Wi-Fi Mesh?</summary><p>&Eacute; uma tecnologia que amplia a cobertura usando pontos integrados para melhorar o sinal.</p></details>
-                        <details><summary>O Wi-Fi chega em toda a casa?</summary><p>Depende do tamanho e das paredes do ambiente. Podemos dimensionar a melhor solu&ccedil;&atilde;o.</p></details>
-                        <details><summary>Muitos dispositivos podem deixar o Wi-Fi lento?</summary><p>Sim. Para muitos dispositivos, recomendamos solu&ccedil;&otilde;es como Mesh ou Wi-Fi Profissional.</p></details>
-                    </article>
-
-                    <article class="faq-page__question-card faq-page__question-card--compact faq-page__question-card--purple" id="mobile">
-                        <h2><i class="icon-mobile-phone" aria-hidden="true"></i>Mobile</h2>
-                        <details><summary>Posso manter meu n&uacute;mero atual?</summary><p>Sim, fazemos portabilidade conforme regras da operadora.</p></details>
-                        <details><summary>O plano possui cobertura nacional?</summary><p>Sim, conforme &aacute;rea de cobertura m&oacute;vel dispon&iacute;vel.</p></details>
-                        <details><summary>Como funciona o b&ocirc;nus de portabilidade?</summary><p>O b&ocirc;nus &eacute; aplicado em planos eleg&iacute;veis ap&oacute;s a portabilidade.</p></details>
-                    </article>
-
-                    <article class="faq-page__question-card faq-page__question-card--compact faq-page__question-card--green" id="empresarial">
-                        <h2><i class="icon-office" aria-hidden="true"></i>Empresarial</h2>
-                        <details><summary>Qual a diferen&ccedil;a entre internet PME e Link Dedicado?</summary><p>Internet PME atende empresas do dia a dia; Link Dedicado oferece banda exclusiva para opera&ccedil;&otilde;es cr&iacute;ticas.</p></details>
-                        <details><summary>O Wi-Fi Pro &eacute; indicado para muitos dispositivos?</summary><p>Sim, ele foi pensado para ambientes com alta demanda de conex&atilde;o.</p></details>
-                        <details><summary>Voc&ecirc;s atendem hot&eacute;is, cl&iacute;nicas e empresas?</summary><p>Sim. Projetamos solu&ccedil;&otilde;es conforme o tamanho e necessidade do neg&oacute;cio.</p></details>
-                    </article>
-
-                    <article class="faq-page__question-card faq-page__question-card--compact faq-page__question-card--orange" id="seguranca">
-                        <h2><i class="icon-security" aria-hidden="true"></i>C&acirc;meras e Rastreamento</h2>
-                        <details><summary>Posso acessar as c&acirc;meras pelo celular?</summary><p>Sim, o acesso pode ser feito por aplicativo compat&iacute;vel.</p></details>
-                        <details><summary>O rastreador funciona para motos e bicicletas el&eacute;tricas?</summary><p>Sim, temos solu&ccedil;&otilde;es para carros, motos, caminh&otilde;es, bicicletas el&eacute;tricas e tags.</p></details>
-                        <details><summary>A Tag Localizadora serve para qu&ecirc;?</summary><p>Serve para acompanhar objetos, bolsas, mochilas, malas e outros pertences.</p></details>
-                    </article>
-
-                    <article class="faq-page__question-card faq-page__question-card--wide faq-page__question-card--cyan" id="financeiro">
-                        <h2><i class="icon-payment" aria-hidden="true"></i>Financeiro e Suporte</h2>
-                        <details><summary>Como emitir segunda via?</summary><p>A segunda via pode ser solicitada pela central do cliente ou canais de atendimento.</p></details>
-                        <details><summary>Como falar com o suporte?</summary><p>Voc&ecirc; pode falar pelo WhatsApp, telefone ou canais oficiais da AserNet.</p></details>
-                        <details><summary>Posso alterar a data de vencimento?</summary><p>Consulte nossa equipe para verificar disponibilidade de altera&ccedil;&atilde;o.</p></details>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>

@@ -1,10 +1,12 @@
 .header {
-    background: @black;
+    background: @deepBlue;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 12px 28px rgba(0, 22, 61, .16);
     width: 100%;
 
     &__row {
         align-items: center;
-        min-height: 70px;
+        min-height: 74px;
 
         @media @tabletSM {
             min-height: 55px;
@@ -57,6 +59,7 @@
         &__name {
             color: @white;
             font-size: 14px;
+            font-weight: @semiBold;
             margin-right: 20px;
 
             @media @tabletSM {
@@ -67,7 +70,7 @@
 
         &__logout {
             font-size: 13px;
-            padding: 8px 20px;
+            padding: 9px 20px;
 
             @media @tabletSM {
                 font-size: 11px;

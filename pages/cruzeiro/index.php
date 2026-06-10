@@ -1,3 +1,24 @@
+<?php
+$sorteioDateJs     = '2027-01-31T00:00:00-03:00';
+$regulamentoTitulo = 'Regulamento da Promo&ccedil;&atilde;o';
+$regulamentoTexto  = '<p>O regulamento ainda n&atilde;o foi cadastrado.</p>';
+
+try {
+    require_once ROOT . '/config/database.php';
+    $_pdo  = getDbConnection();
+    $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_texto')");
+    $_cfg  = [];
+    foreach ($_stmt->fetchAll() as $r) { $_cfg[$r['setting_key']] = $r['setting_value']; }
+
+    if (!empty($_cfg['sorteio_date']))      $sorteioDateJs     = addslashes($_cfg['sorteio_date']) . '-03:00';
+    if (!empty($_cfg['regulamento_titulo'])) $regulamentoTitulo = htmlspecialchars($_cfg['regulamento_titulo'], ENT_QUOTES, 'UTF-8');
+    if (!empty($_cfg['regulamento_texto']))  $regulamentoTexto  = $_cfg['regulamento_texto'];
+
+    unset($_pdo, $_stmt, $_cfg);
+} catch (Throwable $_e) {
+    unset($_e);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +30,8 @@
 
 <body>
 
+<?php include ROOT . '/includes/header/header.php';?>
+
 <main class="cruise-page">
     <section class="cruise-page__hero">
         <div class="container">
@@ -19,8 +42,8 @@
                     <p>Clientes AserNet podem participar do sorteio de um cruzeiro internacional a bordo do <strong>MSC Divina</strong>, com sa&iacute;da de Santos em 31/01/2027.</p>
 
                     <div class="cruise-page__hero-actions">
-                        <a class="cruise-page__button cruise-page__button--primary" href="<?= BASE_URL ?>/contato">Quero participar <span aria-hidden="true">-&gt;</span></a>
-                        <a class="cruise-page__button cruise-page__button--outline" href="#regulamento"><i class="icon-calendar" aria-hidden="true"></i>Ver regulamento</a>
+                        <button class="cruise-page__button cruise-page__button--primary" id="btnQueroParticipar" type="button">Quero participar <i class="icon-arrowright" aria-hidden="true"></i></button>
+                        <button class="cruise-page__button cruise-page__button--outline" id="btnVerRegulamento" type="button"><i class="icon-calendar" aria-hidden="true"></i>Ver regulamento</button>
                     </div>
 
                     <div class="cruise-page__partners">
@@ -40,6 +63,23 @@
                     <div><strong>32</strong><small>Minutos</small></div>
                     <div><strong>27</strong><small>Segundos</small></div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cruise-page__check">
+        <div class="container">
+            <div class="cruise-page__check-box">
+                <div class="cruise-page__check-text">
+                    <i class="icon-star" aria-hidden="true"></i>
+                    <div>
+                        <h2>J&aacute; participou da promo&ccedil;&atilde;o?</h2>
+                        <p>Consulte seus n&uacute;meros da sorte e veja suas indica&ccedil;&otilde;es cadastradas.</p>
+                    </div>
+                </div>
+                <button class="cruise-page__button cruise-page__button--primary" id="btnConsultarNumeros" type="button">
+                    Ver meus n&uacute;meros
+                </button>
             </div>
         </div>
     </section>
@@ -66,7 +106,7 @@
                         <li><i class="icon-checkmark" aria-hidden="true"></i>Destinos incr&iacute;veis</li>
                         <li><i class="icon-checkmark" aria-hidden="true"></i>Experi&ecirc;ncia completa para 2 pessoas</li>
                     </ul>
-                    <a href="#msc-divina">Conhe&ccedil;a o MSC Divina <span aria-hidden="true">-&gt;</span></a>
+                    <a href="#msc-divina">Conhe&ccedil;a o MSC Divina <i class="icon-arrowright" aria-hidden="true"></i></a>
                 </div>
 
                 <div class="cruise-page__prize-gallery">
@@ -109,7 +149,124 @@
     </section>
 </main>
 
+<!-- Modal: Regulamento -->
+<div class="cruise-modal" id="modalRegulamento" role="dialog" aria-modal="true" aria-labelledby="modalRegTitle">
+    <div class="cruise-modal__box cruise-modal__box--wide">
+        <button class="cruise-modal__close" id="btnFecharRegulamento" type="button" aria-label="Fechar">&times;</button>
+        <div class="cruise-modal__header">
+            <i class="icon-calendar" aria-hidden="true"></i>
+            <h2 id="modalRegTitle"><?= $regulamentoTitulo ?></h2>
+        </div>
+        <div class="cruise-modal__regulamento-body" id="regulamentoBody">
+            <?= $regulamentoTexto ?>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Consultar números -->
+<div class="cruise-modal" id="modalConsultarNumeros" role="dialog" aria-modal="true" aria-labelledby="modalConsultarTitle">
+    <div class="cruise-modal__box">
+        <button class="cruise-modal__close" id="btnFecharConsultar" type="button" aria-label="Fechar">&times;</button>
+
+        <!-- Step: CPF -->
+        <div class="cruise-modal__step" id="consultStep1">
+            <div class="cruise-modal__header">
+                <i class="icon-star" aria-hidden="true"></i>
+                <h2 id="modalConsultarTitle">Meus n&uacute;meros da sorte</h2>
+            </div>
+            <p>Informe seu CPF para consultar seus n&uacute;meros e indica&ccedil;&otilde;es cadastradas.</p>
+            <div class="cruise-modal__field" id="fieldCpfConsultar">
+                <label for="inputCpfConsultar">CPF</label>
+                <input type="text" id="inputCpfConsultar" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
+                <span class="cruise-modal__error" id="erroCpfConsultar"></span>
+            </div>
+            <button class="cruise-modal__btn" id="btnBuscarNumeros" type="button">
+                <span id="btnBuscarTexto">Consultar</span>
+                <span id="btnBuscarLoading" style="display:none">Buscando...</span>
+            </button>
+        </div>
+
+        <!-- Step: Resultados -->
+        <div class="cruise-modal__step" id="consultStep2" style="display:none">
+            <div class="cruise-modal__header">
+                <i class="icon-star" aria-hidden="true"></i>
+                <h2>Ol&aacute;, <span id="consultNome"></span>!</h2>
+            </div>
+            <p id="consultTotal"></p>
+            <div class="cruise-modal__numbers" id="consultList"></div>
+            <button class="cruise-modal__back" id="btnVoltarConsultar" type="button">Consultar outro CPF</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Quero participar -->
+<div class="cruise-modal" id="modalParticipar" role="dialog" aria-modal="true" aria-labelledby="modalParticiparTitle">
+    <div class="cruise-modal__box">
+        <button class="cruise-modal__close" id="btnFecharModal" type="button" aria-label="Fechar">&times;</button>
+
+        <!-- Step 1: Verificar CPF -->
+        <div class="cruise-modal__step" id="stepCpf">
+            <div class="cruise-modal__header">
+                <i class="icon-star" aria-hidden="true"></i>
+                <h2 id="modalParticiparTitle">Verificar participa&ccedil;&atilde;o</h2>
+            </div>
+            <p>Informe seu CPF para verificar se voc&ecirc; j&aacute; &eacute; cliente AserNet e pode participar do sorteio.</p>
+            <div class="cruise-modal__field" id="fieldCpfModal">
+                <label for="inputCpfModal">CPF</label>
+                <input type="text" id="inputCpfModal" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
+                <span class="cruise-modal__error" id="erroCpf"></span>
+            </div>
+            <button class="cruise-modal__btn" id="btnVerificarCpf" type="button">
+                <span id="btnVerificarTexto">Verificar</span>
+                <span id="btnVerificarLoading" style="display:none">Verificando...</span>
+            </button>
+        </div>
+
+        <!-- Step 2a: Cliente confirmado -->
+        <div class="cruise-modal__step" id="stepSubscriber" style="display:none">
+            <span class="cruise-modal__badge">Cliente AserNet ✓</span>
+            <h2>Ol&aacute;, <span id="nomeCliente"></span>!</h2>
+            <p>Indique um amigo e ganhe mais n&uacute;meros da sorte para concorrer ao cruzeiro.</p>
+            <div class="cruise-modal__field" id="fieldNomeIndicado">
+                <label for="inputNomeIndicado">Nome do amigo</label>
+                <input type="text" id="inputNomeIndicado" placeholder="Nome completo" autocomplete="off">
+                <span class="cruise-modal__error" id="erroNomeIndicado"></span>
+            </div>
+            <div class="cruise-modal__field" id="fieldEmailIndicado">
+                <label for="inputEmailIndicado">E-mail</label>
+                <input type="email" id="inputEmailIndicado" placeholder="email@exemplo.com" autocomplete="off">
+                <span class="cruise-modal__error" id="erroEmailIndicado"></span>
+            </div>
+            <div class="cruise-modal__field" id="fieldTelIndicado">
+                <label for="inputTelIndicado">Telefone</label>
+                <input type="text" id="inputTelIndicado" placeholder="(00) 00000-0000" maxlength="15" autocomplete="off">
+                <span class="cruise-modal__error" id="erroTelIndicado"></span>
+            </div>
+            <button class="cruise-modal__btn cruise-modal__btn--whatsapp" id="btnIndicarWhatsApp" type="button">
+                <i class="icon-whatsapp" aria-hidden="true"></i> Indicar via WhatsApp
+            </button>
+            <button class="cruise-modal__back" id="btnVoltarStep1" type="button">Verificar outro CPF</button>
+        </div>
+
+        <!-- Step 2b: Não é cliente -->
+        <div class="cruise-modal__step" id="stepNotSubscriber" style="display:none">
+            <div class="cruise-modal__icon-info">
+                <i class="icon-group" aria-hidden="true"></i>
+            </div>
+            <h2>Voc&ecirc; ainda n&atilde;o &eacute; cliente AserNet</h2>
+            <p>Para participar do sorteio do cruzeiro, &eacute; necess&aacute;rio ter um plano AserNet ativo.</p>
+            <a class="cruise-modal__btn" href="<?= BASE_URL ?>/residencial">Conhecer planos</a>
+            <button class="cruise-modal__back" id="btnVoltarStep1b" type="button">Verificar outro CPF</button>
+        </div>
+    </div>
+</div>
+
 <?php include ROOT . '/includes/scripts.php';?>
+<script>
+    var SORTEIO_DATE         = "<?= $sorteioDateJs ?>";
+    var REGULAMENTO_TITULO   = "<?= $regulamentoTitulo ?>";
+    var REGULAMENTO_TEXTO    = <?= json_encode($regulamentoTexto, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;
+</script>
 <?php
 $version = time();
 echo '<script src="' . BASE_URL . '/pages/cruzeiro/cruzeiro.js?' . $version . '"></script>';

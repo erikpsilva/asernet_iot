@@ -1,0 +1,51 @@
+.relatorioPage {
+    max-width: 850px;
+
+    &__header {
+        margin-bottom: 22px;
+
+        span {
+            color: @primary;
+            font-size: 12px;
+            font-weight: @bold;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 7px 0 0;
+            color: @colorFont;
+            font-size: 30px;
+            font-weight: @bold;
+        }
+
+        p {
+            max-width: 620px;
+            margin-top: 8px;
+            color: #5d6f91;
+            font-size: 15px;
+        }
+    }
+
+    &__box {
+        max-width: 620px;
+    }
+
+    &__actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 4px;
+
+        .btn {
+            float: none;
+            min-height: 52px;
+        }
+    }
+
+    @media @mobileLG {
+        &__actions {
+            grid-template-columns: 1fr;
+        }
+    }
+}

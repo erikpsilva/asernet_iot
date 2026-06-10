@@ -73,13 +73,13 @@
                 </header>
 
                 <div class="about-page__solutions-grid">
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgInternetResidencial.png" alt="Fam&iacute;lia usando internet residencial"><i class="icon-wifi" aria-hidden="true"></i><h3>Internet residencial</h3><p>Conectividade preparada para o dia a dia da fam&iacute;lia.</p><a href="<?= BASE_URL ?>/residencial">Saiba mais <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgSolucoesEmpresariais.png" alt="Pr&eacute;dio empresarial"><i class="icon-office" aria-hidden="true"></i><h3>Solu&ccedil;&otilde;es empresariais</h3><p>Estrutura profissional para empresas crescerem.</p><a href="<?= BASE_URL ?>/paraempresas">Saiba mais <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgSegurancaMonitoramento.png" alt="C&acirc;mera de seguran&ccedil;a"><i class="icon-security" aria-hidden="true"></i><h3>Seguran&ccedil;a e monitoramento</h3><p>Mais tranquilidade para sua rotina.</p><a href="<?= BASE_URL ?>/cameradeseguranca">Saiba mais <span aria-hidden="true">-&gt;</span></a></article>
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgMobilidadeConectividade.png" alt="Pessoa usando celular"><i class="icon-mobile-phone" aria-hidden="true"></i><h3>Mobilidade e conectividade</h3><p>Internet dentro e fora de casa.</p><a href="<?= BASE_URL ?>/planomovel">Saiba mais <span aria-hidden="true">-&gt;</span></a></article>
+                    <article><img src="<?= BASE_URL ?>/images/sobre/imgInternetResidencial.png" alt="Fam&iacute;lia usando internet residencial"><i class="icon-wifi" aria-hidden="true"></i><h3>Internet residencial</h3><p>Conectividade preparada para o dia a dia da fam&iacute;lia.</p><a href="<?= BASE_URL ?>/residencial">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
+                    <article><img src="<?= BASE_URL ?>/images/sobre/imgSolucoesEmpresariais.png" alt="Pr&eacute;dio empresarial"><i class="icon-office" aria-hidden="true"></i><h3>Solu&ccedil;&otilde;es empresariais</h3><p>Estrutura profissional para empresas crescerem.</p><a href="<?= BASE_URL ?>/paraempresas">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
+                    <article><img src="<?= BASE_URL ?>/images/sobre/imgSegurancaMonitoramento.png" alt="C&acirc;mera de seguran&ccedil;a"><i class="icon-security" aria-hidden="true"></i><h3>Seguran&ccedil;a e monitoramento</h3><p>Mais tranquilidade para sua rotina.</p><a href="<?= BASE_URL ?>/cameradeseguranca">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
+                    <article><img src="<?= BASE_URL ?>/images/sobre/imgMobilidadeConectividade.png" alt="Pessoa usando celular"><i class="icon-mobile-phone" aria-hidden="true"></i><h3>Mobilidade e conectividade</h3><p>Internet dentro e fora de casa.</p><a href="<?= BASE_URL ?>/planomovel">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
                 </div>
 
-                <a class="about-page__mobile-more" href="<?= BASE_URL ?>/paraempresas">Ver todas as solu&ccedil;&otilde;es <span aria-hidden="true">-&gt;</span></a>
+                <a class="about-page__mobile-more" href="<?= BASE_URL ?>/paraempresas">Ver todas as solu&ccedil;&otilde;es <i class="icon-arrowright" aria-hidden="true"></i></a>
             </div>
         </section>
 
@@ -153,7 +153,7 @@
                     </div>
                     <div class="about-page__cta-actions">
                         <a class="about-page__cta-button about-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
-                        <a class="about-page__cta-button" href="<?= BASE_URL ?>/paraempresas">Conhecer solu&ccedil;&otilde;es <span aria-hidden="true">-&gt;</span></a>
+                        <a class="about-page__cta-button" href="<?= BASE_URL ?>/paraempresas">Conhecer solu&ccedil;&otilde;es <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>

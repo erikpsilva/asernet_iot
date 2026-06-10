@@ -26,7 +26,7 @@
                 </ul>
 
                 <div class="link-dedicado-page__hero-actions">
-                    <a class="link-dedicado-page__button link-dedicado-page__button--primary" href="<?= BASE_URL ?>/contato">Solicitar proposta <span aria-hidden="true">-&gt;</span></a>
+                    <a class="link-dedicado-page__button link-dedicado-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20solicitar%20uma%20proposta%20de%20Link%20Dedicado." target="_blank" rel="noopener">Solicitar proposta <i class="icon-arrowright" aria-hidden="true"></i></a>
                     <a class="link-dedicado-page__button link-dedicado-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                     </div>
                     <div class="link-dedicado-page__cta-actions">
                         <a class="link-dedicado-page__cta-button link-dedicado-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
-                        <a class="link-dedicado-page__cta-button" href="<?= BASE_URL ?>/contato"><i class="icon-calendar" aria-hidden="true"></i><span>Solicitar an&aacute;lise t&eacute;cnica</span></a>
+                        <a class="link-dedicado-page__cta-button" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20t%C3%A9cnica%20de%20Link%20Dedicado." target="_blank" rel="noopener"><i class="icon-calendar" aria-hidden="true"></i><span>Solicitar an&aacute;lise t&eacute;cnica</span></a>
                     </div>
                 </div>
             </div>

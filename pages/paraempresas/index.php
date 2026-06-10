@@ -81,35 +81,35 @@
                         <div><i class="icon-paraempresa" aria-hidden="true"></i><h3>Internet PME</h3></div>
                         <p>Internet estável para empresas que precisam de produtividade.</p>
                         <img src="<?= BASE_URL ?>/images/paraempresas/imgInternetPME.png" alt="Equipe em escritório usando internet empresarial">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <span aria-hidden="true">→</span></a>
+                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
 
                     <article class="business-page__solution-card">
                         <div><i class="icon-wifipro" aria-hidden="true"></i><h3>Wi-Fi Profissional</h3></div>
                         <p>Rede preparada para múltiplos dispositivos e ambientes corporativos.</p>
                         <img src="<?= BASE_URL ?>/images/paraempresas/imgWifiProfissional.png" alt="Access point de Wi-Fi corporativo">
-                        <a href="<?= BASE_URL ?>/contato">Conhecer solução <span aria-hidden="true">→</span></a>
+                        <a href="<?= BASE_URL ?>/contato">Conhecer solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
 
                     <article class="business-page__solution-card">
                         <div><i class="icon-phone" aria-hidden="true"></i><h3>Telefonia Empresarial</h3></div>
                         <p>Mais comunicação e profissionalismo para seu atendimento.</p>
                         <img src="<?= BASE_URL ?>/images/paraempresas/imgTelefoniaEmpresarial.png" alt="Telefone empresarial">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <span aria-hidden="true">→</span></a>
+                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
 
                     <article class="business-page__solution-card">
                         <div><i class="icon-link" aria-hidden="true"></i><h3>Link Dedicado</h3></div>
                         <p>Conexão exclusiva para operações críticas.</p>
                         <img src="<?= BASE_URL ?>/images/paraempresas/imgLinkDedicado.png" alt="Conexão dedicada de alta performance">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <span aria-hidden="true">→</span></a>
+                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
 
                     <article class="business-page__solution-card">
                         <div><i class="icon-security" aria-hidden="true"></i><h3>Segurança e Monitoramento</h3></div>
                         <p>Mais controle para sua empresa.</p>
                         <img src="<?= BASE_URL ?>/images/paraempresas/imgSegurancaMonitoramento.png" alt="Câmeras de segurança corporativa">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <span aria-hidden="true">→</span></a>
+                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
                 </div>
             </div>
@@ -147,13 +147,13 @@
                         <h2>Tecnologia integrada para sua empresa crescer.</h2>
                         <div class="business-page__tech-flow">
                             <span><i class="icon-globe" aria-hidden="true"></i>Internet</span>
-                            <b>→</b>
+                            <i class="icon-arrowright" aria-hidden="true"></i>
                             <span><i class="icon-wifi" aria-hidden="true"></i>Wi-Fi Pro</span>
-                            <b>→</b>
+                            <i class="icon-arrowright" aria-hidden="true"></i>
                             <span><i class="icon-phone" aria-hidden="true"></i>Telefonia</span>
-                            <b>→</b>
+                            <i class="icon-arrowright" aria-hidden="true"></i>
                             <span><i class="icon-link" aria-hidden="true"></i>Link dedicado</span>
-                            <b>→</b>
+                            <i class="icon-arrowright" aria-hidden="true"></i>
                             <span><i class="icon-security" aria-hidden="true"></i>Segurança</span>
                         </div>
                         <p>Tudo conectado dentro da mesma estrutura, com gestão inteligente e suporte especializado.</p>

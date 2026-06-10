@@ -37,28 +37,36 @@
     <div class="contact-page__body">
         <section class="contact-page__form-section">
             <div class="container">
-                <form class="contact-page__form" action="<?= BASE_URL ?>/contato" method="post">
+                <form class="contact-page__form" id="contactForm" novalidate>
                     <h2>Prefere que a gente te chame?</h2>
                     <p>Preencha abaixo que um consultor entra em contato com voc&ecirc;.</p>
 
-                    <label>Nome completo<input type="text" name="nome" placeholder="Digite seu nome"></label>
-                    <label>Telefone (WhatsApp)<input type="tel" name="telefone" placeholder="(47) 99999-9999"></label>
-                    <label>Cidade / Bairro<input type="text" name="cidade" placeholder="Ex.: Jaragu&aacute; do Sul / Centro"></label>
+                    <label>Nome completo<input type="text" id="cfNome" name="nome" placeholder="Digite seu nome"></label>
+                    <label>Telefone (WhatsApp)<input type="tel" id="cfTel" name="telefone" placeholder="(19) 99999-9999"></label>
+                    <label>Cidade / Bairro<input type="text" id="cfCidade" name="cidade" placeholder="Ex.: Socorro / Centro"></label>
 
                     <fieldset>
                         <legend>O que voc&ecirc; precisa?</legend>
-                        <label><i class="icon-home" aria-hidden="true"></i><span>Internet residencial</span><input type="checkbox" name="interesse[]" value="internet-residencial" checked></label>
-                        <label><i class="icon-office" aria-hidden="true"></i><span>Internet para empresa</span><input type="checkbox" name="interesse[]" value="internet-empresa"></label>
-                        <label><i class="icon-casino-cctv" aria-hidden="true"></i><span>C&acirc;meras de seguran&ccedil;a</span><input type="checkbox" name="interesse[]" value="cameras"></label>
-                        <label><i class="icon-wifi" aria-hidden="true"></i><span>Wi-Fi profissional</span><input type="checkbox" name="interesse[]" value="wifi-profissional"></label>
-                        <label><i class="icon-pin" aria-hidden="true"></i><span>Rastreamento</span><input type="checkbox" name="interesse[]" value="rastreamento"></label>
-                        <label><i class="icon-phone" aria-hidden="true"></i><span>Telefonia</span><input type="checkbox" name="interesse[]" value="telefonia"></label>
-                        <label><i class="icon-talk" aria-hidden="true"></i><span>Outros</span><input type="checkbox" name="interesse[]" value="outros"></label>
+                        <label><i class="icon-home" aria-hidden="true"></i><span>Internet residencial</span><input type="checkbox" name="interesse[]" value="Internet residencial" checked></label>
+                        <label><i class="icon-office" aria-hidden="true"></i><span>Internet para empresa</span><input type="checkbox" name="interesse[]" value="Internet para empresa"></label>
+                        <label><i class="icon-casino-cctv" aria-hidden="true"></i><span>C&acirc;meras de seguran&ccedil;a</span><input type="checkbox" name="interesse[]" value="Câmeras de segurança"></label>
+                        <label><i class="icon-wifi" aria-hidden="true"></i><span>Wi-Fi profissional</span><input type="checkbox" name="interesse[]" value="Wi-Fi profissional"></label>
+                        <label><i class="icon-pin" aria-hidden="true"></i><span>Rastreamento</span><input type="checkbox" name="interesse[]" value="Rastreamento"></label>
+                        <label><i class="icon-phone" aria-hidden="true"></i><span>Telefonia</span><input type="checkbox" name="interesse[]" value="Telefonia"></label>
+                        <label><i class="icon-talk" aria-hidden="true"></i><span>Outros</span><input type="checkbox" name="interesse[]" value="Outros"></label>
                     </fieldset>
 
-                    <button type="submit">Quero falar com um consultor</button>
+                    <span class="contact-page__form-error" id="cfError" style="display:none;color:#cd0000;font-size:13px;margin-bottom:8px;display:none;"></span>
+                    <button type="submit" id="cfSubmit">Quero falar com um consultor</button>
                     <small><i class="icon-security" aria-hidden="true"></i>Seus dados est&atilde;o seguros. N&atilde;o enviamos spam.</small>
                 </form>
+
+                <div class="contact-page__success" id="contactSuccess" style="display:none;">
+                    <i class="icon-checkmark" aria-hidden="true"></i>
+                    <h2>Mensagem enviada!</h2>
+                    <p>Um consultor AserNet entrar&aacute; em contato em breve. Enquanto isso, voc&ecirc; pode falar direto pelo WhatsApp.</p>
+                    <a class="contact-page__button contact-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
+                </div>
             </div>
         </section>
 
@@ -78,7 +86,7 @@
                     <div>
                         <h2>Aqui voc&ecirc; n&atilde;o contrata s&oacute; <strong>internet.</strong></h2>
                         <p>Voc&ecirc; recebe uma solu&ccedil;&atilde;o completa, com tecnologia, estabilidade e suporte pr&oacute;ximo para sua casa ou empresa funcionar de verdade.</p>
-                        <a href="<?= BASE_URL ?>/sobreasernet">Saiba mais <span aria-hidden="true">-&gt;</span></a>
+                        <a href="<?= BASE_URL ?>/sobreasernet">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
                         <ul>
                             <li><i class="icon-pin" aria-hidden="true"></i>Tecnologia de ponta</li>
                             <li><i class="icon-customersupport" aria-hidden="true"></i>Suporte local e r&aacute;pido</li>

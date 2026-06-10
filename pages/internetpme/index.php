@@ -87,7 +87,7 @@
                         </ul>
                         <span class="internet-pme-page__price-label">A partir de</span>
                         <strong class="internet-pme-page__price">R$ 129,90<small>/mês</small></strong>
-                        <a href="<?= BASE_URL ?>/contato">Contratar agora</a>
+                        <a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20plano%20Internet%20PME%20Business%20Essencial." target="_blank" rel="noopener">Contratar agora</a>
                     </article>
 
                     <article class="internet-pme-page__plan internet-pme-page__plan--featured">
@@ -103,7 +103,7 @@
                         </ul>
                         <span class="internet-pme-page__price-label">A partir de</span>
                         <strong class="internet-pme-page__price">R$ 229,90<small>/mês</small></strong>
-                        <a href="<?= BASE_URL ?>/contato">Contratar agora</a>
+                        <a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20plano%20Internet%20PME%20Business%20Pro." target="_blank" rel="noopener">Contratar agora</a>
                     </article>
                 </div>
             </div>
@@ -117,9 +117,9 @@
                 </header>
 
                 <div class="internet-pme-page__boost-grid">
-                    <article><i class="icon-wifipro" aria-hidden="true"></i><div><h3>Wi-Fi Profissional</h3><p>Rede gerenciada para múltiplos dispositivos, com cobertura ampla e estável.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a></div></article>
-                    <article><i class="icon-phone" aria-hidden="true"></i><div><h3>Telefonia empresarial</h3><p>Atendimento mais profissional com telefonia fixa ilimitada e recursos avançados.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a></div></article>
-                    <article><i class="icon-security" aria-hidden="true"></i><div><h3>Link dedicado</h3><p>Conexão exclusiva e simétrica para operações críticas que não podem parar.</p><a href="<?= BASE_URL ?>/contato">Saiba mais <span aria-hidden="true">→</span></a></div></article>
+                    <article><i class="icon-wifipro" aria-hidden="true"></i><div><h3>Wi-Fi Profissional</h3><p>Rede gerenciada para múltiplos dispositivos, com cobertura ampla e estável.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Wi-Fi%20Profissional%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
+                    <article><i class="icon-phone" aria-hidden="true"></i><div><h3>Telefonia empresarial</h3><p>Atendimento mais profissional com telefonia fixa ilimitada e recursos avançados.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Telefonia%20Empresarial%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
+                    <article><i class="icon-security" aria-hidden="true"></i><div><h3>Link dedicado</h3><p>Conexão exclusiva e simétrica para operações críticas que não podem parar.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Link%20Dedicado%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div></article>
                 </div>
             </div>
         </section>

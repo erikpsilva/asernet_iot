@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 body{
+    background: @softBlue;
     font-family: @font;
     font-size: 16px;
     font-weight: @regular;
@@ -36,38 +37,51 @@ h1, h2, h3, h4, h5, h6{
 .formGroup {
     border: 1px solid @borderColor;
     background: @bgBoxContent;
-    padding: 30px;
+    padding: 32px;
+    box-shadow: 0 18px 45px rgba(0, 42, 120, .08);
     @media @tabletSM {
-        padding: 15px;
+        padding: 20px;
     }
-    .radius;
+    .radius(12px);
     &__divisor {
         h3 {
             border-bottom: 1px solid @borderColor;
-            margin-bottom: 10px;
-            padding: 5px 0;
+            color: @colorFont;
+            font-size: 24px;
+            font-weight: @regular;
+            margin-bottom: 18px;
+            padding: 0 0 14px;
+
+            span {
+                color: @primary;
+            }
         }
     }
     &__item {
         position: relative;
         label {
+            color: @colorFont;
             display: block;
-            font-size: 16px;
-            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: @semiBold;
+            margin-bottom: 8px;
             width: 100%;
         }
         input, select, textarea {
             border: 1px solid @borderColor;
+            background: @white;
+            color: @colorFont;
             font-family: @font;
             font-size: 16px;
             width: 100%;
             margin-bottom: 20px;
             height: 55px;
-            padding:10px;
-            .radius;
+            padding: 0 16px;
+            .radius(8px);
             &:focus-visible {
-                border: 2px solid @secundary;
+                border: 2px solid @primary;
                 outline: none;
+                box-shadow: 0 0 0 4px rgba(7, 95, 255, .12);
             }
         }
         textarea {
@@ -105,22 +119,24 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .btn {
+    border: 0;
     cursor: pointer;
     font-family: @font;
     font-size: 16px;
     font-weight: @semiBold;
     padding: 15px;
-    text-transform: uppercase;
-    .radius;
-    .transition;
+    text-transform: none;
+    .radius(8px);
+    .transition();
     &--primary {
-        border: 1px solid @white;
+        border: 1px solid @primary;
         background: @primary;
         color: @white;
+        box-shadow: 0 12px 26px rgba(7, 95, 255, .22);
         &:hover {
             border: 1px solid @primary;
-            background: @white;
-            color: @primary;
+            background: #004fe0;
+            color: @white;
         }
     }
     &--error {
@@ -148,8 +164,9 @@ h1, h2, h3, h4, h5, h6{
         background: @btnGray;
         color: @white;
         &:hover {
-            background: darken(@btnGray, 12%);
-            border: 1px solid darken(@btnGray, 12%);
+            background: @primary;
+            border: 1px solid @primary;
+            color: @white;
         }
     }
 }
@@ -168,7 +185,7 @@ h1, h2, h3, h4, h5, h6{
         .msg {
             color: @white;
             font-size:22px;
-            .center-all
+            .center-all();
         }
     }
 }
@@ -178,7 +195,7 @@ h1, h2, h3, h4, h5, h6{
   /* HTML: <div class="loader"></div> */
 .loader {
     --c:no-repeat linear-gradient(@primary 0 0);
-    background: var(--c),var(--c),@secundary;
+    background: var(--c),var(--c),#b8ecdf;
     background-size: 60% 100%;
     animation: l16 3s infinite;
     height: 4px;

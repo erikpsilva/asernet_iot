@@ -1,0 +1,106 @@
+.adminConteudo {
+
+    &__head {
+        align-items: flex-start;
+        margin-bottom: 24px;
+
+        h2 {
+            margin-bottom: 4px;
+        }
+    }
+
+    &__subtitle {
+        color: #8a9ab8;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    &__headActions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-top: 6px;
+    }
+
+    &__section {
+        margin-bottom: 24px;
+    }
+
+    &__sectionTitle {
+        color: @colorFont;
+        font-size: 12px;
+        font-weight: @bold;
+        letter-spacing: .07em;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid @borderColor;
+        text-transform: uppercase;
+    }
+
+    &__card {
+        background: @softBlue;
+        border: 1px solid @borderColor;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+
+    &__imgWrap {
+        position: relative;
+        margin-bottom: 14px;
+        background: @white;
+        border: 1px solid @borderColor;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__imgPreview {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__imgBtn {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: @primary;
+        color: @white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: @bold;
+        padding: 5px 10px;
+        .transition();
+
+        &:hover {
+            background: darken(#075fff, 8%);
+        }
+    }
+
+    &__fileInput {
+        display: none;
+    }
+
+    &__msg {
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: @semiBold;
+        margin-bottom: 20px;
+        padding: 14px 20px;
+
+        &--success {
+            background: rgba(0, 168, 89, .1);
+            color: #00a859;
+        }
+
+        &--error {
+            background: rgba(205, 0, 0, .08);
+            color: @error;
+        }
+    }
+}

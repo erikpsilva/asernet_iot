@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="wifi-pro-page__hero-actions">
-                        <a class="wifi-pro-page__button wifi-pro-page__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-wifi" aria-hidden="true"></i>Quero um Wi-Fi profissional</a>
+                        <a class="wifi-pro-page__button wifi-pro-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20Wi-Fi%20Profissional%20para%20minha%20empresa." target="_blank" rel="noopener"><i class="icon-wifi" aria-hidden="true"></i>Quero um Wi-Fi profissional</a>
                         <a class="wifi-pro-page__button wifi-pro-page__button--outline" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="wifi-pro-page__additional"><i class="icon-expansivel" aria-hidden="true"></i><span>AP adicional:<strong>R$ 100,00/m&ecirc;s</strong></span></div>
                         </div>
-                        <a href="<?= BASE_URL ?>/contato">Contratar Wi-Fi Pro</a>
+                        <a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20Wi-Fi%20Profissional%20para%20minha%20empresa." target="_blank" rel="noopener">Contratar Wi-Fi Pro</a>
                     </article>
                 </div>
             </div>

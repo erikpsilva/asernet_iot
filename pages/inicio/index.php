@@ -1,3 +1,55 @@
+<?php
+$homeSorteioDate = '2027-01-31T00:00:00-03:00';
+$homeRegTitulo   = 'Regulamento da Promo&ccedil;&atilde;o';
+$homeRegTexto    = '<p>O regulamento ainda n&atilde;o foi cadastrado.</p>';
+$_homeContent = [
+    'intro_titulo'    => 'Uma empresa. Diversas soluções conectadas.',
+    'intro_subtitulo' => 'A AserNet integra internet, mobilidade, segurança e conectividade para simplificar sua rotina e melhorar sua experiência.',
+    'cards_casa' => [
+        ['titulo'=>'Internet Residencial', 'descricao'=>'1 Giga com estabilidade e cobertura inteligente.',     'imagem'=>'imgInternetResidencial.png', 'link_texto'=>'Ver planos',       'link_href'=>'/residencial'],
+        ['titulo'=>'Wi-Fi Mesh',           'descricao'=>'Cobertura inteligente para toda a casa.',              'imagem'=>'imgWifiMesh.png',             'link_texto'=>'Conhecer solução', 'link_href'=>'/solucoes'],
+        ['titulo'=>'Câmeras de Segurança', 'descricao'=>'Monitoramento em tempo real pelo celular.',            'imagem'=>'imgCameraDeSeguranca.png',    'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+        ['titulo'=>'Aser Mobile',          'descricao'=>'Conectividade dentro e fora de casa.',                 'imagem'=>'imgAserMobile.png',           'link_texto'=>'Ver planos',       'link_href'=>'/residencial'],
+    ],
+    'cards_empresa' => [
+        ['titulo'=>'Internet PME',         'descricao'=>'Conectividade estável para empresas.',                 'imagem'=>'imgInternetPME.png',          'link_texto'=>'Ver soluções',     'link_href'=>'/empresas'],
+        ['titulo'=>'Wi-Fi Profissional',   'descricao'=>'Rede preparada para múltiplos dispositivos.',          'imagem'=>'imgWifiProfissional.png',     'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+        ['titulo'=>'Telefonia Empresarial','descricao'=>'Mais comunicação e produtividade.',                    'imagem'=>'imgTelefoniaEmpresarial.png', 'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+        ['titulo'=>'Link Dedicado',        'descricao'=>'Conexão exclusiva para operações críticas.',           'imagem'=>'imgLinkDEdicado.png',         'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+    ],
+    'cards_seguranca' => [
+        ['titulo'=>'Rastreamento Veicular','descricao'=>'Acompanhe seu veículo em tempo real pelo celular.',    'imagem'=>'imgRastreamentoVeicular.png', 'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+        ['titulo'=>'Tag Localizadora',     'descricao'=>'Mais praticidade e segurança para o que importa.',     'imagem'=>'imgTagLocalizadora.png',      'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+    ],
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_pdo  = getDbConnection();
+    $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_texto','home_content')");
+    $_cfg  = [];
+    foreach ($_stmt->fetchAll() as $r) { $_cfg[$r['setting_key']] = $r['setting_value']; }
+    if (!empty($_cfg['sorteio_date']))       $homeSorteioDate = addslashes($_cfg['sorteio_date']) . '-03:00';
+    if (!empty($_cfg['regulamento_titulo'])) $homeRegTitulo   = htmlspecialchars($_cfg['regulamento_titulo'], ENT_QUOTES, 'UTF-8');
+    if (!empty($_cfg['regulamento_texto']))  $homeRegTexto    = $_cfg['regulamento_texto'];
+    if (!empty($_cfg['home_content'])) {
+        $_db = json_decode($_cfg['home_content'], true);
+        if (is_array($_db)) {
+            if (!empty($_db['intro_titulo']))    $_homeContent['intro_titulo']    = $_db['intro_titulo'];
+            if (!empty($_db['intro_subtitulo'])) $_homeContent['intro_subtitulo'] = $_db['intro_subtitulo'];
+            foreach (['cards_casa','cards_empresa','cards_seguranca'] as $_k) {
+                if (!empty($_db[$_k]) && is_array($_db[$_k])) {
+                    foreach ($_db[$_k] as $_i => $_c) {
+                        if (isset($_homeContent[$_k][$_i]) && is_array($_c)) {
+                            $_homeContent[$_k][$_i] = array_merge($_homeContent[$_k][$_i], array_filter($_c, 'strlen'));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    unset($_pdo, $_stmt, $_cfg, $_db, $_k, $_i, $_c);
+} catch (Throwable $_e) { unset($_e); }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,11 +107,51 @@
         </div>
     </div>
 
+    <div class="home__cruise">
+        <div class="container">
+            <section class="home__cruise-banner" aria-label="Conex&atilde;o em alto mar">
+                <div class="home__cruise-copy">
+                    <h2>Conex&atilde;o <strong>em alto mar</strong></h2>
+                    <p>Concorra a um cruzeiro internacional a bordo do <strong>MSC Divina.</strong></p>
+                    <ul>
+                        <li><i class="icon-checkmark" aria-hidden="true"></i>7 noites de viagem</li>
+                        <li><i class="icon-pin" aria-hidden="true"></i>Destinos incr&iacute;veis</li>
+                        <li><i class="icon-group" aria-hidden="true"></i>Experi&ecirc;ncia completa para 2 pessoas</li>
+                    </ul>
+                </div>
+
+                <div class="home__cruise-info">
+                    <div class="home__cruise-partners">
+                        <span>Uma experi&ecirc;ncia inesquec&iacute;vel em parceria com</span>
+                        <div>
+                            <img src="<?= BASE_URL ?>/images/cruzeiro/logo.png" alt="AserNet IoT Services">
+                            <b aria-hidden="true">&times;</b>
+                            <img src="<?= BASE_URL ?>/images/cruzeiro/logoBeFly.webp" alt="BeFly">
+                        </div>
+                    </div>
+
+                    <div class="home__cruise-countdown" aria-label="Contagem regressiva para o sorteio">
+                        <span>Sorteio em:</span>
+                        <div><strong>182</strong><small>Dias</small></div>
+                        <div><strong>14</strong><small>Horas</small></div>
+                        <div><strong>32</strong><small>Minutos</small></div>
+                        <div><strong>27</strong><small>Segundos</small></div>
+                    </div>
+
+                    <div class="home__cruise-actions">
+                        <a class="home__cruise-button home__cruise-button--primary" href="<?= BASE_URL ?>/cruzeiro">Quero participar <i class="icon-arrowright" aria-hidden="true"></i></a>
+                        <a class="home__cruise-button" id="btnVerRegulamentoHome" href="#">Ver regulamento</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
     <div class="home__body">
         <div class="container">
             <div class="home__intro">
-                <h2 class="home__intro-title">Uma empresa. Diversas soluções conectadas.</h2>
-                <p class="home__intro-text">A AserNet integra internet, mobilidade, segurança e conectividade para simplificar sua rotina e melhorar sua experiência.</p>
+                <h2 class="home__intro-title"><?= htmlspecialchars($_homeContent['intro_titulo']) ?></h2>
+                <p class="home__intro-text"><?= htmlspecialchars($_homeContent['intro_subtitulo']) ?></p>
             </div>
 
             <section class="home__section">
@@ -69,45 +161,18 @@
                 </div>
 
                 <div class="home__cards home__cards--home">
+                    <?php $_iconesCasa = ['icon-home','icon-wifi','icon-security','icon-mobile-phone']; ?>
+                    <?php foreach ($_homeContent['cards_casa'] as $_i => $_c): ?>
                     <article class="home__card">
                         <div class="home__card-heading">
-                            <i class="icon icon-home" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Internet Residencial</h3>
+                            <i class="icon <?= $_iconesCasa[$_i] ?? 'icon-home' ?>" aria-hidden="true"></i>
+                            <h3 class="home__card-title"><?= htmlspecialchars($_c['titulo']) ?></h3>
                         </div>
-                        <p class="home__card-text">1 Giga com estabilidade e cobertura inteligente.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgInternetResidencial.png" alt="Sala residencial conectada">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/residencial">Ver planos</a>
+                        <p class="home__card-text"><?= htmlspecialchars($_c['descricao']) ?></p>
+                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/<?= htmlspecialchars($_c['imagem']) ?>" alt="<?= htmlspecialchars($_c['titulo']) ?>">
+                        <a class="home__card-link" href="<?= BASE_URL ?><?= htmlspecialchars($_c['link_href']) ?>"><?= htmlspecialchars($_c['link_texto']) ?></a>
                     </article>
-
-                    <article class="home__card">
-                        <div class="home__card-heading">
-                            <i class="icon icon-wifi" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Wi-Fi Mesh</h3>
-                        </div>
-                        <p class="home__card-text">Cobertura inteligente para toda a casa.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgWifiMesh.png" alt="Roteadores Wi-Fi Mesh">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/solucoes">Conhecer solução</a>
-                    </article>
-
-                    <article class="home__card">
-                        <div class="home__card-heading">
-                            <i class="icon icon-security" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Câmeras de Segurança</h3>
-                        </div>
-                        <p class="home__card-text">Monitoramento em tempo real pelo celular.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgCameraDeSeguranca.png" alt="Câmera de segurança">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/solucoes">Ver solução</a>
-                    </article>
-
-                    <article class="home__card">
-                        <div class="home__card-heading">
-                            <i class="icon icon-mobile-phone" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Aser Mobile</h3>
-                        </div>
-                        <p class="home__card-text">Conectividade dentro e fora de casa.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgAserMobile.png" alt="Celular com Aser Mobile">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/residencial">Ver planos</a>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
             </section>
 
@@ -118,45 +183,18 @@
                 </div>
 
                 <div class="home__cards home__cards--business">
+                    <?php $_iconesEmpresa = ['icon-construcao','icon-wifi','icon-phone','icon-servidor']; ?>
+                    <?php foreach ($_homeContent['cards_empresa'] as $_i => $_c): ?>
                     <article class="home__card">
                         <div class="home__card-heading">
-                            <i class="icon icon-construcao" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Internet PME</h3>
+                            <i class="icon <?= $_iconesEmpresa[$_i] ?? 'icon-wifi' ?>" aria-hidden="true"></i>
+                            <h3 class="home__card-title"><?= htmlspecialchars($_c['titulo']) ?></h3>
                         </div>
-                        <p class="home__card-text">Conectividade estável para empresas.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgInternetPME.png" alt="Escritório conectado">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/empresas">Ver soluções</a>
+                        <p class="home__card-text"><?= htmlspecialchars($_c['descricao']) ?></p>
+                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/<?= htmlspecialchars($_c['imagem']) ?>" alt="<?= htmlspecialchars($_c['titulo']) ?>">
+                        <a class="home__card-link" href="<?= BASE_URL ?><?= htmlspecialchars($_c['link_href']) ?>"><?= htmlspecialchars($_c['link_texto']) ?></a>
                     </article>
-
-                    <article class="home__card">
-                        <div class="home__card-heading">
-                            <i class="icon icon-wifi" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Wi-Fi Profissional</h3>
-                        </div>
-                        <p class="home__card-text">Rede preparada para múltiplos dispositivos.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgWifiProfissional.png" alt="Access point profissional">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/solucoes">Ver solução</a>
-                    </article>
-
-                    <article class="home__card">
-                        <div class="home__card-heading">
-                            <i class="icon icon-phone" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Telefonia Empresarial</h3>
-                        </div>
-                        <p class="home__card-text">Mais comunicação e produtividade.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgTelefoniaEmpresarial.png" alt="Telefone empresarial">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/solucoes">Ver solução</a>
-                    </article>
-
-                    <article class="home__card">
-                        <div class="home__card-heading">
-                            <i class="icon icon-servidor" aria-hidden="true"></i>
-                            <h3 class="home__card-title">Link Dedicado</h3>
-                        </div>
-                        <p class="home__card-text">Conexão exclusiva para operações críticas.</p>
-                        <img class="home__card-image" src="<?= BASE_URL ?>/images/home/imgLinkDEdicado.png" alt="Link dedicado de alta velocidade">
-                        <a class="home__card-link" href="<?= BASE_URL ?>/solucoes">Ver solução</a>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
 
                 <a class="home__wide-link" href="<?= BASE_URL ?>/empresas">Conhecer soluções empresariais</a>
@@ -173,23 +211,16 @@
                     </div>
 
                     <div class="home__security-list">
+                        <?php foreach ($_homeContent['cards_seguranca'] as $_c): ?>
                         <article class="home__security-card">
                             <div>
-                                <h3 class="home__security-title">Rastreamento Veicular</h3>
-                                <p class="home__security-text">Acompanhe seu veículo em tempo real pelo celular.</p>
-                                <a class="home__card-link home__security-link" href="<?= BASE_URL ?>/solucoes">Ver solução</a>
+                                <h3 class="home__security-title"><?= htmlspecialchars($_c['titulo']) ?></h3>
+                                <p class="home__security-text"><?= htmlspecialchars($_c['descricao']) ?></p>
+                                <a class="home__card-link home__security-link" href="<?= BASE_URL ?><?= htmlspecialchars($_c['link_href']) ?>"><?= htmlspecialchars($_c['link_texto']) ?></a>
                             </div>
-                            <img class="home__security-image" src="<?= BASE_URL ?>/images/home/imgRastreamentoVeicular.png" alt="Rastreamento veicular">
+                            <img class="home__security-image" src="<?= BASE_URL ?>/images/home/<?= htmlspecialchars($_c['imagem']) ?>" alt="<?= htmlspecialchars($_c['titulo']) ?>">
                         </article>
-
-                        <article class="home__security-card">
-                            <div>
-                                <h3 class="home__security-title">Tag Localizadora</h3>
-                                <p class="home__security-text">Mais praticidade e segurança para o que importa.</p>
-                                <a class="home__card-link home__security-link" href="<?= BASE_URL ?>/solucoes">Ver solução</a>
-                            </div>
-                            <img class="home__security-image" src="<?= BASE_URL ?>/images/home/imgTagLocalizadora.png" alt="Tag localizadora">
-                        </article>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
@@ -277,8 +308,23 @@
     </div>
 </section>
 
+<!-- Modal: Regulamento -->
+<div class="cruise-modal" id="modalRegulamentoHome" role="dialog" aria-modal="true" aria-labelledby="modalRegHomeTitle">
+    <div class="cruise-modal__box cruise-modal__box--wide">
+        <button class="cruise-modal__close" id="btnFecharRegulamentoHome" type="button" aria-label="Fechar">&times;</button>
+        <div class="cruise-modal__header">
+            <i class="icon-calendar" aria-hidden="true"></i>
+            <h2 id="modalRegHomeTitle"><?= $homeRegTitulo ?></h2>
+        </div>
+        <div class="cruise-modal__regulamento-body">
+            <?= $homeRegTexto ?>
+        </div>
+    </div>
+</div>
+
 <?php include ROOT . '/includes/footer/footer.php';?>
 <?php include ROOT . '/includes/scripts.php';?>
+<script>var SORTEIO_DATE = "<?= $homeSorteioDate ?>";</script>
 <?php
 $version = time();
 echo '<script src="' . BASE_URL . '/pages/inicio/home.js?' . $version . '"></script>';

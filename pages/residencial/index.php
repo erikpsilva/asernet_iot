@@ -105,7 +105,7 @@
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Suporte AserNet</li>
                         </ul>
                         <p class="residential__price"><span>R$</span> 109,90<small>/mês</small></p>
-                        <a class="residential__plan-button" href="<?= BASE_URL ?>/contato">Contratar agora</a>
+                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="internet-start" data-cart-group="internet-residencial" data-cart-title="Internet residencial - Start" data-cart-subtitle="1 Giga em todos os planos" data-cart-price="R$ 109,90/m&ecirc;s" data-cart-icon="icon-wifi" data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
                     </article>
 
                     <article class="residential__plan residential__plan--featured">
@@ -119,7 +119,7 @@
                         </ul>
                         <span class="residential__plan-note">até 10 metros por ponto</span>
                         <p class="residential__price"><span>R$</span> 119,90<small>/mês</small></p>
-                        <a class="residential__plan-button" href="<?= BASE_URL ?>/contato">Contratar agora</a>
+                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="internet-plus" data-cart-group="internet-residencial" data-cart-title="Internet residencial - Plus" data-cart-subtitle="Tudo do plano anterior" data-cart-price="R$ 119,90/m&ecirc;s" data-cart-icon="icon-wifi" data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
                     </article>
 
                     <article class="residential__plan">
@@ -132,7 +132,7 @@
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Melhor experiência em múltiplos ambientes</li>
                         </ul>
                         <p class="residential__price"><span>R$</span> 139,90<small>/mês</small></p>
-                        <a class="residential__plan-button" href="<?= BASE_URL ?>/contato">Contratar agora</a>
+                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="internet-ultra" data-cart-group="internet-residencial" data-cart-title="Internet residencial - Ultra" data-cart-subtitle="Plano residencial mais completo" data-cart-price="R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifi" data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
                     </article>
                 </div>
 

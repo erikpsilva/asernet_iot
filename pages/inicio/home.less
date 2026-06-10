@@ -145,6 +145,210 @@
             #f7faff;
     }
 
+    &__cruise {
+        padding: 14px 0 0;
+        background: @white;
+    }
+
+    &__cruise-banner {
+        min-height: 228px;
+        display: grid;
+        grid-template-columns: 285px minmax(0, 1fr) 372px;
+        gap: 28px;
+        align-items: center;
+        padding: 26px 30px 24px;
+        border: 1px solid rgba(8, 114, 255, .32);
+        border-radius: 8px;
+        background:
+            linear-gradient(90deg, rgba(2, 11, 31, .98) 0%, rgba(2, 11, 31, .86) 26%, rgba(2, 11, 31, .34) 58%, rgba(2, 11, 31, .98) 100%),
+            url("../images/cruzeiro/imgTopoBanner.png") 47% center / auto 118% no-repeat,
+            #020b1f;
+        box-shadow: 0 12px 28px rgba(0, 21, 63, .18);
+        overflow: hidden;
+        position: relative;
+
+        &:before {
+            content: "";
+            width: 48%;
+            height: 100%;
+            position: absolute;
+            left: 26%;
+            top: 0;
+            background: radial-gradient(circle at center, rgba(8, 114, 255, .2), rgba(8, 114, 255, 0) 66%);
+            pointer-events: none;
+        }
+    }
+
+    &__cruise-copy,
+    &__cruise-info {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__cruise-copy {
+        color: @white;
+
+        h2 {
+            color: @white;
+            font-size: 27px;
+            font-weight: @semi-bold;
+            line-height: 1.04;
+            text-transform: uppercase;
+        }
+
+        h2 strong {
+            display: block;
+            color: #0872ff;
+            font: inherit;
+        }
+
+        p {
+            margin-top: 14px;
+            color: @white;
+            font-size: 15px;
+            line-height: 1.38;
+        }
+
+        ul {
+            display: grid;
+            gap: 7px;
+            margin-top: 14px;
+        }
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: @white;
+            font-size: 13px;
+            line-height: 1.25;
+        }
+
+        i {
+            color: #0872ff;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+    }
+
+    &__cruise-info {
+        grid-column: 3;
+    }
+
+    &__cruise-partners {
+        text-align: center;
+
+        > span {
+            display: block;
+            color: @white;
+            font-size: 12px;
+            font-weight: @semi-bold;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 14px;
+        }
+
+        img {
+            max-width: 120px;
+            max-height: 40px;
+            display: block;
+        }
+
+        b {
+            color: @white;
+            font-size: 22px;
+            font-weight: @regular;
+            line-height: 1;
+        }
+    }
+
+    &__cruise-countdown {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 16px;
+        border: 1px solid rgba(8, 114, 255, .35);
+        border-radius: 7px;
+        background: rgba(2, 11, 31, .66);
+        color: @white;
+        overflow: hidden;
+
+        > span {
+            grid-column: 1 / -1;
+            padding-top: 10px;
+            color: @white;
+            font-size: 11px;
+            font-weight: @semi-bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        div {
+            min-height: 61px;
+            display: grid;
+            justify-items: center;
+            align-content: center;
+            border-left: 1px solid rgba(255, 255, 255, .1);
+
+            &:nth-child(2) {
+                border-left: 0;
+            }
+        }
+
+        strong {
+            color: #0872ff;
+            font-size: 31px;
+            font-weight: @semi-bold;
+            line-height: 1;
+        }
+
+        small {
+            margin-top: 5px;
+            color: @white;
+            font-size: 9px;
+            font-weight: @semi-bold;
+            text-transform: uppercase;
+        }
+    }
+
+    &__cruise-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    &__cruise-button {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, .58);
+        border-radius: 5px;
+        color: @white;
+        font-size: 13px;
+        font-weight: @semi-bold;
+        line-height: 1;
+
+        &:hover {
+            color: @white;
+        }
+
+        &--primary {
+            border-color: #0872ff;
+            background: #0872ff;
+            box-shadow: 0 9px 22px rgba(8, 114, 255, .34);
+        }
+    }
+
     &__intro {
         text-align: center;
         margin-bottom: 22px;
@@ -262,7 +466,8 @@
         line-height: 1;
 
         &:after {
-            content: "\2192";
+            content: "\e95d";
+            font-family: 'asernet' !important;
             font-size: 24px;
             font-weight: @regular;
             line-height: 1;
@@ -660,6 +865,19 @@
         &__trust {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        &__cruise-banner {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 22px;
+            background:
+                linear-gradient(180deg, rgba(2, 11, 31, .96) 0%, rgba(2, 11, 31, .9) 42%, rgba(2, 11, 31, .42) 68%, rgba(2, 11, 31, .96) 100%),
+                url("../images/cruzeiro/imgTopoBanner.png") center 34% / auto 66% no-repeat,
+                #020b1f;
+        }
+
+        &__cruise-info {
+            grid-column: auto;
+        }
     }
 
     @media @mobile-large {
@@ -716,7 +934,8 @@
                 position: relative;
 
                 &:after {
-                    content: "\2192";
+                    content: "\e95d";
+                    font-family: 'asernet' !important;
                     font-size: 31px;
                     font-weight: @regular;
                     line-height: 1;
@@ -735,6 +954,103 @@
 
         &__body {
             padding: 18px 0 16px;
+        }
+
+        &__cruise {
+            padding: 12px 0 0;
+            background: @white;
+        }
+
+        &__cruise-banner {
+            min-height: 333px;
+            padding: 18px 13px 14px;
+            gap: 0;
+            align-items: start;
+            border-radius: 8px;
+            background:
+                linear-gradient(180deg, rgba(2, 11, 31, .98) 0%, rgba(2, 11, 31, .88) 45%, rgba(2, 11, 31, .18) 64%, rgba(2, 11, 31, .98) 100%),
+                url("../images/cruzeiro/imgTopoBanner.png") right 30% / auto 48% no-repeat,
+                #020b1f;
+        }
+
+        &__cruise-copy {
+            max-width: 210px;
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                margin-top: 11px;
+                font-size: 13px;
+            }
+
+            ul {
+                display: none;
+            }
+        }
+
+        &__cruise-info {
+            align-self: end;
+            width: 100%;
+            margin-top: 92px;
+        }
+
+        &__cruise-partners {
+            text-align: left;
+
+            > span {
+                font-size: 8px;
+            }
+
+            div {
+                justify-content: flex-start;
+                gap: 15px;
+                margin-top: 8px;
+            }
+
+            img {
+                max-width: 82px;
+                max-height: 28px;
+            }
+
+            b {
+                font-size: 15px;
+            }
+        }
+
+        &__cruise-countdown {
+            margin-top: 12px;
+
+            > span {
+                padding-top: 8px;
+                font-size: 9px;
+            }
+
+            div {
+                min-height: 55px;
+            }
+
+            strong {
+                font-size: 25px;
+            }
+
+            small {
+                font-size: 7px;
+            }
+        }
+
+        &__cruise-actions {
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        &__cruise-button {
+            min-height: 36px;
+            padding: 0 10px;
+            border-radius: 5px;
+            font-size: 10px;
+            gap: 8px;
         }
 
         &__intro {

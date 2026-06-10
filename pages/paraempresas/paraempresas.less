@@ -323,7 +323,7 @@
             background: #f5f9ff;
         }
 
-        i {
+        > div > i {
             grid-row: span 2;
             color: #075fff;
             font-size: 38px;
@@ -417,17 +417,16 @@
             font-size: 12px;
         }
 
-        i {
+        span > i {
             display: block;
             margin-bottom: 9px;
             color: #5ea0ff;
             font-size: 38px;
         }
 
-        b {
+        .icon-arrowright {
             color: #5ea0ff;
             font-size: 24px;
-            font-weight: @regular;
         }
     }
 
@@ -878,7 +877,8 @@
             padding: 8px 12px;
 
             &:after {
-                content: "\203A";
+                content: "\e95d";
+                font-family: 'asernet' !important;
                 grid-area: arrow;
                 color: #075fff;
                 font-size: 24px;
@@ -1006,7 +1006,8 @@
                 font-size: 12px;
 
                 &:after {
-                    content: "\203A";
+                    content: "\e95d";
+                    font-family: 'asernet' !important;
                     margin-left: auto;
                     color: #075fff;
                     font-size: 18px;
@@ -1038,7 +1039,7 @@
             justify-content: center;
             margin-top: 14px;
 
-            b {
+            .icon-arrowright {
                 display: inline-flex;
                 align-items: center;
                 color: #5ea0ff;

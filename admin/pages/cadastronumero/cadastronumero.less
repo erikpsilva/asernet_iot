@@ -1,0 +1,208 @@
+.cadNumerosPage {
+    max-width: 1180px;
+
+    &__header {
+        margin-bottom: 22px;
+        padding: 26px 30px;
+        border: 1px solid @borderColor;
+        border-radius: 14px;
+        background: linear-gradient(135deg, @deepBlue 0%, @darkBlue 54%, #075fff 150%);
+        color: @white;
+        box-shadow: 0 18px 40px rgba(0, 22, 61, .16);
+
+        span {
+            display: block;
+            color: #7fb0ff;
+            font-size: 12px;
+            font-weight: @bold;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 8px 0 0;
+            color: @white;
+            font-size: 30px;
+            font-weight: @bold;
+            line-height: 1.15;
+        }
+
+        p {
+            max-width: 680px;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, .82);
+            font-size: 15px;
+            line-height: 1.45;
+        }
+    }
+
+    &__tabs {
+        display: inline-flex;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding: 6px;
+        border: 1px solid @borderColor;
+        border-radius: 12px;
+        background: @white;
+        box-shadow: 0 12px 28px rgba(0, 42, 120, .05);
+    }
+
+    &__tab {
+        min-height: 42px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: @colorFont;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: @bold;
+        .transition();
+
+        &:hover {
+            color: @primary;
+        }
+
+        &.is-active {
+            background: @primary;
+            color: @white;
+            box-shadow: 0 10px 24px rgba(7, 95, 255, .22);
+        }
+    }
+
+    &__panel,
+    &__state {
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+    }
+
+    .formGroup {
+        max-width: 1000px;
+    }
+
+    .formGroup__divisor {
+        h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+            font-size: 22px;
+
+            &:before {
+                content: "";
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: @primary;
+                box-shadow: 0 0 0 6px rgba(7, 95, 255, .12);
+            }
+        }
+
+        &:first-child h3 {
+            margin-top: 0;
+        }
+    }
+
+    &__submit {
+        min-width: 235px;
+        float: none !important;
+    }
+
+    &__successCard {
+        max-width: 760px;
+        display: grid;
+        gap: 18px;
+        justify-items: center;
+        padding: 36px 30px;
+        border: 1px solid @borderColor;
+        border-radius: 14px;
+        background: @white;
+        text-align: center;
+        box-shadow: 0 18px 45px rgba(0, 42, 120, .08);
+    }
+
+    &__successBlock {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid @borderColor;
+        border-radius: 12px;
+        background: #f7faff;
+    }
+
+    &__successTitle {
+        color: #5d6f91;
+        font-size: 13px;
+        font-weight: @bold;
+        letter-spacing: .04em;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+    }
+
+    &__successNumber {
+        margin: 0;
+        color: @primary;
+        font-size: 52px;
+        font-weight: @bold;
+        letter-spacing: .06em;
+        line-height: 1;
+    }
+
+    &__successBtns {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    &__btnWide {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0 18px;
+        border: 0;
+        border-radius: 8px;
+        background: #0abf54;
+        color: @white;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: @bold;
+        text-align: center;
+        .transition();
+
+        &:hover {
+            background: #089a44;
+            color: @white;
+        }
+    }
+
+    @media @tabletSM {
+        &__header {
+            padding: 22px 20px;
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        &__tabs {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &__tab {
+            padding: 0 12px;
+        }
+
+        &__successBtns {
+            grid-template-columns: 1fr;
+        }
+    }
+}
