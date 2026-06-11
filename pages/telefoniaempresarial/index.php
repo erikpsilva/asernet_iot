@@ -11,18 +11,105 @@
 
 <?php include ROOT . '/includes/header/header.php';?>
 
+<?php
+/* ---- defaults ---- */
+$_te = [
+    'pain_titulo' => 'Sua empresa ainda perde oportunidades por falhas no atendimento?',
+    'pain_texto'  => 'Uma comunicação inadequada pode impactar diretamente seus resultados.',
+    'pain_items'  => ['Chamadas perdidas', 'Atendimento desorganizado', 'Dificuldade de mobilidade', 'Estrutura limitada'],
+
+    'sol_titulo' => 'Soluções que se adaptam ao seu negócio.',
+    'sol_texto'  => 'Escolha a solução ideal para a comunicação da sua empresa.',
+    'sol_cards'  => [
+        ['titulo' => 'Linha empresarial', 'texto' => 'Ideal para empresas que precisam de comunicação estável e profissional.', 'imagem' => 'imgLinhaEmpresarial.png'],
+        ['titulo' => 'Número 0800',       'texto' => 'Atendimento gratuito para seus clientes e fortalecimento da marca.',       'imagem' => ''],
+        ['titulo' => 'Número 4000',       'texto' => 'Mais credibilidade e presença regional para sua empresa.',                  'imagem' => ''],
+    ],
+
+    'feat_titulo' => 'Diferenciais AserNet',
+    'feat_texto'  => 'Tecnologia, suporte e soluções que fazem a diferença.',
+    'feat_items'  => [
+        ['titulo' => 'Flexibilidade',        'texto' => 'Estrutura adaptável para diferentes tamanhos de empresa.'],
+        ['titulo' => 'Telefonia IP',          'texto' => 'Mais mobilidade, integração com sistemas e redução de custos.'],
+        ['titulo' => 'Atendimento próximo',   'texto' => 'Equipe local para suporte rápido e acompanhamento da sua operação.'],
+        ['titulo' => 'Projeto personalizado', 'texto' => 'Soluções sob medida conforme a necessidade do seu negócio.'],
+    ],
+
+    'res_aud_titulo' => 'Para quem é indicado',
+    'res_aud_items'  => ['Escritórios', 'Comércios', 'Clínicas', 'Hotéis e pousadas', 'Atendimento comercial', 'Empresas com múltiplos setores', 'Equipes em diferentes localizações'],
+    'res_imagem'     => 'imgRecursosQueGeramResultados.png',
+    'res_rec_titulo' => 'Recursos que geram resultados',
+    'res_rec_items'  => ['Ramais ilimitados', 'Desvio de chamadas', 'URA personalizada', 'Gravação de chamadas', 'Relatórios gerenciais', 'Aplicativo para celular'],
+
+    'flow_titulo' => 'Integre a telefonia com outras soluções AserNet.',
+    'flow_texto'  => 'Comunicação conectada com sua operação para mais eficiência e segurança.',
+    'flow_items'  => ['Internet PME', 'Link Dedicado', 'Wi-Fi Profissional', 'Câmeras de Segurança', 'Estruturas corporativas'],
+
+    'ben_titulo' => 'Benefícios que impulsionam sua empresa.',
+    'ben_items'  => [
+        ['titulo' => 'Mais profissionalismo', 'texto' => 'Transmita credibilidade e melhore a experiência do seu cliente.'],
+        ['titulo' => 'Mais mobilidade',       'texto' => 'Atenda sua equipe de qualquer lugar com mais liberdade.'],
+        ['titulo' => 'Mais produtividade',    'texto' => 'Comunicação organizada para processos mais rápidos e eficientes.'],
+        ['titulo' => 'Escalável',             'texto' => 'Expanda ramais e recursos conforme o crescimento da sua empresa.'],
+    ],
+
+    'trust_google' => '5,0 + de 3.000 avaliações no Google',
+    'trust_items'  => ['Atendimento local de verdade', 'Suporte técnico especializado', 'Instalação profissional e acompanhamento'],
+];
+
+try {
+    require_once ROOT . '/config/database.php';
+    $pdo = getDbConnection();
+    $row = $pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'telefonia_content' LIMIT 1")->fetch();
+    if ($row && !empty($row['setting_value'])) {
+        $db = json_decode($row['setting_value'], true);
+        if (is_array($db)) {
+            $scalars = ['pain_titulo', 'pain_texto',
+                        'sol_titulo', 'sol_texto',
+                        'feat_titulo', 'feat_texto',
+                        'res_aud_titulo', 'res_imagem', 'res_rec_titulo',
+                        'flow_titulo', 'flow_texto',
+                        'ben_titulo', 'trust_google'];
+            foreach ($scalars as $k) {
+                if (isset($db[$k]) && strlen((string) $db[$k])) $_te[$k] = $db[$k];
+            }
+            foreach (['pain_items', 'res_aud_items', 'res_rec_items', 'flow_items', 'trust_items'] as $k) {
+                if (!empty($db[$k]) && is_array($db[$k])) $_te[$k] = $db[$k];
+            }
+            foreach (['sol_cards', 'feat_items', 'ben_items'] as $arr) {
+                if (!empty($db[$arr]) && is_array($db[$arr])) {
+                    foreach ($db[$arr] as $i => $item) {
+                        if (!isset($_te[$arr][$i]) || !is_array($item)) continue;
+                        foreach (array_keys($_te[$arr][$i]) as $k) {
+                            if (isset($item[$k]) && strlen((string) $item[$k])) $_te[$arr][$i][$k] = $item[$k];
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {}
+
+$_solIcons  = [null, 'icon-customersupport', 'icon-talk'];
+$_featIcons = ['icon-setting', 'icon-cloud', 'icon-customersupport', 'icon-puzzle'];
+$_audIcons  = ['icon-office', 'icon-market', 'icon-clinic', 'icon-hotels', 'icon-phone', 'icon-group', 'icon-empresapessoas'];
+$_flowIcons = ['icon-office', 'icon-link', 'icon-wifi', 'icon-casino-cctv', 'icon-servidor'];
+$_benIcons  = ['icon-phone', 'icon-mobile-phone', 'icon-group', 'icon-speed'];
+$_trustIcons = ['icon-talk', 'icon-wifi', 'icon-install'];
+?>
+
 <section class="telefonia-page">
     <div class="telefonia-page__hero">
         <div class="container">
             <div class="telefonia-page__hero-copy">
                 <span>Telefonia empresarial</span>
-                <h1>Comunica&ccedil;&atilde;o profissional, <strong>sem complica&ccedil;&atilde;o.</strong></h1>
+                <h1>Comunicação profissional, <strong>sem complicação.</strong></h1>
                 <p>Telefonia empresarial para sua empresa atender melhor, ganhar produtividade e transmitir mais credibilidade.</p>
 
                 <ul>
                     <li><i class="icon-checkmark" aria-hidden="true"></i>Linhas fixas empresariais</li>
                     <li><i class="icon-checkmark" aria-hidden="true"></i>Telefonia SIP/IP</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Solu&ccedil;&otilde;es 0800 e 4000</li>
+                    <li><i class="icon-checkmark" aria-hidden="true"></i>Soluções 0800 e 4000</li>
                     <li><i class="icon-checkmark" aria-hidden="true"></i>Mais mobilidade e flexibilidade</li>
                 </ul>
 
@@ -40,14 +127,13 @@
                 <div class="telefonia-page__pain-box">
                     <i class="icon-phoneerror" aria-hidden="true"></i>
                     <div>
-                        <h2>Sua empresa ainda perde oportunidades por falhas no atendimento?</h2>
-                        <p>Uma comunica&ccedil;&atilde;o inadequada pode impactar diretamente seus resultados.</p>
+                        <h2><?= htmlspecialchars($_te['pain_titulo']) ?></h2>
+                        <p><?= htmlspecialchars($_te['pain_texto']) ?></p>
                     </div>
                     <ul class="telefonia-page__bad-list">
-                        <li><i aria-hidden="true">&times;</i>Chamadas perdidas</li>
-                        <li><i aria-hidden="true">&times;</i>Atendimento desorganizado</li>
-                        <li><i aria-hidden="true">&times;</i>Dificuldade de mobilidade</li>
-                        <li><i aria-hidden="true">&times;</i>Estrutura limitada</li>
+                        <?php foreach ($_te['pain_items'] as $item): ?>
+                        <li><i aria-hidden="true">&times;</i><?= htmlspecialchars($item) ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -56,41 +142,46 @@
         <section class="telefonia-page__solutions">
             <div class="container">
                 <header class="telefonia-page__section-header">
-                    <h2>Solu&ccedil;&otilde;es que se adaptam ao seu neg&oacute;cio.</h2>
-                    <p>Escolha a solu&ccedil;&atilde;o ideal para a comunica&ccedil;&atilde;o da sua empresa.</p>
+                    <h2><?= htmlspecialchars($_te['sol_titulo']) ?></h2>
+                    <p><?= htmlspecialchars($_te['sol_texto']) ?></p>
                 </header>
 
                 <div class="telefonia-page__solutions-grid">
+                    <?php foreach ($_te['sol_cards'] as $i => $card): ?>
                     <article>
-                        <img src="<?= BASE_URL ?>/images/telefoniaempresarial/imgLinhaEmpresarial.png" alt="Telefone empresarial">
-                        <div><h3>Linha empresarial</h3><p>Ideal para empresas que precisam de comunica&ccedil;&atilde;o est&aacute;vel e profissional.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20na%20solu%C3%A7%C3%A3o%20de%20Linha%20Empresarial." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div>
+                        <?php if ($i === 0 && !empty($card['imagem'])): ?>
+                        <img src="<?= BASE_URL ?>/images/telefoniaempresarial/<?= htmlspecialchars($card['imagem']) ?>" alt="<?= htmlspecialchars($card['titulo']) ?>">
+                        <?php elseif ($i > 0): ?>
+                        <i class="<?= $_solIcons[$i] ?>" aria-hidden="true"></i>
+                        <?php endif; ?>
+                        <div>
+                            <h3><?= htmlspecialchars($card['titulo']) ?></h3>
+                            <p><?= htmlspecialchars($card['texto']) ?></p>
+                            <a href="https://wa.me/5508002225262" target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a>
+                        </div>
                     </article>
-                    <article>
-                        <i class="icon-customersupport" aria-hidden="true"></i>
-                        <div><h3>N&uacute;mero 0800</h3><p>Atendimento gratuito para seus clientes e fortalecimento da marca.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20no%20N%C3%BAmero%200800%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div>
-                    </article>
-                    <article>
-                        <i class="icon-talk" aria-hidden="true"></i>
-                        <div><h3>N&uacute;mero 4000</h3><p>Mais credibilidade e presen&ccedil;a regional para sua empresa.</p><a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20no%20N%C3%BAmero%204000%20para%20minha%20empresa." target="_blank" rel="noopener">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></div>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
 
-                <a class="telefonia-page__analysis" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20da%20melhor%20solu%C3%A7%C3%A3o%20de%20Telefonia%20Empresarial." target="_blank" rel="noopener">Solicitar an&aacute;lise da melhor solu&ccedil;&atilde;o <i class="icon-arrowright" aria-hidden="true"></i></a>
+                <a class="telefonia-page__analysis" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20da%20melhor%20solu%C3%A7%C3%A3o%20de%20Telefonia%20Empresarial." target="_blank" rel="noopener">Solicitar análise da melhor solução <i class="icon-arrowright" aria-hidden="true"></i></a>
             </div>
         </section>
 
         <section class="telefonia-page__features">
             <div class="container">
                 <header class="telefonia-page__section-header">
-                    <h2>Diferenciais AserNet</h2>
-                    <p>Tecnologia, suporte e solu&ccedil;&otilde;es que fazem a diferen&ccedil;a.</p>
+                    <h2><?= htmlspecialchars($_te['feat_titulo']) ?></h2>
+                    <p><?= htmlspecialchars($_te['feat_texto']) ?></p>
                 </header>
 
                 <div class="telefonia-page__features-grid">
-                    <article><i class="icon-setting" aria-hidden="true"></i><h3>Flexibilidade</h3><p>Estrutura adapt&aacute;vel para diferentes tamanhos de empresa.</p></article>
-                    <article><i class="icon-cloud" aria-hidden="true"></i><h3>Telefonia IP</h3><p>Mais mobilidade, integra&ccedil;&atilde;o com sistemas e redu&ccedil;&atilde;o de custos.</p></article>
-                    <article><i class="icon-customersupport" aria-hidden="true"></i><h3>Atendimento pr&oacute;ximo</h3><p>Equipe local para suporte r&aacute;pido e acompanhamento da sua opera&ccedil;&atilde;o.</p></article>
-                    <article><i class="icon-puzzle" aria-hidden="true"></i><h3>Projeto personalizado</h3><p>Solu&ccedil;&otilde;es sob medida conforme a necessidade do seu neg&oacute;cio.</p></article>
+                    <?php foreach ($_te['feat_items'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_featIcons[$i] ?? 'icon-setting' ?>" aria-hidden="true"></i>
+                        <h3><?= htmlspecialchars($item['titulo']) ?></h3>
+                        <p><?= htmlspecialchars($item['texto']) ?></p>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -99,29 +190,22 @@
             <div class="container">
                 <div class="telefonia-page__resources-box">
                     <div>
-                        <h2>Para quem &eacute; indicado</h2>
+                        <h2><?= htmlspecialchars($_te['res_aud_titulo']) ?></h2>
                         <ul>
-                            <li><i class="icon-office" aria-hidden="true"></i>Escrit&oacute;rios</li>
-                            <li><i class="icon-market" aria-hidden="true"></i>Com&eacute;rcios</li>
-                            <li><i class="icon-clinic" aria-hidden="true"></i>Cl&iacute;nicas</li>
-                            <li><i class="icon-hotels" aria-hidden="true"></i>Hot&eacute;is e pousadas</li>
-                            <li><i class="icon-phone" aria-hidden="true"></i>Atendimento comercial</li>
-                            <li><i class="icon-group" aria-hidden="true"></i>Empresas com m&uacute;ltiplos setores</li>
-                            <li><i class="icon-empresapessoas" aria-hidden="true"></i>Equipes em diferentes localiza&ccedil;&otilde;es</li>
+                            <?php foreach ($_te['res_aud_items'] as $i => $item): ?>
+                            <li><i class="<?= $_audIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><?= htmlspecialchars($item) ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
 
-                    <img src="<?= BASE_URL ?>/images/telefoniaempresarial/imgRecursosQueGeramResultados.png" alt="Telefone empresarial sobre mesa">
+                    <img src="<?= BASE_URL ?>/images/telefoniaempresarial/<?= htmlspecialchars($_te['res_imagem']) ?>" alt="Telefone empresarial sobre mesa">
 
                     <div>
-                        <h2>Recursos que geram resultados</h2>
+                        <h2><?= htmlspecialchars($_te['res_rec_titulo']) ?></h2>
                         <ul>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Ramais ilimitados</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Desvio de chamadas</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>URA personalizada</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Grava&ccedil;&atilde;o de chamadas</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Relat&oacute;rios gerenciais</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Aplicativo para celular</li>
+                            <?php foreach ($_te['res_rec_items'] as $item): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($item) ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -131,16 +215,14 @@
         <section class="telefonia-page__flow">
             <div class="container">
                 <header class="telefonia-page__section-header">
-                    <h2>Integre a telefonia com outras solu&ccedil;&otilde;es AserNet.</h2>
-                    <p>Comunica&ccedil;&atilde;o conectada com sua opera&ccedil;&atilde;o para mais efici&ecirc;ncia e seguran&ccedil;a.</p>
+                    <h2><?= htmlspecialchars($_te['flow_titulo']) ?></h2>
+                    <p><?= htmlspecialchars($_te['flow_texto']) ?></p>
                 </header>
 
                 <div class="telefonia-page__flow-grid">
-                    <article><i class="icon-office" aria-hidden="true"></i>Internet PME</article>
-                    <article><i class="icon-link" aria-hidden="true"></i>Link Dedicado</article>
-                    <article><i class="icon-wifi" aria-hidden="true"></i>Wi-Fi Profissional</article>
-                    <article><i class="icon-casino-cctv" aria-hidden="true"></i>C&acirc;meras de Seguran&ccedil;a</article>
-                    <article><i class="icon-servidor" aria-hidden="true"></i>Estruturas corporativas</article>
+                    <?php foreach ($_te['flow_items'] as $i => $item): ?>
+                    <article><i class="<?= $_flowIcons[$i] ?? 'icon-office' ?>" aria-hidden="true"></i><?= htmlspecialchars($item) ?></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -148,12 +230,15 @@
         <section class="telefonia-page__benefits">
             <div class="container">
                 <div class="telefonia-page__benefits-box">
-                    <h2>Benef&iacute;cios que impulsionam sua empresa.</h2>
+                    <h2><?= htmlspecialchars($_te['ben_titulo']) ?></h2>
                     <div>
-                        <article><i class="icon-phone" aria-hidden="true"></i><strong>Mais profissionalismo</strong><span>Transmita credibilidade e melhore a experi&ecirc;ncia do seu cliente.</span></article>
-                        <article><i class="icon-mobile-phone" aria-hidden="true"></i><strong>Mais mobilidade</strong><span>Atenda sua equipe de qualquer lugar com mais liberdade.</span></article>
-                        <article><i class="icon-group" aria-hidden="true"></i><strong>Mais produtividade</strong><span>Comunica&ccedil;&atilde;o organizada para processos mais r&aacute;pidos e eficientes.</span></article>
-                        <article><i class="icon-speed" aria-hidden="true"></i><strong>Escal&aacute;vel</strong><span>Expanda ramais e recursos conforme o crescimento da sua empresa.</span></article>
+                        <?php foreach ($_te['ben_items'] as $i => $item): ?>
+                        <article>
+                            <i class="<?= $_benIcons[$i] ?? 'icon-phone' ?>" aria-hidden="true"></i>
+                            <strong><?= htmlspecialchars($item['titulo']) ?></strong>
+                            <span><?= htmlspecialchars($item['texto']) ?></span>
+                        </article>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -162,10 +247,10 @@
         <section class="telefonia-page__trust">
             <div class="container">
                 <div class="telefonia-page__trust-grid">
-                    <div class="telefonia-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>5,0</strong> + de 3.000 avalia&ccedil;&otilde;es no Google</p></div>
-                    <article><i class="icon-talk" aria-hidden="true"></i>Atendimento local de verdade</article>
-                    <article><i class="icon-wifi" aria-hidden="true"></i>Suporte t&eacute;cnico especializado</article>
-                    <article><i class="icon-install" aria-hidden="true"></i>Instala&ccedil;&atilde;o profissional e acompanhamento</article>
+                    <div class="telefonia-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong><?= htmlspecialchars($_te['trust_google']) ?></strong></p></div>
+                    <?php foreach ($_te['trust_items'] as $i => $item): ?>
+                    <article><i class="<?= $_trustIcons[$i] ?? 'icon-talk' ?>" aria-hidden="true"></i><?= htmlspecialchars($item) ?></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -174,8 +259,8 @@
             <div class="container">
                 <div class="telefonia-page__cta-box">
                     <div>
-                        <h2>Sua empresa merece uma comunica&ccedil;&atilde;o mais profissional.</h2>
-                        <p>Fale com um especialista e encontre a solu&ccedil;&atilde;o de telefonia ideal para o seu neg&oacute;cio.</p>
+                        <h2>Sua empresa merece uma comunicação mais profissional.</h2>
+                        <p>Fale com um especialista e encontre a solução de telefonia ideal para o seu negócio.</p>
                     </div>
                     <div class="telefonia-page__cta-actions">
                         <a class="telefonia-page__cta-button telefonia-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>

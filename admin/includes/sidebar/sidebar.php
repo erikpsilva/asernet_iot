@@ -5,7 +5,7 @@ $_isEditorUp = in_array($_nivel, ['admin', 'editor']);
 
 $_crzRoutes       = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
 $_plataformaRoutes = ['meusdados', 'administrarusuarios', 'cadastrarusuario', 'configuracoes'];
-$_conteudoRoutes  = ['conteudoinicio', 'conteudosuporte', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento'];
+$_conteudoRoutes  = ['conteudoinicio', 'conteudosuporte', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial'];
 
 $_plataformaOpen = in_array($subRoute, $_plataformaRoutes) ? 'open' : '';
 $_cruzeiroOpen   = in_array($subRoute, $_crzRoutes)        ? 'open' : '';
@@ -151,6 +151,30 @@ $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
                             <a href="<?= BASE_URL ?>/admin/conteudorastreamento"
                                class="sidebar__sublink <?= ($subRoute === 'conteudorastreamento') ? 'sidebar__sublink--active' : '' ?>">
                                 Rastreamento Veicular
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudoskeelo"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudoskeelo') ? 'sidebar__sublink--active' : '' ?>">
+                                Skeelo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudoparaempresas"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudoparaempresas') ? 'sidebar__sublink--active' : '' ?>">
+                                Internet PME
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudowifiprofissional"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudowifiprofissional') ? 'sidebar__sublink--active' : '' ?>">
+                                Wi-Fi Profissional
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudotelefoniaempresarial"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudotelefoniaempresarial') ? 'sidebar__sublink--active' : '' ?>">
+                                Telefonia Empresarial
                             </a>
                         </li>
                     </ul>

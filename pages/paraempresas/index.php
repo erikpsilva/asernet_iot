@@ -11,6 +11,90 @@
 
 <?php include ROOT . '/includes/header/header.php';?>
 
+<?php
+/* ---- defaults ---- */
+$_pe = [
+    'prob_titulo' => 'Sua empresa depende de tecnologia o tempo todo.',
+    'prob_texto'  => 'Quando a estrutura não acompanha a operação, os problemas aparecem.',
+    'prob_items'  => ['Internet instável', 'Wi-Fi congestionado', 'Atendimento falhando', 'Sistemas lentos', 'Impacto na produtividade'],
+
+    'int_titulo'  => 'Soluções integradas para empresas modernas.',
+    'int_texto'   => 'A AserNet conecta internet, Wi-Fi, telefonia e infraestrutura para entregar mais estabilidade e eficiência para sua operação.',
+    'int_bullets' => ['Projetos personalizados', 'Estrutura escalável', 'Atendimento especializado', 'Suporte local'],
+
+    'sol_titulo' => 'Soluções empresariais',
+    'sol_cards'  => [
+        ['titulo' => 'Internet PME',              'texto' => 'Internet estável para empresas que precisam de produtividade.',                'imagem' => 'imgInternetPME.png'],
+        ['titulo' => 'Wi-Fi Profissional',         'texto' => 'Rede preparada para múltiplos dispositivos e ambientes corporativos.',       'imagem' => 'imgWifiProfissional.png'],
+        ['titulo' => 'Telefonia Empresarial',      'texto' => 'Mais comunicação e profissionalismo para seu atendimento.',                  'imagem' => 'imgTelefoniaEmpresarial.png'],
+        ['titulo' => 'Link Dedicado',              'texto' => 'Conexão exclusiva para operações críticas.',                                 'imagem' => 'imgLinkDedicado.png'],
+        ['titulo' => 'Segurança e Monitoramento',  'texto' => 'Mais controle para sua empresa.',                                           'imagem' => 'imgSegurancaMonitoramento.png'],
+    ],
+
+    'why_titulo' => 'Por que escolher a AserNet?',
+    'why_items'  => [
+        ['titulo' => 'Atendimento próximo',    'texto' => 'Equipe local preparada para atender sua empresa com agilidade.'],
+        ['titulo' => 'Projetos sob medida',    'texto' => 'Soluções adaptadas à necessidade da sua operação.'],
+        ['titulo' => 'Estrutura profissional', 'texto' => 'Mais estabilidade, desempenho e segurança para sua empresa.'],
+        ['titulo' => 'Ecossistema integrado',  'texto' => 'Internet, comunicação e segurança trabalhando juntos.'],
+    ],
+
+    'aud_titulo' => 'Para quem é indicado',
+    'aud_items'  => ['Escritórios', 'Hotéis e pousadas', 'Clínicas', 'Comércios', 'Escolas', 'Empresas com múltiplos usuários', 'Restaurantes'],
+
+    'tech_titulo' => 'Tecnologia integrada para sua empresa crescer.',
+    'tech_texto'  => 'Tudo conectado dentro da mesma estrutura, com gestão inteligente e suporte especializado.',
+
+    'ben_titulo' => 'Benefícios para sua empresa',
+    'ben_items'  => [
+        ['titulo' => 'Mais estabilidade',    'texto' => 'Menos quedas e mais continuidade para sua operação.'],
+        ['titulo' => 'Mais produtividade',   'texto' => 'Melhor desempenho da equipe e dos sistemas.'],
+        ['titulo' => 'Mais profissionalismo','texto' => 'Estrutura preparada para dar mais credibilidade à sua empresa.'],
+        ['titulo' => 'Mais controle',        'texto' => 'Monitoramento e gestão facilitados para tomar melhores decisões.'],
+    ],
+
+    'trust_google' => '5.0 ★★★★★ + de 3.000 avaliações no Google',
+    'trust_items'  => ['Atendimento local de verdade', 'Suporte especializado', 'Instalação profissional', 'Acompanhamento contínuo'],
+];
+
+try {
+    require_once ROOT . '/config/database.php';
+    $pdo = getDbConnection();
+    $row = $pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'paraempresas_content' LIMIT 1")->fetch();
+    if ($row && !empty($row['setting_value'])) {
+        $db = json_decode($row['setting_value'], true);
+        if (is_array($db)) {
+            $scalars = ['prob_titulo', 'prob_texto', 'int_titulo', 'int_texto',
+                        'sol_titulo', 'why_titulo', 'aud_titulo', 'tech_titulo', 'tech_texto',
+                        'ben_titulo', 'trust_google'];
+            foreach ($scalars as $k) {
+                if (isset($db[$k]) && strlen((string) $db[$k])) $_pe[$k] = $db[$k];
+            }
+            foreach (['prob_items', 'int_bullets', 'aud_items', 'trust_items'] as $k) {
+                if (!empty($db[$k]) && is_array($db[$k])) $_pe[$k] = $db[$k];
+            }
+            foreach (['sol_cards', 'why_items', 'ben_items'] as $arr) {
+                if (!empty($db[$arr]) && is_array($db[$arr])) {
+                    foreach ($db[$arr] as $i => $item) {
+                        if (!isset($_pe[$arr][$i]) || !is_array($item)) continue;
+                        foreach (array_keys($_pe[$arr][$i]) as $k) {
+                            if (isset($item[$k]) && strlen((string) $item[$k])) $_pe[$arr][$i][$k] = $item[$k];
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {}
+
+$_solIcons  = ['icon-paraempresa', 'icon-wifipro', 'icon-phone', 'icon-link', 'icon-security'];
+$_audIcons  = ['icon-paraempresa', 'icon-hotels', 'icon-clinic', 'icon-home', 'icon-school', 'icon-empresapessoas', 'icon-restaurant'];
+$_whyIcons  = ['icon-group', 'icon-puzzle', 'icon-infrastructure', 'icon-diagram'];
+$_benIcons  = ['icon-rocket', 'icon-group', 'icon-star', 'icon-dashboard'];
+$_trustIcons = ['icon-group', 'icon-customersupport', 'icon-install', 'icon-acompanhamento'];
+$_probIcons  = ['icon-wifierror', 'icon-wifinot', 'icon-phoneerror', 'icon-slow', 'icon-bars'];
+?>
+
 <section class="business-page">
     <div class="business-page__hero">
         <div class="container">
@@ -45,14 +129,12 @@
             <div class="container">
                 <div class="business-page__problems-grid">
                     <div class="business-page__problems-copy">
-                        <h2>Sua empresa depende de tecnologia o tempo todo.</h2>
-                        <p>Quando a estrutura não acompanha a operação, os problemas aparecem.</p>
+                        <h2><?= htmlspecialchars($_pe['prob_titulo']) ?></h2>
+                        <p><?= htmlspecialchars($_pe['prob_texto']) ?></p>
                     </div>
-                    <article><i class="icon-wifierror" aria-hidden="true"></i><span>Internet<br>instável</span></article>
-                    <article><i class="icon-wifinot" aria-hidden="true"></i><span>Wi-Fi<br>congestionado</span></article>
-                    <article><i class="icon-phoneerror" aria-hidden="true"></i><span>Atendimento<br>falhando</span></article>
-                    <article><i class="icon-slow" aria-hidden="true"></i><span>Sistemas<br>lentos</span></article>
-                    <article><i class="icon-bars" aria-hidden="true"></i><span>Impacto na<br>produtividade</span></article>
+                    <?php foreach ($_pe['prob_items'] as $i => $item): ?>
+                    <article><i class="<?= $_probIcons[$i] ?? 'icon-wifierror' ?>" aria-hidden="true"></i><span><?= htmlspecialchars($item) ?></span></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -61,13 +143,12 @@
             <div class="container">
                 <div class="business-page__integrated-box">
                     <i class="icon-paraempresa" aria-hidden="true"></i>
-                    <h2>Soluções integradas para empresas modernas.</h2>
-                    <p>A AserNet conecta internet, Wi-Fi, telefonia e infraestrutura para entregar mais estabilidade e eficiência para sua operação.</p>
+                    <h2><?= htmlspecialchars($_pe['int_titulo']) ?></h2>
+                    <p><?= htmlspecialchars($_pe['int_texto']) ?></p>
                     <ul>
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Projetos personalizados</li>
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Estrutura escalável</li>
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Atendimento especializado</li>
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Suporte local</li>
+                        <?php foreach ($_pe['int_bullets'] as $bullet): ?>
+                        <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($bullet) ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -75,54 +156,31 @@
 
         <section class="business-page__solutions">
             <div class="container">
-                <h2 class="business-page__center-title">Soluções empresariais</h2>
+                <h2 class="business-page__center-title"><?= htmlspecialchars($_pe['sol_titulo']) ?></h2>
                 <div class="business-page__solutions-grid">
+                    <?php foreach ($_pe['sol_cards'] as $i => $card): ?>
                     <article class="business-page__solution-card">
-                        <div><i class="icon-paraempresa" aria-hidden="true"></i><h3>Internet PME</h3></div>
-                        <p>Internet estável para empresas que precisam de produtividade.</p>
-                        <img src="<?= BASE_URL ?>/images/paraempresas/imgInternetPME.png" alt="Equipe em escritório usando internet empresarial">
+                        <div><i class="<?= $_solIcons[$i] ?? 'icon-paraempresa' ?>" aria-hidden="true"></i><h3><?= htmlspecialchars($card['titulo']) ?></h3></div>
+                        <p><?= htmlspecialchars($card['texto']) ?></p>
+                        <img src="<?= BASE_URL ?>/images/paraempresas/<?= htmlspecialchars($card['imagem']) ?>" alt="<?= htmlspecialchars($card['titulo']) ?>">
                         <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
-
-                    <article class="business-page__solution-card">
-                        <div><i class="icon-wifipro" aria-hidden="true"></i><h3>Wi-Fi Profissional</h3></div>
-                        <p>Rede preparada para múltiplos dispositivos e ambientes corporativos.</p>
-                        <img src="<?= BASE_URL ?>/images/paraempresas/imgWifiProfissional.png" alt="Access point de Wi-Fi corporativo">
-                        <a href="<?= BASE_URL ?>/contato">Conhecer solução <i class="icon-arrowright" aria-hidden="true"></i></a>
-                    </article>
-
-                    <article class="business-page__solution-card">
-                        <div><i class="icon-phone" aria-hidden="true"></i><h3>Telefonia Empresarial</h3></div>
-                        <p>Mais comunicação e profissionalismo para seu atendimento.</p>
-                        <img src="<?= BASE_URL ?>/images/paraempresas/imgTelefoniaEmpresarial.png" alt="Telefone empresarial">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
-                    </article>
-
-                    <article class="business-page__solution-card">
-                        <div><i class="icon-link" aria-hidden="true"></i><h3>Link Dedicado</h3></div>
-                        <p>Conexão exclusiva para operações críticas.</p>
-                        <img src="<?= BASE_URL ?>/images/paraempresas/imgLinkDedicado.png" alt="Conexão dedicada de alta performance">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
-                    </article>
-
-                    <article class="business-page__solution-card">
-                        <div><i class="icon-security" aria-hidden="true"></i><h3>Segurança e Monitoramento</h3></div>
-                        <p>Mais controle para sua empresa.</p>
-                        <img src="<?= BASE_URL ?>/images/paraempresas/imgSegurancaMonitoramento.png" alt="Câmeras de segurança corporativa">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
 
         <section class="business-page__why">
             <div class="container">
-                <h2 class="business-page__center-title">Por que escolher a AserNet?</h2>
+                <h2 class="business-page__center-title"><?= htmlspecialchars($_pe['why_titulo']) ?></h2>
                 <div class="business-page__why-grid">
-                    <article><i class="icon-group" aria-hidden="true"></i><h3>Atendimento próximo</h3><p>Equipe local preparada para atender sua empresa com agilidade.</p></article>
-                    <article><i class="icon-puzzle" aria-hidden="true"></i><h3>Projetos sob medida</h3><p>Soluções adaptadas à necessidade da sua operação.</p></article>
-                    <article><i class="icon-infrastructure" aria-hidden="true"></i><h3>Estrutura profissional</h3><p>Mais estabilidade, desempenho e segurança para sua empresa.</p></article>
-                    <article><i class="icon-diagram" aria-hidden="true"></i><h3>Ecossistema integrado</h3><p>Internet, comunicação e segurança trabalhando juntos.</p></article>
+                    <?php foreach ($_pe['why_items'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_whyIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i>
+                        <h3><?= htmlspecialchars($item['titulo']) ?></h3>
+                        <p><?= htmlspecialchars($item['texto']) ?></p>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -131,20 +189,16 @@
             <div class="container">
                 <div class="business-page__audience-tech-grid">
                     <div class="business-page__audience">
-                        <h2>Para quem é indicado</h2>
+                        <h2><?= htmlspecialchars($_pe['aud_titulo']) ?></h2>
                         <ul>
-                            <li><i class="icon-paraempresa" aria-hidden="true"></i>Escritórios</li>
-                            <li><i class="icon-hotels" aria-hidden="true"></i>Hotéis e pousadas</li>
-                            <li><i class="icon-clinic" aria-hidden="true"></i>Clínicas</li>
-                            <li><i class="icon-home" aria-hidden="true"></i>Comércios</li>
-                            <li><i class="icon-school" aria-hidden="true"></i>Escolas</li>
-                            <li><i class="icon-empresapessoas" aria-hidden="true"></i>Empresas com múltiplos usuários</li>
-                            <li><i class="icon-restaurant" aria-hidden="true"></i>Restaurantes</li>
+                            <?php foreach ($_pe['aud_items'] as $i => $item): ?>
+                            <li><i class="<?= $_audIcons[$i] ?? 'icon-paraempresa' ?>" aria-hidden="true"></i><?= htmlspecialchars($item) ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
 
                     <div class="business-page__tech">
-                        <h2>Tecnologia integrada para sua empresa crescer.</h2>
+                        <h2><?= htmlspecialchars($_pe['tech_titulo']) ?></h2>
                         <div class="business-page__tech-flow">
                             <span><i class="icon-globe" aria-hidden="true"></i>Internet</span>
                             <i class="icon-arrowright" aria-hidden="true"></i>
@@ -156,7 +210,7 @@
                             <i class="icon-arrowright" aria-hidden="true"></i>
                             <span><i class="icon-security" aria-hidden="true"></i>Segurança</span>
                         </div>
-                        <p>Tudo conectado dentro da mesma estrutura, com gestão inteligente e suporte especializado.</p>
+                        <p><?= htmlspecialchars($_pe['tech_texto']) ?></p>
                     </div>
                 </div>
             </div>
@@ -164,12 +218,15 @@
 
         <section class="business-page__benefits">
             <div class="container">
-                <h2 class="business-page__center-title">Benefícios para sua empresa</h2>
+                <h2 class="business-page__center-title"><?= htmlspecialchars($_pe['ben_titulo']) ?></h2>
                 <div class="business-page__benefits-grid">
-                    <article><i class="icon-rocket" aria-hidden="true"></i><h3>Mais estabilidade</h3><p>Menos quedas e mais continuidade para sua operação.</p></article>
-                    <article><i class="icon-group" aria-hidden="true"></i><h3>Mais produtividade</h3><p>Melhor desempenho da equipe e dos sistemas.</p></article>
-                    <article><i class="icon-star" aria-hidden="true"></i><h3>Mais profissionalismo</h3><p>Estrutura preparada para dar mais credibilidade à sua empresa.</p></article>
-                    <article><i class="icon-dashboard" aria-hidden="true"></i><h3>Mais controle</h3><p>Monitoramento e gestão facilitados para tomar melhores decisões.</p></article>
+                    <?php foreach ($_pe['ben_items'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_benIcons[$i] ?? 'icon-rocket' ?>" aria-hidden="true"></i>
+                        <h3><?= htmlspecialchars($item['titulo']) ?></h3>
+                        <p><?= htmlspecialchars($item['texto']) ?></p>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -177,11 +234,10 @@
         <section class="business-page__trust">
             <div class="container">
                 <div class="business-page__trust-box">
-                    <div class="business-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>5.0</strong> ★★★★★<br>+ de 3.000 avaliações no Google</p></div>
-                    <span><i class="icon-group" aria-hidden="true"></i>Atendimento local de verdade</span>
-                    <span><i class="icon-customersupport" aria-hidden="true"></i>Suporte especializado</span>
-                    <span><i class="icon-install" aria-hidden="true"></i>Instalação profissional</span>
-                    <span><i class="icon-acompanhamento" aria-hidden="true"></i>Acompanhamento contínuo</span>
+                    <div class="business-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong><?= htmlspecialchars($_pe['trust_google']) ?></strong></p></div>
+                    <?php foreach ($_pe['trust_items'] as $i => $item): ?>
+                    <span><i class="<?= $_trustIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><?= htmlspecialchars($item) ?></span>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
