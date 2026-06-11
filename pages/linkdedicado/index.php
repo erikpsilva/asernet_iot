@@ -11,6 +11,98 @@
 
 <?php include ROOT . '/includes/header/header.php';?>
 
+<?php
+$_ld = [
+    'problem_titulo' => 'Sua opera&ccedil;&atilde;o n&atilde;o pode parar.',
+    'problem_texto'  => 'Quando a internet falha, sua empresa perde produtividade, atendimento e faturamento.',
+    'problem_items'  => ['Sistemas indispon&iacute;veis', 'Reuni&otilde;es travando', 'Lentid&atilde;o em hor&aacute;rios cr&iacute;ticos', 'Impacto na opera&ccedil;&atilde;o'],
+    'problem_imagem' => 'imgSuaOperacaoNaoPodeParar.png',
+
+    'exclusive_titulo' => 'Conex&atilde;o exclusiva para sua empresa.',
+    'exclusive_texto'  => 'No link dedicado, a banda contratada &eacute; reservada para sua opera&ccedil;&atilde;o, garantindo mais estabilidade e previsibilidade.',
+    'exclusive_cards'  => [
+        ['titulo' => 'Conex&atilde;o exclusiva', 'texto' => 'Banda 100% dedicada para sua empresa.'],
+        ['titulo' => 'Performance constante', 'texto' => 'Mais estabilidade e menos oscila&ccedil;&otilde;es.'],
+        ['titulo' => 'Melhor estabilidade', 'texto' => 'Ideal para opera&ccedil;&otilde;es cr&iacute;ticas.'],
+        ['titulo' => 'Monitoramento t&eacute;cnico', 'texto' => 'Acompanhamento cont&iacute;nuo da conex&atilde;o.'],
+    ],
+
+    'aud_titulo' => 'Para quem &eacute; indicado',
+    'aud_texto'  => 'Ideal para empresas que dependem de conex&atilde;o constante.',
+    'aud_items'  => ['Escrit&oacute;rios', 'Empresas com m&uacute;ltiplos usu&aacute;rios', 'Opera&ccedil;&otilde;es em nuvem', 'Videomonitoramento', 'Telefonia IP', 'ERPs e sistemas online', 'Hot&eacute;is e pousadas'],
+
+    'feat_titulo' => 'Diferenciais AserNet',
+    'feat_cards'  => [
+        ['titulo' => 'Banda dedicada', 'texto' => 'Mais previsibilidade e estabilidade para sua opera&ccedil;&atilde;o.'],
+        ['titulo' => 'Monitoramento cont&iacute;nuo', 'texto' => 'Acompanhamento 24/7 para garantir o melhor desempenho.'],
+        ['titulo' => 'Suporte priorit&aacute;rio', 'texto' => 'Atendimento r&aacute;pido e especializado para reduzir o impacto operacional.'],
+        ['titulo' => 'Projeto sob medida', 'texto' => 'Solu&ccedil;&otilde;es personalizadas conforme a necessidade da sua empresa.'],
+    ],
+
+    'integration_titulo' => 'Mais que conectividade. Integra&ccedil;&atilde;o que gera resultado.',
+    'integration_texto'  => 'O link dedicado pode ser integrado com outras solu&ccedil;&otilde;es AserNet para potencializar seu neg&oacute;cio.',
+    'integration_cards'  => [
+        ['titulo' => 'Wi-Fi Profissional', 'texto' => 'Rede est&aacute;vel para todos os ambientes da empresa.', 'imagem' => 'imgWifiProfissional.png'],
+        ['titulo' => 'Telefonia Empresarial', 'texto' => 'Mais comunica&ccedil;&atilde;o, mais produtividade.', 'imagem' => 'imgTelefoniaEmpresarial.png'],
+        ['titulo' => 'C&acirc;meras de Seguran&ccedil;a', 'texto' => 'Monitoramento inteligente 24 horas por dia.', 'imagem' => 'imgCamerasDeSeguranca.png'],
+        ['titulo' => 'Infraestrutura', 'texto' => 'Solu&ccedil;&otilde;es completas para sua empresa crescer.', 'imagem' => 'imgInfraestrutura.png'],
+    ],
+
+    'benefits_titulo' => 'Benef&iacute;cios para sua empresa',
+    'benefit_cards'   => [
+        ['titulo' => 'Mais estabilidade', 'texto' => 'Conex&atilde;o preparada para opera&ccedil;&otilde;es cr&iacute;ticas.'],
+        ['titulo' => 'Melhor desempenho', 'texto' => 'Menos oscila&ccedil;&atilde;o, mais previsibilidade.'],
+        ['titulo' => 'Mais seguran&ccedil;a', 'texto' => 'Infraestrutura profissional para proteger sua opera&ccedil;&atilde;o.'],
+        ['titulo' => 'Escal&aacute;vel', 'texto' => 'Projetos personalizados conforme o crescimento da sua empresa.'],
+    ],
+
+    'trust_google' => '5,0 + de 3.000 avalia&ccedil;&otilde;es no Google',
+    'trust_items'  => ['Atendimento local de verdade', 'Suporte t&eacute;cnico especializado', 'Instala&ccedil;&atilde;o profissional e acompanhamento'],
+];
+
+try {
+    require_once ROOT . '/config/database.php';
+    $pdo = getDbConnection();
+    $row = $pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'linkdedicado_content' LIMIT 1")->fetch();
+    if ($row && !empty($row['setting_value'])) {
+        $db = json_decode($row['setting_value'], true);
+        if (is_array($db)) {
+            $scalars = ['problem_titulo', 'problem_texto', 'problem_imagem',
+                        'exclusive_titulo', 'exclusive_texto',
+                        'aud_titulo', 'aud_texto', 'feat_titulo',
+                        'integration_titulo', 'integration_texto',
+                        'benefits_titulo', 'trust_google'];
+            foreach ($scalars as $k) {
+                if (isset($db[$k]) && strlen((string) $db[$k])) $_ld[$k] = $db[$k];
+            }
+            foreach (['problem_items', 'aud_items', 'trust_items'] as $k) {
+                if (!empty($db[$k]) && is_array($db[$k])) $_ld[$k] = $db[$k];
+            }
+            foreach (['exclusive_cards', 'feat_cards', 'integration_cards', 'benefit_cards'] as $arr) {
+                if (!empty($db[$arr]) && is_array($db[$arr])) {
+                    foreach ($db[$arr] as $i => $item) {
+                        if (!isset($_ld[$arr][$i]) || !is_array($item)) continue;
+                        foreach (array_keys($_ld[$arr][$i]) as $k) {
+                            if (isset($item[$k]) && strlen((string) $item[$k])) $_ld[$arr][$i][$k] = $item[$k];
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {}
+
+$_ldh = function ($value): string {
+    return htmlspecialchars(html_entity_decode((string) $value, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
+};
+
+$_ldExclusiveIcons = ['icon-servidor', 'icon-speed', 'icon-security', 'icon-dashboard'];
+$_ldAudIcons = ['icon-office', 'icon-group', 'icon-cloud', 'icon-casino-cctv', 'icon-phone', 'icon-dashboard', 'icon-hotels'];
+$_ldFeatIcons = ['icon-link', 'icon-dashboard', 'icon-customersupport', 'icon-puzzle'];
+$_ldBenefitIcons = ['icon-cloud', 'icon-speed', 'icon-security', 'icon-group'];
+$_ldTrustIcons = ['icon-group', 'icon-customersupport', 'icon-install'];
+?>
+
 <section class="link-dedicado-page">
     <div class="link-dedicado-page__hero">
         <div class="container">
@@ -38,17 +130,16 @@
             <div class="container">
                 <div class="link-dedicado-page__problem-grid">
                     <div>
-                        <h2>Sua opera&ccedil;&atilde;o n&atilde;o pode parar.</h2>
-                        <p>Quando a internet falha, sua empresa perde produtividade, atendimento e faturamento.</p>
+                        <h2><?= $_ldh($_ld['problem_titulo']) ?></h2>
+                        <p><?= $_ldh($_ld['problem_texto']) ?></p>
                         <ul class="link-dedicado-page__bad-list">
-                            <li><i aria-hidden="true">&times;</i>Sistemas indispon&iacute;veis</li>
-                            <li><i aria-hidden="true">&times;</i>Reuni&otilde;es travando</li>
-                            <li><i aria-hidden="true">&times;</i>Lentid&atilde;o em hor&aacute;rios cr&iacute;ticos</li>
-                            <li><i aria-hidden="true">&times;</i>Impacto na opera&ccedil;&atilde;o</li>
+                            <?php foreach ($_ld['problem_items'] as $item): ?>
+                            <li><i aria-hidden="true">&times;</i><?= $_ldh($item) ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
 
-                    <img src="<?= BASE_URL ?>/images/linkdedicado/imgSuaOperacaoNaoPodeParar.png" alt="Cidade conectada por rede corporativa de alta disponibilidade">
+                    <img src="<?= BASE_URL ?>/images/linkdedicado/<?= htmlspecialchars($_ld['problem_imagem']) ?>" alt="Cidade conectada por rede corporativa de alta disponibilidade">
                 </div>
             </div>
         </section>
@@ -57,14 +148,13 @@
             <div class="container">
                 <div class="link-dedicado-page__exclusive-box">
                     <div class="link-dedicado-page__exclusive-copy">
-                        <h2>Conex&atilde;o exclusiva para sua empresa.</h2>
-                        <p>No link dedicado, a banda contratada &eacute; reservada para sua opera&ccedil;&atilde;o, garantindo mais estabilidade e previsibilidade.</p>
+                        <h2><?= $_ldh($_ld['exclusive_titulo']) ?></h2>
+                        <p><?= $_ldh($_ld['exclusive_texto']) ?></p>
                     </div>
 
-                    <article><i class="icon-servidor" aria-hidden="true"></i><h3>Conex&atilde;o exclusiva</h3><p>Banda 100% dedicada para sua empresa.</p></article>
-                    <article><i class="icon-speed" aria-hidden="true"></i><h3>Performance constante</h3><p>Mais estabilidade e menos oscila&ccedil;&otilde;es.</p></article>
-                    <article><i class="icon-security" aria-hidden="true"></i><h3>Melhor estabilidade</h3><p>Ideal para opera&ccedil;&otilde;es cr&iacute;ticas.</p></article>
-                    <article><i class="icon-dashboard" aria-hidden="true"></i><h3>Monitoramento t&eacute;cnico</h3><p>Acompanhamento cont&iacute;nuo da conex&atilde;o.</p></article>
+                    <?php foreach ($_ld['exclusive_cards'] as $i => $card): ?>
+                    <article><i class="<?= $_ldExclusiveIcons[$i] ?? 'icon-link' ?>" aria-hidden="true"></i><h3><?= $_ldh($card['titulo']) ?></h3><p><?= $_ldh($card['texto']) ?></p></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -72,30 +162,25 @@
         <section class="link-dedicado-page__audience">
             <div class="container">
                 <header class="link-dedicado-page__section-header">
-                    <h2>Para quem &eacute; indicado</h2>
-                    <p>Ideal para empresas que dependem de conex&atilde;o constante.</p>
+                    <h2><?= $_ldh($_ld['aud_titulo']) ?></h2>
+                    <p><?= $_ldh($_ld['aud_texto']) ?></p>
                 </header>
 
                 <div class="link-dedicado-page__audience-grid">
-                    <article><i class="icon-office" aria-hidden="true"></i><span>Escrit&oacute;rios</span></article>
-                    <article><i class="icon-group" aria-hidden="true"></i><span>Empresas com m&uacute;ltiplos usu&aacute;rios</span></article>
-                    <article><i class="icon-cloud" aria-hidden="true"></i><span>Opera&ccedil;&otilde;es em nuvem</span></article>
-                    <article><i class="icon-casino-cctv" aria-hidden="true"></i><span>Videomonitoramento</span></article>
-                    <article><i class="icon-phone" aria-hidden="true"></i><span>Telefonia IP</span></article>
-                    <article><i class="icon-dashboard" aria-hidden="true"></i><span>ERPs e sistemas online</span></article>
-                    <article><i class="icon-hotels" aria-hidden="true"></i><span>Hot&eacute;is e pousadas</span></article>
+                    <?php foreach ($_ld['aud_items'] as $i => $item): ?>
+                    <article><i class="<?= $_ldAudIcons[$i] ?? 'icon-office' ?>" aria-hidden="true"></i><span><?= $_ldh($item) ?></span></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
 
         <section class="link-dedicado-page__features">
             <div class="container">
-                <h2 class="link-dedicado-page__center-title">Diferenciais AserNet</h2>
+                <h2 class="link-dedicado-page__center-title"><?= $_ldh($_ld['feat_titulo']) ?></h2>
                 <div class="link-dedicado-page__features-grid">
-                    <article><i class="icon-link" aria-hidden="true"></i><h3>Banda dedicada</h3><p>Mais previsibilidade e estabilidade para sua opera&ccedil;&atilde;o.</p></article>
-                    <article><i class="icon-dashboard" aria-hidden="true"></i><h3>Monitoramento cont&iacute;nuo</h3><p>Acompanhamento 24/7 para garantir o melhor desempenho.</p></article>
-                    <article><i class="icon-customersupport" aria-hidden="true"></i><h3>Suporte priorit&aacute;rio</h3><p>Atendimento r&aacute;pido e especializado para reduzir o impacto operacional.</p></article>
-                    <article><i class="icon-puzzle" aria-hidden="true"></i><h3>Projeto sob medida</h3><p>Solu&ccedil;&otilde;es personalizadas conforme a necessidade da sua empresa.</p></article>
+                    <?php foreach ($_ld['feat_cards'] as $i => $card): ?>
+                    <article><i class="<?= $_ldFeatIcons[$i] ?? 'icon-link' ?>" aria-hidden="true"></i><h3><?= $_ldh($card['titulo']) ?></h3><p><?= $_ldh($card['texto']) ?></p></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -103,15 +188,14 @@
         <section class="link-dedicado-page__integration">
             <div class="container">
                 <header class="link-dedicado-page__section-header">
-                    <h2>Mais que conectividade. Integra&ccedil;&atilde;o que gera resultado.</h2>
-                    <p>O link dedicado pode ser integrado com outras solu&ccedil;&otilde;es AserNet para potencializar seu neg&oacute;cio.</p>
+                    <h2><?= $_ldh($_ld['integration_titulo']) ?></h2>
+                    <p><?= $_ldh($_ld['integration_texto']) ?></p>
                 </header>
 
                 <div class="link-dedicado-page__integration-grid">
-                    <article><img src="<?= BASE_URL ?>/images/linkdedicado/imgWifiProfissional.png" alt="Wi-Fi profissional"><div><h3>Wi-Fi Profissional</h3><p>Rede est&aacute;vel para todos os ambientes da empresa.</p></div></article>
-                    <article><img src="<?= BASE_URL ?>/images/linkdedicado/imgTelefoniaEmpresarial.png" alt="Telefone empresarial"><div><h3>Telefonia Empresarial</h3><p>Mais comunica&ccedil;&atilde;o, mais produtividade.</p></div></article>
-                    <article><img src="<?= BASE_URL ?>/images/linkdedicado/imgCamerasDeSeguranca.png" alt="C&acirc;mera de seguran&ccedil;a"><div><h3>C&acirc;meras de Seguran&ccedil;a</h3><p>Monitoramento inteligente 24 horas por dia.</p></div></article>
-                    <article><img src="<?= BASE_URL ?>/images/linkdedicado/imgInfraestrutura.png" alt="Infraestrutura de servidores"><div><h3>Infraestrutura</h3><p>Solu&ccedil;&otilde;es completas para sua empresa crescer.</p></div></article>
+                    <?php foreach ($_ld['integration_cards'] as $card): ?>
+                    <article><img src="<?= BASE_URL ?>/images/linkdedicado/<?= htmlspecialchars($card['imagem']) ?>" alt="<?= $_ldh($card['titulo']) ?>"><div><h3><?= $_ldh($card['titulo']) ?></h3><p><?= $_ldh($card['texto']) ?></p></div></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -119,12 +203,11 @@
         <section class="link-dedicado-page__benefits">
             <div class="container">
                 <div class="link-dedicado-page__benefits-box">
-                    <h2>Benef&iacute;cios para sua empresa</h2>
+                    <h2><?= $_ldh($_ld['benefits_titulo']) ?></h2>
                     <div>
-                        <article><i class="icon-cloud" aria-hidden="true"></i><strong>Mais estabilidade</strong><span>Conex&atilde;o preparada para opera&ccedil;&otilde;es cr&iacute;ticas.</span></article>
-                        <article><i class="icon-speed" aria-hidden="true"></i><strong>Melhor desempenho</strong><span>Menos oscila&ccedil;&atilde;o, mais previsibilidade.</span></article>
-                        <article><i class="icon-security" aria-hidden="true"></i><strong>Mais seguran&ccedil;a</strong><span>Infraestrutura profissional para proteger sua opera&ccedil;&atilde;o.</span></article>
-                        <article><i class="icon-group" aria-hidden="true"></i><strong>Escal&aacute;vel</strong><span>Projetos personalizados conforme o crescimento da sua empresa.</span></article>
+                        <?php foreach ($_ld['benefit_cards'] as $i => $card): ?>
+                        <article><i class="<?= $_ldBenefitIcons[$i] ?? 'icon-cloud' ?>" aria-hidden="true"></i><strong><?= $_ldh($card['titulo']) ?></strong><span><?= $_ldh($card['texto']) ?></span></article>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -133,10 +216,10 @@
         <section class="link-dedicado-page__trust">
             <div class="container">
                 <div class="link-dedicado-page__trust-grid">
-                    <div class="link-dedicado-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>5,0</strong> + de 3.000 avalia&ccedil;&otilde;es no Google</p></div>
-                    <article><i class="icon-group" aria-hidden="true"></i>Atendimento local de verdade</article>
-                    <article><i class="icon-customersupport" aria-hidden="true"></i>Suporte t&eacute;cnico especializado</article>
-                    <article><i class="icon-install" aria-hidden="true"></i>Instala&ccedil;&atilde;o profissional e acompanhamento</article>
+                    <div class="link-dedicado-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><?= $_ldh($_ld['trust_google']) ?></p></div>
+                    <?php foreach ($_ld['trust_items'] as $i => $item): ?>
+                    <article><i class="<?= $_ldTrustIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><?= $_ldh($item) ?></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -156,7 +239,7 @@
             </div>
         </section>
 
-        <img class="link-dedicado-page__mobile-bottom-image" src="<?= BASE_URL ?>/images/linkdedicado/imgSuaOperacaoNaoPodeParar.png" alt="">
+        <img class="link-dedicado-page__mobile-bottom-image" src="<?= BASE_URL ?>/images/linkdedicado/<?= htmlspecialchars($_ld['problem_imagem']) ?>" alt="">
     </div>
 </section>
 

@@ -33,6 +33,16 @@ if (!in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor'])) {
 
             <div id="faqMsg" class="adminFaq__msg" style="display:none"></div>
 
+            <div class="adminFaq__cardsBlock">
+                <p class="adminFaq__perguntasLabel">Cards de categorias</p>
+                <div class="row" id="faqCards">
+                    <div class="col-sm-12">
+                        <p style="color:#8a9ab8;font-size:14px">Carregando cards...</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="adminFaq__perguntasLabel">Perguntas por categoria</p>
             <div id="faqCategorias">
                 <p style="color:#8a9ab8;font-size:14px">Carregando categorias...</p>
             </div>

@@ -11,6 +11,93 @@
 
 <?php include ROOT . '/includes/header/header.php';?>
 
+<?php
+$_sa = [
+    'history_label' => 'Nossa hist&oacute;ria',
+    'history_titulo' => 'Crescendo junto com a nossa regi&atilde;o.',
+    'history_textos' => [
+        'A AserNet evoluiu com um prop&oacute;sito simples: entregar uma conex&atilde;o est&aacute;vel, humana e preparada para acompanhar a rotina das pessoas e empresas.',
+        'Hoje, al&eacute;m da internet, oferecemos solu&ccedil;&otilde;es completas em conectividade, seguran&ccedil;a, mobilidade e tecnologia.',
+    ],
+    'history_imagem' => 'imgCrescendoJuntoComNossaRegiao.png',
+    'belief_label' => 'O que acreditamos',
+    'belief_titulo' => 'Tecnologia precisa facilitar a vida.',
+    'belief_texto' => 'Por isso buscamos unir:',
+    'belief_cards' => [
+        ['titulo' => 'Estabilidade', 'texto' => 'Conex&otilde;es que n&atilde;o te deixam na m&atilde;o.'],
+        ['titulo' => 'Atendimento pr&oacute;ximo', 'texto' => 'Estamos perto para resolver de verdade.'],
+        ['titulo' => 'Solu&ccedil;&otilde;es inteligentes', 'texto' => 'Tecnologia que se adapta &agrave; sua necessidade.'],
+        ['titulo' => 'Suporte humanizado', 'texto' => 'Pessoas que entendem e que se importam.'],
+    ],
+    'solutions_label' => 'O que fazemos',
+    'solutions_titulo' => 'Solu&ccedil;&otilde;es completas para sua casa e empresa.',
+    'solutions_cards' => [
+        ['titulo' => 'Internet residencial', 'texto' => 'Conectividade preparada para o dia a dia da fam&iacute;lia.', 'imagem' => 'imgInternetResidencial.png'],
+        ['titulo' => 'Solu&ccedil;&otilde;es empresariais', 'texto' => 'Estrutura profissional para empresas crescerem.', 'imagem' => 'imgSolucoesEmpresariais.png'],
+        ['titulo' => 'Seguran&ccedil;a e monitoramento', 'texto' => 'Mais tranquilidade para sua rotina.', 'imagem' => 'imgSegurancaMonitoramento.png'],
+        ['titulo' => 'Mobilidade e conectividade', 'texto' => 'Internet dentro e fora de casa.', 'imagem' => 'imgMobilidadeConectividade.png'],
+    ],
+    'trust_google' => '5.0 no Google + de 3.000 avalia&ccedil;&otilde;es',
+    'trust_items' => ['Milhares de clientes conectados', 'Atendimento pr&oacute;ximo', 'Confian&ccedil;a constru&iacute;da diariamente'],
+    'diff_label' => 'Nosso diferencial',
+    'diff_titulo' => 'O que faz a AserNet ser diferente?',
+    'diff_cards' => [
+        ['titulo' => 'Atendimento de verdade', 'texto' => 'Pessoas preparadas para ajudar voc&ecirc;.'],
+        ['titulo' => 'Estrutura profissional', 'texto' => 'Tecnologia preparada para crescer junto com sua necessidade.'],
+        ['titulo' => 'Solu&ccedil;&otilde;es integradas', 'texto' => 'Internet, Wi-Fi, telefonia, seguran&ccedil;a e mobilidade conectados.'],
+        ['titulo' => 'Presen&ccedil;a local', 'texto' => 'Estamos pr&oacute;ximos dos nossos clientes e da nossa comunidade.'],
+    ],
+    'team_label' => 'Nosso time e estrutura',
+    'team_titulo' => 'Pessoas que conectam. Estrutura que entrega.',
+    'team_images' => ['imgpessoasConectam01.png', 'imgpessoasConectam02.png', 'imgpessoasConectam03.png.png', 'imgpessoasConectam04.png.png', 'imgAquiVoceNaoContrataSoInternet.png'],
+    'purpose_label' => 'Nosso prop&oacute;sito',
+    'purpose_titulo' => 'Conectar bem &eacute; cuidar.',
+    'purpose_texto' => 'Acreditamos que tecnologia tamb&eacute;m &eacute; presen&ccedil;a, suporte e confian&ccedil;a. &Eacute; estar junto sempre que voc&ecirc; precisar.',
+    'purpose_items' => ['Conex&atilde;o', 'Confian&ccedil;a', 'Presen&ccedil;a', 'Cuidado'],
+];
+
+try {
+    require_once ROOT . '/config/database.php';
+    $pdo = getDbConnection();
+    $row = $pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'sobreasernet_content' LIMIT 1")->fetch();
+    if ($row && !empty($row['setting_value'])) {
+        $db = json_decode($row['setting_value'], true);
+        if (is_array($db)) {
+            $scalars = ['history_label', 'history_titulo', 'history_imagem', 'belief_label', 'belief_titulo', 'belief_texto',
+                        'solutions_label', 'solutions_titulo', 'trust_google', 'diff_label', 'diff_titulo',
+                        'team_label', 'team_titulo', 'purpose_label', 'purpose_titulo', 'purpose_texto'];
+            foreach ($scalars as $k) {
+                if (isset($db[$k]) && strlen((string) $db[$k])) $_sa[$k] = $db[$k];
+            }
+            foreach (['history_textos', 'trust_items', 'team_images', 'purpose_items'] as $k) {
+                if (!empty($db[$k]) && is_array($db[$k])) $_sa[$k] = $db[$k];
+            }
+            foreach (['belief_cards', 'solutions_cards', 'diff_cards'] as $arr) {
+                if (!empty($db[$arr]) && is_array($db[$arr])) {
+                    foreach ($db[$arr] as $i => $item) {
+                        if (!isset($_sa[$arr][$i]) || !is_array($item)) continue;
+                        foreach (array_keys($_sa[$arr][$i]) as $k) {
+                            if (isset($item[$k]) && strlen((string) $item[$k])) $_sa[$arr][$i][$k] = $item[$k];
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {}
+
+$_sah = function ($value): string {
+    return htmlspecialchars(html_entity_decode((string) $value, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
+};
+
+$_saBeliefIcons = ['icon-wifi', 'icon-group', 'icon-gear', 'icon-heart'];
+$_saSolutionIcons = ['icon-wifi', 'icon-office', 'icon-security', 'icon-mobile-phone'];
+$_saSolutionLinks = ['/residencial', '/paraempresas', '/cameradeseguranca', '/planomovel'];
+$_saTrustIcons = ['icon-group', 'icon-talk', 'icon-security'];
+$_saDiffIcons = ['icon-customersupport', 'icon-dashboard', 'icon-link', 'icon-pin'];
+$_saPurposeIcons = ['icon-wifi', 'icon-gear', 'icon-pin', 'icon-heart'];
+?>
+
 <section class="about-page">
     <div class="about-page__hero">
         <div class="container">
@@ -39,12 +126,11 @@
             <div class="container">
                 <div class="about-page__history-grid">
                     <div>
-                        <span>Nossa hist&oacute;ria</span>
-                        <h2>Crescendo junto com a nossa regi&atilde;o.</h2>
-                        <p>A AserNet evoluiu com um prop&oacute;sito simples: entregar uma conex&atilde;o est&aacute;vel, humana e preparada para acompanhar a rotina das pessoas e empresas.</p>
-                        <p>Hoje, al&eacute;m da internet, oferecemos solu&ccedil;&otilde;es completas em conectividade, seguran&ccedil;a, mobilidade e tecnologia.</p>
+                        <span><?= $_sah($_sa['history_label']) ?></span>
+                        <h2><?= $_sah($_sa['history_titulo']) ?></h2>
+                        <?php foreach ($_sa['history_textos'] as $texto): ?><p><?= $_sah($texto) ?></p><?php endforeach; ?>
                     </div>
-                    <img src="<?= BASE_URL ?>/images/sobre/imgCrescendoJuntoComNossaRegiao.png" alt="Fachada da AserNet">
+                    <img src="<?= BASE_URL ?>/images/sobre/<?= htmlspecialchars($_sa['history_imagem']) ?>" alt="Fachada da AserNet">
                 </div>
             </div>
         </section>
@@ -53,14 +139,13 @@
             <div class="container">
                 <div class="about-page__belief-box">
                     <div>
-                        <span>O que acreditamos</span>
-                        <h2>Tecnologia precisa facilitar a vida.</h2>
-                        <p>Por isso buscamos unir:</p>
+                        <span><?= $_sah($_sa['belief_label']) ?></span>
+                        <h2><?= $_sah($_sa['belief_titulo']) ?></h2>
+                        <p><?= $_sah($_sa['belief_texto']) ?></p>
                     </div>
-                    <article><i class="icon-wifi" aria-hidden="true"></i><h3>Estabilidade</h3><p>Conex&otilde;es que n&atilde;o te deixam na m&atilde;o.</p></article>
-                    <article><i class="icon-group" aria-hidden="true"></i><h3>Atendimento pr&oacute;ximo</h3><p>Estamos perto para resolver de verdade.</p></article>
-                    <article><i class="icon-gear" aria-hidden="true"></i><h3>Solu&ccedil;&otilde;es inteligentes</h3><p>Tecnologia que se adapta &agrave; sua necessidade.</p></article>
-                    <article><i class="icon-heart" aria-hidden="true"></i><h3>Suporte humanizado</h3><p>Pessoas que entendem e que se importam.</p></article>
+                    <?php foreach ($_sa['belief_cards'] as $i => $card): ?>
+                    <article><i class="<?= $_saBeliefIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i><h3><?= $_sah($card['titulo']) ?></h3><p><?= $_sah($card['texto']) ?></p></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -68,15 +153,14 @@
         <section class="about-page__solutions">
             <div class="container">
                 <header class="about-page__section-header">
-                    <span>O que fazemos</span>
-                    <h2>Solu&ccedil;&otilde;es completas para sua casa e empresa.</h2>
+                    <span><?= $_sah($_sa['solutions_label']) ?></span>
+                    <h2><?= $_sah($_sa['solutions_titulo']) ?></h2>
                 </header>
 
                 <div class="about-page__solutions-grid">
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgInternetResidencial.png" alt="Fam&iacute;lia usando internet residencial"><i class="icon-wifi" aria-hidden="true"></i><h3>Internet residencial</h3><p>Conectividade preparada para o dia a dia da fam&iacute;lia.</p><a href="<?= BASE_URL ?>/residencial">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgSolucoesEmpresariais.png" alt="Pr&eacute;dio empresarial"><i class="icon-office" aria-hidden="true"></i><h3>Solu&ccedil;&otilde;es empresariais</h3><p>Estrutura profissional para empresas crescerem.</p><a href="<?= BASE_URL ?>/paraempresas">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgSegurancaMonitoramento.png" alt="C&acirc;mera de seguran&ccedil;a"><i class="icon-security" aria-hidden="true"></i><h3>Seguran&ccedil;a e monitoramento</h3><p>Mais tranquilidade para sua rotina.</p><a href="<?= BASE_URL ?>/cameradeseguranca">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
-                    <article><img src="<?= BASE_URL ?>/images/sobre/imgMobilidadeConectividade.png" alt="Pessoa usando celular"><i class="icon-mobile-phone" aria-hidden="true"></i><h3>Mobilidade e conectividade</h3><p>Internet dentro e fora de casa.</p><a href="<?= BASE_URL ?>/planomovel">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
+                    <?php foreach ($_sa['solutions_cards'] as $i => $card): ?>
+                    <article><img src="<?= BASE_URL ?>/images/sobre/<?= htmlspecialchars($card['imagem']) ?>" alt="<?= $_sah($card['titulo']) ?>"><i class="<?= $_saSolutionIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i><h3><?= $_sah($card['titulo']) ?></h3><p><?= $_sah($card['texto']) ?></p><a href="<?= BASE_URL ?><?= $_saSolutionLinks[$i] ?? '/paraempresas' ?>">Saiba mais <i class="icon-arrowright" aria-hidden="true"></i></a></article>
+                    <?php endforeach; ?>
                 </div>
 
                 <a class="about-page__mobile-more" href="<?= BASE_URL ?>/paraempresas">Ver todas as solu&ccedil;&otilde;es <i class="icon-arrowright" aria-hidden="true"></i></a>
@@ -86,10 +170,10 @@
         <section class="about-page__trust">
             <div class="container">
                 <div class="about-page__trust-grid">
-                    <div class="about-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>5.0 no Google</strong>+ de 3.000 avalia&ccedil;&otilde;es</p></div>
-                    <article><i class="icon-group" aria-hidden="true"></i>Milhares de clientes conectados</article>
-                    <article><i class="icon-talk" aria-hidden="true"></i>Atendimento pr&oacute;ximo</article>
-                    <article><i class="icon-security" aria-hidden="true"></i>Confian&ccedil;a constru&iacute;da diariamente</article>
+                    <div class="about-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><?= $_sah($_sa['trust_google']) ?></p></div>
+                    <?php foreach ($_sa['trust_items'] as $i => $item): ?>
+                    <article><i class="<?= $_saTrustIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><?= $_sah($item) ?></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -97,15 +181,14 @@
         <section class="about-page__difference">
             <div class="container">
                 <header class="about-page__section-header">
-                    <span>Nosso diferencial</span>
-                    <h2>O que faz a AserNet ser diferente?</h2>
+                    <span><?= $_sah($_sa['diff_label']) ?></span>
+                    <h2><?= $_sah($_sa['diff_titulo']) ?></h2>
                 </header>
 
                 <div class="about-page__difference-grid">
-                    <article><i class="icon-customersupport" aria-hidden="true"></i><h3>Atendimento de verdade</h3><p>Pessoas preparadas para ajudar voc&ecirc;.</p></article>
-                    <article><i class="icon-dashboard" aria-hidden="true"></i><h3>Estrutura profissional</h3><p>Tecnologia preparada para crescer junto com sua necessidade.</p></article>
-                    <article><i class="icon-link" aria-hidden="true"></i><h3>Solu&ccedil;&otilde;es integradas</h3><p>Internet, Wi-Fi, telefonia, seguran&ccedil;a e mobilidade conectados.</p></article>
-                    <article><i class="icon-pin" aria-hidden="true"></i><h3>Presen&ccedil;a local</h3><p>Estamos pr&oacute;ximos dos nossos clientes e da nossa comunidade.</p></article>
+                    <?php foreach ($_sa['diff_cards'] as $i => $card): ?>
+                    <article><i class="<?= $_saDiffIcons[$i] ?? 'icon-customersupport' ?>" aria-hidden="true"></i><h3><?= $_sah($card['titulo']) ?></h3><p><?= $_sah($card['texto']) ?></p></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -113,16 +196,14 @@
         <section class="about-page__team">
             <div class="container">
                 <header class="about-page__section-header">
-                    <span>Nosso time e estrutura</span>
-                    <h2>Pessoas que conectam. Estrutura que entrega.</h2>
+                    <span><?= $_sah($_sa['team_label']) ?></span>
+                    <h2><?= $_sah($_sa['team_titulo']) ?></h2>
                 </header>
 
                 <div class="about-page__team-grid">
-                    <img src="<?= BASE_URL ?>/images/sobre/imgpessoasConectam01.png" alt="Atendente AserNet">
-                    <img src="<?= BASE_URL ?>/images/sobre/imgpessoasConectam02.png" alt="T&eacute;cnico AserNet">
-                    <img src="<?= BASE_URL ?>/images/sobre/imgpessoasConectam03.png.png" alt="Equipe AserNet em reuni&atilde;o">
-                    <img src="<?= BASE_URL ?>/images/sobre/imgpessoasConectam04.png.png" alt="Loja AserNet">
-                    <img src="<?= BASE_URL ?>/images/sobre/imgAquiVoceNaoContrataSoInternet.png" alt="T&eacute;cnico em instala&ccedil;&atilde;o">
+                    <?php foreach ($_sa['team_images'] as $i => $image): ?>
+                    <img src="<?= BASE_URL ?>/images/sobre/<?= htmlspecialchars($image) ?>" alt="AserNet imagem <?= $i + 1 ?>">
+                    <?php endforeach; ?>
                 </div>
 
                 <a class="about-page__mobile-photos" href="<?= BASE_URL ?>/contato">Ver mais fotos</a>
@@ -133,14 +214,13 @@
             <div class="container">
                 <div class="about-page__purpose-box">
                     <div>
-                        <span>Nosso prop&oacute;sito</span>
-                        <h2>Conectar bem &eacute; cuidar.</h2>
-                        <p>Acreditamos que tecnologia tamb&eacute;m &eacute; presen&ccedil;a, suporte e confian&ccedil;a. &Eacute; estar junto sempre que voc&ecirc; precisar.</p>
+                        <span><?= $_sah($_sa['purpose_label']) ?></span>
+                        <h2><?= $_sah($_sa['purpose_titulo']) ?></h2>
+                        <p><?= $_sah($_sa['purpose_texto']) ?></p>
                     </div>
-                    <article><i class="icon-wifi" aria-hidden="true"></i>Conex&atilde;o</article>
-                    <article><i class="icon-gear" aria-hidden="true"></i>Confian&ccedil;a</article>
-                    <article><i class="icon-pin" aria-hidden="true"></i>Presen&ccedil;a</article>
-                    <article><i class="icon-heart" aria-hidden="true"></i>Cuidado</article>
+                    <?php foreach ($_sa['purpose_items'] as $i => $item): ?>
+                    <article><i class="<?= $_saPurposeIcons[$i] ?? 'icon-heart' ?>" aria-hidden="true"></i><?= $_sah($item) ?></article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>

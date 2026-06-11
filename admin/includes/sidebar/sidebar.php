@@ -3,9 +3,9 @@ $_nivel      = $_SESSION['usuario']['nivel_acesso'];
 $_isAdmin    = $_nivel === 'admin';
 $_isEditorUp = in_array($_nivel, ['admin', 'editor']);
 
-$_crzRoutes       = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
+$_crzRoutes        = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
 $_plataformaRoutes = ['meusdados', 'administrarusuarios', 'cadastrarusuario', 'configuracoes'];
-$_conteudoRoutes  = ['conteudoinicio', 'conteudosuporte', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial'];
+$_conteudoRoutes   = ['conteudoinicio', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial', 'conteudolinkdedicado', 'conteudocombo', 'conteudosobreasernet', 'conteudosuporte'];
 
 $_plataformaOpen = in_array($subRoute, $_plataformaRoutes) ? 'open' : '';
 $_cruzeiroOpen   = in_array($subRoute, $_crzRoutes)        ? 'open' : '';
@@ -60,51 +60,6 @@ $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
                 </details>
             </li>
 
-            <!-- CRUZEIRO -->
-            <?php if ($_isEditorUp): ?>
-            <li class="sidebar__section-accordion">
-                <details <?= $_cruzeiroOpen ?>>
-                    <summary class="sidebar__section-toggle">Cruzeiro</summary>
-                    <ul class="sidebar__submenu">
-
-                        <?php if ($_isAdmin): ?>
-                        <li>
-                            <a href="<?= BASE_URL ?>/admin/cruzeiroconfiguracao"
-                               class="sidebar__sublink <?= ($subRoute === 'cruzeiroconfiguracao') ? 'sidebar__sublink--active' : '' ?>">
-                                Configurações
-                            </a>
-                        </li>
-                        <?php endif; ?>
-                        <li>
-                            <a href="<?= BASE_URL ?>/admin/cadastronumero"
-                               class="sidebar__sublink <?= ($subRoute === 'cadastronumero') ? 'sidebar__sublink--active' : '' ?>">
-                                Cadastrar Número
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL ?>/admin/consultarnumero"
-                               class="sidebar__sublink <?= ($subRoute === 'consultarnumero') ? 'sidebar__sublink--active' : '' ?>">
-                                Consultar Número
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL ?>/admin/relatorio"
-                               class="sidebar__sublink <?= ($subRoute === 'relatorio') ? 'sidebar__sublink--active' : '' ?>">
-                                Relatório
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL ?>/admin/bilhetessorteio"
-                               class="sidebar__sublink <?= ($subRoute === 'bilhetessorteio') ? 'sidebar__sublink--active' : '' ?>">
-                                Bilhetes de Sorteio
-                            </a>
-                        </li>
-
-                    </ul>
-                </details>
-            </li>
-            <?php endif; ?>
-
             <!-- CONTEÚDO -->
             <?php if ($_isEditorUp): ?>
             <li class="sidebar__section-accordion">
@@ -115,12 +70,6 @@ $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
                             <a href="<?= BASE_URL ?>/admin/conteudoinicio"
                                class="sidebar__sublink <?= ($subRoute === 'conteudoinicio') ? 'sidebar__sublink--active' : '' ?>">
                                 Início
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL ?>/admin/conteudosuporte"
-                               class="sidebar__sublink <?= ($subRoute === 'conteudosuporte') ? 'sidebar__sublink--active' : '' ?>">
-                                Suporte / FAQ
                             </a>
                         </li>
                         <li>
@@ -177,6 +126,75 @@ $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
                                 Telefonia Empresarial
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudolinkdedicado"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudolinkdedicado') ? 'sidebar__sublink--active' : '' ?>">
+                                Link Dedicado
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudocombo"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudocombo') ? 'sidebar__sublink--active' : '' ?>">
+                                Combo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudosobreasernet"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudosobreasernet') ? 'sidebar__sublink--active' : '' ?>">
+                                Sobre AserNet
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudosuporte"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudosuporte') ? 'sidebar__sublink--active' : '' ?>">
+                                Suporte / FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <?php endif; ?>
+
+            <!-- CRUZEIRO -->
+            <?php if ($_isEditorUp): ?>
+            <li class="sidebar__section-accordion">
+                <details <?= $_cruzeiroOpen ?>>
+                    <summary class="sidebar__section-toggle">Cruzeiro</summary>
+                    <ul class="sidebar__submenu">
+
+                        <?php if ($_isAdmin): ?>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/cruzeiroconfiguracao"
+                               class="sidebar__sublink <?= ($subRoute === 'cruzeiroconfiguracao') ? 'sidebar__sublink--active' : '' ?>">
+                                Configurações
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/cadastronumero"
+                               class="sidebar__sublink <?= ($subRoute === 'cadastronumero') ? 'sidebar__sublink--active' : '' ?>">
+                                Cadastrar Número
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/consultarnumero"
+                               class="sidebar__sublink <?= ($subRoute === 'consultarnumero') ? 'sidebar__sublink--active' : '' ?>">
+                                Consultar Número
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/relatorio"
+                               class="sidebar__sublink <?= ($subRoute === 'relatorio') ? 'sidebar__sublink--active' : '' ?>">
+                                Relatório
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/bilhetessorteio"
+                               class="sidebar__sublink <?= ($subRoute === 'bilhetessorteio') ? 'sidebar__sublink--active' : '' ?>">
+                                Bilhetes de Sorteio
+                            </a>
+                        </li>
+
                     </ul>
                 </details>
             </li>

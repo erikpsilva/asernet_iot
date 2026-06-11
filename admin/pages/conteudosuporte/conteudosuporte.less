@@ -117,6 +117,41 @@
         margin-bottom: 20px;
     }
 
+    &__cardsBlock {
+        background: @white;
+        border: 1px solid @borderColor;
+        border-radius: 12px;
+        box-shadow: 0 18px 45px rgba(0, 42, 120, .06);
+        margin-bottom: 24px;
+        padding: 24px 24px 8px;
+    }
+
+    &__cardEditor {
+        background: @softBlue;
+        border: 1px solid @borderColor;
+        border-radius: 10px;
+        margin-bottom: 16px;
+        padding: 16px;
+    }
+
+    &__cardEditorHead {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 14px;
+
+        strong {
+            color: @colorFont;
+            font-size: 13px;
+            font-weight: @bold;
+        }
+    }
+
+    &__cardDescription {
+        min-height: 86px;
+        resize: vertical;
+    }
+
     // Perguntas list
     &__perguntasLabel {
         border-bottom: 1px solid @borderColor;
