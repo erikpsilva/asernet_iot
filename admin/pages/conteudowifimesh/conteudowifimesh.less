@@ -1,0 +1,38 @@
+.adminConteudo {
+    &__card {
+        > .formGroup__label {
+            color: @primary;
+            display: block;
+            font-size: 11px;
+            font-weight: @bold;
+            letter-spacing: .08em;
+            margin: 0 0 8px;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        > .formGroup__input {
+            background: @white;
+            border: 1px solid @borderColor;
+            color: @colorFont;
+            display: block;
+            font-family: @font;
+            font-size: 14px;
+            height: 46px;
+            margin: 0 0 14px;
+            padding: 0 14px;
+            width: 100%;
+            .radius(8px);
+
+            &:focus-visible {
+                border: 2px solid @primary;
+                box-shadow: 0 0 0 4px rgba(7, 95, 255, .12);
+                outline: none;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

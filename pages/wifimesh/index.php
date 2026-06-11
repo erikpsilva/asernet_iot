@@ -11,6 +11,75 @@
 
 <?php include ROOT . '/includes/header/header.php';?>
 
+<?php
+/* ---- defaults ---- */
+$_wm = [
+    'dor_titulo'  => 'Sua internet pode ser rápida...',
+    'dor_titulo2' => 'mas o Wi-Fi não chega em todos os ambientes.',
+    'dor_items'   => ['Sinal fraco no quarto', 'Vídeos travando', 'Quedas em chamadas', 'Travamentos na TV', 'Pontos sem cobertura'],
+
+    'tech_titulo'  => 'Tecnologia Mesh: uma única rede inteligente para toda a casa.',
+    'tech_texto'   => 'Os equipamentos trabalham juntos para distribuir o sinal de forma inteligente, mantendo você conectado em qualquer ambiente.',
+    'tech_bullets' => ['Cobertura ampliada', 'Troca automática de ponto sem desconectar', 'Mais estabilidade', 'Melhor experiência para múltiplos dispositivos'],
+    'tech_imagem'  => 'imgTecnologiaMesh.png',
+
+    'como_titulo' => 'Como funciona',
+    'como_texto'  => 'Simples e eficiente',
+    'como_steps'  => ['Fazemos a análise da sua casa', 'Instalamos os equipamentos', 'Configuramos a rede Mesh', 'Você aproveita cobertura total'],
+
+    'porque_titulo' => 'Por que escolher o Wi-Fi Mesh da AserNet?',
+    'porque_items'  => [
+        ['titulo' => 'Cobertura inteligente',     'texto' => 'Mais alcance e estabilidade para todos os ambientes.'],
+        ['titulo' => 'Uma única rede',            'texto' => 'Seu celular troca automaticamente entre os pontos, sem você perceber.'],
+        ['titulo' => 'Melhor para casas maiores', 'texto' => 'Mais desempenho em diversos andares e ambientes.'],
+        ['titulo' => 'Suporte AserNet',           'texto' => 'Instalação e configuração inclusas com suporte especializado.'],
+    ],
+
+    'ideal_titulo' => 'Ideal para quem usa muitos dispositivos',
+    'ideal_items'  => ['Smart TVs', 'Streaming', 'Home Office', 'Videogames', 'Casas grandes', 'Múltiplos dispositivos'],
+
+    'perf_titulo'  => 'Equipamentos de alta performance',
+    'perf_texto'   => 'Tecnologia mesh com antenas para mais alcance, estabilidade e conexão de verdade.',
+    'perf_imagem'  => 'imgEquipamentoDeAltaPerformance.png',
+    'perf_bullets' => ['Cobertura ampliada', 'Rede contínua em toda a casa', 'Mais estabilidade para sua conexão', 'Mais dispositivos conectados'],
+];
+
+try {
+    require_once ROOT . '/config/database.php';
+    $pdo = getDbConnection();
+    $row = $pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'wifimesh_content' LIMIT 1")->fetch();
+    if ($row && !empty($row['setting_value'])) {
+        $db = json_decode($row['setting_value'], true);
+        if (is_array($db)) {
+            $scalars = ['dor_titulo', 'dor_titulo2', 'tech_titulo', 'tech_texto', 'tech_imagem',
+                        'como_titulo', 'como_texto', 'porque_titulo', 'ideal_titulo',
+                        'perf_titulo', 'perf_texto', 'perf_imagem'];
+            foreach ($scalars as $k) {
+                if (isset($db[$k]) && strlen((string) $db[$k])) $_wm[$k] = $db[$k];
+            }
+            foreach (['dor_items', 'tech_bullets', 'como_steps', 'ideal_items', 'perf_bullets'] as $k) {
+                if (!empty($db[$k]) && is_array($db[$k])) $_wm[$k] = $db[$k];
+            }
+            if (!empty($db['porque_items']) && is_array($db['porque_items'])) {
+                foreach ($db['porque_items'] as $i => $item) {
+                    if (isset($_wm['porque_items'][$i]) && is_array($item)) {
+                        foreach (['titulo', 'texto'] as $k) {
+                            if (isset($item[$k]) && strlen((string) $item[$k])) $_wm['porque_items'][$i][$k] = $item[$k];
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {}
+
+$_dorIcons   = ['icon-wifiruim', 'icon-loading', 'icon-wifiphone', 'icon-tv', 'icon-wifinot'];
+$_comoIcons  = ['icon-home', 'icon-wifiestavel', 'icon-wifimesh', 'icon-wificobertura'];
+$_porqueIcons= ['icon-wificobertura', 'icon-wifimesh', 'icon-bighouse', 'icon-customersupport'];
+$_idealIcons = ['icon-tv', 'icon-streaming', 'icon-homeoffice', 'icon-videogame', 'icon-bighouse', 'icon-devices'];
+$_perfIcons  = ['icon-wificobertura', 'icon-wifi', 'icon-wifiestavel', 'icon-devices'];
+?>
+
 <section class="wifi-mesh">
     <div class="wifi-mesh__hero">
         <div class="container">
@@ -44,13 +113,14 @@
     <div class="wifi-mesh__body">
         <section class="wifi-mesh__pain wifi-mesh__desktop-only">
             <div class="container">
-                <h2>Sua internet pode ser rápida...<br>mas o Wi-Fi não chega em todos os ambientes.</h2>
+                <h2><?= htmlspecialchars($_wm['dor_titulo']) ?><br><?= htmlspecialchars($_wm['dor_titulo2']) ?></h2>
                 <div class="wifi-mesh__pain-grid">
-                    <article><i class="icon-wifiruim" aria-hidden="true"></i><span>Sinal fraco<br>no quarto</span></article>
-                    <article><i class="icon-loading" aria-hidden="true"></i><span>Vídeos<br>travando</span></article>
-                    <article><i class="icon-wifiphone" aria-hidden="true"></i><span>Quedas em<br>chamadas</span></article>
-                    <article><i class="icon-tv" aria-hidden="true"></i><span>Travamentos<br>na TV</span></article>
-                    <article><i class="icon-wifinot" aria-hidden="true"></i><span>Pontos sem<br>cobertura</span></article>
+                    <?php foreach ($_wm['dor_items'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_dorIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i>
+                        <span><?= nl2br(htmlspecialchars($item)) ?></span>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -59,18 +129,19 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4">
-                        <h2 class="wifi-mesh__section-title">Tecnologia Mesh: uma única rede inteligente para toda a casa.</h2>
-                        <p class="wifi-mesh__section-text">Os equipamentos trabalham juntos para distribuir o sinal de forma inteligente, mantendo você conectado em qualquer ambiente.</p>
+                        <h2 class="wifi-mesh__section-title"><?= htmlspecialchars($_wm['tech_titulo']) ?></h2>
+                        <p class="wifi-mesh__section-text"><?= htmlspecialchars($_wm['tech_texto']) ?></p>
                         <ul class="wifi-mesh__checks">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura ampliada</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Troca automática de ponto sem desconectar</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Mais estabilidade</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Melhor experiência para múltiplos dispositivos</li>
+                            <?php foreach ($_wm['tech_bullets'] as $b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
 
                     <div class="col-lg-8">
-                        <img class="wifi-mesh__technology-image" src="<?= BASE_URL ?>/images/wifimesh/imgTecnologiaMesh.png" alt="Casa com cobertura Wi-Fi Mesh em todos os ambientes">
+                        <img class="wifi-mesh__technology-image"
+                             src="<?= BASE_URL ?>/images/wifimesh/<?= htmlspecialchars($_wm['tech_imagem']) ?>"
+                             alt="Casa com cobertura Wi-Fi Mesh em todos os ambientes">
                     </div>
                 </div>
             </div>
@@ -79,13 +150,16 @@
         <section class="wifi-mesh__how">
             <div class="container">
                 <div class="wifi-mesh__how-box">
-                    <h2>Como funciona</h2>
-                    <p>Simples e eficiente</p>
+                    <h2><?= htmlspecialchars($_wm['como_titulo']) ?></h2>
+                    <p><?= htmlspecialchars($_wm['como_texto']) ?></p>
                     <div class="wifi-mesh__steps">
-                        <article><i class="icon-home" aria-hidden="true"></i><b>1</b><span>Fazemos a análise da sua casa</span></article>
-                        <article><i class="icon-wifiestavel" aria-hidden="true"></i><b>2</b><span>Instalamos os equipamentos</span></article>
-                        <article><i class="icon-wifimesh" aria-hidden="true"></i><b>3</b><span>Configuramos a rede Mesh</span></article>
-                        <article><i class="icon-wificobertura" aria-hidden="true"></i><b>4</b><span>Você aproveita cobertura total</span></article>
+                        <?php foreach ($_wm['como_steps'] as $i => $step): ?>
+                        <article>
+                            <i class="<?= $_comoIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i>
+                            <b><?= $i + 1 ?></b>
+                            <span><?= htmlspecialchars($step) ?></span>
+                        </article>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -93,26 +167,29 @@
 
         <section class="wifi-mesh__why wifi-mesh__desktop-only">
             <div class="container">
-                <h2 class="wifi-mesh__center-title">Por que escolher o Wi-Fi Mesh da AserNet?</h2>
+                <h2 class="wifi-mesh__center-title"><?= htmlspecialchars($_wm['porque_titulo']) ?></h2>
                 <div class="wifi-mesh__why-grid">
-                    <article><i class="icon-wificobertura" aria-hidden="true"></i><h3>Cobertura inteligente</h3><p>Mais alcance e estabilidade para todos os ambientes.</p></article>
-                    <article><i class="icon-wifimesh" aria-hidden="true"></i><h3>Uma única rede</h3><p>Seu celular troca automaticamente entre os pontos, sem você perceber.</p></article>
-                    <article><i class="icon-bighouse" aria-hidden="true"></i><h3>Melhor para casas maiores</h3><p>Mais desempenho em diversos andares e ambientes.</p></article>
-                    <article><i class="icon-customersupport" aria-hidden="true"></i><h3>Suporte AserNet</h3><p>Instalação e configuração inclusas com suporte especializado.</p></article>
+                    <?php foreach ($_wm['porque_items'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_porqueIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i>
+                        <h3><?= htmlspecialchars($item['titulo']) ?></h3>
+                        <p><?= htmlspecialchars($item['texto']) ?></p>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
 
         <section class="wifi-mesh__ideal">
             <div class="container">
-                <h2 class="wifi-mesh__center-title">Ideal para quem usa muitos dispositivos</h2>
+                <h2 class="wifi-mesh__center-title"><?= htmlspecialchars($_wm['ideal_titulo']) ?></h2>
                 <div class="wifi-mesh__ideal-grid">
-                    <article><i class="icon-tv" aria-hidden="true"></i><span>Smart TVs</span></article>
-                    <article><i class="icon-streaming" aria-hidden="true"></i><span>Streaming</span></article>
-                    <article><i class="icon-homeoffice" aria-hidden="true"></i><span>Home Office</span></article>
-                    <article><i class="icon-videogame" aria-hidden="true"></i><span>Videogames</span></article>
-                    <article><i class="icon-bighouse" aria-hidden="true"></i><span>Casas grandes</span></article>
-                    <article><i class="icon-devices" aria-hidden="true"></i><span>Múltiplos dispositivos</span></article>
+                    <?php foreach ($_wm['ideal_items'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_idealIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i>
+                        <span><?= htmlspecialchars($item) ?></span>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -120,16 +197,15 @@
         <section class="wifi-mesh__performance wifi-mesh__desktop-only">
             <div class="container">
                 <div class="wifi-mesh__performance-box">
-                    <img src="<?= BASE_URL ?>/images/wifimesh/imgEquipamentoDeAltaPerformance.png" alt="Equipamentos Wi-Fi Mesh">
+                    <img src="<?= BASE_URL ?>/images/wifimesh/<?= htmlspecialchars($_wm['perf_imagem']) ?>" alt="Equipamentos Wi-Fi Mesh">
                     <div class="wifi-mesh__performance-copy">
-                        <h2>Equipamentos de alta performance</h2>
-                        <p>Tecnologia mesh com antenas para mais alcance, estabilidade e conexão de verdade.</p>
+                        <h2><?= htmlspecialchars($_wm['perf_titulo']) ?></h2>
+                        <p><?= htmlspecialchars($_wm['perf_texto']) ?></p>
                     </div>
                     <ul>
-                        <li><i class="icon-wificobertura" aria-hidden="true"></i>Cobertura ampliada</li>
-                        <li><i class="icon-wifi" aria-hidden="true"></i>Rede contínua em toda a casa</li>
-                        <li><i class="icon-wifiestavel" aria-hidden="true"></i>Mais estabilidade para sua conexão</li>
-                        <li><i class="icon-devices" aria-hidden="true"></i>Mais dispositivos conectados</li>
+                        <?php foreach ($_wm['perf_bullets'] as $i => $b): ?>
+                        <li><i class="<?= $_perfIcons[$i] ?? 'icon-wifi' ?>" aria-hidden="true"></i><?= htmlspecialchars($b) ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>

@@ -5,7 +5,7 @@ $_isEditorUp = in_array($_nivel, ['admin', 'editor']);
 
 $_crzRoutes       = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
 $_plataformaRoutes = ['meusdados', 'administrarusuarios', 'cadastrarusuario', 'configuracoes'];
-$_conteudoRoutes  = ['conteudoinicio', 'conteudosuporte'];
+$_conteudoRoutes  = ['conteudoinicio', 'conteudosuporte', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento'];
 
 $_plataformaOpen = in_array($subRoute, $_plataformaRoutes) ? 'open' : '';
 $_cruzeiroOpen   = in_array($subRoute, $_crzRoutes)        ? 'open' : '';
@@ -121,6 +121,36 @@ $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
                             <a href="<?= BASE_URL ?>/admin/conteudosuporte"
                                class="sidebar__sublink <?= ($subRoute === 'conteudosuporte') ? 'sidebar__sublink--active' : '' ?>">
                                 Suporte / FAQ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudoresidencial"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudoresidencial') ? 'sidebar__sublink--active' : '' ?>">
+                                Internet Residencial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudocameras"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudocameras') ? 'sidebar__sublink--active' : '' ?>">
+                                Câmeras de Segurança
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudowifimesh"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudowifimesh') ? 'sidebar__sublink--active' : '' ?>">
+                                Wi-Fi Mesh
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudomovel"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudomovel') ? 'sidebar__sublink--active' : '' ?>">
+                                Plano Móvel
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudorastreamento"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudorastreamento') ? 'sidebar__sublink--active' : '' ?>">
+                                Rastreamento Veicular
                             </a>
                         </li>
                     </ul>

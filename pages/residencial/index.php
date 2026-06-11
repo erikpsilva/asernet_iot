@@ -1,3 +1,68 @@
+<?php
+$_rc = [
+    'diagnostico_titulo'  => 'A diferença não está na velocidade. Está na sua rede.',
+    'diagnostico_texto'   => 'Mesmo com internet rápida, muitos problemas acontecem por falta de cobertura e estrutura adequada dentro da casa.',
+    'diagnostico_imagem'  => 'imgADifrencaNaoEstaNaVelocidade.png',
+    'solucao_titulo'      => 'Internet pensada para sua casa funcionar de verdade.',
+    'solucao_texto'       => 'A AserNet entrega soluções com cobertura inteligente, pontos de rede e Wi-Fi preparado para múltiplos dispositivos.',
+    'solucao_bullets'     => ['Mais estabilidade', 'Melhor cobertura', 'Melhor experiência para toda a família', 'Estrutura preparada para sua necessidade'],
+    'planos_titulo'       => 'Escolha o nível ideal para sua casa',
+    'planos' => [
+        ['nome' => 'ASER CONECTA',       'descricao' => 'Ideal para uso básico e casas compactas',       'bullets' => ['1 Giga de velocidade', 'Wi-Fi estável', 'Suporte AserNet'],                                                                 'preco' => '109,90'],
+        ['nome' => 'ASER CONECTA PLUS',  'descricao' => 'Mais estabilidade para famílias conectadas',    'bullets' => ['Tudo do plano anterior', 'Até 3 pontos de rede cabeados', 'Melhor desempenho para TVs, videogames e home office'],         'preco' => '119,90'],
+        ['nome' => 'ASER CASA CONECTADA','descricao' => 'Cobertura inteligente para toda a casa',        'bullets' => ['Tudo do plano anterior', 'Sistema Wi-Fi Mesh', 'Cobertura ampliada', 'Melhor experiência em múltiplos ambientes'],         'preco' => '139,90'],
+    ],
+    'suporte' => [
+        ['titulo' => 'Suporte local de verdade',         'texto' => 'Atendimento rápido e próximo sempre que precisar.'],
+        ['titulo' => 'Estrutura inteligente',            'texto' => 'Mais estabilidade e desempenho para sua casa.'],
+        ['titulo' => 'Instalação profissional',          'texto' => 'Configuração completa e orientação inclusas sem custo adicional.'],
+        ['titulo' => 'Wi-Fi preparado para sua família', 'texto' => 'Ideal para cada dispositivo e para a rotina conectada da sua casa.'],
+    ],
+];
+
+$_suporteIcons = ['icon-customersupport', 'icon-structure', 'icon-engineer', 'icon-wificobertura'];
+$_planoIcons   = ['icon-wifiestavel', 'icon-star', 'icon-wifiestrutura'];
+$_planoIds     = ['internet-start', 'internet-plus', 'internet-ultra'];
+$_planoTitles  = ['Internet residencial - Start', 'Internet residencial - Plus', 'Internet residencial - Ultra'];
+
+try {
+    require_once ROOT . '/config/database.php';
+    $pdo = getDbConnection();
+    $row = $pdo->query("SELECT setting_value FROM system_settings WHERE setting_key = 'residencial_content' LIMIT 1")->fetch();
+    if ($row && !empty($row['setting_value'])) {
+        $db = json_decode($row['setting_value'], true);
+        if (is_array($db)) {
+            foreach (['diagnostico_titulo', 'diagnostico_texto', 'diagnostico_imagem', 'solucao_titulo', 'solucao_texto', 'planos_titulo'] as $k) {
+                if (!empty($db[$k])) $_rc[$k] = $db[$k];
+            }
+            if (!empty($db['solucao_bullets']) && is_array($db['solucao_bullets'])) {
+                $_rc['solucao_bullets'] = $db['solucao_bullets'];
+            }
+            if (!empty($db['planos']) && is_array($db['planos'])) {
+                foreach ($db['planos'] as $i => $plano) {
+                    if (isset($_rc['planos'][$i]) && is_array($plano)) {
+                        foreach (['nome', 'descricao', 'preco'] as $k) {
+                            if (!empty($plano[$k])) $_rc['planos'][$i][$k] = $plano[$k];
+                        }
+                        if (!empty($plano['bullets']) && is_array($plano['bullets'])) {
+                            $_rc['planos'][$i]['bullets'] = $plano['bullets'];
+                        }
+                    }
+                }
+            }
+            if (!empty($db['suporte']) && is_array($db['suporte'])) {
+                foreach ($db['suporte'] as $i => $item) {
+                    if (isset($_rc['suporte'][$i]) && is_array($item)) {
+                        foreach (['titulo', 'texto'] as $k) {
+                            if (!empty($item[$k])) $_rc['suporte'][$i][$k] = $item[$k];
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,8 +112,8 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-5">
-                        <h2 class="residential__section-title">A diferença não está na velocidade. Está na sua rede.</h2>
-                        <p class="residential__section-text">Mesmo com internet rápida, muitos problemas acontecem por falta de cobertura e estrutura adequada dentro da casa.</p>
+                        <h2 class="residential__section-title"><?= htmlspecialchars($_rc['diagnostico_titulo']) ?></h2>
+                        <p class="residential__section-text"><?= htmlspecialchars($_rc['diagnostico_texto']) ?></p>
 
                         <div class="residential__problems">
                             <article><i class="icon-wifi" aria-hidden="true"></i><span>Sinal fraco<br>no quarto</span></article>
@@ -59,7 +124,7 @@
                     </div>
 
                     <div class="col-lg-7">
-                        <img class="residential__diagnosis-image" src="<?= BASE_URL ?>/images/residencial/imgADifrencaNaoEstaNaVelocidade.png" alt="Casa com cobertura Wi-Fi inteligente">
+                        <img class="residential__diagnosis-image" src="<?= BASE_URL ?>/images/residencial/<?= htmlspecialchars($_rc['diagnostico_imagem']) ?>" alt="Casa com cobertura Wi-Fi inteligente">
                     </div>
                 </div>
             </div>
@@ -69,13 +134,12 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-5">
-                        <h2 class="residential__section-title">Internet pensada para sua casa funcionar de verdade.</h2>
-                        <p class="residential__section-text">A AserNet entrega soluções com cobertura inteligente, pontos de rede e Wi-Fi preparado para múltiplos dispositivos.</p>
+                        <h2 class="residential__section-title"><?= htmlspecialchars($_rc['solucao_titulo']) ?></h2>
+                        <p class="residential__section-text"><?= htmlspecialchars($_rc['solucao_texto']) ?></p>
                         <ul class="residential__checks">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Mais estabilidade</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Melhor cobertura</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Melhor experiência para toda a família</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Estrutura preparada para sua necessidade</li>
+                            <?php foreach ($_rc['solucao_bullets'] as $bullet): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($bullet) ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
 
@@ -93,47 +157,40 @@
 
         <section class="residential__plans">
             <div class="container">
-                <h2 class="residential__center-title">Escolha o nível ideal para sua casa</h2>
+                <h2 class="residential__center-title"><?= htmlspecialchars($_rc['planos_titulo']) ?></h2>
 
                 <div class="residential__plans-grid">
-                    <article class="residential__plan">
-                        <div class="residential__plan-heading"><i class="icon-wifiestavel" aria-hidden="true"></i><h3>ASER<br>CONECTA</h3></div>
-                        <p class="residential__plan-description">Ideal para uso básico e casas compactas</p>
+                    <?php foreach ($_rc['planos'] as $i => $plano):
+                        $isFeatured = ($i === 1);
+                        $icon       = $_planoIcons[$i]   ?? 'icon-wifiestavel';
+                        $cartId     = $_planoIds[$i]     ?? 'internet-plan-' . $i;
+                        $cartTitle  = $_planoTitles[$i]  ?? htmlspecialchars($plano['nome']);
+                    ?>
+                    <article class="residential__plan<?= $isFeatured ? ' residential__plan--featured' : '' ?>">
+                        <?php if ($isFeatured): ?><span class="residential__badge">MAIS ESCOLHIDO</span><?php endif; ?>
+                        <div class="residential__plan-heading">
+                            <i class="<?= $icon ?>" aria-hidden="true"></i>
+                            <h3><?= htmlspecialchars($plano['nome']) ?></h3>
+                        </div>
+                        <p class="residential__plan-description"><?= htmlspecialchars($plano['descricao']) ?></p>
                         <ul class="residential__plan-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>1 Giga de velocidade</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Wi-Fi estável</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Suporte AserNet</li>
+                            <?php foreach ($plano['bullets'] as $b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
-                        <p class="residential__price"><span>R$</span> 109,90<small>/mês</small></p>
-                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="internet-start" data-cart-group="internet-residencial" data-cart-title="Internet residencial - Start" data-cart-subtitle="1 Giga em todos os planos" data-cart-price="R$ 109,90/m&ecirc;s" data-cart-icon="icon-wifi" data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
+                        <?php if ($isFeatured): ?><span class="residential__plan-note">até 10 metros por ponto</span><?php endif; ?>
+                        <p class="residential__price"><span>R$</span> <?= htmlspecialchars($plano['preco']) ?><small>/mês</small></p>
+                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho"
+                           data-cart-add
+                           data-cart-id="<?= $cartId ?>"
+                           data-cart-group="internet-residencial"
+                           data-cart-title="<?= htmlspecialchars($cartTitle) ?>"
+                           data-cart-subtitle="<?= htmlspecialchars($plano['descricao']) ?>"
+                           data-cart-price="R$ <?= htmlspecialchars($plano['preco']) ?>/mês"
+                           data-cart-icon="icon-wifi"
+                           data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
                     </article>
-
-                    <article class="residential__plan residential__plan--featured">
-                        <span class="residential__badge">MAIS ESCOLHIDO</span>
-                        <div class="residential__plan-heading"><i class="icon-star" aria-hidden="true"></i><h3>ASER<br>CONECTA PLUS</h3></div>
-                        <p class="residential__plan-description">Mais estabilidade para famílias conectadas</p>
-                        <ul class="residential__plan-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Tudo do plano anterior</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Até 3 pontos de rede cabeados</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Melhor desempenho para TVs, videogames e home office</li>
-                        </ul>
-                        <span class="residential__plan-note">até 10 metros por ponto</span>
-                        <p class="residential__price"><span>R$</span> 119,90<small>/mês</small></p>
-                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="internet-plus" data-cart-group="internet-residencial" data-cart-title="Internet residencial - Plus" data-cart-subtitle="Tudo do plano anterior" data-cart-price="R$ 119,90/m&ecirc;s" data-cart-icon="icon-wifi" data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
-                    </article>
-
-                    <article class="residential__plan">
-                        <div class="residential__plan-heading"><i class="icon-wifiestrutura" aria-hidden="true"></i><h3>ASER CASA<br>CONECTADA</h3></div>
-                        <p class="residential__plan-description">Cobertura inteligente para toda a casa</p>
-                        <ul class="residential__plan-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Tudo do plano anterior</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Sistema Wi-Fi Mesh</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura ampliada</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Melhor experiência em múltiplos ambientes</li>
-                        </ul>
-                        <p class="residential__price"><span>R$</span> 139,90<small>/mês</small></p>
-                        <a class="residential__plan-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="internet-ultra" data-cart-group="internet-residencial" data-cart-title="Internet residencial - Ultra" data-cart-subtitle="Plano residencial mais completo" data-cart-price="R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifi" data-cart-url="<?= BASE_URL ?>/residencial">Contratar agora</a>
-                    </article>
+                    <?php endforeach; ?>
                 </div>
 
                 <p class="residential__plans-note"><i class="icon-checkmark" aria-hidden="true"></i>Todos os planos incluem 1 Giga de velocidade.</p>
@@ -157,10 +214,13 @@
         <section class="residential__support">
             <div class="container">
                 <div class="residential__support-grid">
-                    <article><i class="icon-customersupport" aria-hidden="true"></i><h3>Suporte local de verdade</h3><p>Atendimento rápido e próximo sempre que precisar.</p></article>
-                    <article><i class="icon-structure" aria-hidden="true"></i><h3>Estrutura inteligente</h3><p>Mais estabilidade e desempenho para sua casa.</p></article>
-                    <article><i class="icon-engineer" aria-hidden="true"></i><h3>Instalação profissional</h3><p>Configuração completa e orientação inclusas sem custo adicional.</p></article>
-                    <article><i class="icon-wificobertura" aria-hidden="true"></i><h3>Wi-Fi preparado para sua família</h3><p>Ideal para cada dispositivo e para a rotina conectada da sua casa.</p></article>
+                    <?php foreach ($_rc['suporte'] as $i => $item): ?>
+                    <article>
+                        <i class="<?= $_suporteIcons[$i] ?? 'icon-customersupport' ?>" aria-hidden="true"></i>
+                        <h3><?= htmlspecialchars($item['titulo']) ?></h3>
+                        <p><?= htmlspecialchars($item['texto']) ?></p>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
