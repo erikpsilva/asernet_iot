@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Internet que vai com você,',
+    'titulo_destaque'    => 'sem complicação.',
+    'titulo_complemento' => '',
+    'texto'              => 'Fale, navegue e continue conectado dentro e fora de casa com o Aser Mobile.',
+    'bullets'            => ['Cobertura nacional', 'Mais internet com bônus de portabilidade', 'Atendimento AserNet', 'Planos sem burocracia'],
+    'preco'              => 'Planos a partir de R$ 39,90/mês',
+    'btn1_texto'         => 'Quero meu chip Aser Mobile',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'movel_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_mv = [
     'rotina_titulo' => 'Sua conexão não pode parar quando você sai de casa.',
@@ -104,26 +132,33 @@ $_comoIcons     = ['icon-chip', 'icon-entrega', 'icon-ativacao', 'icon-conection
 ?>
 
 <section class="mobile-plan">
-    <div class="mobile-plan__hero">
+    <div class="mobile-plan__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/movel/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="mobile-plan__hero-copy">
-                        <h1 class="mobile-plan__hero-title">Internet que <strong>vai com você,</strong> sem complicação.</h1>
-                        <p class="mobile-plan__hero-text">Fale, navegue e continue conectado dentro e fora de casa com o Aser Mobile.</p>
+                        <h1 class="mobile-plan__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="mobile-plan__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
+                        <?php if (!empty($_bn['bullets'])): ?>
                         <ul class="mobile-plan__hero-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura nacional</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Mais internet com bônus de portabilidade</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Atendimento AserNet</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Planos sem burocracia</li>
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
+                        <?php endif; ?>
 
-                        <p class="mobile-plan__hero-price">Planos a partir de <strong><span>R$</span> 39,90<small>/mês</small></strong></p>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="mobile-plan__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
                         <div class="mobile-plan__hero-actions">
-                            <a class="mobile-plan__button mobile-plan__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-chip" aria-hidden="true"></i>Quero meu chip Aser Mobile</a>
-                            <a class="mobile-plan__button mobile-plan__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                            <a class="mobile-plan__button mobile-plan__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-chip" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="mobile-plan__button mobile-plan__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
                 </div>

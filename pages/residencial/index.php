@@ -1,4 +1,32 @@
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Internet de verdade,',
+    'titulo_destaque'    => 'sem complicação.',
+    'titulo_complemento' => '',
+    'texto'              => '1 Giga de velocidade com estabilidade, cobertura e suporte para sua casa funcionar melhor.',
+    'bullets'            => ['1 Giga em todos os planos', 'Wi-Fi estável em toda a casa', 'Suporte técnico AserNet', 'Instalação rápida e profissional'],
+    'preco'              => '',
+    'btn1_texto'         => 'Quero contratar agora',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'residencial_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 $_rc = [
     'diagnostico_titulo'  => 'A diferença não está na velocidade. Está na sua rede.',
     'diagnostico_texto'   => 'Mesmo com internet rápida, muitos problemas acontecem por falta de cobertura e estrutura adequada dentro da casa.',
@@ -77,26 +105,35 @@ try {
 <?php include ROOT . '/includes/header/header.php';?>
 
 <section class="residential">
-    <div class="residential__hero">
+    <div class="residential__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/residencial/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="residential__hero-copy">
-                        <h1 class="residential__hero-title">Internet de verdade, <strong>sem complicação.</strong></h1>
-                        <p class="residential__hero-text">1 Giga de velocidade com estabilidade, cobertura e suporte para sua casa funcionar melhor.</p>
+                        <h1 class="residential__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="residential__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
+                        <?php if (!empty($_bn['bullets'])): ?>
                         <ul class="residential__hero-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>1 Giga em todos os planos</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Wi-Fi estável em toda a casa</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Suporte técnico AserNet</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Instalação rápida e profissional</li>
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
+                        <?php endif; ?>
+
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="residential__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
                         <div class="residential__hero-actions">
-                            <a class="residential__button residential__button--primary" href="<?= BASE_URL ?>/contato"><span>Quero contratar agora</span></a>
+                            <a class="residential__button residential__button--primary" href="<?= BASE_URL ?>/contato"><span><?= htmlspecialchars($_bn['btn1_texto']) ?></span></a>
                             <a class="residential__button residential__button--outline" href="tel:08002225262">
                                 <i class="icon-phone" aria-hidden="true"></i>
-                                <span>0800 222 5262</span>
+                                <span><?= htmlspecialchars($_bn['btn2_texto']) ?></span>
                             </a>
                         </div>
                     </div>

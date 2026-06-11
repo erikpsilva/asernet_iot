@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Wi-Fi profissional,',
+    'titulo_destaque'    => 'sem complicação.',
+    'titulo_complemento' => '',
+    'texto'              => 'Conecte múltiplos dispositivos com estabilidade, cobertura e desempenho de verdade para sua empresa.',
+    'bullets'            => ['Cobertura completa', 'Alta capacidade de conexões simultâneas', 'Gestão inteligente da rede'],
+    'preco'              => 'Planos a partir de R$ 159,90/mês',
+    'btn1_texto'         => 'Quero um Wi-Fi profissional',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'wifiprofissional_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_wp = [
     'cmp_prob_titulo' => 'Seu Wi-Fi não acompanha o ritmo da sua empresa?',
@@ -88,38 +116,37 @@ $_featIcons = ['icon-wifiestavel', 'icon-monitoramento', 'icon-wificobertura'];
 ?>
 
 <section class="wifi-pro-page">
-    <div class="wifi-pro-page__hero">
+    <div class="wifi-pro-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/wifiprofissional/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
-            <div class="wifi-pro-page__hero-grid">
-                <div class="wifi-pro-page__hero-copy">
-                    <h1 class="wifi-pro-page__hero-title">Wi-Fi profissional, <strong>sem complicação.</strong></h1>
-                    <p class="wifi-pro-page__hero-text">Conecte múltiplos dispositivos com estabilidade, cobertura e desempenho de verdade para sua empresa.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="wifi-pro-page__hero-copy">
+                        <h1 class="wifi-pro-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="wifi-pro-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
-                    <ul class="wifi-pro-page__check-list wifi-pro-page__check-list--hero">
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura completa</li>
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Alta capacidade de conexões simultâneas</li>
-                        <li><i class="icon-checkmark" aria-hidden="true"></i>Gestão inteligente da rede</li>
-                    </ul>
+                        <?php if (!empty($_bn['bullets'])): ?>
+                        <ul class="wifi-pro-page__hero-list">
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
 
-                    <div class="wifi-pro-page__price-intro">
-                        <span>Planos a partir de</span>
-                        <strong><?= htmlspecialchars($_wp['plan_preco']) ?><small>/mês</small></strong>
-                    </div>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="wifi-pro-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
-                    <div class="wifi-pro-page__hero-includes">
-                        <span><i class="icon-wifipro" aria-hidden="true"></i>Controladora<br>+ 1 AP incluso</span>
-                        <span><i class="icon-expansivel" aria-hidden="true"></i>AP adicional:<br><?= htmlspecialchars($_wp['plan_adicional']) ?></span>
-                    </div>
-
-                    <div class="wifi-pro-page__hero-actions">
-                        <a class="wifi-pro-page__button wifi-pro-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20Wi-Fi%20Profissional%20para%20minha%20empresa." target="_blank" rel="noopener"><i class="icon-wifi" aria-hidden="true"></i>Quero um Wi-Fi profissional</a>
-                        <a class="wifi-pro-page__button wifi-pro-page__button--outline" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <div class="wifi-pro-page__hero-actions">
+                            <a class="wifi-pro-page__button wifi-pro-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20Wi-Fi%20Profissional%20para%20minha%20empresa." target="_blank" rel="noopener"><i class="icon-wifi" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="wifi-pro-page__button wifi-pro-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="wifi-pro-page__hero-media" aria-hidden="true">
-                    <img src="<?= BASE_URL ?>/images/wifiprofissional/imgTopoBanner.png" alt="">
-                </div>
+                <div class="col-lg-7 col-md-6" aria-hidden="true"></div>
             </div>
         </div>
     </div>

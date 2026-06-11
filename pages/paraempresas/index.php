@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Tecnologia para empresas que',
+    'titulo_destaque'    => 'não podem parar.',
+    'titulo_complemento' => '',
+    'texto'              => 'Conectividade, comunicação, Wi-Fi corporativo e soluções inteligentes para sua operação funcionar melhor.',
+    'bullets'            => ['Internet empresarial', 'Wi-Fi profissional', 'Telefonia corporativa', 'Link dedicado', 'Segurança e monitoramento'],
+    'preco'              => '',
+    'btn1_texto'         => 'Falar com um especialista',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'paraempresas_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_pe = [
     'prob_titulo' => 'Sua empresa depende de tecnologia o tempo todo.',
@@ -96,25 +124,33 @@ $_probIcons  = ['icon-wifierror', 'icon-wifinot', 'icon-phoneerror', 'icon-slow'
 ?>
 
 <section class="business-page">
-    <div class="business-page__hero">
+    <div class="business-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/paraempresas/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="business-page__hero-copy">
-                        <h1 class="business-page__hero-title">Tecnologia para empresas que <strong>não podem parar.</strong></h1>
-                        <p class="business-page__hero-text">Conectividade, comunicação, Wi-Fi corporativo e soluções inteligentes para sua operação funcionar melhor.</p>
+                        <h1 class="business-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="business-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
+                        <?php if (!empty($_bn['bullets'])): ?>
                         <ul class="business-page__hero-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Internet empresarial</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Wi-Fi profissional</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Telefonia corporativa</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Link dedicado</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Segurança e monitoramento</li>
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
+                        <?php endif; ?>
+
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="business-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
                         <div class="business-page__hero-actions">
-                            <a class="business-page__button business-page__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-talk" aria-hidden="true"></i>Falar com um especialista</a>
-                            <a class="business-page__button business-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                            <a class="business-page__button business-page__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-talk" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="business-page__button business-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
                 </div>

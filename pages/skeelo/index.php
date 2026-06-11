@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Histórias que',
+    'titulo_destaque'    => 'conectam.',
+    'titulo_complemento' => '',
+    'texto'              => 'Com a Skeelo, clientes AserNet têm acesso a uma experiência digital completa com ebooks, audiobooks e conteúdos para todos os momentos do seu dia.',
+    'bullets'            => [],
+    'preco'              => '',
+    'btn1_texto'         => 'Ativar minha Skeelo',
+    'btn2_texto'         => 'Saiba mais',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'skeelo_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_sk = [
     'moments_span'     => 'Tudo que você gosta de ler e ouvir',
@@ -88,16 +116,37 @@ $_trustIcons   = ['icon-group', 'icon-cloud'];
 ?>
 
 <main class="skeelo-page">
-    <section class="skeelo-page__hero">
+    <section class="skeelo-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/skeelo/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
-            <div class="skeelo-page__hero-content">
-                <img class="skeelo-page__logo" src="<?= BASE_URL ?>/images/skeelo/logo-skeelo.svg" alt="Skeelo">
-                <h1>Histórias que <strong>conectam.</strong><br>Conhecimento que <strong>acompanha você.</strong></h1>
-                <p>Com a Skeelo, clientes AserNet têm acesso a uma experiência digital completa com ebooks, audiobooks e conteúdos para todos os momentos do seu dia.</p>
-                <div class="skeelo-page__hero-actions">
-                    <a class="skeelo-page__button skeelo-page__button--primary" href="<?= BASE_URL ?>/contato">Ativar minha Skeelo <i class="icon-arrowright" aria-hidden="true"></i></a>
-                    <a class="skeelo-page__button skeelo-page__button--play" href="#conteudo"><span aria-hidden="true"></span>Saiba mais</a>
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="skeelo-page__hero-copy">
+                        <h1 class="skeelo-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="skeelo-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
+
+                        <?php if (!empty($_bn['bullets'])): ?>
+                        <ul class="skeelo-page__hero-list">
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
+
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="skeelo-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
+
+                        <div class="skeelo-page__hero-actions">
+                            <a class="skeelo-page__button skeelo-page__button--primary" href="<?= BASE_URL ?>/contato"><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="skeelo-page__button skeelo-page__button--play" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-7 col-md-6" aria-hidden="true"></div>
             </div>
         </div>
     </section>

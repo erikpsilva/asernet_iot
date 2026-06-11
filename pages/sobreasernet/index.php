@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Mais que internet. Conexões',
+    'titulo_destaque'    => 'que cuidam.',
+    'titulo_complemento' => '',
+    'texto'              => 'A AserNet nasceu para conectar pessoas, empresas e histórias com tecnologia, proximidade e atendimento de verdade.',
+    'bullets'            => ['Atendimento local', 'Equipe especializada', 'Estrutura profissional', 'Tecnologia para casa e empresa'],
+    'preco'              => '',
+    'btn1_texto'         => 'Falar com a AserNet',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'sobreasernet_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 $_sa = [
     'history_label' => 'Nossa hist&oacute;ria',
     'history_titulo' => 'Crescendo junto com a nossa regi&atilde;o.',
@@ -99,24 +127,37 @@ $_saPurposeIcons = ['icon-wifi', 'icon-gear', 'icon-pin', 'icon-heart'];
 ?>
 
 <section class="about-page">
-    <div class="about-page__hero">
+    <div class="about-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/sobreasernet/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
-            <div class="about-page__hero-copy">
-                <span>Sobre a AserNet</span>
-                <h1>Mais que internet. Conex&otilde;es <strong>que cuidam.</strong></h1>
-                <p>A AserNet nasceu para conectar pessoas, empresas e hist&oacute;rias com tecnologia, proximidade e atendimento de verdade.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="about-page__hero-copy">
+                        <h1 class="about-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="about-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
-                <ul>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Atendimento local</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Equipe especializada</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Estrutura profissional</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Tecnologia para casa e empresa</li>
-                </ul>
+                        <?php if (!empty($_bn['bullets'])): ?>
+                        <ul class="about-page__hero-list">
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
 
-                <div class="about-page__hero-actions">
-                    <a class="about-page__button about-page__button--primary" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar com a AserNet</a>
-                    <a class="about-page__button about-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="about-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
+
+                        <div class="about-page__hero-actions">
+                            <a class="about-page__button about-page__button--primary" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="about-page__button about-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-7 col-md-6" aria-hidden="true"></div>
             </div>
         </div>
     </div>

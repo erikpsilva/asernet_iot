@@ -1,4 +1,34 @@
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn_inicio = [
+    'titulo'             => 'Mais que internet.',
+    'titulo_destaque'    => 'Soluções completas',
+    'titulo_complemento' => 'para sua vida.',
+    'texto'              => 'Tecnologia, conectividade e segurança para sua casa ou empresa funcionarem melhor.',
+    'bullets'            => ['Internet', 'Wi-Fi inteligente', 'Segurança', 'Mobilidade', 'Telefonia', 'Soluções empresariais'],
+    'preco'              => '',
+    'btn1_texto'         => 'Falar com um consultor',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_pdo_bn = getDbConnection();
+    $_row_bn = $_pdo_bn->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'inicio_banner' LIMIT 1");
+    $_row_bn->execute();
+    $_row_bn = $_row_bn->fetch();
+    if ($_row_bn && !empty($_row_bn['setting_value'])) {
+        $_db_bn = json_decode($_row_bn['setting_value'], true);
+        if (is_array($_db_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k_bn) {
+                if (isset($_db_bn[$_k_bn]) && strlen((string)$_db_bn[$_k_bn]) > 0) $_bn_inicio[$_k_bn] = $_db_bn[$_k_bn];
+            }
+            if (!empty($_db_bn['bullets']) && is_array($_db_bn['bullets'])) $_bn_inicio['bullets'] = $_db_bn['bullets'];
+        }
+    }
+    unset($_pdo_bn, $_row_bn, $_db_bn, $_k_bn);
+} catch (Throwable $_e_bn) { unset($_e_bn); }
+
 $homeSorteioDate = '2027-01-31T00:00:00-03:00';
 $homeRegTitulo   = 'Regulamento da Promo&ccedil;&atilde;o';
 $homeRegTexto    = '<p>O regulamento ainda n&atilde;o foi cadastrado.</p>';
@@ -64,39 +94,35 @@ try {
 <?php include ROOT . '/includes/header/header.php';?>
 
 <section class="home">
-    <div class="home__hero">
+    <div class="home__hero"<?= !empty($_bn_inicio['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/inicio/' . htmlspecialchars($_bn_inicio['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-7">
                     <div class="home__content">
                         <h1 class="home__title">
-                            Mais que internet.
-                            <strong>Soluções completas</strong>
-                            para sua vida.
+                            <?= htmlspecialchars($_bn_inicio['titulo']) ?>
+                            <?php if (!empty($_bn_inicio['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn_inicio['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn_inicio['titulo_complemento'])): ?><?= htmlspecialchars($_bn_inicio['titulo_complemento']) ?><?php endif; ?>
                         </h1>
 
-                        <p class="home__text">
-                            Tecnologia, conectividade e segurança para sua casa ou empresa funcionarem melhor.
-                        </p>
+                        <p class="home__text"><?= htmlspecialchars($_bn_inicio['texto']) ?></p>
 
+                        <?php if (!empty($_bn_inicio['bullets'])): ?>
                         <ul class="home__features">
-                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i>Internet</li>
-                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i>Wi-Fi inteligente</li>
-                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i>Segurança</li>
-                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i>Mobilidade</li>
-                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i>Telefonia</li>
-                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i>Soluções empresariais</li>
+                            <?php foreach ($_bn_inicio['bullets'] as $_b): ?>
+                            <li class="home__feature"><i class="icon icon-check" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
+                        <?php endif; ?>
 
                         <div class="home__actions">
                             <a class="home__button home__button--primary" href="<?= BASE_URL ?>/contato">
                                 <i class="icon icon-talk" aria-hidden="true"></i>
-                                <span>Falar com um consultor</span>
+                                <span><?= htmlspecialchars($_bn_inicio['btn1_texto']) ?></span>
                             </a>
-
                             <a class="home__button home__button--outline" href="tel:08002225262">
                                 <i class="icon icon-phone" aria-hidden="true"></i>
-                                <span>0800 222 5262</span>
+                                <span><?= htmlspecialchars($_bn_inicio['btn2_texto']) ?></span>
                             </a>
                         </div>
                     </div>

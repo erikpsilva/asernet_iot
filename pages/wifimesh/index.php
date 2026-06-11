@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Wi-Fi forte em toda a casa,',
+    'titulo_destaque'    => 'sem complicação.',
+    'titulo_complemento' => '',
+    'texto'              => 'Chega de sinal fraco, travamentos e ambientes sem conexão.',
+    'bullets'            => ['Cobertura inteligente', 'Conexão contínua entre ambientes', 'Mais estabilidade para toda a família', 'Instalação e configuração inclusas'],
+    'preco'              => 'A partir de R$ 139,90/mês',
+    'btn1_texto'         => 'Quero Wi-Fi em toda a casa',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'wifimesh_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_wm = [
     'dor_titulo'  => 'Sua internet pode ser rápida...',
@@ -81,26 +109,33 @@ $_perfIcons  = ['icon-wificobertura', 'icon-wifi', 'icon-wifiestavel', 'icon-dev
 ?>
 
 <section class="wifi-mesh">
-    <div class="wifi-mesh__hero">
+    <div class="wifi-mesh__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/wifimesh/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="wifi-mesh__hero-copy">
-                        <h1 class="wifi-mesh__hero-title">Wi-Fi forte em toda a casa, <strong>sem complicação.</strong></h1>
-                        <p class="wifi-mesh__hero-text">Chega de sinal fraco, travamentos e ambientes sem conexão.</p>
+                        <h1 class="wifi-mesh__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="wifi-mesh__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
+                        <?php if (!empty($_bn['bullets'])): ?>
                         <ul class="wifi-mesh__hero-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Cobertura inteligente</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Conexão contínua entre ambientes</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Mais estabilidade para toda a família</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Instalação e configuração inclusas</li>
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
+                        <?php endif; ?>
 
-                        <p class="wifi-mesh__hero-price">A partir de <strong><span>R$</span> 139,90<small>/mês</small></strong></p>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="wifi-mesh__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
                         <div class="wifi-mesh__hero-actions">
-                            <a class="wifi-mesh__button wifi-mesh__button--primary" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="wifi-mesh-kit" data-cart-group="wifi-mesh" data-cart-title="Wi-Fi Mesh" data-cart-subtitle="Cobertura inteligente residencial" data-cart-price="A partir de R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifimesh" data-cart-url="<?= BASE_URL ?>/wifimesh"><i class="icon-wifi" aria-hidden="true"></i>Quero Wi-Fi em toda a casa</a>
-                            <a class="wifi-mesh__button wifi-mesh__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                            <a class="wifi-mesh__button wifi-mesh__button--primary" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="wifi-mesh-kit" data-cart-group="wifi-mesh" data-cart-title="Wi-Fi Mesh" data-cart-subtitle="Cobertura inteligente residencial" data-cart-price="A partir de R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifimesh" data-cart-url="<?= BASE_URL ?>/wifimesh"><i class="icon-wifi" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="wifi-mesh__button wifi-mesh__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
                 </div>

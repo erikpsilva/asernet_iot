@@ -10,6 +10,8 @@ $_conteudoRoutes   = ['conteudoinicio', 'conteudoresidencial', 'conteudocameras'
 $_plataformaOpen = in_array($subRoute, $_plataformaRoutes) ? 'open' : '';
 $_cruzeiroOpen   = in_array($subRoute, $_crzRoutes)        ? 'open' : '';
 $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
+$_bannerOpen     = ($subRoute === 'banner')                 ? 'open' : '';
+$_bannerPage     = $_GET['page'] ?? '';
 ?>
 <aside class="sidebar">
     <nav class="sidebar__nav">
@@ -150,6 +152,43 @@ $_conteudoOpen   = in_array($subRoute, $_conteudoRoutes)   ? 'open' : '';
                                 Suporte / FAQ
                             </a>
                         </li>
+                    </ul>
+                </details>
+            </li>
+            <?php endif; ?>
+
+            <!-- BANNERS -->
+            <?php if ($_isEditorUp): ?>
+            <li class="sidebar__section-accordion">
+                <details <?= $_bannerOpen ?>>
+                    <summary class="sidebar__section-toggle">Banners</summary>
+                    <ul class="sidebar__submenu">
+                        <?php
+                        $bannerItems = [
+                            'inicio'           => 'Banner Início',
+                            'residencial'      => 'Banner Internet Residencial',
+                            'cameras'          => 'Banner Câmeras de Segurança',
+                            'wifimesh'         => 'Banner Wi-Fi Mesh',
+                            'movel'            => 'Banner Plano Móvel',
+                            'rastreamento'     => 'Banner Rastreamento Veicular',
+                            'skeelo'           => 'Banner Skeelo',
+                            'paraempresas'     => 'Banner Para Empresas',
+                            'wifiprofissional' => 'Banner Wi-Fi Profissional',
+                            'telefonia'        => 'Banner Telefonia Empresarial',
+                            'linkdedicado'     => 'Banner Link Dedicado',
+                            'combo'            => 'Banner Combo',
+                            'sobreasernet'     => 'Banner Sobre AserNet',
+                        ];
+                        foreach ($bannerItems as $bKey => $bLabel):
+                            $isActive = ($subRoute === 'banner' && $_bannerPage === $bKey);
+                        ?>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/banner?page=<?= $bKey ?>"
+                               class="sidebar__sublink <?= $isActive ? 'sidebar__sublink--active' : '' ?>">
+                                <?= htmlspecialchars($bLabel) ?>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
                     </ul>
                 </details>
             </li>

@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Comunicação profissional,',
+    'titulo_destaque'    => 'sem complicação.',
+    'titulo_complemento' => '',
+    'texto'              => 'Telefonia empresarial para sua empresa atender melhor, ganhar produtividade e transmitir mais credibilidade.',
+    'bullets'            => ['Linhas fixas empresariais', 'Telefonia SIP/IP', 'Soluções 0800 e 4000', 'Mais mobilidade e flexibilidade'],
+    'preco'              => '',
+    'btn1_texto'         => 'Solicitar proposta',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'telefonia_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_te = [
     'pain_titulo' => 'Sua empresa ainda perde oportunidades por falhas no atendimento?',
@@ -99,24 +127,37 @@ $_trustIcons = ['icon-talk', 'icon-wifi', 'icon-install'];
 ?>
 
 <section class="telefonia-page">
-    <div class="telefonia-page__hero">
+    <div class="telefonia-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/telefonia/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
-            <div class="telefonia-page__hero-copy">
-                <span>Telefonia empresarial</span>
-                <h1>Comunicação profissional, <strong>sem complicação.</strong></h1>
-                <p>Telefonia empresarial para sua empresa atender melhor, ganhar produtividade e transmitir mais credibilidade.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="telefonia-page__hero-copy">
+                        <h1 class="telefonia-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="telefonia-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
-                <ul>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Linhas fixas empresariais</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Telefonia SIP/IP</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Soluções 0800 e 4000</li>
-                    <li><i class="icon-checkmark" aria-hidden="true"></i>Mais mobilidade e flexibilidade</li>
-                </ul>
+                        <?php if (!empty($_bn['bullets'])): ?>
+                        <ul class="telefonia-page__hero-list">
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
 
-                <div class="telefonia-page__hero-actions">
-                    <a class="telefonia-page__button telefonia-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20solicitar%20uma%20proposta%20de%20Telefonia%20Empresarial." target="_blank" rel="noopener">Solicitar proposta <i class="icon-arrowright" aria-hidden="true"></i></a>
-                    <a class="telefonia-page__button telefonia-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="telefonia-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
+
+                        <div class="telefonia-page__hero-actions">
+                            <a class="telefonia-page__button telefonia-page__button--primary" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20solicitar%20uma%20proposta%20de%20Telefonia%20Empresarial." target="_blank" rel="noopener"><?= htmlspecialchars($_bn['btn1_texto']) ?> <i class="icon-arrowright" aria-hidden="true"></i></a>
+                            <a class="telefonia-page__button telefonia-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-7 col-md-6" aria-hidden="true"></div>
             </div>
         </div>
     </div>

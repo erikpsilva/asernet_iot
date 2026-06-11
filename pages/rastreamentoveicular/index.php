@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Mais controle.',
+    'titulo_destaque'    => 'Mais segurança.',
+    'titulo_complemento' => 'Onde você estiver.',
+    'texto'              => 'Rastreadores inteligentes para proteger o que importa e ter o controle total na palma da sua mão.',
+    'bullets'            => ['Localização em tempo real', 'Bloqueio remoto', 'Histórico de rotas', 'Cerca eletrônica', 'Alerta de movimento'],
+    'preco'              => '',
+    'btn1_texto'         => 'Falar com um especialista',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'rastreamento_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 /* ---- defaults ---- */
 $_tv = [
     'quick_items' => [
@@ -116,25 +144,37 @@ $_planMods   = ['', ' tracking-page__plan--featured', ' tracking-page__plan--tag
 ?>
 
 <section class="tracking-page">
-    <div class="tracking-page__hero">
+    <div class="tracking-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/rastreamento/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
-            <div class="tracking-page__hero-copy">
-                <span>Rastreamento veicular e tag de segurança</span>
-                <h1>Mais controle. <strong>Mais segurança.</strong> Onde você estiver.</h1>
-                <p>Rastreadores inteligentes para proteger o que importa e ter o controle total na palma da sua mão.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="tracking-page__hero-copy">
+                        <h1 class="tracking-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="tracking-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
-                <div class="tracking-page__hero-features">
-                    <article><i class="icon-pin" aria-hidden="true"></i><span>Localização em tempo real</span></article>
-                    <article><i class="icon-security" aria-hidden="true"></i><span>Bloqueio remoto</span></article>
-                    <article><i class="icon-clock" aria-hidden="true"></i><span>Histórico de rotas</span></article>
-                    <article><i class="icon-carpin" aria-hidden="true"></i><span>Cerca eletrônica</span></article>
-                    <article><i class="icon-support" aria-hidden="true"></i><span>Alerta de movimento</span></article>
-                </div>
+                        <?php if (!empty($_bn['bullets'])): ?>
+                        <ul class="tracking-page__hero-list">
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
 
-                <div class="tracking-page__hero-actions">
-                    <a class="tracking-page__button tracking-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar com um especialista</a>
-                    <a class="tracking-page__button tracking-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="tracking-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
+
+                        <div class="tracking-page__hero-actions">
+                            <a class="tracking-page__button tracking-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="tracking-page__button tracking-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-7 col-md-6" aria-hidden="true"></div>
             </div>
         </div>
     </div>

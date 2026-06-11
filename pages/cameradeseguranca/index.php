@@ -1,4 +1,32 @@
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Segurança de verdade,',
+    'titulo_destaque'    => 'sem complicação.',
+    'titulo_complemento' => '',
+    'texto'              => 'Monitore sua casa ou empresa em tempo real, direto pelo celular.',
+    'bullets'            => ['Instalação inclusa', 'Acesso remoto pelo aplicativo', 'Equipamentos inclusos em comodato', 'Suporte AserNet'],
+    'preco'              => 'Planos a partir de R$ 49,90/mês',
+    'btn1_texto'         => 'Quero proteger meu imóvel',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'cameras_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 $_cc = [
     'dor_titulo'   => 'Você nem sempre consegue estar presente.',
     'dor_destaque' => 'Mas sua segurança pode.',
@@ -101,26 +129,33 @@ try {
 <?php include ROOT . '/includes/header/header.php';?>
 
 <section class="camera-security">
-    <div class="camera-security__hero">
+    <div class="camera-security__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/cameras/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="camera-security__hero-copy">
-                        <h1 class="camera-security__hero-title">Segurança de verdade, sem complicação.</h1>
-                        <p class="camera-security__hero-text">Monitore sua casa ou empresa em tempo real, direto pelo celular.</p>
+                        <h1 class="camera-security__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="camera-security__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
+                        <?php if (!empty($_bn['bullets'])): ?>
                         <ul class="camera-security__hero-list">
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Instalação inclusa</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Acesso remoto pelo aplicativo</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Equipamentos inclusos em comodato</li>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Suporte AserNet</li>
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
                         </ul>
+                        <?php endif; ?>
 
-                        <p class="camera-security__hero-price">Planos a partir de <strong>R$ 49,90<small>/mês</small></strong></p>
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="camera-security__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
                         <div class="camera-security__hero-actions">
-                            <a class="camera-security__button camera-security__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-security" aria-hidden="true"></i>Quero proteger meu imóvel</a>
-                            <a class="camera-security__button camera-security__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                            <a class="camera-security__button camera-security__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-security" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="camera-security__button camera-security__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
                 </div>

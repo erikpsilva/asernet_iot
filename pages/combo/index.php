@@ -12,6 +12,34 @@
 <?php include ROOT . '/includes/header/header.php';?>
 
 <?php
+// ── Banner (hero) ──────────────────────────────────────────────────────────
+$_bn = [
+    'titulo'             => 'Mais que internet.',
+    'titulo_destaque'    => 'Soluções completas',
+    'titulo_complemento' => 'para você.',
+    'texto'              => 'Conectividade, segurança e tecnologia trabalhando juntas para facilitar o seu dia a dia.',
+    'bullets'            => ['Mais segurança para sua família e empresa', 'Conectividade estável e de alta performance', 'Suporte próximo e atendimento especializado'],
+    'preco'              => '',
+    'btn1_texto'         => 'Falar no WhatsApp',
+    'btn2_texto'         => '0800 222 5262',
+    'imagem'             => '',
+];
+try {
+    require_once ROOT . '/config/database.php';
+    $_s_bn = getDbConnection()->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'combo_banner' LIMIT 1");
+    $_s_bn->execute(); $_r_bn = $_s_bn->fetch();
+    if ($_r_bn && !empty($_r_bn['setting_value'])) {
+        $_d_bn = json_decode($_r_bn['setting_value'], true);
+        if (is_array($_d_bn)) {
+            foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
+                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+            }
+            if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
+        }
+    }
+    unset($_s_bn, $_r_bn, $_d_bn, $_k);
+} catch (Throwable $e) {}
+
 $_cb = [
     'intro_titulo' => 'Escolha o combo ideal para voc&ecirc;',
     'intro_texto'  => 'Solu&ccedil;&otilde;es integradas que trabalham juntas para entregar mais seguran&ccedil;a, estabilidade e praticidade no seu dia a dia.',
@@ -88,24 +116,33 @@ $_cbTrustIcons = ['icon-group', 'icon-pin', 'icon-security'];
 ?>
 
 <section class="combo-page">
-    <div class="combo-page__hero">
+    <div class="combo-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/combo/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="combo-page__hero-copy">
-                        <span class="combo-page__eyebrow">Soluções completas</span>
-                        <h1 class="combo-page__hero-title">Mais que internet. <strong>Soluções completas</strong> para você.</h1>
-                        <p class="combo-page__hero-text">Conectividade, segurança e tecnologia trabalhando juntas para facilitar o seu dia a dia.</p>
+                        <h1 class="combo-page__hero-title">
+                            <?= htmlspecialchars($_bn['titulo']) ?>
+                            <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
+                            <?php if (!empty($_bn['titulo_complemento'])): ?><?= htmlspecialchars($_bn['titulo_complemento']) ?><?php endif; ?>
+                        </h1>
+                        <p class="combo-page__hero-text"><?= htmlspecialchars($_bn['texto']) ?></p>
 
-                        <div class="combo-page__hero-benefits">
-                            <article><i class="icon-security" aria-hidden="true"></i><span>Mais segurança para sua família e empresa</span></article>
-                            <article><i class="icon-wifi" aria-hidden="true"></i><span>Conectividade estável e de alta performance</span></article>
-                            <article><i class="icon-customersupport" aria-hidden="true"></i><span>Suporte próximo e atendimento especializado</span></article>
-                        </div>
+                        <?php if (!empty($_bn['bullets'])): ?>
+                        <ul class="combo-page__hero-list">
+                            <?php foreach ($_bn['bullets'] as $_b): ?>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
+
+                        <?php if (!empty($_bn['preco'])): ?>
+                        <p class="combo-page__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
+                        <?php endif; ?>
 
                         <div class="combo-page__hero-actions">
-                            <a class="combo-page__button combo-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
-                            <a class="combo-page__button combo-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                            <a class="combo-page__button combo-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="combo-page__button combo-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
                 </div>
