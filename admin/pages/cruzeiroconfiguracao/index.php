@@ -4,12 +4,13 @@
 <head>
 <title>AserNet - Admin - Config. do Sorteio</title>
 <?php include ROOT . '/admin/includes/assets.php'; ?>
-<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <style>
-.ql-editor strong { font-weight: 600 !important; }
-.ql-snow .ql-editor { min-height: 220px; font-family: inherit; font-size: 14px; line-height: 1.6; color: #06133c; }
-.ql-toolbar.ql-snow { border-radius: 6px 6px 0 0; border-color: #d0daea; background: #f7faff; }
-.ql-container.ql-snow { border-radius: 0 0 6px 6px; border-color: #d0daea; }
+.regulamentoPdf__box { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#f4f8ff; border:1px solid #d0daea; border-radius:6px; font-size:13px; color:#06133c; }
+.regulamentoPdf__box i { color:#075fff; font-size:22px; flex-shrink:0; }
+.regulamentoPdf__info { flex:1; min-width:0; }
+.regulamentoPdf__info strong { display:block; font-size:13px; }
+.regulamentoPdf__info a { font-size:12px; color:#075fff; }
+.regulamentoPdf__actions { display:flex; gap:8px; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -40,15 +41,26 @@
                     </div>
                     <div class="col-md-12">
                         <div class="formGroup__item">
-                            <label>Título</label>
+                            <label>Título exibido no modal</label>
                             <input class="input" type="text" id="regulamentoTitulo" placeholder="Ex.: Regulamento da Promoção Cruzeiro AserNet">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="formGroup__item">
-                            <label>Texto do regulamento</label>
-                            <div id="quillEditor"></div>
-                            <input type="hidden" id="regulamentoTexto">
+                            <label>Arquivo PDF do regulamento</label>
+                            <div class="regulamentoPdf__box" id="regulamentoPdfBox">
+                                <i class="icon-calendar" aria-hidden="true"></i>
+                                <div class="regulamentoPdf__info">
+                                    <strong id="regulamentoPdfNome">Nenhum arquivo enviado</strong>
+                                    <a id="regulamentoPdfVer" href="#" target="_blank" style="display:none">Visualizar PDF atual</a>
+                                </div>
+                            </div>
+                            <div class="regulamentoPdf__actions">
+                                <input type="file" id="regulamentoPdfInput" accept="application/pdf" style="display:none">
+                                <button type="button" class="btn btn--secondary" id="btnUploadPdf">Enviar novo PDF</button>
+                                <span id="pdfUploadFeedback" style="font-size:13px;line-height:36px;"></span>
+                            </div>
+                            <small style="color:#8a9ab8;font-size:12px;margin-top:4px;display:block;">Máximo 10 MB. O arquivo substituirá o PDF anterior.</small>
                         </div>
                     </div>
 
@@ -66,7 +78,6 @@
 
 <?php include ROOT . '/admin/includes/footer/footer.php'; ?>
 <?php include ROOT . '/admin/includes/scripts.php'; ?>
-<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 <script>
     var ADMIN_BASE_URL = "<?= ADMIN_BASE_URL ?>";
     var BASE_URL       = "<?= BASE_URL ?>";

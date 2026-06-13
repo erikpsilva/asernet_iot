@@ -32,7 +32,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -109,7 +109,7 @@ $_perfIcons  = ['icon-wificobertura', 'icon-wifi', 'icon-wifiestavel', 'icon-dev
 ?>
 
 <section class="wifi-mesh">
-    <div class="wifi-mesh__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/wifimesh/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <div class="wifi-mesh__hero"<?= !empty($_bn['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/wifimesh/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
@@ -251,24 +251,14 @@ $_perfIcons  = ['icon-wificobertura', 'icon-wifi', 'icon-wifiestavel', 'icon-dev
                 <div class="wifi-mesh__cta-box">
                     <h2>Sua casa inteira conectada de verdade.</h2>
                     <div class="wifi-mesh__cta-actions">
-                        <a class="wifi-mesh__cta-button wifi-mesh__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="wifi-mesh__cta-button wifi-mesh__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="wifi-mesh__cta-button" href="<?= BASE_URL ?>/carrinho" data-cart-add data-cart-id="wifi-mesh-kit" data-cart-group="wifi-mesh" data-cart-title="Wi-Fi Mesh" data-cart-subtitle="Cobertura inteligente residencial" data-cart-price="A partir de R$ 139,90/m&ecirc;s" data-cart-icon="icon-wifimesh" data-cart-url="<?= BASE_URL ?>/wifimesh"><i class="icon-calendar" aria-hidden="true"></i><span>Solicitar análise técnica</span></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="wifi-mesh__trust">
-            <div class="container">
-                <div class="wifi-mesh__trust-box">
-                    <div class="wifi-mesh__google">
-                        <img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google">
-                        <p><strong>+ de 3.000 avaliações</strong><br>no Google</p>
-                    </div>
-                    <article><i class="icon-customersupport" aria-hidden="true"></i><h3>Atendimento local de verdade</h3></article>
-                </div>
-            </div>
-        </section>
+        <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
     </div>
 </section>
 

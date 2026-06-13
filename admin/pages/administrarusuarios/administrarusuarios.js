@@ -1,7 +1,7 @@
 $(function () {
     var API = ADMIN_BASE_URL + '/services/api/users';
 
-    var nivelLabel = { admin: 'Admin', editor: 'Editor', leitor: 'Leitor' };
+    var nivelLabel = { admin: 'Admin', editor: 'Editor', cruzeiro: 'Cruzeiro', leitor: 'Leitor' };
 
     // ── Masks ─────────────────────────────────────────────────────────────
     function maskCpf(el) {

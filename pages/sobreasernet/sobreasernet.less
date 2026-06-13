@@ -3,13 +3,14 @@
     color: #06133c;
 
     &__hero {
+        --about-hero-image: url("../images/sobre/imgTopoBanner.png");
         min-height: 565px;
         display: flex;
         align-items: center;
         overflow: hidden;
         background:
-            linear-gradient(90deg, rgba(3, 11, 27, .99) 0%, rgba(3, 11, 27, .94) 33%, rgba(3, 11, 27, .42) 58%, rgba(3, 11, 27, .02) 100%),
-            url("../images/sobre/imgTopoBanner.png") right center / auto 104% no-repeat,
+            linear-gradient(90deg, rgba(3, 11, 27, .98) 0%, rgba(3, 11, 27, .92) 31%, rgba(3, 11, 27, .44) 51%, rgba(3, 11, 27, .05) 100%),
+            var(--about-hero-image) 70% center / auto 100% no-repeat,
             #030b1b;
     }
 
@@ -27,7 +28,7 @@
 
         h1 {
             color: @white;
-            font-size: 48px;
+            font-size: 45px;
             font-weight: @semi-bold;
             line-height: 1.08;
         }
@@ -424,7 +425,7 @@
 
     &__team-grid {
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 10px;
 
         img {
@@ -433,6 +434,10 @@
             display: block;
             object-fit: cover;
             border-radius: 6px;
+        }
+
+        img:nth-child(n+5) {
+            display: none;
         }
     }
 
@@ -524,7 +529,7 @@
             align-items: flex-start;
             background:
                 linear-gradient(180deg, rgba(3, 11, 27, 1) 0%, rgba(3, 11, 27, .98) 57%, rgba(3, 11, 27, .55) 78%, rgba(3, 11, 27, .1) 100%),
-                url("../images/sobre/imgTopoBanner.png") center bottom / 100% auto no-repeat,
+                var(--about-hero-image) center bottom / 100% auto no-repeat,
                 #030b1b;
         }
 

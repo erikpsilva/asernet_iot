@@ -2,40 +2,90 @@
 
 define('ROOT', __DIR__);
 
-// Detecta ambiente: local → dev → produção
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-    define('BASE_URL', 'http://localhost/asernet_iot');
-} elseif (strpos($_SERVER['REQUEST_URI'], '/dev') === 0) {
-    define('BASE_URL', 'https://asernet.com.br/dev');
-} else {
-    define('BASE_URL', 'https://asernet.com.br');
+// Sessão inicializada aqui uma vez para todas as páginas roteadas.
+// Serviços servidos diretamente pelo Apache (admin/services/*.php)
+// têm seu próprio session_start com o mesmo path.
+if (session_status() === PHP_SESSION_NONE) {
+    $__sessDir = __DIR__ . '/sessions';
+    if (!is_dir($__sessDir)) @mkdir($__sessDir, 0755, true);
+    if (is_dir($__sessDir) && is_writable($__sessDir)) {
+        ini_set('session.save_path', $__sessDir);
+    }
+    session_start();
+    unset($__sessDir);
 }
+
+$_https    = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+          || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+$_scheme   = $_https ? 'https' : 'http';
+$_host     = $_SERVER['HTTP_HOST'];  // já inclui porta se não-padrão (ex: localhost:3000)
+$_basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+define('BASE_URL', $_scheme . '://' . $_host . $_basePath);
+unset($_https, $_scheme, $_host, $_basePath);
 
 define('ADMIN_BASE_URL', BASE_URL . '/admin');
 
-// Captura a rota da URL (parâmetro 'url') e divide por "/"
-$route = explode("/", $_GET['url'] ?? 'inicio');
-
-// Filtra caracteres perigosos da rota principal
+$route     = explode('/', $_GET['url'] ?? 'inicio');
 $mainRoute = preg_replace('/[^a-zA-Z0-9_-]/', '', $route[0]);
 
-// Verifica se é uma rota do admin
+// ── Admin ──────────────────────────────────────────────────────────────────
 if ($mainRoute === 'admin') {
-    $subRoute = isset($route[1]) && $route[1] !== '' ? preg_replace('/[^a-zA-Z0-9_-]/', '', $route[1]) : 'login';
-    $basePathAdmin = ROOT . '/admin/pages/';
 
-    if (file_exists("{$basePathAdmin}{$subRoute}/index.php")) {
-        include "{$basePathAdmin}{$subRoute}/index.php";
-    } else {
-        include "{$basePathAdmin}login/index.php";
+    $subRoute = (isset($route[1]) && $route[1] !== '')
+        ? preg_replace('/[^a-zA-Z0-9_-]/', '', $route[1])
+        : 'login';
+
+    // admin/services/... → inclui o arquivo de serviço diretamente
+    if ($subRoute === 'services') {
+        $segments = array_map(function ($s) {
+            return preg_replace('/[^a-zA-Z0-9_.\-]/', '', $s);
+        }, array_slice($route, 1));
+
+        $svcPath = ROOT . '/admin/' . implode('/', $segments);
+
+        if (substr($svcPath, -4) === '.php' && file_exists($svcPath)) {
+            include $svcPath;
+        } else {
+            http_response_code(404);
+            header('Content-Type: application/json');
+            echo json_encode(['ok' => false, 'message' => 'Serviço não encontrado.']);
+        }
+        exit;
     }
+
+    // admin/{page} → página do admin
+    $adminPage = ROOT . '/admin/pages/' . $subRoute . '/index.php';
+    include file_exists($adminPage) ? $adminPage : ROOT . '/admin/pages/login/index.php';
+
+// ── Serviços públicos ──────────────────────────────────────────────────────
+} elseif ($mainRoute === 'services') {
+
+    $segments = array_map(function ($s) {
+        return preg_replace('/[^a-zA-Z0-9_.\-]/', '', $s);
+    }, $route);
+
+    $svcPath = ROOT . '/' . implode('/', $segments);
+
+    if (substr($svcPath, -4) === '.php' && file_exists($svcPath)) {
+        include $svcPath;
+    } else {
+        http_response_code(404);
+        header('Content-Type: application/json');
+        echo json_encode(['ok' => false, 'message' => 'Serviço não encontrado.']);
+    }
+    exit;
+
+// ── Redirecionamentos externos ─────────────────────────────────────────────
+} elseif ($mainRoute === 'vagas') {
+
+    header('Location: https://asernet.vagas.solides.com.br/', true, 301);
+    exit;
+
+// ── Páginas públicas ───────────────────────────────────────────────────────
 } else {
-    $basePathPages = ROOT . '/pages/';
 
-    if (file_exists("{$basePathPages}{$mainRoute}/index.php")) {
-        include "{$basePathPages}{$mainRoute}/index.php";
-    } else {
-        include "{$basePathPages}inicio/index.php";
-    }
+    $publicPage = ROOT . '/pages/' . $mainRoute . '/index.php';
+    include file_exists($publicPage) ? $publicPage : ROOT . '/pages/inicio/index.php';
+
 }
 ?>

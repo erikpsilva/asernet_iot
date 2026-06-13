@@ -57,7 +57,7 @@ function _faqCardClass(string $m): string {
                     <article><i class="icon-customersupport" aria-hidden="true"></i><span><strong>Equipe especializada</strong>Profissionais preparados para ajudar voc&ecirc;.</span></article>
                 </div>
 
-                <a class="faq-page__hero-whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                <a class="faq-page__hero-whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
             </div>
         </div>
     </div>
@@ -97,17 +97,7 @@ function _faqCardClass(string $m): string {
             </div>
         </section>
 
-        <section class="faq-page__trust">
-            <div class="container">
-                <div class="faq-page__trust-grid">
-                    <div class="faq-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>+ de 3.000 avalia&ccedil;&otilde;es</strong><br>no Google</p></div>
-                    <article><i class="icon-pin" aria-hidden="true"></i>Atendimento local de verdade</article>
-                    <article><i class="icon-setting" aria-hidden="true"></i>Instala&ccedil;&atilde;o profissional</article>
-                    <article><i class="icon-group" aria-hidden="true"></i>Equipe especializada</article>
-                    <article><i class="icon-gear" aria-hidden="true"></i>Solu&ccedil;&otilde;es completas para voc&ecirc;</article>
-                </div>
-            </div>
-        </section>
+        <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
         <section class="faq-page__cta">
             <div class="container">
@@ -118,26 +108,10 @@ function _faqCardClass(string $m): string {
                         <p>Fale com a nossa equipe. Estamos prontos para ajudar!</p>
                     </div>
                     <div class="faq-page__cta-actions">
-                        <a class="faq-page__cta-button faq-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="faq-page__cta-button faq-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="faq-page__cta-button" href="<?= BASE_URL ?>/contato"><i class="icon-talk" aria-hidden="true"></i><span>Abrir atendimento</span></a>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="faq-page__footer">
-            <div class="container">
-                <div class="faq-page__footer-grid">
-                    <div>
-                        <img src="<?= BASE_URL ?>/images/logo-transparent.png" alt="AserNet">
-                        <p>Mais que internet. Solu&ccedil;&otilde;es completas em conectividade, seguran&ccedil;a, mobilidade e tecnologia para sua casa ou empresa.</p>
-                    </div>
-                    <nav><h2>Solu&ccedil;&otilde;es</h2><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a><a href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a><a href="<?= BASE_URL ?>/wifiprofissional">Wi-Fi Profissional</a><a href="<?= BASE_URL ?>/cameradeseguranca">C&acirc;meras de Seguran&ccedil;a</a><a href="<?= BASE_URL ?>/rastreamentoveicular">Rastreamento Veicular</a><a href="<?= BASE_URL ?>/planomovel">Aser Mobile</a></nav>
-                    <nav><h2>Institucional</h2><a href="<?= BASE_URL ?>/sobre">Sobre a AserNet</a><a href="<?= BASE_URL ?>/contato">Trabalhe Conosco</a><a href="<?= BASE_URL ?>/politica-de-privacidade">Pol&iacute;tica de Privacidade</a><a href="<?= BASE_URL ?>/termos-de-uso">Termos de Uso</a></nav>
-                    <nav><h2>Suporte</h2><a href="<?= BASE_URL ?>/faq">Perguntas Frequentes</a><a href="<?= BASE_URL ?>/contato">Central do Cliente</a><a href="<?= BASE_URL ?>/contato">Abrir Atendimento</a><a href="<?= BASE_URL ?>/contato">Canais de Atendimento</a></nav>
-                    <address><h2>Atendimento</h2><a href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a><a href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>0800 222 5262</a><a href="mailto:atendimento@asernet.com.br"><i class="icon-talk" aria-hidden="true"></i>atendimento@asernet.com.br</a></address>
-                </div>
-                <p class="faq-page__copyright">&copy; 2024 AserNet. Todos os direitos reservados.</p>
             </div>
         </section>
     </div>

@@ -1,5 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
+require_once dirname(__FILE__, 3) . '/_session.php';
 header('Content-Type: application/json');
 
 require_once dirname(__FILE__, 5) . '/config/api_security.php';

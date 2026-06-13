@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-if (session_status() === PHP_SESSION_NONE) session_start();
+require_once dirname(__FILE__, 3) . '/_session.php';
 
 require_once dirname(__FILE__, 3) . '/response.php';
 
 if (empty($_SESSION['usuario'])) {
     json_response(['ok' => false, 'message' => 'Nao autorizado.'], 401);
 }
-if (!in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor'])) {
+if (!in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor', 'leitor'])) {
     json_response(['ok' => false, 'message' => 'Permissao negada.'], 403);
 }
 

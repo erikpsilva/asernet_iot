@@ -32,7 +32,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -116,7 +116,7 @@ $_trustIcons   = ['icon-group', 'icon-cloud'];
 ?>
 
 <main class="skeelo-page">
-    <section class="skeelo-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/skeelo/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <section class="skeelo-page__hero"<?= !empty($_bn['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/skeelo/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
@@ -230,24 +230,7 @@ $_trustIcons   = ['icon-group', 'icon-cloud'];
         </div>
     </section>
 
-    <section class="skeelo-page__trust">
-        <div class="container">
-            <div class="skeelo-page__trust-box">
-                <div class="skeelo-page__google">
-                    <img src="<?= BASE_URL ?>/images/skeelo/logoGoogle.png" alt="Google">
-                    <p><strong><?= htmlspecialchars($_sk['trust_google']) ?></strong></p>
-                </div>
-                <article>
-                    <i class="<?= $_trustIcons[0] ?>" aria-hidden="true"></i>
-                    <span><?= htmlspecialchars($_sk['trust_item1']) ?></span>
-                </article>
-                <article>
-                    <i class="<?= $_trustIcons[1] ?>" aria-hidden="true"></i>
-                    <span><?= htmlspecialchars($_sk['trust_item2']) ?></span>
-                </article>
-            </div>
-        </div>
-    </section>
+    <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 </main>
 
 <?php include ROOT . '/includes/footer/footer.php';?>

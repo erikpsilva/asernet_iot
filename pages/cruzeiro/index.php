@@ -1,18 +1,18 @@
 <?php
 $sorteioDateJs     = '2027-01-31T00:00:00-03:00';
 $regulamentoTitulo = 'Regulamento da Promo&ccedil;&atilde;o';
-$regulamentoTexto  = '<p>O regulamento ainda n&atilde;o foi cadastrado.</p>';
+$regulamentoPdfUrl = '';
 
 try {
     require_once ROOT . '/config/database.php';
     $_pdo  = getDbConnection();
-    $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_texto')");
+    $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_pdf')");
     $_cfg  = [];
     foreach ($_stmt->fetchAll() as $r) { $_cfg[$r['setting_key']] = $r['setting_value']; }
 
-    if (!empty($_cfg['sorteio_date']))      $sorteioDateJs     = addslashes($_cfg['sorteio_date']) . '-03:00';
-    if (!empty($_cfg['regulamento_titulo'])) $regulamentoTitulo = htmlspecialchars($_cfg['regulamento_titulo'], ENT_QUOTES, 'UTF-8');
-    if (!empty($_cfg['regulamento_texto']))  $regulamentoTexto  = $_cfg['regulamento_texto'];
+    if (!empty($_cfg['sorteio_date']))       $sorteioDateJs     = addslashes($_cfg['sorteio_date']) . '-03:00';
+    if (!empty($_cfg['regulamento_titulo']))  $regulamentoTitulo = htmlspecialchars($_cfg['regulamento_titulo'], ENT_QUOTES, 'UTF-8');
+    if (!empty($_cfg['regulamento_pdf']))     $regulamentoPdfUrl = BASE_URL . '/uploads/regulamento/' . rawurlencode($_cfg['regulamento_pdf']);
 
     unset($_pdo, $_stmt, $_cfg);
 } catch (Throwable $_e) {
@@ -142,7 +142,7 @@ try {
             <div class="cruise-page__referral-box">
                 <div><i class="icon-star" aria-hidden="true"></i><h2>Indique amigos e aumente suas chances de ganhar!</h2></div>
                 <p>Cada novo cliente indicado = mais n&uacute;meros da sorte para voc&ecirc;.</p>
-                <a href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Quero indicar amigos</a>
+                <a href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>Quero indicar amigos</a>
             </div>
             <p class="cruise-page__rule" id="regulamento"><i class="icon-security" aria-hidden="true"></i>Promo&ccedil;&atilde;o v&aacute;lida de 01/06/2024 a 31/12/2026. Consulte o regulamento completo.</p>
         </div>
@@ -158,7 +158,16 @@ try {
             <h2 id="modalRegTitle"><?= $regulamentoTitulo ?></h2>
         </div>
         <div class="cruise-modal__regulamento-body" id="regulamentoBody">
-            <?= $regulamentoTexto ?>
+            <?php if ($regulamentoPdfUrl): ?>
+            <div class="cruise-modal__pdf-wrap">
+                <iframe src="<?= $regulamentoPdfUrl ?>" title="Regulamento PDF" class="cruise-modal__pdf-iframe"></iframe>
+                <a href="<?= $regulamentoPdfUrl ?>" target="_blank" rel="noopener" class="cruise-modal__pdf-link">
+                    <i class="icon-calendar" aria-hidden="true"></i> Abrir PDF em nova aba
+                </a>
+            </div>
+            <?php else: ?>
+            <p>O regulamento ainda n&atilde;o foi cadastrado.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -261,11 +270,10 @@ try {
     </div>
 </div>
 
+<?php include ROOT . '/includes/footer/footer.php';?>
 <?php include ROOT . '/includes/scripts.php';?>
 <script>
-    var SORTEIO_DATE         = "<?= $sorteioDateJs ?>";
-    var REGULAMENTO_TITULO   = "<?= $regulamentoTitulo ?>";
-    var REGULAMENTO_TEXTO    = <?= json_encode($regulamentoTexto, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;
+    var SORTEIO_DATE = "<?= $sorteioDateJs ?>";
 </script>
 <?php
 $version = time();

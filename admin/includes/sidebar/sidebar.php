@@ -1,11 +1,13 @@
 <?php
-$_nivel      = $_SESSION['usuario']['nivel_acesso'];
-$_isAdmin    = $_nivel === 'admin';
-$_isEditorUp = in_array($_nivel, ['admin', 'editor']);
+$_nivel          = $_SESSION['usuario']['nivel_acesso'];
+$_isAdmin        = $_nivel === 'admin';
+$_isEditorUp     = in_array($_nivel, ['admin', 'editor']);
+$_isCruzeiroUp   = in_array($_nivel, ['admin', 'editor', 'cruzeiro']);
+$_canSeeConteudo = in_array($_nivel, ['admin', 'editor', 'leitor']);
 
 $_crzRoutes        = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
 $_plataformaRoutes = ['meusdados', 'administrarusuarios', 'cadastrarusuario', 'configuracoes'];
-$_conteudoRoutes   = ['conteudoinicio', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial', 'conteudolinkdedicado', 'conteudocombo', 'conteudosobreasernet', 'conteudosuporte'];
+$_conteudoRoutes   = ['conteudoinicio', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial', 'conteudolinkdedicado', 'conteudocombo', 'conteudosobreasernet', 'conteudosuporte', 'conteudocontratoseregulamentos'];
 
 $_plataformaOpen = in_array($subRoute, $_plataformaRoutes) ? 'open' : '';
 $_cruzeiroOpen   = in_array($subRoute, $_crzRoutes)        ? 'open' : '';
@@ -63,7 +65,7 @@ $_bannerPage     = $_GET['page'] ?? '';
             </li>
 
             <!-- CONTEÚDO -->
-            <?php if ($_isEditorUp): ?>
+            <?php if ($_canSeeConteudo): ?>
             <li class="sidebar__section-accordion">
                 <details <?= $_conteudoOpen ?>>
                     <summary class="sidebar__section-toggle">Conteúdo</summary>
@@ -152,13 +154,19 @@ $_bannerPage     = $_GET['page'] ?? '';
                                 Suporte / FAQ
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudocontratoseregulamentos"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudocontratoseregulamentos') ? 'sidebar__sublink--active' : '' ?>">
+                                Contratos e Regulamentos
+                            </a>
+                        </li>
                     </ul>
                 </details>
             </li>
             <?php endif; ?>
 
             <!-- BANNERS -->
-            <?php if ($_isEditorUp): ?>
+            <?php if ($_canSeeConteudo): ?>
             <li class="sidebar__section-accordion">
                 <details <?= $_bannerOpen ?>>
                     <summary class="sidebar__section-toggle">Banners</summary>
@@ -195,20 +203,18 @@ $_bannerPage     = $_GET['page'] ?? '';
             <?php endif; ?>
 
             <!-- CRUZEIRO -->
-            <?php if ($_isEditorUp): ?>
+            <?php if ($_isCruzeiroUp): ?>
             <li class="sidebar__section-accordion">
                 <details <?= $_cruzeiroOpen ?>>
                     <summary class="sidebar__section-toggle">Cruzeiro</summary>
                     <ul class="sidebar__submenu">
 
-                        <?php if ($_isAdmin): ?>
                         <li>
                             <a href="<?= BASE_URL ?>/admin/cruzeiroconfiguracao"
                                class="sidebar__sublink <?= ($subRoute === 'cruzeiroconfiguracao') ? 'sidebar__sublink--active' : '' ?>">
                                 Configurações
                             </a>
                         </li>
-                        <?php endif; ?>
                         <li>
                             <a href="<?= BASE_URL ?>/admin/cadastronumero"
                                class="sidebar__sublink <?= ($subRoute === 'cadastronumero') ? 'sidebar__sublink--active' : '' ?>">

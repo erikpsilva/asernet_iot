@@ -28,7 +28,7 @@ function validateApiAccess(array $allowedOrigins): void {
         // Sem header Origin = mesma origem (same-origin request)
         // Valida pelo Referer como fallback
         foreach ($allowedOrigins as $allowed) {
-            if (str_starts_with($referer, $allowed)) {
+            if (strpos($referer, $allowed) === 0) {
                 $originAllowed = true;
                 break;
             }

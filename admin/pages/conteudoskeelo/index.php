@@ -1,6 +1,6 @@
-<?php include ROOT . '/admin/includes/auth_check.php'; ?>
+﻿<?php include ROOT . '/admin/includes/auth_check.php'; ?>
 <?php
-if (!in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor'])) {
+if (!in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor', 'leitor'])) {
     header('Location: ' . BASE_URL . '/admin/inicio');
     exit;
 }

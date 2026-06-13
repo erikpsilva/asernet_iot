@@ -117,7 +117,7 @@
             </nav>
 
             <div class="header__actions">
-                <a class="header__whatsapp" href="https://wa.me/5508002225262">
+                <a class="header__whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener">
                     <i class="icon-whatsapp" aria-hidden="true"></i>
                     <span>Falar no WhatsApp</span>
                 </a>

@@ -32,7 +32,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -116,7 +116,7 @@ $_featIcons = ['icon-wifiestavel', 'icon-monitoramento', 'icon-wificobertura'];
 ?>
 
 <section class="wifi-pro-page">
-    <div class="wifi-pro-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/wifiprofissional/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <div class="wifi-pro-page__hero"<?= !empty($_bn['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/wifiprofissional/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
@@ -267,7 +267,7 @@ $_featIcons = ['icon-wifiestavel', 'icon-monitoramento', 'icon-wificobertura'];
                         <p>Fale com um consultor e solicite uma análise técnica.</p>
                     </div>
                     <div class="wifi-pro-page__cta-actions">
-                        <a class="wifi-pro-page__cta-button wifi-pro-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="wifi-pro-page__cta-button wifi-pro-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="wifi-pro-page__cta-button" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><span>Ligar gratuitamente <strong>0800 222 5262</strong></span></a>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-if (session_status() === PHP_SESSION_NONE) session_start();
+require_once dirname(__FILE__, 3) . '/_session.php';
 
 require_once dirname(__FILE__, 3) . '/response.php';
 

@@ -32,7 +32,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -116,7 +116,7 @@ $_cbTrustIcons = ['icon-group', 'icon-pin', 'icon-security'];
 ?>
 
 <section class="combo-page">
-    <div class="combo-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/combo/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <div class="combo-page__hero"<?= !empty($_bn['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/combo/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
@@ -141,7 +141,7 @@ $_cbTrustIcons = ['icon-group', 'icon-pin', 'icon-security'];
                         <?php endif; ?>
 
                         <div class="combo-page__hero-actions">
-                            <a class="combo-page__button combo-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="combo-page__button combo-page__button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
                             <a class="combo-page__button combo-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
@@ -289,19 +289,7 @@ $_cbTrustIcons = ['icon-group', 'icon-pin', 'icon-security'];
             </div>
         </section>
 
-        <section class="combo-page__trust">
-            <div class="container">
-                <div class="combo-page__trust-grid">
-                    <div class="combo-page__google">
-                        <img src="<?= BASE_URL ?>/images/combos/logoGoogle.png" alt="Google">
-                        <p><?= $_cbh($_cb['trust_google']) ?></p>
-                    </div>
-                    <?php foreach ($_cb['trust_items'] as $i => $item): ?>
-                    <article><i class="<?= $_cbTrustIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><h3><?= $_cbh($item) ?></h3></article>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
+        <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
         <section class="combo-page__cta">
             <div class="container">
@@ -311,7 +299,7 @@ $_cbTrustIcons = ['icon-group', 'icon-pin', 'icon-security'];
                         <p>Fale com um consultor e tenha a combinação perfeita de serviços para sua casa ou empresa.</p>
                     </div>
                     <div class="combo-page__cta-actions">
-                        <a class="combo-page__cta-button combo-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="combo-page__cta-button combo-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="combo-page__cta-button" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><span>Ligar gratuitamente <strong>0800 222 5262</strong></span></a>
                     </div>
                     <div class="combo-page__cta-notes">

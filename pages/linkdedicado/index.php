@@ -32,7 +32,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -132,7 +132,7 @@ $_ldTrustIcons = ['icon-group', 'icon-customersupport', 'icon-install'];
 ?>
 
 <section class="link-dedicado-page">
-    <div class="link-dedicado-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/linkdedicado/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <div class="link-dedicado-page__hero"<?= !empty($_bn['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/linkdedicado/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
@@ -255,16 +255,7 @@ $_ldTrustIcons = ['icon-group', 'icon-customersupport', 'icon-install'];
             </div>
         </section>
 
-        <section class="link-dedicado-page__trust">
-            <div class="container">
-                <div class="link-dedicado-page__trust-grid">
-                    <div class="link-dedicado-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><?= $_ldh($_ld['trust_google']) ?></p></div>
-                    <?php foreach ($_ld['trust_items'] as $i => $item): ?>
-                    <article><i class="<?= $_ldTrustIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><?= $_ldh($item) ?></article>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
+        <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
         <section class="link-dedicado-page__cta">
             <div class="container">
@@ -274,7 +265,7 @@ $_ldTrustIcons = ['icon-group', 'icon-customersupport', 'icon-install'];
                         <p>Fale com um especialista e descubra a melhor solu&ccedil;&atilde;o para o seu neg&oacute;cio.</p>
                     </div>
                     <div class="link-dedicado-page__cta-actions">
-                        <a class="link-dedicado-page__cta-button link-dedicado-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="link-dedicado-page__cta-button link-dedicado-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="link-dedicado-page__cta-button" href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20t%C3%A9cnica%20de%20Link%20Dedicado." target="_blank" rel="noopener"><i class="icon-calendar" aria-hidden="true"></i><span>Solicitar an&aacute;lise t&eacute;cnica</span></a>
                     </div>
                 </div>

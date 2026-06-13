@@ -1,11 +1,11 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
+require_once dirname(__FILE__, 3) . '/_session.php';
 header('Content-Type: application/json');
 
 require_once dirname(__FILE__, 5) . '/config/api_security.php';
 validateApiAccess($ALLOWED_ORIGINS);
 
-if (empty($_SESSION['usuario']) || !in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor'])) {
+if (empty($_SESSION['usuario']) || !in_array($_SESSION['usuario']['nivel_acesso'], ['admin', 'editor', 'leitor'])) {
     http_response_code(403);
     echo json_encode(['ok' => false, 'message' => 'Acesso não autorizado.']);
     exit;
@@ -178,7 +178,7 @@ try {
         $db = json_decode($row['setting_value'], true);
         if (is_array($db)) {
             foreach (['titulo', 'titulo_destaque', 'titulo_complemento', 'texto', 'preco', 'btn1_texto', 'btn2_texto', 'imagem'] as $k) {
-                if (isset($db[$k]) && strlen((string) $db[$k]) > 0) $defaults[$k] = $db[$k];
+                if (array_key_exists($k, $db)) $defaults[$k] = $db[$k];
             }
             if (isset($db['bullets']) && is_array($db['bullets'])) $defaults['bullets'] = $db['bullets'];
         }

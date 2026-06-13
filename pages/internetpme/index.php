@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="internet-pme-page__hero-actions">
-                            <a class="internet-pme-page__button internet-pme-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar com um consultor</a>
+                            <a class="internet-pme-page__button internet-pme-page__button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>Falar com um consultor</a>
                             <a class="internet-pme-page__button internet-pme-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
                         </div>
                     </div>
@@ -127,11 +127,7 @@
         <section class="internet-pme-page__cta">
             <div class="container">
                 <div class="internet-pme-page__cta-box">
-                    <div class="internet-pme-page__trust">
-                        <div class="internet-pme-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>5.0</strong> ★★★★★<br>+ de 3.000 avaliações no Google</p></div>
-                        <span><i class="icon-group" aria-hidden="true"></i>+ de 3.000 clientes satisfeitos</span>
-                        <span><i class="icon-pin" aria-hidden="true"></i>Atendimento local de verdade</span>
-                    </div>
+                    <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
                     <div class="internet-pme-page__cta-content">
                         <div>
@@ -139,7 +135,7 @@
                             <p>Fale com um consultor e descubra o plano ideal para o seu negócio.</p>
                         </div>
                         <div class="internet-pme-page__cta-actions">
-                            <a class="internet-pme-page__cta-button internet-pme-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                            <a class="internet-pme-page__cta-button internet-pme-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                             <a class="internet-pme-page__cta-button" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><span>Ligar gratuitamente <strong>0800 222 5262</strong></span></a>
                         </div>
                     </div>

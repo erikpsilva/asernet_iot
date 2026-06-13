@@ -32,7 +32,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -127,11 +127,12 @@ $_saPurposeIcons = ['icon-wifi', 'icon-gear', 'icon-pin', 'icon-heart'];
 ?>
 
 <section class="about-page">
-    <div class="about-page__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/sobreasernet/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <div class="about-page__hero"<?= !empty($_bn['imagem']) ? ' style="--about-hero-image:url(\'' . BASE_URL . '/images/banners/sobreasernet/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="about-page__hero-copy">
+                        <span>Sobre a AserNet</span>
                         <h1 class="about-page__hero-title">
                             <?= htmlspecialchars($_bn['titulo']) ?>
                             <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>
@@ -152,7 +153,7 @@ $_saPurposeIcons = ['icon-wifi', 'icon-gear', 'icon-pin', 'icon-heart'];
                         <?php endif; ?>
 
                         <div class="about-page__hero-actions">
-                            <a class="about-page__button about-page__button--primary" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <a class="about-page__button about-page__button--primary" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
                             <a class="about-page__button about-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
                         </div>
                     </div>
@@ -208,16 +209,7 @@ $_saPurposeIcons = ['icon-wifi', 'icon-gear', 'icon-pin', 'icon-heart'];
             </div>
         </section>
 
-        <section class="about-page__trust">
-            <div class="container">
-                <div class="about-page__trust-grid">
-                    <div class="about-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><?= $_sah($_sa['trust_google']) ?></p></div>
-                    <?php foreach ($_sa['trust_items'] as $i => $item): ?>
-                    <article><i class="<?= $_saTrustIcons[$i] ?? 'icon-group' ?>" aria-hidden="true"></i><?= $_sah($item) ?></article>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
+        <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
         <section class="about-page__difference">
             <div class="container">
@@ -273,21 +265,9 @@ $_saPurposeIcons = ['icon-wifi', 'icon-gear', 'icon-pin', 'icon-heart'];
                         <h2>Quer conhecer a AserNet de perto?</h2>
                     </div>
                     <div class="about-page__cta-actions">
-                        <a class="about-page__cta-button about-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="about-page__cta-button about-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="about-page__cta-button" href="<?= BASE_URL ?>/paraempresas">Conhecer solu&ccedil;&otilde;es <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-page__footer">
-            <div class="container">
-                <div class="about-page__footer-grid">
-                    <div><img src="<?= BASE_URL ?>/images/logo-transparent.png" alt="AserNet"><p>Mais que internet. Conex&otilde;es que cuidam da sua casa e da sua empresa.</p></div>
-                    <nav><h2>Solu&ccedil;&otilde;es</h2><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a><a href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a><a href="<?= BASE_URL ?>/wifiprofissional">Wi-Fi Profissional</a><a href="<?= BASE_URL ?>/telefoniaempresarial">Telefonia Empresarial</a><a href="<?= BASE_URL ?>/cameradeseguranca">Seguran&ccedil;a</a><a href="<?= BASE_URL ?>/rastreamentoveicular">Rastreamento Veicular</a></nav>
-                    <nav><h2>Institucional</h2><a href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a><a href="<?= BASE_URL ?>/contato">Trabalhe Conosco</a><a href="<?= BASE_URL ?>/politica-de-privacidade">Pol&iacute;tica de Privacidade</a><a href="<?= BASE_URL ?>/termos-de-uso">Termos de Uso</a></nav>
-                    <nav><h2>Suporte</h2><a href="<?= BASE_URL ?>/contato">Central do Cliente</a><a href="<?= BASE_URL ?>/contato">Abrir Chamado</a><a href="<?= BASE_URL ?>/faq">Perguntas Frequentes</a></nav>
-                    <address><h2>Atendimento</h2><a href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a><a href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>0800 222 5262</a><a href="mailto:atendimento@asernet.com.br"><i class="icon-talk" aria-hidden="true"></i>atendimento@asernet.com.br</a></address>
                 </div>
             </div>
         </section>

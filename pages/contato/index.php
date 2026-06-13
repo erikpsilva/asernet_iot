@@ -25,7 +25,7 @@
                 </ul>
 
                 <div class="contact-page__hero-actions">
-                    <a class="contact-page__button contact-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
+                    <a class="contact-page__button contact-page__button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
                     <a class="contact-page__button contact-page__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
                 </div>
 
@@ -65,20 +65,12 @@
                     <i class="icon-checkmark" aria-hidden="true"></i>
                     <h2>Mensagem enviada!</h2>
                     <p>Um consultor AserNet entrar&aacute; em contato em breve. Enquanto isso, voc&ecirc; pode falar direto pelo WhatsApp.</p>
-                    <a class="contact-page__button contact-page__button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
+                    <a class="contact-page__button contact-page__button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
                 </div>
             </div>
         </section>
 
-        <section class="contact-page__trust">
-            <div class="container">
-                <div class="contact-page__trust-grid">
-                    <div class="contact-page__google"><img src="<?= BASE_URL ?>/images/logoGoogle.png" alt="Google"><p><strong>5.0</strong> + de 3.000 avalia&ccedil;&otilde;es no Google</p></div>
-                    <article><i class="icon-link" aria-hidden="true"></i>+ de 3.000 clientes satisfeitos</article>
-                    <article><i class="icon-security" aria-hidden="true"></i>Atendimento local de verdade</article>
-                </div>
-            </div>
-        </section>
+        <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
         <section class="contact-page__why">
             <div class="container">
@@ -105,7 +97,7 @@
                     <h2>Quer resolver isso agora?</h2>
                     <p>Fale com um consultor e tenha a melhor solu&ccedil;&atilde;o da AserNet para voc&ecirc;.</p>
                     <div class="contact-page__cta-actions">
-                        <a class="contact-page__cta-button contact-page__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="contact-page__cta-button contact-page__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="contact-page__cta-button" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><span>Ligar gratuitamente <strong>0800 222 5262</strong></span></a>
                     </div>
                     <div class="contact-page__cta-benefits">

@@ -19,7 +19,7 @@ try {
         $_d_bn = json_decode($_r_bn['setting_value'], true);
         if (is_array($_d_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k) {
-                if (isset($_d_bn[$_k]) && strlen((string)$_d_bn[$_k]) > 0) $_bn[$_k] = $_d_bn[$_k];
+                if (array_key_exists($_k, $_d_bn)) $_bn[$_k] = $_d_bn[$_k];
             }
             if (!empty($_d_bn['bullets']) && is_array($_d_bn['bullets'])) $_bn['bullets'] = $_d_bn['bullets'];
         }
@@ -129,7 +129,7 @@ try {
 <?php include ROOT . '/includes/header/header.php';?>
 
 <section class="camera-security">
-    <div class="camera-security__hero"<?= !empty($_bn['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/cameras/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
+    <div class="camera-security__hero"<?= !empty($_bn['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/cameras/' . htmlspecialchars($_bn['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
@@ -300,11 +300,7 @@ try {
                     <?php endforeach; ?>
                 </div>
 
-                <div class="camera-security__trust">
-                    <img src="<?= BASE_URL ?>/images/cameraseguranca/logoGoogle.png" alt="Google">
-                    <p><strong>★★★★★</strong><br>avaliações no Google</p>
-                    <span><i class="icon-group" aria-hidden="true"></i>Atendimento local de verdade</span>
-                </div>
+                <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
             </div>
         </section>
 
@@ -313,7 +309,7 @@ try {
                 <div class="camera-security__cta-box">
                     <h2>Mais tranquilidade para sua casa ou empresa</h2>
                     <div class="camera-security__cta-actions">
-                        <a class="camera-security__cta-button camera-security__cta-button--whatsapp" href="https://wa.me/5508002225262"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
+                        <a class="camera-security__cta-button camera-security__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i><span>Falar no WhatsApp <strong>0800 222 5262</strong></span></a>
                         <a class="camera-security__cta-button" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><span>Solicitar análise de segurança</span></a>
                     </div>
                     <img src="<?= BASE_URL ?>/images/cameraseguranca/img1Camera.png" alt="">

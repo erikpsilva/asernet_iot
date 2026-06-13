@@ -40,7 +40,7 @@ try {
 
 $_firstName = explode(' ', trim($_SESSION['usuario']['nome_completo']))[0];
 $_nivel     = $_SESSION['usuario']['nivel_acesso'];
-$_nivelMap  = ['admin' => 'Admin', 'editor' => 'Editor', 'leitor' => 'Leitor'];
+$_nivelMap  = ['admin' => 'Admin', 'editor' => 'Editor', 'cruzeiro' => 'Cruzeiro', 'leitor' => 'Leitor'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,7 +67,7 @@ $_nivelMap  = ['admin' => 'Admin', 'editor' => 'Editor', 'leitor' => 'Leitor'];
             </div>
 
             <!-- Stats -->
-            <?php if (in_array($_nivel, ['admin', 'editor'])): ?>
+            <?php if (in_array($_nivel, ['admin', 'editor', 'cruzeiro'])): ?>
             <div class="row adminInicio__stats">
                 <div class="col-md-3 col-6">
                     <div class="dashStat dashStat--blue">
@@ -124,7 +124,7 @@ $_nivelMap  = ['admin' => 'Admin', 'editor' => 'Editor', 'leitor' => 'Leitor'];
                 </div>
 
                 <!-- Últimos participantes -->
-                <?php if (in_array($_nivel, ['admin', 'editor'])): ?>
+                <?php if (in_array($_nivel, ['admin', 'editor', 'cruzeiro'])): ?>
                 <div class="col-md-8">
                     <div class="dashRecentes formGroup">
                         <h3 class="dashRecentes__title">Últimos participantes cadastrados</h3>
@@ -161,7 +161,7 @@ $_nivelMap  = ['admin' => 'Admin', 'editor' => 'Editor', 'leitor' => 'Leitor'];
             </div>
 
             <!-- Acesso rápido à campanha -->
-            <?php if (in_array($_nivel, ['admin', 'editor'])): ?>
+            <?php if (in_array($_nivel, ['admin', 'editor', 'cruzeiro'])): ?>
             <div class="adminInicio__section">
                 <h2 class="adminInicio__sectionTitle">Campanha Cruzeiro</h2>
                 <div class="adminInicio__grid">

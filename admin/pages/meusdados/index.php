@@ -75,9 +75,10 @@ $disabled  = $isAdmin ? '' : 'disabled';
                         <div class="formGroup__item">
                             <label>Nível de acesso</label>
                             <select class="input" id="userLevelAccess" name="userLevelAccess" <?= $disabled ?>>
-                                <option value="admin"  <?= $_SESSION['usuario']['nivel_acesso'] === 'admin'  ? 'selected' : '' ?>>ADMIN</option>
-                                <option value="editor" <?= $_SESSION['usuario']['nivel_acesso'] === 'editor' ? 'selected' : '' ?>>EDITOR</option>
-                                <option value="leitor" <?= $_SESSION['usuario']['nivel_acesso'] === 'leitor' ? 'selected' : '' ?>>LEITOR</option>
+                                <option value="admin"    <?= $_SESSION['usuario']['nivel_acesso'] === 'admin'    ? 'selected' : '' ?>>ADMIN</option>
+                                <option value="editor"   <?= $_SESSION['usuario']['nivel_acesso'] === 'editor'   ? 'selected' : '' ?>>EDITOR</option>
+                                <option value="cruzeiro" <?= $_SESSION['usuario']['nivel_acesso'] === 'cruzeiro' ? 'selected' : '' ?>>CRUZEIRO</option>
+                                <option value="leitor"   <?= $_SESSION['usuario']['nivel_acesso'] === 'leitor'   ? 'selected' : '' ?>>LEITOR</option>
                             </select>
                         </div>
                     </div>

@@ -26,8 +26,8 @@ function getDbConnection(): PDO {
     // PRODUÇÃO (KingHost)
     $prod = [
         'host'    => 'mysql.asernet.com.br',
-        'db'      => 'asernet01',
-        'user'    => 'asernet01',
+        'db'      => 'asernet',
+        'user'    => 'asernet',
         'pass'    => 'Theking9913',
         'charset' => 'utf8mb4',
         'port'    => 3306,

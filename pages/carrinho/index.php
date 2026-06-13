@@ -55,7 +55,7 @@
                             <strong>Total selecionado</strong>
                             <span><b data-cart-total>0</b> itens</span>
                         </div>
-                        <a href="https://wa.me/5508002225262" data-whatsapp-cart>
+                        <a href="https://wa.me/5508002225262" target="_blank" rel="noopener" data-whatsapp-cart>
                             Enviar para consultor
                             <i class="icon-whatsapp" aria-hidden="true"></i>
                         </a>

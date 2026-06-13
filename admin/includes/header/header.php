@@ -1,3 +1,15 @@
+<?php if (!empty($_isReadonlyPage)): ?>
+<style>
+.adminConteudo__headActions { display: none !important; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.adminConteudo input, .adminConteudo textarea, .adminConteudo select').forEach(function (el) {
+        el.setAttribute('disabled', 'disabled');
+    });
+});
+</script>
+<?php endif; ?>
 <header class="header">
     <div class="container-fluid">
         <div class="row header__row">

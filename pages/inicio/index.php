@@ -21,7 +21,7 @@ try {
         $_db_bn = json_decode($_row_bn['setting_value'], true);
         if (is_array($_db_bn)) {
             foreach (['titulo','titulo_destaque','titulo_complemento','texto','preco','btn1_texto','btn2_texto','imagem'] as $_k_bn) {
-                if (isset($_db_bn[$_k_bn]) && strlen((string)$_db_bn[$_k_bn]) > 0) $_bn_inicio[$_k_bn] = $_db_bn[$_k_bn];
+                if (array_key_exists($_k_bn, $_db_bn)) $_bn_inicio[$_k_bn] = $_db_bn[$_k_bn];
             }
             if (!empty($_db_bn['bullets']) && is_array($_db_bn['bullets'])) $_bn_inicio['bullets'] = $_db_bn['bullets'];
         }
@@ -31,36 +31,36 @@ try {
 
 $homeSorteioDate = '2027-01-31T00:00:00-03:00';
 $homeRegTitulo   = 'Regulamento da Promo&ccedil;&atilde;o';
-$homeRegTexto    = '<p>O regulamento ainda n&atilde;o foi cadastrado.</p>';
+$homeRegPdfUrl   = '';
 $_homeContent = [
     'intro_titulo'    => 'Uma empresa. Diversas soluções conectadas.',
     'intro_subtitulo' => 'A AserNet integra internet, mobilidade, segurança e conectividade para simplificar sua rotina e melhorar sua experiência.',
     'cards_casa' => [
         ['titulo'=>'Internet Residencial', 'descricao'=>'1 Giga com estabilidade e cobertura inteligente.',     'imagem'=>'imgInternetResidencial.png', 'link_texto'=>'Ver planos',       'link_href'=>'/residencial'],
-        ['titulo'=>'Wi-Fi Mesh',           'descricao'=>'Cobertura inteligente para toda a casa.',              'imagem'=>'imgWifiMesh.png',             'link_texto'=>'Conhecer solução', 'link_href'=>'/solucoes'],
-        ['titulo'=>'Câmeras de Segurança', 'descricao'=>'Monitoramento em tempo real pelo celular.',            'imagem'=>'imgCameraDeSeguranca.png',    'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
-        ['titulo'=>'Aser Mobile',          'descricao'=>'Conectividade dentro e fora de casa.',                 'imagem'=>'imgAserMobile.png',           'link_texto'=>'Ver planos',       'link_href'=>'/residencial'],
+        ['titulo'=>'Wi-Fi Mesh',           'descricao'=>'Cobertura inteligente para toda a casa.',              'imagem'=>'imgWifiMesh.png',             'link_texto'=>'Conhecer solução', 'link_href'=>'/wifimesh'],
+        ['titulo'=>'Câmeras de Segurança', 'descricao'=>'Monitoramento em tempo real pelo celular.',            'imagem'=>'imgCameraDeSeguranca.png',    'link_texto'=>'Ver solução',      'link_href'=>'/cameradeseguranca'],
+        ['titulo'=>'Aser Mobile',          'descricao'=>'Conectividade dentro e fora de casa.',                 'imagem'=>'imgAserMobile.png',           'link_texto'=>'Ver planos',       'link_href'=>'/planomovel'],
     ],
     'cards_empresa' => [
-        ['titulo'=>'Internet PME',         'descricao'=>'Conectividade estável para empresas.',                 'imagem'=>'imgInternetPME.png',          'link_texto'=>'Ver soluções',     'link_href'=>'/empresas'],
-        ['titulo'=>'Wi-Fi Profissional',   'descricao'=>'Rede preparada para múltiplos dispositivos.',          'imagem'=>'imgWifiProfissional.png',     'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
-        ['titulo'=>'Telefonia Empresarial','descricao'=>'Mais comunicação e produtividade.',                    'imagem'=>'imgTelefoniaEmpresarial.png', 'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
-        ['titulo'=>'Link Dedicado',        'descricao'=>'Conexão exclusiva para operações críticas.',           'imagem'=>'imgLinkDEdicado.png',         'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+        ['titulo'=>'Internet PME',         'descricao'=>'Conectividade estável para empresas.',                 'imagem'=>'imgInternetPME.png',          'link_texto'=>'Ver soluções',     'link_href'=>'/internetpme'],
+        ['titulo'=>'Wi-Fi Profissional',   'descricao'=>'Rede preparada para múltiplos dispositivos.',          'imagem'=>'imgWifiProfissional.png',     'link_texto'=>'Ver solução',      'link_href'=>'/wifiprofissional'],
+        ['titulo'=>'Telefonia Empresarial','descricao'=>'Mais comunicação e produtividade.',                    'imagem'=>'imgTelefoniaEmpresarial.png', 'link_texto'=>'Ver solução',      'link_href'=>'/telefoniaempresarial'],
+        ['titulo'=>'Link Dedicado',        'descricao'=>'Conexão exclusiva para operações críticas.',           'imagem'=>'imgLinkDEdicado.png',         'link_texto'=>'Ver solução',      'link_href'=>'/linkdedicado'],
     ],
     'cards_seguranca' => [
-        ['titulo'=>'Rastreamento Veicular','descricao'=>'Acompanhe seu veículo em tempo real pelo celular.',    'imagem'=>'imgRastreamentoVeicular.png', 'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
-        ['titulo'=>'Tag Localizadora',     'descricao'=>'Mais praticidade e segurança para o que importa.',     'imagem'=>'imgTagLocalizadora.png',      'link_texto'=>'Ver solução',      'link_href'=>'/solucoes'],
+        ['titulo'=>'Rastreamento Veicular','descricao'=>'Acompanhe seu veículo em tempo real pelo celular.',    'imagem'=>'imgRastreamentoVeicular.png', 'link_texto'=>'Ver solução',      'link_href'=>'/rastreamentoveicular'],
+        ['titulo'=>'Tag Localizadora',     'descricao'=>'Mais praticidade e segurança para o que importa.',     'imagem'=>'imgTagLocalizadora.png',      'link_texto'=>'Ver solução',      'link_href'=>'/rastreamentoveicular'],
     ],
 ];
 try {
     require_once ROOT . '/config/database.php';
     $_pdo  = getDbConnection();
-    $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_texto','home_content')");
+    $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_pdf','home_content')");
     $_cfg  = [];
     foreach ($_stmt->fetchAll() as $r) { $_cfg[$r['setting_key']] = $r['setting_value']; }
     if (!empty($_cfg['sorteio_date']))       $homeSorteioDate = addslashes($_cfg['sorteio_date']) . '-03:00';
-    if (!empty($_cfg['regulamento_titulo'])) $homeRegTitulo   = htmlspecialchars($_cfg['regulamento_titulo'], ENT_QUOTES, 'UTF-8');
-    if (!empty($_cfg['regulamento_texto']))  $homeRegTexto    = $_cfg['regulamento_texto'];
+    if (!empty($_cfg['regulamento_titulo'])) $homeRegTitulo = htmlspecialchars($_cfg['regulamento_titulo'], ENT_QUOTES, 'UTF-8');
+    if (!empty($_cfg['regulamento_pdf']))    $homeRegPdfUrl = BASE_URL . '/uploads/regulamento/' . rawurlencode($_cfg['regulamento_pdf']);
     if (!empty($_cfg['home_content'])) {
         $_db = json_decode($_cfg['home_content'], true);
         if (is_array($_db)) {
@@ -94,7 +94,7 @@ try {
 <?php include ROOT . '/includes/header/header.php';?>
 
 <section class="home">
-    <div class="home__hero"<?= !empty($_bn_inicio['imagem']) ? ' style="background-image:url(\'' . BASE_URL . '/images/banners/inicio/' . htmlspecialchars($_bn_inicio['imagem']) . '\')"' : '' ?>>
+    <div class="home__hero"<?= !empty($_bn_inicio['imagem']) ? ' style="--hero-image:url(\'' . BASE_URL . '/images/banners/inicio/' . htmlspecialchars($_bn_inicio['imagem']) . '\')"' : '' ?>>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-7">
@@ -223,7 +223,7 @@ try {
                     <?php endforeach; ?>
                 </div>
 
-                <a class="home__wide-link" href="<?= BASE_URL ?>/empresas">Conhecer soluções empresariais</a>
+                <a class="home__wide-link" href="<?= BASE_URL ?>/paraempresas">Conhecer soluções empresariais</a>
             </section>
 
             <section class="home__section home__section--security">
@@ -294,24 +294,7 @@ try {
                 </div>
             </section>
 
-            <section class="home__trust">
-                <div class="home__trust-item home__trust-item--google">
-                    <img class="home__google" src="<?= BASE_URL ?>/images/home/logoGoogle.png" alt="Google">
-                    <p><strong>5.0 <span class="home__stars">★★★★★</span></strong><br>+ de 3.000 avaliações no Google</p>
-                </div>
-                <div class="home__trust-item">
-                    <i class="icon icon-group" aria-hidden="true"></i>
-                    <p>Milhares de clientes satisfeitos</p>
-                </div>
-                <div class="home__trust-item">
-                    <i class="icon icon-support" aria-hidden="true"></i>
-                    <p>Suporte local de verdade</p>
-                </div>
-                <div class="home__trust-item">
-                    <i class="icon icon-setting" aria-hidden="true"></i>
-                    <p>Instalação profissional e equipe especializada</p>
-                </div>
-            </section>
+            <?php include ROOT . '/includes/trust-google/trust-google.php'; ?>
 
             <section class="home__cta">
                 <div class="home__cta-copy">
@@ -320,7 +303,7 @@ try {
                 </div>
 
                 <div class="home__cta-actions">
-                    <a class="home__cta-button home__cta-button--whatsapp" href="https://wa.me/5508002225262">
+                    <a class="home__cta-button home__cta-button--whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener">
                         <i class="icon icon-whatsapp" aria-hidden="true"></i>
                         <span>Falar no WhatsApp <strong>0800 222 5262</strong></span>
                     </a>
@@ -343,7 +326,16 @@ try {
             <h2 id="modalRegHomeTitle"><?= $homeRegTitulo ?></h2>
         </div>
         <div class="cruise-modal__regulamento-body">
-            <?= $homeRegTexto ?>
+            <?php if ($homeRegPdfUrl): ?>
+            <div class="cruise-modal__pdf-wrap">
+                <iframe src="<?= $homeRegPdfUrl ?>" title="Regulamento PDF" class="cruise-modal__pdf-iframe"></iframe>
+                <a href="<?= $homeRegPdfUrl ?>" target="_blank" rel="noopener" class="cruise-modal__pdf-link">
+                    <i class="icon-calendar" aria-hidden="true"></i> Abrir PDF em nova aba
+                </a>
+            </div>
+            <?php else: ?>
+            <p>O regulamento ainda n&atilde;o foi cadastrado.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
