@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    if (!window.AserNetHeaderMenuReady) {
     var $header = $('.header');
     var $toggle = $('.header__toggle');
     var $mega = $('.header__mega');
@@ -14,14 +15,32 @@ $(document).ready(function() {
         $megaPanel.css('--arrow-left', arrowLeft + 'px');
     }
 
+    var _menuScrollY = 0;
+
+    function lockBodyScroll() {
+        if (window.innerWidth > 991) return;
+        _menuScrollY = window.scrollY;
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function unlockBodyScroll() {
+        if (!document.documentElement.style.overflow) return;
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, _menuScrollY);
+    }
+
     function closeMenu() {
         $header.removeClass('header--menu-open');
         $toggle.attr('aria-expanded', 'false');
+        unlockBodyScroll();
     }
 
     $toggle.on('click', function() {
         var isOpen = $header.toggleClass('header--menu-open').hasClass('header--menu-open');
         $toggle.attr('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) lockBodyScroll(); else unlockBodyScroll();
     });
 
     function isMobile() {
@@ -72,6 +91,7 @@ $(document).ready(function() {
     });
 
     alignMegaArrow();
+    }
 
     var cartStorageKey = 'asernet_cart';
 

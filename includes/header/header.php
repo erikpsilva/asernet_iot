@@ -11,7 +11,7 @@
                 <span></span>
             </button>
 
-            <nav class="header__nav" aria-label="Menu principal">
+            <nav class="header__nav" aria-label="Menu principal"><div class="header__nav-inner">
                 <?php
                 $activeRoute = $mainRoute ?? '';
                 $solutionActiveRoutes = ['solucoes', 'internetpme', 'wifiprofissional', 'telefoniaempresarial', 'linkdedicado', 'rastreamentoveicular', 'cruzeiro', 'skeelo'];
@@ -114,7 +114,7 @@
 
                 <a class="header__nav-link<?= $activeRoute === 'sobreasernet' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a>
                 <a class="header__nav-link<?= $activeRoute === 'faq' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/faq">Suporte</a>
-            </nav>
+            </div></nav>
 
             <div class="header__actions">
                 <a class="header__whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener">
@@ -152,6 +152,187 @@
         </div>
     </div>
 </header>
+
+<script>
+    (function () {
+        if (window.AserNetHeaderMenuReady) return;
+
+        var header = document.querySelector('.header');
+        if (!header) return;
+
+        var toggle = header.querySelector('.header__toggle');
+        var nav = header.querySelector('.header__nav');
+        var mega = header.querySelector('.header__mega');
+        var megaLink = header.querySelector('.header__nav-link--mega');
+        var megaPanel = header.querySelector('.header__mega-panel');
+        var mobileQuery = window.matchMedia ? window.matchMedia('(max-width: 991px)') : null;
+        var closeTimer;
+        var scrollY = 0;
+
+        function isMobile() {
+            return mobileQuery ? mobileQuery.matches : window.innerWidth <= 991;
+        }
+
+        function setViewportHeight() {
+            document.documentElement.style.setProperty('--asernet-viewport-height', window.innerHeight + 'px');
+        }
+
+        function alignMegaArrow() {
+            if (isMobile() || !megaLink || !megaPanel) return;
+
+            var panelRect = megaPanel.getBoundingClientRect();
+            var linkRect = megaLink.getBoundingClientRect();
+            var arrowLeft = linkRect.left + (linkRect.width / 2) - panelRect.left - 8;
+
+            megaPanel.style.setProperty('--arrow-left', arrowLeft + 'px');
+        }
+
+        function lockBodyScroll() {
+            if (!isMobile()) return;
+
+            scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + scrollY + 'px';
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.width = '100%';
+        }
+
+        function unlockBodyScroll() {
+            var top = document.body.style.top;
+
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.width = '';
+
+            if (top) {
+                window.scrollTo(0, Math.abs(parseInt(top, 10)) || scrollY);
+            }
+        }
+
+        function closeMenu() {
+            header.classList.remove('header--menu-open');
+            if (toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Abrir menu');
+            }
+            unlockBodyScroll();
+        }
+
+        function toggleMenu(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            setViewportHeight();
+
+            var isOpen = header.classList.toggle('header--menu-open');
+            if (toggle) {
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+            }
+
+            if (isOpen) {
+                if (nav) nav.scrollTop = 0;
+                lockBodyScroll();
+            } else {
+                unlockBodyScroll();
+            }
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', toggleMenu, false);
+        }
+
+        if (nav) {
+            nav.addEventListener('click', function (event) {
+                var link = event.target.closest('a');
+                if (link && isMobile()) closeMenu();
+            }, false);
+        }
+
+        if (mega && megaLink) {
+            mega.addEventListener('mouseenter', function () {
+                if (isMobile()) return;
+                clearTimeout(closeTimer);
+                alignMegaArrow();
+                mega.classList.add('header__mega--open');
+                megaLink.setAttribute('aria-expanded', 'true');
+            }, false);
+
+            mega.addEventListener('mouseleave', function () {
+                if (isMobile()) return;
+                closeTimer = setTimeout(function () {
+                    mega.classList.remove('header__mega--open');
+                    megaLink.setAttribute('aria-expanded', 'false');
+                }, 220);
+            }, false);
+
+            mega.addEventListener('focusin', function () {
+                if (isMobile()) return;
+                alignMegaArrow();
+                mega.classList.add('header__mega--open');
+                megaLink.setAttribute('aria-expanded', 'true');
+            }, false);
+
+            mega.addEventListener('focusout', function () {
+                if (isMobile()) return;
+                mega.classList.remove('header__mega--open');
+                megaLink.setAttribute('aria-expanded', 'false');
+            }, false);
+        }
+
+        document.addEventListener('keyup', function (event) {
+            if (event.key === 'Escape') {
+                closeMenu();
+                if (mega && megaLink) {
+                    mega.classList.remove('header__mega--open');
+                    megaLink.setAttribute('aria-expanded', 'false');
+                }
+            }
+        }, false);
+
+        window.addEventListener('resize', function () {
+            setViewportHeight();
+            if (!isMobile()) closeMenu();
+            alignMegaArrow();
+        }, false);
+
+        window.addEventListener('orientationchange', function () {
+            setTimeout(function () {
+                setViewportHeight();
+                closeMenu();
+                alignMegaArrow();
+            }, 250);
+        }, false);
+
+        window.addEventListener('pageshow', function () {
+            setViewportHeight();
+            closeMenu();
+            alignMegaArrow();
+        }, false);
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', setViewportHeight, false);
+        }
+
+        setViewportHeight();
+        alignMegaArrow();
+
+        window.AserNetHeaderMenuReady = {
+            close: closeMenu,
+            refresh: function () {
+                setViewportHeight();
+                alignMegaArrow();
+            }
+        };
+    }());
+</script>
 
 <script>
     (function () {
