@@ -121,6 +121,7 @@ $_trustIcons   = ['icon-group', 'icon-cloud'];
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="skeelo-page__hero-copy">
+                        <img class="skeelo-page__logo" src="<?= BASE_URL ?>/images/skeelo/logo-skeelo.svg" alt="Skeelo">
                         <h1 class="skeelo-page__hero-title">
                             <?= htmlspecialchars($_bn['titulo']) ?>
                             <?php if (!empty($_bn['titulo_destaque'])): ?><strong><?= htmlspecialchars($_bn['titulo_destaque']) ?></strong><?php endif; ?>

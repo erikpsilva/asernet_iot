@@ -238,7 +238,7 @@
             object-fit: cover;
         }
 
-        div {
+        article > div {
             padding: 0 16px 18px;
         }
 
@@ -626,17 +626,8 @@
         }
 
         &__cards {
-            margin-inline: -15px;
-            padding-inline: 15px;
             display: grid;
-            grid-template-columns: repeat(4, 260px);
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scroll-snap-type: x proximity;
-
-            article {
-                scroll-snap-align: start;
-            }
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         &__how {
@@ -715,32 +706,41 @@
         }
 
         &__features {
-            display: flex;
-            overflow-x: auto;
-            padding: 0 0 10px;
-            scroll-snap-type: x proximity;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 9px;
+            margin-top: 18px;
 
             article {
-                min-width: 230px;
-                scroll-snap-align: start;
+                min-height: 0;
+                padding: 15px 9px 13px;
+            }
+
+            i {
+                font-size: 22px;
+            }
+
+            h3 {
+                margin-top: 8px;
+                font-size: 15px;
+                line-height: 1.18;
+            }
+
+            p {
+                margin-top: 7px;
+                font-size: 12px;
+                line-height: 1.35;
             }
         }
 
         &__cards {
-            grid-template-columns: repeat(4, 260px);
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scroll-snap-type: x proximity;
-
-            article {
-                scroll-snap-align: start;
-            }
+            grid-template-columns: 1fr;
 
             img {
                 height: 150px;
             }
 
-            div {
+            article > div {
                 padding: 0 14px 16px;
             }
 
@@ -785,6 +785,29 @@
 
             p {
                 font-size: 16px;
+            }
+        }
+    }
+
+    @media @mobile {
+        &__features {
+            gap: 8px;
+
+            article {
+                padding: 13px 7px 12px;
+            }
+
+            i {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 11px;
+                line-height: 1.3;
             }
         }
     }

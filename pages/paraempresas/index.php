@@ -116,6 +116,7 @@ try {
 } catch (Throwable $e) {}
 
 $_solIcons  = ['icon-paraempresa', 'icon-wifipro', 'icon-phone', 'icon-link', 'icon-security'];
+$_solLinks  = ['/internetpme', '/wifiprofissional', '/telefoniaempresarial', '/linkdedicado', '/cameradeseguranca'];
 $_audIcons  = ['icon-paraempresa', 'icon-hotels', 'icon-clinic', 'icon-home', 'icon-school', 'icon-empresapessoas', 'icon-restaurant'];
 $_whyIcons  = ['icon-group', 'icon-puzzle', 'icon-infrastructure', 'icon-diagram'];
 $_benIcons  = ['icon-rocket', 'icon-group', 'icon-star', 'icon-dashboard'];
@@ -199,7 +200,7 @@ $_probIcons  = ['icon-wifierror', 'icon-wifinot', 'icon-phoneerror', 'icon-slow'
                         <div><i class="<?= $_solIcons[$i] ?? 'icon-paraempresa' ?>" aria-hidden="true"></i><h3><?= htmlspecialchars($card['titulo']) ?></h3></div>
                         <p><?= htmlspecialchars($card['texto']) ?></p>
                         <img src="<?= BASE_URL ?>/images/paraempresas/<?= htmlspecialchars($card['imagem']) ?>" alt="<?= htmlspecialchars($card['titulo']) ?>">
-                        <a href="<?= BASE_URL ?>/contato">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
+                        <a href="<?= BASE_URL ?><?= $_solLinks[$i] ?? '/contato' ?>">Ver solução <i class="icon-arrowright" aria-hidden="true"></i></a>
                     </article>
                     <?php endforeach; ?>
                 </div>

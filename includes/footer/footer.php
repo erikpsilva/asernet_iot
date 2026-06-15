@@ -8,8 +8,8 @@
                 <p>Mais que internet. Solu&ccedil;&otilde;es completas em conectividade, seguran&ccedil;a, mobilidade e tecnologia para sua casa ou empresa.</p>
             </section>
 
-            <nav class="footer__nav" aria-label="Solu&ccedil;&otilde;es">
-                <h2>Solu&ccedil;&otilde;es</h2>
+            <nav class="footer__nav" aria-label="Solu&ccedil;&otilde;es" data-footer-accordion>
+                <h2>Solu&ccedil;&otilde;es<span class="footer__arrow" aria-hidden="true"></span></h2>
                 <ul>
                     <li><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a></li>
                     <li><a href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a></li>
@@ -20,8 +20,8 @@
                 </ul>
             </nav>
 
-            <nav class="footer__nav" aria-label="Institucional">
-                <h2>Institucional</h2>
+            <nav class="footer__nav" aria-label="Institucional" data-footer-accordion>
+                <h2>Institucional<span class="footer__arrow" aria-hidden="true"></span></h2>
                 <ul>
                     <li><a href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a></li>
                     <li><a href="https://asernet.vagas.solides.com.br/" target="_blank" rel="noopener">Trabalhe Conosco</a></li>
@@ -30,8 +30,8 @@
                 </ul>
             </nav>
 
-            <nav class="footer__nav" aria-label="Suporte">
-                <h2>Suporte</h2>
+            <nav class="footer__nav" aria-label="Suporte" data-footer-accordion>
+                <h2>Suporte<span class="footer__arrow" aria-hidden="true"></span></h2>
                 <ul>
                     <li><a href="<?= BASE_URL ?>/faq">Perguntas Frequentes</a></li>
                     <li><a href="https://sistema.asernet.com.br/central_assinante_web/login" target="_blank" rel="noopener">Central do Cliente</a></li>
@@ -40,11 +40,13 @@
                 </ul>
             </nav>
 
-            <address class="footer__contact">
-                <h2>Atendimento</h2>
-                <a href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
-                <a href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>0800 222 5262</a>
-                <a href="mailto:atendimento@asernet.com.br"><i class="icon-talk" aria-hidden="true"></i>atendimento@asernet.com.br</a>
+            <address class="footer__contact" data-footer-accordion>
+                <h2>Atendimento<span class="footer__arrow" aria-hidden="true"></span></h2>
+                <div class="footer__contact-links">
+                    <a href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
+                    <a href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>0800 222 5262</a>
+                    <a href="mailto:atendimento@asernet.com.br"><i class="icon-talk" aria-hidden="true"></i>atendimento@asernet.com.br</a>
+                </div>
             </address>
         </div>
 
@@ -74,8 +76,6 @@
 
         <div class="footer__legal">
             <p>&copy; 2026 AserNet. Todos os direitos reservados.</p>
-            <p>Pra&ccedil;a Coronel Ol&iacute;mpio Gon&ccedil;alves dos Reis, n&ordm; 268. Pra&ccedil;a da Matriz. Centro. Socorro/SP | CEP 13.960-000</p>
-            <p>ASERNET SVA LTDA | CNPJ: 53.141.498/0001-79</p>
         </div>
     </div>
 </footer>

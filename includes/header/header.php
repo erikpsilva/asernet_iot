@@ -18,8 +18,8 @@
                 $solutionActive = in_array($activeRoute, $solutionActiveRoutes, true) ? ' header__nav-link--active' : '';
                 ?>
 
-                <a class="header__nav-link<?= $activeRoute === 'residencial' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
-                <a class="header__nav-link<?= $activeRoute === 'empresas' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a>
+                <a class="header__nav-link header__nav-link--desktop-hidden<?= $activeRoute === 'residencial' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
+                <a class="header__nav-link header__nav-link--desktop-hidden<?= $activeRoute === 'empresas' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a>
 
                 <div class="header__mega">
                     <a class="header__nav-link header__nav-link--mega<?= $solutionActive ?>" href="<?= BASE_URL ?>/solucoes" aria-haspopup="true" aria-expanded="false">
