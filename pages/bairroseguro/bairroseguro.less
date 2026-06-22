@@ -1,0 +1,100 @@
+.safe-neighborhood {
+    background: #fff;
+    color: #00163d;
+
+    &__hero {
+        min-height: 650px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(90deg, rgba(1,9,29,.98), rgba(1,9,29,.82) 38%, rgba(1,9,29,.12) 70%), url("../images/bairroseguro/imgTopoBanner.png") 72% center / cover no-repeat, #01091d;
+    }
+
+    &__hero-copy {
+        padding: 55px 0;
+        color: @white;
+
+        h1 { color: @white; font-size: 68px; font-weight: @bold; line-height: .94; text-transform: uppercase; strong { display: block; color: #0872ff; font: inherit; } }
+        h2 { margin-top: 25px; color: @white; font-size: 22px; font-weight: @semi-bold; line-height: 1.25; text-transform: uppercase; }
+        p { max-width: 430px; margin-top: 25px; color: rgba(255,255,255,.92); font-size: 16px; line-height: 1.55; }
+    }
+
+    &__button {
+        min-height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        margin-top: 28px;
+        padding: 0 25px;
+        border-radius: 999px;
+        background: #0872ff;
+        color: @white;
+        font-size: 14px;
+        font-weight: @semi-bold;
+        text-transform: uppercase;
+        box-shadow: 0 14px 30px rgba(8,114,255,.28);
+
+        &:hover { color: @white; background: #0058d8; }
+    }
+
+    &__specialist { width: fit-content; display: block; margin: 19px 0 0 38px; color: #36a0ff; font-size: 13px; text-decoration: underline !important; &:hover { color: @white; } }
+    &__body { padding: 40px 0 50px; background: linear-gradient(180deg,#fff,#f8fbff); }
+
+    &__shared {
+        h2 { color: #00163d; font-size: 25px; font-weight: @semi-bold; line-height: 1.2; text-transform: uppercase; strong { color: #0872ff; font: inherit; } }
+        p { margin-top: 22px; color: #001b58; font-size: 14px; line-height: 1.55; }
+        img { width: 100%; display: block; border-radius: 18px; box-shadow: 0 14px 34px rgba(0,42,120,.1); }
+    }
+
+    &__section { margin-top: 38px; }
+    &__title { color: #00163d; font-size: 25px; font-weight: @semi-bold; text-align: center; text-transform: uppercase; &:after { content: ""; width: 42px; height: 3px; display: block; margin: 9px auto 0; background: #0872ff; } }
+
+    &__steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; margin-top: 24px; article { min-height: 335px; display: flex; flex-direction: column; align-items: center; position: relative; padding: 24px 19px 20px; border: 1px solid #dce5f2; border-radius: 14px; background: @white; text-align: center; box-shadow: 0 8px 24px rgba(0,42,120,.04); &:not(:last-child):after { content: "➜"; position: absolute; right: -19px; top: 47%; color: #0872ff; font-size: 25px; z-index: 2; } } b { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; align-self: flex-start; border-radius: 50%; background: #0872ff; color: @white; font-size: 17px; } img { width: 115px; height: 115px; margin: 5px 0 9px; object-fit: contain; } h3 { color: #00163d; font-size: 18px; font-weight: @semi-bold; line-height: 1.15; text-transform: uppercase; } p { margin-top: 15px; color: #001b58; font-size: 12px; line-height: 1.45; } }
+    &__audiences { display: grid; grid-template-columns: repeat(6,1fr); margin-top: 22px; article { min-height: 145px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; border: 1px solid #dce5f2; border-radius: 14px; background: @white; text-align: center; } i { color: #0872ff; font-size: 49px; } h3 { margin-top: 10px; color: #00163d; font-size: 14px; font-weight: @semi-bold; line-height: 1.25; } }
+
+    &__details { display: grid; grid-template-columns: 1fr 1.06fr; gap: 22px; margin-top: 35px; }
+    &__included, &__advantages { min-height: 340px; border: 1px solid #dce5f2; border-radius: 14px; background: @white; box-shadow: 0 8px 24px rgba(0,42,120,.04); h2 { color: #00163d; font-size: 23px; font-weight: @semi-bold; text-transform: uppercase; } }
+    &__included { display: grid; grid-template-columns: 145px 1fr; align-items: center; padding: 17px 20px 17px 10px; > img { width: 130px; max-height: 305px; object-fit: contain; } h2:after { content: ""; width: 43px; height: 3px; display: block; margin-top: 9px; background: #0872ff; } ul { display: grid; gap: 12px; margin-top: 17px; } li { display: flex; align-items: center; gap: 9px; color: #001b58; font-size: 12px; } li i { width: 19px; height: 19px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 19px; border-radius: 50%; background: #0872ff; color: @white; font-size: 10px; } }
+    &__advantages { padding: 20px; > div { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; } section { min-height: 126px; display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid #e0e7f1; border-radius: 10px; } section > i { color: #0872ff; font-size: 42px; } h3 { color: #00163d; font-size: 14px; font-weight: @semi-bold; } p { margin-top: 8px; color: #001b58; font-size: 11px; line-height: 1.4; } }
+
+    &__faq { margin-top: 35px; }
+    &__faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin-top: 22px; article { overflow: hidden; border: 1px solid #dce5f2; border-radius: 10px; background: @white; } button { width: 100%; min-height: 47px; display: flex; align-items: center; justify-content: space-between; border: 0; padding: 0 22px; background: transparent; color: #00163d; font-family: @font; font-size: 13px; font-weight: @semi-bold; text-align: left; cursor: pointer; } button b { color: #0872ff; font-size: 23px; font-weight: @regular; } article > div { padding: 0 22px 16px; color: #001b58; font-size: 12px; line-height: 1.45; } }
+
+    &__cta { min-height: 215px; display: grid; grid-template-columns: 33% 1fr 210px; align-items: center; margin-top: 30px; overflow: hidden; border: 1px solid #d6e3f5; border-radius: 14px; background: #fff; }
+    &__cta-family { align-self: stretch; background: url("../images/bairroseguro/imgVamosTornarSeuBairroMaisSeguroo_esquerda.png") center / cover no-repeat; }
+    &__cta-copy { padding: 25px; h2 { color: #00163d; font-size: 27px; font-weight: @semi-bold; line-height: 1.08; text-transform: uppercase; } p { max-width: 440px; margin-top: 12px; color: #001b58; font-size: 12px; line-height: 1.45; } > div { display: flex; gap: 10px; margin-top: 17px; } a { min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 18px; border: 1px solid #0872ff; border-radius: 999px; color: #0872ff; font-size: 11px; font-weight: @semi-bold; text-transform: uppercase; &:first-child { background: #0872ff; color: @white; } } }
+    &__cta-art { align-self: stretch; background: url("../images/bairroseguro/imgVamosTornarSeuBairroMaisSeguroo_direita.png") center / contain no-repeat; }
+
+    @media @tablet {
+        &__hero { min-height: 590px; background-position: 62% center; }
+        &__hero-copy h1 { font-size: 53px; }
+        &__steps { grid-template-columns: 1fr 1fr; article:not(:last-child):after { display: none; } }
+        &__audiences { grid-template-columns: repeat(3,1fr); }
+        &__details { grid-template-columns: 1fr; }
+        &__cta { grid-template-columns: 34% 1fr; }
+        &__cta-art { display: none; }
+    }
+
+    @media @tablet-small {
+        &__hero { min-height: 720px; align-items: flex-end; background: linear-gradient(180deg,rgba(1,9,29,.08),rgba(1,9,29,.7) 48%,#01091d 73%), url("../images/bairroseguro/imgTopoBanner.png") 65% top / auto 62% no-repeat, #01091d; }
+        &__hero-copy { padding: 300px 0 40px; }
+        &__shared img { margin-top: 25px; }
+        &__faq-grid { grid-template-columns: 1fr; }
+        &__cta { grid-template-columns: 1fr; }
+        &__cta-family { min-height: 260px; }
+        &__cta-copy { text-align: center; }
+        &__cta-copy p { margin-inline: auto; }
+        &__cta-copy > div { justify-content: center; }
+    }
+
+    @media @mobile-sm {
+        &__hero-copy h1 { font-size: 45px; }
+        &__hero-copy h2 { font-size: 18px; }
+        &__steps, &__audiences { grid-template-columns: 1fr; }
+        &__steps article { min-height: 300px; }
+        &__included { grid-template-columns: 1fr; text-align: center; > img { margin: 0 auto 15px; } h2:after { margin-inline: auto; } }
+        &__included li { text-align: left; }
+        &__advantages > div { grid-template-columns: 1fr; }
+        &__cta-copy > div { flex-direction: column; }
+    }
+}

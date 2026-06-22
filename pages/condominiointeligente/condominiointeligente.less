@@ -1,0 +1,144 @@
+.smart-condo {
+    background: #fff;
+    color: #00163d;
+
+    &__hero {
+        min-height: 590px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(90deg, rgba(1,9,29,.98), rgba(1,9,29,.82) 37%, rgba(1,9,29,.08) 68%), url("../images/condominiointeligente/imgTopoBanner.png") 70% center / cover no-repeat, #01091d;
+    }
+
+    &__hero-copy {
+        padding: 52px 0;
+        color: @white;
+
+        h1 { color: @white; font-size: 58px; font-weight: @bold; line-height: .98; text-transform: uppercase; strong { display: block; color: #0872ff; font: inherit; } }
+        h2 { max-width: 490px; margin-top: 20px; color: @white; font-size: 23px; font-weight: @semi-bold; line-height: 1.35; }
+        p { max-width: 470px; margin-top: 22px; color: rgba(255,255,255,.92); font-size: 15px; line-height: 1.55; }
+    }
+
+    &__hero-actions {
+        display: flex;
+        gap: 14px;
+        margin-top: 27px;
+
+        a { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 21px; border: 1px solid #0872ff; border-radius: 999px; color: @white; font-size: 12px; font-weight: @semi-bold; text-transform: uppercase; &:first-child { background: #0872ff; } &:hover { background: #0058d8; color: @white; } }
+    }
+
+    &__body { padding: 28px 0 45px; background: linear-gradient(180deg,#fff,#f8fbff); }
+    &__section { margin-top: 25px; }
+    &__complete { margin-top: 0; }
+    &__title { color: #00163d; font-size: 24px; font-weight: @semi-bold; text-align: center; text-transform: uppercase; &:after { content: ""; width: 38px; height: 3px; display: block; margin: 8px auto 0; background: #0872ff; } }
+    &__subtitle { margin-top: 9px; color: #001b58; font-size: 13px; line-height: 1.45; text-align: center; }
+
+    &__solutions {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        gap: 12px;
+        margin-top: 20px;
+
+        article { min-height: 225px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 17px 13px; border: 1px solid #dbe5f2; border-radius: 13px; background: @white; text-align: center; box-shadow: 0 8px 22px rgba(0,42,120,.04); }
+        i { color: #0872ff; font-size: 48px; }
+        h3 { margin-top: 17px; color: #00163d; font-size: 15px; font-weight: @semi-bold; line-height: 1.25; text-transform: uppercase; }
+        p { margin-top: 11px; color: #001b58; font-size: 11px; line-height: 1.45; }
+    }
+
+    &__benefits {
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 12px;
+        margin-top: 15px;
+
+        article { min-height: 215px; overflow: hidden; border: 1px solid #dbe5f2; border-radius: 13px; background: linear-gradient(90deg,#fff 0%,rgba(255,255,255,.97) 48%,rgba(255,255,255,.1) 76%), var(--benefit-image) right center / auto 100% no-repeat, #fff; }
+        article > div { width: 58%; padding: 20px 0 15px 18px; }
+        i { color: #0872ff; font-size: 38px; }
+        h3 { margin-top: 18px; color: #00163d; font-size: 15px; font-weight: @semi-bold; line-height: 1.2; text-transform: uppercase; }
+        p { margin-top: 12px; color: #001b58; font-size: 11px; line-height: 1.45; }
+    }
+
+    &__integrations {
+        min-height: 145px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-top: 12px;
+        padding: 14px 18px;
+        border: 1px solid #dbe5f2;
+        border-radius: 13px;
+        background: @white;
+
+        article { width: 120px; text-align: center; }
+        article i { width: 69px; height: 69px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #bed7fa; border-radius: 50%; color: #0872ff; font-size: 34px; }
+        h3 { margin-top: 10px; color: #00163d; font-size: 11px; font-weight: @semi-bold; line-height: 1.2; text-transform: uppercase; }
+        > b { color: #0872ff; font-size: 28px; font-weight: @semi-bold; }
+    }
+
+    &__steps {
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 35px;
+        margin-top: 20px;
+
+        article { display: flex; flex-direction: column; align-items: center; position: relative; text-align: center; &:not(:last-child):after { content: "····➜"; position: absolute; right: -43px; top: 55px; color: #0872ff; font-size: 22px; letter-spacing: 2px; } }
+        b { width: 31px; height: 31px; display: flex; align-items: center; justify-content: center; position: absolute; top: -8px; right: calc(50% - 49px); z-index: 2; border-radius: 50%; background: #0872ff; color: @white; }
+        i { width: 92px; height: 92px; display: flex; align-items: center; justify-content: center; border: 8px solid #f2f7ff; border-radius: 50%; color: #0872ff; font-size: 42px; }
+        h3 { margin-top: 11px; color: #00163d; font-size: 13px; font-weight: @semi-bold; text-transform: uppercase; }
+        p { max-width: 235px; margin-top: 7px; color: #001b58; font-size: 11px; line-height: 1.4; }
+    }
+
+    &__cta {
+        min-height: 205px;
+        display: grid;
+        grid-template-columns: 37% 190px 240px 1fr;
+        align-items: center;
+        margin-top: 28px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 14px;
+        background: linear-gradient(90deg,#020a1d,#001640);
+        color: @white;
+    }
+
+    &__cta-copy { padding: 27px 0 27px 32px; position: relative; z-index: 2; h2 { color: @white; font-size: 28px; font-weight: @semi-bold; line-height: 1.08; text-transform: uppercase; strong { color: #0872ff; font: inherit; } } p { max-width: 380px; margin-top: 17px; color: @white; font-size: 12px; line-height: 1.45; } }
+    &__cta-phone { align-self: stretch; background: url("../images/condominiointeligente/imgFuturoDoSeuCondominio_centro.png") center bottom / contain no-repeat; }
+    &__cta-building { align-self: stretch; background: url("../images/condominiointeligente/imgFuturoDoSeuCondominio_direita.png") right center / cover no-repeat; }
+    &__cta-actions { display: grid; gap: 13px; position: relative; z-index: 2; a { min-height: 43px; display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid #0872ff; border-radius: 999px; color: @white; font-size: 12px; font-weight: @semi-bold; text-transform: uppercase; &:hover { background: #0872ff; color: @white; } } }
+
+    @media @notebook-small {
+        &__hero { background-position: 63% center; }
+        &__benefits article > div { width: 65%; }
+    }
+
+    @media @tablet {
+        &__solutions { grid-template-columns: repeat(3,1fr); }
+        &__benefits { grid-template-columns: 1fr 1fr; }
+        &__integrations { flex-wrap: wrap; gap: 16px; }
+        &__integrations > b { display: none; }
+        &__steps { grid-template-columns: 1fr 1fr; row-gap: 35px; }
+        &__steps article:after { display: none; }
+        &__cta { grid-template-columns: 1fr 180px 230px; }
+        &__cta-building { display: none; }
+    }
+
+    @media @tablet-small {
+        &__hero { min-height: 690px; align-items: flex-end; background: linear-gradient(180deg,rgba(1,9,29,.06),rgba(1,9,29,.68) 48%,#01091d 74%), url("../images/condominiointeligente/imgTopoBanner.png") 67% top / auto 62% no-repeat, #01091d; }
+        &__hero-copy { padding: 285px 0 38px; }
+        &__hero-copy h1 { font-size: 46px; }
+        &__hero-copy h2 { font-size: 19px; }
+        &__cta { grid-template-columns: 1fr 180px; }
+        &__cta-phone { display: none; }
+    }
+
+    @media @mobile-sm {
+        &__hero-copy h1 { font-size: 39px; }
+        &__hero-actions { flex-direction: column; align-items: stretch; }
+        &__solutions, &__benefits, &__steps { grid-template-columns: 1fr; }
+        &__benefits article { min-height: 235px; }
+        &__integrations { display: grid; grid-template-columns: 1fr 1fr; }
+        &__integrations article { width: auto; }
+        &__cta { grid-template-columns: 1fr; }
+        &__cta-copy { padding: 27px 24px; text-align: center; }
+        &__cta-actions { padding: 0 24px 28px; }
+    }
+}
