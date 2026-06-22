@@ -46,6 +46,7 @@
                     <a href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i>0800 222 5262</a>
                     <a href="https://wa.me/5508002225262" target="_blank" rel="noopener"><i class="icon-whatsapp" aria-hidden="true"></i>0800 222 5262</a>
                     <a href="mailto:atendimento@asernet.com.br"><i class="icon-talk" aria-hidden="true"></i>atendimento@asernet.com.br</a>
+                    <a href="<?= BASE_URL ?>/nossaslojas"><i class="icon-pin" aria-hidden="true"></i>Nossas unidades</a>
                 </div>
             </address>
         </div>

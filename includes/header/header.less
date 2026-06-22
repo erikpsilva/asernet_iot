@@ -893,8 +893,20 @@
             touch-action: pan-y;
         }
 
+        // Links de topo fora do mega (Sobre, Suporte) viram itens da lista mobile
         &__nav-inner > .header__nav-link {
-            display: none;
+            width: 100%;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .16);
+            font-size: 15px;
+
+            &::after {
+                display: none;
+            }
+
+            &--desktop-hidden {
+                display: none;
+            }
         }
 
         &__mega {
@@ -1246,5 +1258,306 @@
         &__whatsapp {
             width: 100%;
         }
+    }
+}
+
+
+// NEW SOLUTIONS CATALOG
+.header {
+    &__mega-panel--catalog {
+        width: min(1480px, calc(100vw - 34px));
+        max-height: none;
+        padding: 25px 20px 0;
+        border-radius: 14px;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .header__mega-columns {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) 285px;
+        }
+
+        .header__mega-column {
+            padding: 0 20px 22px;
+
+            &:first-child { padding-left: 14px; }
+        }
+
+        .header__mega-heading {
+            min-height: 118px;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 14px;
+            margin-bottom: 9px;
+
+            > i { font-size: 37px; }
+            h2 { font-size: 17px; }
+            p { max-width: 215px; font-size: 13px; line-height: 1.45; }
+        }
+
+        .header__mega-list {
+            gap: 16px;
+            margin-bottom: 20px;
+
+            a { grid-template-columns: 40px minmax(0, 1fr); gap: 11px; }
+            i { font-size: 27px; }
+            strong { font-size: 13px; }
+            small { font-size: 11px; line-height: 1.38; }
+        }
+
+        .header__mega-card {
+            height: 168px;
+            grid-template-columns: minmax(0, 1fr) 48%;
+            padding: 16px;
+            border-radius: 10px;
+
+            strong { display: inline; font-size: 14px; }
+            small { margin-top: 13px; font-size: 12px; line-height: 1.5; }
+            img { width: 100%; max-height: 145px; object-fit: contain; margin: 0; align-self: end; }
+        }
+
+        .header__mega-column--home {
+            .header__mega-heading i,
+            .header__mega-list i,
+            .header__mega-card i,
+            .header__mega-card strong { color: #075bff; }
+        }
+
+        .header__mega-column--business {
+            .header__mega-heading i,
+            .header__mega-list i,
+            .header__mega-card i,
+            .header__mega-card strong { color: #098b54; }
+        }
+
+        .header__mega-column--condo {
+            .header__mega-heading i,
+            .header__mega-list i,
+            .header__mega-card i,
+            .header__mega-card strong { color: #6425d6; }
+        }
+
+        .header__mega-column--security {
+            .header__mega-heading i,
+            .header__mega-list i,
+            .header__mega-card i,
+            .header__mega-card strong { color: #df182e; }
+        }
+
+        .header__mega-card--home { background: linear-gradient(135deg,#f4f8ff,#eaf3ff); }
+        .header__mega-card--business-new { background: linear-gradient(135deg,#f3fbf7,#edf8f1); }
+        .header__mega-card--condo { background: linear-gradient(135deg,#f7f3ff,#f0eaff); }
+        .header__mega-card--security { background: linear-gradient(135deg,#fff7f4,#fff0eb); }
+
+        .header__mega-feature--brand {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: -25px -20px 0 0;
+            padding: 34px 27px 22px;
+            border: 0;
+            border-left: 1px solid #dce7f7;
+            border-radius: 0 13px 0 0;
+            background: #eef5ff;
+
+            h2 { font-size: 27px; text-transform: uppercase; }
+            h2 strong { color: #075bff; font: inherit; }
+            h3 { margin-top: 13px; color: #06133c; font-size: 13px; font-weight: @regular; }
+            p { margin-top: 24px; }
+            p b { color: #06133c; font-size: 25px; line-height: 1.15; }
+            p strong { color: #075bff; font: inherit; }
+            > small { display: block; margin-top: 15px; color: #26375d; font-size: 12px; line-height: 1.5; }
+            > img { width: calc(100% + 54px); max-width: none; height: 360px; margin: auto -27px 18px; object-fit: cover; object-position: center bottom; }
+            > a { min-height: 61px; display: flex; align-items: center; justify-content: space-between; margin-top: 0; padding: 0 18px; border-radius: 8px; background: #075bff; color: @white; font-size: 15px; line-height: 1.25; }
+            > a i { font-size: 27px; }
+        }
+    }
+
+    &__mega-benefits {
+        min-height: 91px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0 -20px;
+        border-top: 1px solid #e1e9f5;
+        background: @white;
+
+        > div { display: grid; grid-template-columns: 47px 1fr; gap: 12px; align-items: center; padding: 15px 34px; border-right: 1px solid #e1e9f5; }
+        > div:last-child { border-right: 0; }
+        i { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #d8e5f7; border-radius: 50%; color: #075bff; font-size: 24px; }
+        strong, small { display: block; }
+        strong { color: #06133c; font-size: 12px; font-weight: @bold; }
+        small { margin-top: 4px; color: #26375d; font-size: 10px; line-height: 1.35; }
+    }
+
+    @media @notebook-small {
+        &__mega-panel--catalog {
+            width: min(1328px, calc(100vw - 20px));
+            padding-inline: 12px;
+
+            .header__mega-columns { grid-template-columns: repeat(4,minmax(0,1fr)) 245px; }
+            .header__mega-column { padding-inline: 14px; }
+            .header__mega-heading { grid-template-columns: 34px 1fr; }
+            .header__mega-heading > i { font-size: 31px; }
+            .header__mega-list { gap: 13px; }
+            .header__mega-feature--brand { margin-right: -12px; padding-inline: 20px; }
+            .header__mega-feature--brand > img { width: calc(100% + 40px); margin-inline: -20px; }
+        }
+
+        &__mega-benefits { margin-inline: -12px; }
+        &__mega-benefits > div { padding-inline: 20px; }
+    }
+
+    @media @tablet {
+        &__mega-panel--catalog {
+            max-height: none;
+            width: 100%;
+            padding: 0;
+            overflow: visible;
+
+            .header__mega-columns { display: block; }
+            .header__mega-column { padding: 17px 0 16px; }
+            .header__mega-heading { min-height: 0; grid-template-columns: 28px 1fr; margin-bottom: 13px; }
+            .header__mega-heading > i { font-size: 28px; }
+            .header__mega-list { gap: 0; margin: 0; }
+            .header__mega-list a { display: block; }
+            .header__mega-card { height: auto; min-height: 72px; grid-template-columns: 1fr 86px; }
+            .header__mega-card img { width: 82px; max-height: 68px; }
+            .header__mega-feature--brand { display: none; }
+        }
+
+        &__mega-benefits { display: none; }
+    }
+}
+// MEGA PROMO CARD COMPOSITION
+@media only screen and (min-width: 992px) {
+    .header__mega-panel--catalog {
+        .header__mega-card {
+            height: 158px;
+            display: block;
+            position: relative;
+            padding: 17px 14px;
+            isolation: isolate;
+
+            > span {
+                width: 62%;
+                position: relative;
+                z-index: 2;
+            }
+
+            > span > i {
+                margin-right: 7px;
+                font-size: 18px;
+            }
+
+            > span > strong {
+                font-size: 13px;
+                vertical-align: 2px;
+                white-space: nowrap;
+            }
+
+            > span > small {
+                margin-top: 14px;
+                color: #17264a;
+                font-size: 11px;
+                line-height: 1.55;
+            }
+
+            > img {
+                height: auto;
+                max-height: none;
+                position: absolute;
+                z-index: 1;
+                right: 0;
+                bottom: 0;
+                object-fit: contain;
+                object-position: right bottom;
+            }
+        }
+
+        .header__mega-card--home > img {
+            width: 57%;
+            height: 122px;
+            right: -4px;
+        }
+
+        .header__mega-card--business-new {
+            > span { width: 68%; }
+            > img { width: 48%; height: 154px; right: -3px; }
+        }
+
+        .header__mega-card--condo {
+            > span { width: 64%; }
+            > img { width: 59%; height: 112px; right: -10px; }
+        }
+
+        .header__mega-card--security {
+            > span { width: 60%; }
+            > img { width: 58%; height: 127px; right: -5px; }
+        }
+    }
+}
+// MEGA DESKTOP NO SCROLL
+@media only screen and (min-width: 992px) {
+    .header__mega-panel--catalog {
+        max-height: none;
+        overflow: visible;
+    }
+}
+// MEGA BENEFIT LINKS
+.header__mega-benefits a {
+    color: inherit;
+
+    &:hover { color: #075bff; }
+}
+// MEGA BRAND IMAGE FULL
+@media only screen and (min-width: 992px) {
+    .header__mega-panel--catalog .header__mega-feature--brand > img {
+        width: calc(100% + 54px);
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+// MEGA COMPACT ALIGNMENT
+@media only screen and (min-width: 992px) {
+    .header__mega-panel--catalog {
+        .header__mega-column {
+            align-self: start;
+        }
+
+        .header__mega-list {
+            min-height: 333px;
+            margin-bottom: 16px;
+        }
+
+        .header__mega-card {
+            margin-top: 0;
+        }
+
+        .header__mega-feature--brand {
+            align-self: start;
+            min-height: 0;
+            padding-top: 25px;
+
+            p { margin-top: 17px; }
+            > small { margin-top: 11px; }
+
+            > img {
+                width: calc(100% + 54px);
+                height: 280px;
+                margin-top: 5px;
+                margin-bottom: 8px;
+                object-fit: cover;
+                object-position: center 62%;
+                -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 88%, transparent 100%);
+                mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 88%, transparent 100%);
+            }
+        }
+    }
+}
+// MEGA LIST NATURAL FLOW
+@media only screen and (min-width: 992px) {
+    .header__mega-panel--catalog .header__mega-list {
+        align-content: start;
+        grid-auto-rows: max-content;
     }
 }
