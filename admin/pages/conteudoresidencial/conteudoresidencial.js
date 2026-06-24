@@ -48,6 +48,13 @@ $(document).ready(function () {
         $(this).closest('.adminConteudo__bulletRow').remove();
     });
 
+    // "Mais pedido" funciona como rádio: marcar um desmarca os outros
+    $(document).on('change', '.adminConteudo__planoFeatured', function () {
+        if (this.checked) {
+            $('.adminConteudo__planoFeatured').not(this).prop('checked', false);
+        }
+    });
+
     // --- PLANOS ---
 
     function renderPlanos(planos) {
@@ -58,10 +65,15 @@ $(document).ready(function () {
     function buildPlanoCard(i, plano) {
         var bulletsHtml = '';
         $.each(plano.bullets || [], function (j, b) { bulletsHtml += buildBulletRow(b); });
+        var featuredChecked = plano.featured ? 'checked' : '';
 
         return '<div class="col-md-4">' +
             '<div class="adminConteudo__card">' +
-            '<p class="adminConteudo__cardLabel">Plano ' + (i + 1) + '</p>' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+            '<p class="adminConteudo__cardLabel" style="margin:0">Plano ' + (i + 1) + '</p>' +
+            '<label style="font-size:12px;color:#8a9ab8;cursor:pointer;display:flex;align-items:center;gap:5px">' +
+            '<input type="checkbox" class="adminConteudo__planoFeatured" id="plano-featured-' + i + '" ' + featuredChecked + '> Mais pedido</label>' +
+            '</div>' +
 
             '<div class="formGroup__item"><label class="formGroup__label">Nome</label>' +
             '<input type="text" class="formGroup__input" id="plano-nome-' + i + '" value="' + escAttr(plano.nome) + '" maxlength="60"></div>' +
@@ -163,7 +175,8 @@ $(document).ready(function () {
                 nome:      $('#plano-nome-'  + i).val().trim(),
                 descricao: $('#plano-desc-'  + i).val().trim(),
                 bullets:   collectBullets('planoBullets-' + i),
-                preco:     $('#plano-preco-' + i).val().trim()
+                preco:     $('#plano-preco-' + i).val().trim(),
+                featured:  $('#plano-featured-' + i).is(':checked')
             });
         });
 

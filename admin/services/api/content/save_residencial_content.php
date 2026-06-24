@@ -31,6 +31,7 @@ function sanitize_plan_res(array $plan): array {
         'descricao'=> trim((string) ($plan['descricao'] ?? '')),
         'bullets'  => sanitize_bullets_res($plan['bullets'] ?? []),
         'preco'    => trim((string) ($plan['preco']    ?? '')),
+        'featured' => !empty($plan['featured']),
     ];
 }
 
@@ -55,6 +56,17 @@ $content = [
     'planos'              => array_map('sanitize_plan_res',    array_slice(array_filter($rawPlanos,  'is_array'), 0, 3)),
     'suporte'             => array_map('sanitize_suporte_item', array_slice(array_filter($rawSuporte, 'is_array'), 0, 4)),
 ];
+
+// Garante no máximo 1 plano com destaque, mesmo que o payload chegue com mais de um marcado
+$featuredFound = false;
+foreach ($content['planos'] as $idx => $plano) {
+    if (!$plano['featured']) continue;
+    if ($featuredFound) {
+        $content['planos'][$idx]['featured'] = false;
+    } else {
+        $featuredFound = true;
+    }
+}
 
 require_once dirname(__FILE__, 5) . '/config/database.php';
 $pdo = getDbConnection();

@@ -23,9 +23,9 @@ $defaults = [
     'solucao_bullets'     => ['Mais estabilidade', 'Melhor cobertura', 'Melhor experiência para toda a família', 'Estrutura preparada para sua necessidade'],
     'planos_titulo'       => 'Escolha o nível ideal para sua casa',
     'planos' => [
-        ['nome' => 'ASER CONECTA',      'descricao' => 'Ideal para uso básico e casas compactas',          'bullets' => ['1 Giga de velocidade', 'Wi-Fi estável', 'Suporte AserNet'],                                                                      'preco' => '109,90'],
-        ['nome' => 'ASER CONECTA PLUS', 'descricao' => 'Mais estabilidade para famílias conectadas',       'bullets' => ['Tudo do plano anterior', 'Até 3 pontos de rede cabeados', 'Melhor desempenho para TVs, videogames e home office'],              'preco' => '119,90'],
-        ['nome' => 'ASER CASA CONECTADA','descricao' => 'Cobertura inteligente para toda a casa',          'bullets' => ['Tudo do plano anterior', 'Sistema Wi-Fi Mesh', 'Cobertura ampliada', 'Melhor experiência em múltiplos ambientes'],              'preco' => '139,90'],
+        ['nome' => 'ASER CONECTA',      'descricao' => 'Ideal para uso básico e casas compactas',          'bullets' => ['1 Giga de velocidade', 'Wi-Fi estável', 'Suporte AserNet'],                                                                      'preco' => '109,90', 'featured' => false],
+        ['nome' => 'ASER CONECTA PLUS', 'descricao' => 'Mais estabilidade para famílias conectadas',       'bullets' => ['Tudo do plano anterior', 'Até 3 pontos de rede cabeados', 'Melhor desempenho para TVs, videogames e home office'],              'preco' => '119,90', 'featured' => true],
+        ['nome' => 'ASER CASA CONECTADA','descricao' => 'Cobertura inteligente para toda a casa',          'bullets' => ['Tudo do plano anterior', 'Sistema Wi-Fi Mesh', 'Cobertura ampliada', 'Melhor experiência em múltiplos ambientes'],              'preco' => '139,90', 'featured' => false],
     ],
     'suporte' => [
         ['titulo' => 'Suporte local de verdade',        'texto' => 'Atendimento rápido e próximo sempre que precisar.'],
@@ -55,6 +55,9 @@ try {
                         }
                         if (!empty($plano['bullets']) && is_array($plano['bullets'])) {
                             $defaults['planos'][$i]['bullets'] = $plano['bullets'];
+                        }
+                        if (isset($plano['featured'])) {
+                            $defaults['planos'][$i]['featured'] = (bool) $plano['featured'];
                         }
                     }
                 }
