@@ -1,24 +1,62 @@
 <footer class="footer">
     <div class="container">
-        <div class="footer__top">
+        <section class="footer__solutions" aria-label="Solu&ccedil;&otilde;es">
+            <div class="footer__solutions-head">
+                <span>Solu&ccedil;&otilde;es AserNet</span>
+                <p>Encontre rapidamente todos os produtos e servi&ccedil;os do nosso menu.</p>
+            </div>
+
+            <div class="footer__solutions-grid">
+                <nav class="footer__solution-group" aria-label="Casa conectada" data-footer-accordion>
+                    <h2>Casa conectada<span class="footer__arrow" aria-hidden="true"></span></h2>
+                    <ul>
+                        <li><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a></li>
+                        <li><a href="<?= BASE_URL ?>/combo">Combos</a></li>
+                        <li><a href="<?= BASE_URL ?>/wifimesh">Wi-Fi Mesh</a></li>
+                        <li><a href="<?= BASE_URL ?>/planomovel">Plano M&oacute;vel</a></li>
+                        <li><a href="<?= BASE_URL ?>/skeelo">Skeelo</a></li>
+                        <li><a href="<?= BASE_URL ?>/cruzeiro">Cruzeiro AserNet</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__solution-group" aria-label="Empresas" data-footer-accordion>
+                    <h2>Empresas<span class="footer__arrow" aria-hidden="true"></span></h2>
+                    <ul>
+                        <li><a href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a></li>
+                        <li><a href="<?= BASE_URL ?>/internetpme">Internet PME</a></li>
+                        <li><a href="<?= BASE_URL ?>/wifiprofissional">Wi-Fi Profissional</a></li>
+                        <li><a href="<?= BASE_URL ?>/telefoniaempresarial">Telefonia Empresarial</a></li>
+                        <li><a href="<?= BASE_URL ?>/linkdedicado">Link Dedicado</a></li>
+                        <li><a href="<?= BASE_URL ?>/controlecorporativo">Controle de Acesso Corporativo</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__solution-group" aria-label="Condom&iacute;nios e comunidades" data-footer-accordion>
+                    <h2>Condom&iacute;nios<span class="footer__arrow" aria-hidden="true"></span></h2>
+                    <ul>
+                        <li><a href="<?= BASE_URL ?>/condominiointeligente">Condom&iacute;nio Inteligente</a></li>
+                        <li><a href="<?= BASE_URL ?>/controleconcominial">Controle de Acesso Condominial</a></li>
+                        <li><a href="<?= BASE_URL ?>/bairroseguro">Bairro Seguro</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer__solution-group" aria-label="Seguran&ccedil;a e monitoramento" data-footer-accordion>
+                    <h2>Seguran&ccedil;a<span class="footer__arrow" aria-hidden="true"></span></h2>
+                    <ul>
+                        <li><a href="<?= BASE_URL ?>/cameradeseguranca">C&acirc;meras de Seguran&ccedil;a</a></li>
+                        <li><a href="<?= BASE_URL ?>/rastreamentoveicular">Rastreamento Veicular</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <div class="footer__main">
             <section class="footer__brand" aria-label="AserNet">
                 <a href="<?= BASE_URL ?>" aria-label="AserNet">
                     <img src="<?= BASE_URL ?>/images/logo-transparent.png" alt="AserNet">
                 </a>
                 <p>Mais que internet. Solu&ccedil;&otilde;es completas em conectividade, seguran&ccedil;a, mobilidade e tecnologia para sua casa ou empresa.</p>
             </section>
-
-            <nav class="footer__nav" aria-label="Solu&ccedil;&otilde;es" data-footer-accordion>
-                <h2>Solu&ccedil;&otilde;es<span class="footer__arrow" aria-hidden="true"></span></h2>
-                <ul>
-                    <li><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a></li>
-                    <li><a href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a></li>
-                    <li><a href="<?= BASE_URL ?>/wifiprofissional">Wi-Fi Profissional</a></li>
-                    <li><a href="<?= BASE_URL ?>/cameradeseguranca">C&acirc;meras de Seguran&ccedil;a</a></li>
-                    <li><a href="<?= BASE_URL ?>/rastreamentoveicular">Rastreamento Veicular</a></li>
-                    <li><a href="<?= BASE_URL ?>/planomovel">Aser Mobile</a></li>
-                </ul>
-            </nav>
 
             <nav class="footer__nav" aria-label="Institucional" data-footer-accordion>
                 <h2>Institucional<span class="footer__arrow" aria-hidden="true"></span></h2>
@@ -50,7 +88,6 @@
                 </div>
             </address>
         </div>
-
         <div class="footer__extras">
             <div class="footer__apps" aria-label="Aplicativos AserNet">
                 <a href="https://play.google.com/store/search?q=asernet&c=apps&utm_source=latam_Med" target="_blank" rel="noopener">

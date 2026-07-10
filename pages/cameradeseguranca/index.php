@@ -1,12 +1,12 @@
 <?php
 // ── Banner (hero) ──────────────────────────────────────────────────────────
 $_bn = [
-    'titulo'             => 'Segurança de verdade,',
-    'titulo_destaque'    => 'sem complicação.',
+    'titulo'             => 'AserNet',
+    'titulo_destaque'    => 'Segurança Inteligente',
     'titulo_complemento' => '',
-    'texto'              => 'Monitore sua casa ou empresa em tempo real, direto pelo celular.',
-    'bullets'            => ['Instalação inclusa', 'Acesso remoto pelo aplicativo', 'Equipamentos inclusos em comodato', 'Suporte AserNet'],
-    'preco'              => 'Planos a partir de R$ 49,90/mês',
+    'texto'              => 'Proteção completa para o que realmente importa.',
+    'bullets'            => ['Gravação em nuvem', 'Detecção de pessoas com IA', 'Acesso ao vivo onde estiver', 'Manutenção e troca de equipamentos', 'Suporte 24 horas'],
+    'preco'              => '',
     'btn1_texto'         => 'Quero proteger meu imóvel',
     'btn2_texto'         => '0800 222 5262',
     'imagem'             => '',
@@ -26,6 +26,13 @@ try {
     }
     unset($_s_bn, $_r_bn, $_d_bn, $_k);
 } catch (Throwable $e) {}
+if ($_bn['titulo'] === 'Segurança de verdade,' && $_bn['titulo_destaque'] === 'sem complicação.') {
+    $_bn['titulo'] = 'AserNet';
+    $_bn['titulo_destaque'] = 'Segurança Inteligente';
+    $_bn['texto'] = 'Proteção completa para o que realmente importa.';
+    $_bn['bullets'] = ['Gravação em nuvem', 'Detecção de pessoas com IA', 'Acesso ao vivo onde estiver', 'Manutenção e troca de equipamentos', 'Suporte 24 horas'];
+    $_bn['preco'] = '';
+}
 
 $_cc = [
     'dor_titulo'   => 'Você nem sempre consegue estar presente.',
@@ -45,9 +52,10 @@ $_cc = [
 
     'planos_titulo' => 'Escolha o plano ideal para você',
     'planos' => [
-        ['nome' => '1 CÂMERA',           'descricao' => 'Mais para entradas e monitoramento básico',    'imagem' => 'img1Camera.png',        'bullets' => ['1 câmera HD', 'Visão noturna', 'Acesso remoto pelo app', 'Armazenamento em nuvem'],                                    'preco' => '49,90'],
-        ['nome' => '2 CÂMERAS',          'descricao' => 'Cobertura ampliada para ambientes maiores',   'imagem' => 'imag2Cameras.png',      'bullets' => ['2 câmeras HD', 'Visão noturna', 'Acesso remoto pelo app', 'Armazenamento em nuvem'],                                   'preco' => '99,80'],
-        ['nome' => '2 CÂMERAS + ALARME', 'descricao' => 'Mais proteção com monitoramento inteligente', 'imagem' => 'img2CamerasAlarame.png','bullets' => ['2 câmeras HD', 'Central de alarme', 'Visão noturna', 'Acesso remoto pelo app', 'Armazenamento em nuvem'],             'preco' => '119,70'],
+        ['nome' => 'Essencial', 'descricao' => 'Ideal para apartamentos e pequenas residências.',       'quantidade' => '02 câmeras', 'taxa' => '+ R$ 120,00 Taxa de Instalação e Configuração', 'imagem' => 'img2cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '79,90'],
+        ['nome' => 'Plus',      'descricao' => 'Cobertura completa para residências médias.',          'quantidade' => '04 câmeras', 'taxa' => '+ R$ 240,00 Taxa de Instalação e Configuração', 'imagem' => 'img4cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '149,90'],
+        ['nome' => 'Premium',   'descricao' => 'Proteção ampliada para imóveis maiores.',              'quantidade' => '06 câmeras', 'taxa' => '+ R$ 360,00 Taxa de Instalação e Configuração', 'imagem' => 'img6cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '219,90'],
+        ['nome' => 'Total',     'descricao' => 'Proteção máxima para grandes residências e empresas.', 'quantidade' => '08 câmeras', 'taxa' => '+ R$ 480,00 Taxa de Instalação e Configuração', 'imagem' => 'img8cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '289,90'],
     ],
 
     'como_titulo'      => 'Como funciona',
@@ -69,10 +77,11 @@ $_cc = [
 
 $_difIcons    = ['icon-engineer', 'icon-casino-cctv', 'icon-customersupport', 'icon-expansivel'];
 $_dorIcons    = ['icon-home', 'icon-monitoramento', 'icon-funcionarios', 'icon-inseguranca'];
-$_planoIds    = ['camera-1', 'camera-2', 'camera-3'];
-$_planoBadges = [null, 'Mais contratado', 'Mais proteção'];
-$_planoMods   = ['', 'camera-security__plan--featured', 'camera-security__plan--orange'];
+$_planoIds    = ['camera-2', 'camera-4', 'camera-6', 'camera-8'];
+$_planoBadges = [null, 'Mais contratado', null, null];
+$_planoMods   = ['', 'camera-security__plan--featured', '', ''];
 $_comoIcons   = ['icon-escolherplano', 'icon-calendar', 'icon-app', 'icon-view'];
+$_bnIcons      = ['icon-cloud', 'icon-security', 'icon-mobile-phone', 'icon-equipamentocomodato', 'icon-customersupport'];
 
 try {
     require_once ROOT . '/config/database.php';
@@ -92,10 +101,10 @@ try {
             foreach (['dor_items', 'monitor_bullets', 'como_steps', 'como_app_bullets'] as $k) {
                 if (!empty($db[$k]) && is_array($db[$k])) $_cc[$k] = $db[$k];
             }
-            if (!empty($db['planos']) && is_array($db['planos'])) {
+            if (!empty($db['planos']) && is_array($db['planos']) && count($db['planos']) >= count($_cc['planos'])) {
                 foreach ($db['planos'] as $i => $plano) {
                     if (isset($_cc['planos'][$i]) && is_array($plano)) {
-                        foreach (['nome', 'descricao', 'preco', 'imagem'] as $k) {
+                        foreach (['nome', 'descricao', 'preco', 'imagem', 'quantidade', 'taxa'] as $k) {
                             if (!empty($plano[$k])) $_cc['planos'][$i][$k] = $plano[$k];
                         }
                         if (!empty($plano['bullets']) && is_array($plano['bullets'])) $_cc['planos'][$i]['bullets'] = $plano['bullets'];
@@ -143,8 +152,8 @@ try {
 
                         <?php if (!empty($_bn['bullets'])): ?>
                         <ul class="camera-security__hero-list">
-                            <?php foreach ($_bn['bullets'] as $_b): ?>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
+                            <?php foreach ($_bn['bullets'] as $_i => $_b): ?>
+                            <li><i class="<?= $_bnIcons[$_i] ?? 'icon-checkmark' ?>" aria-hidden="true"></i><?= htmlspecialchars($_b) ?></li>
                             <?php endforeach; ?>
                         </ul>
                         <?php endif; ?>
@@ -153,10 +162,16 @@ try {
                         <p class="camera-security__hero-price"><?= htmlspecialchars($_bn['preco']) ?></p>
                         <?php endif; ?>
 
+                        <?php if (!empty($_bn['btn1_texto']) || !empty($_bn['btn2_texto'])): ?>
                         <div class="camera-security__hero-actions">
+                            <?php if (!empty($_bn['btn1_texto'])): ?>
                             <a class="camera-security__button camera-security__button--primary" href="<?= BASE_URL ?>/contato"><i class="icon-security" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn1_texto']) ?></a>
+                            <?php endif; ?>
+                            <?php if (!empty($_bn['btn2_texto'])): ?>
                             <a class="camera-security__button camera-security__button--outline" href="tel:08002225262"><i class="icon-phone" aria-hidden="true"></i><?= htmlspecialchars($_bn['btn2_texto']) ?></a>
+                            <?php endif; ?>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -225,12 +240,22 @@ try {
                     ?>
                     <article class="camera-security__plan<?= $mod ? ' ' . $mod : '' ?>">
                         <?php if ($badge): ?><span><?= htmlspecialchars($badge) ?></span><?php endif; ?>
-                        <div class="camera-security__plan-copy">
-                            <h3><?= htmlspecialchars($plano['nome']) ?></h3>
-                            <p><?= htmlspecialchars($plano['descricao']) ?></p>
+                        <div class="camera-security__plan-head">
+                            <i class="icon-security" aria-hidden="true"></i>
+                            <div class="camera-security__plan-copy">
+                                <strong>Proteção</strong>
+                                <h3><?= htmlspecialchars($plano['nome']) ?></h3>
+                                <p><?= htmlspecialchars($plano['descricao']) ?></p>
+                            </div>
                         </div>
                         <img src="<?= BASE_URL ?>/images/cameraseguranca/<?= htmlspecialchars($plano['imagem']) ?>" alt="">
+                        <?php if (!empty($plano['quantidade'])): ?>
+                        <p class="camera-security__plan-quantity"><?= htmlspecialchars($plano['quantidade']) ?></p>
+                        <?php endif; ?>
                         <p class="camera-security__price"><span>R$</span> <?= htmlspecialchars($plano['preco']) ?><small>/mês</small></p>
+                        <?php if (!empty($plano['taxa'])): ?>
+                        <p class="camera-security__plan-fee"><?= htmlspecialchars($plano['taxa']) ?></p>
+                        <?php endif; ?>
                         <ul>
                             <?php foreach ($plano['bullets'] as $b): ?>
                             <li><?= htmlspecialchars($b) ?></li>
@@ -241,15 +266,98 @@ try {
                            data-cart-id="<?= $cid ?>"
                            data-cart-group="cameras-seguranca"
                            data-cart-title="<?= htmlspecialchars($plano['nome']) ?>"
-                           data-cart-subtitle="<?= htmlspecialchars($plano['descricao']) ?>"
+                           data-cart-subtitle="<?= htmlspecialchars(trim(($plano['quantidade'] ?? '') . ' - ' . $plano['descricao'], ' -')) ?>"
                            data-cart-price="R$ <?= htmlspecialchars($plano['preco']) ?>/mês"
                            data-cart-icon="icon-casino-cctv"
-                           data-cart-url="<?= BASE_URL ?>/cameradeseguranca">Contratar</a>
+                           data-cart-url="<?= BASE_URL ?>/cameradeseguranca">Contratar agora</a>
                     </article>
                     <?php endforeach; ?>
                 </div>
 
                 <a class="camera-security__proposal" href="<?= BASE_URL ?>/contato">Solicitar proposta</a>
+            </div>
+        </section>
+
+        <section class="camera-security__comparison">
+            <div class="container">
+                <h2>Comprar c&acirc;meras ou assinar um sistema completo?</h2>
+                <p class="camera-security__comparison-subtitle">Mais economia, mais seguran&ccedil;a e zero preocupa&ccedil;&atilde;o com a AserNet.</p>
+
+                <div class="camera-security__comparison-grid">
+                    <article class="camera-security__comparison-card camera-security__comparison-card--buy">
+                        <div class="camera-security__comparison-head">
+                            <span class="camera-security__comparison-icon camera-security__comparison-icon--bad" aria-hidden="true">&times;</span>
+                            <div>
+                                <h3>Comprar por conta pr&oacute;pria</h3>
+                                <p>Investimento inicial aproximado para 2 c&acirc;meras:</p>
+                                <strong>R$ 1.200 a R$ 1.500</strong>
+                            </div>
+                        </div>
+
+                        <div class="camera-security__comparison-body">
+                            <ul class="camera-security__comparison-list camera-security__comparison-list--bad">
+                                <li>Comprar c&acirc;meras</li>
+                                <li>Comprar cabos, canaletas e conectores</li>
+                                <li>Comprar switch PoE e r&eacute;gua de energia</li>
+                                <li>Contratar instalador por fora</li>
+                                <li>Configurar aplicativo sozinho</li>
+                                <li>Sem manuten&ccedil;&atilde;o inclusa</li>
+                                <li>Sem troca garantida dos equipamentos</li>
+                                <li>Sem suporte AserNet</li>
+                            </ul>
+                            <img src="<?= BASE_URL ?>/images/cameraseguranca/imgComparPorContaPropria.png" alt="Equipamentos necess&aacute;rios para comprar c&acirc;meras por conta pr&oacute;pria">
+                        </div>
+
+                        <div class="camera-security__comparison-note camera-security__comparison-note--bad">
+                            <i class="icon-diagram" aria-hidden="true"></i>
+                            <span>Alto investimento, sem garantia de suporte e manuten&ccedil;&atilde;o.</span>
+                        </div>
+                    </article>
+
+                    <div class="camera-security__comparison-vs" aria-hidden="true">VS</div>
+
+                    <article class="camera-security__comparison-card camera-security__comparison-card--aser">
+                        <div class="camera-security__comparison-head">
+                            <span class="camera-security__comparison-icon" aria-hidden="true"><i class="icon-security"></i></span>
+                            <div>
+                                <h3>Assinar AserNet <strong>Seguran&ccedil;a Inteligente</strong></h3>
+                                <p>Implanta&ccedil;&atilde;o a partir de <b>R$ 120,00</b> + mensalidade</p>
+                            </div>
+                        </div>
+
+                        <div class="camera-security__comparison-body">
+                            <ul class="camera-security__comparison-list camera-security__comparison-list--good">
+                                <li>C&acirc;meras inclusas</li>
+                                <li>Cabo de rede de qualidade</li>
+                                <li>Canaletas e conectores inclusos</li>
+                                <li>Switch PoE incluso quando necess&aacute;rio</li>
+                                <li>R&eacute;gua de energia inclusa</li>
+                                <li>Instala&ccedil;&atilde;o profissional</li>
+                                <li>Aplicativo exclusivo</li>
+                                <li>Detec&ccedil;&atilde;o de pessoas com IA</li>
+                                <li>Grava&ccedil;&atilde;o em nuvem</li>
+                                <li>Manuten&ccedil;&atilde;o inclusa</li>
+                                <li>Suporte AserNet</li>
+                                <li>Troca de equipamentos em caso de defeito</li>
+                            </ul>
+                            <img src="<?= BASE_URL ?>/images/cameraseguranca/imgAssinarAsernetSegurancaInteligente.png" alt="Sistema AserNet Seguran&ccedil;a Inteligente com aplicativo e grava&ccedil;&atilde;o em nuvem">
+                        </div>
+
+                        <div class="camera-security__comparison-note">
+                            <i class="icon-security" aria-hidden="true"></i>
+                            <span>Tudo incluso, suporte local e tranquilidade todos os dias para voc&ecirc; e sua fam&iacute;lia.</span>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="camera-security__comparison-benefits">
+                    <article><i class="icon-engineer" aria-hidden="true"></i><strong>Instala&ccedil;&atilde;o profissional</strong><span>Equipe especializada AserNet.</span></article>
+                    <article><i class="icon-customersupport" aria-hidden="true"></i><strong>Suporte local 24 horas</strong><span>Atendimento r&aacute;pido e humanizado.</span></article>
+                    <article><i class="icon-cloud" aria-hidden="true"></i><strong>Grava&ccedil;&atilde;o em nuvem segura</strong><span>Seus v&iacute;deos protegidos 24 horas por dia.</span></article>
+                    <article><b>IA</b><strong>Intelig&ecirc;ncia Artificial</strong><span>Detec&ccedil;&atilde;o de pessoas e alertas inteligentes.</span></article>
+                    <article><i class="icon-gear" aria-hidden="true"></i><strong>Troca garantida de equipamentos</strong><span>Em caso de defeito, furto ou danos naturais.</span></article>
+                    <article><b>$</b><strong>Economia de verdade</strong><span>Sem gastos extras com manuten&ccedil;&atilde;o.</span></article>
+                </div>
             </div>
         </section>
 

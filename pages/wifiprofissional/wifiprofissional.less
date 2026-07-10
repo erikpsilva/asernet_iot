@@ -701,7 +701,6 @@
     }
 
     @media @mobile-large {
-        padding-bottom: 122px;
 
         &__hero {
             background: #030b1b;
@@ -1017,28 +1016,22 @@
         }
 
         &__cta {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 45;
-            padding: 9px 10px 10px;
-            background: #00163d;
-        }
-
-        &__cta .container {
-            width: 100%;
-            padding: 0;
+            padding: 16px 0 24px;
+            background: #fbfdff;
         }
 
         &__cta-box {
             min-height: 0;
-            display: block;
-            padding: 0;
-            border-radius: 0;
+            grid-template-columns: 1fr;
+            padding: 20px 16px;
+            border-radius: 8px;
 
-            > div:first-child {
-                display: none;
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 13px;
             }
         }
 

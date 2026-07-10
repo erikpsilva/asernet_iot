@@ -358,3 +358,55 @@
         max-width: 100%;
     }
 }
+
+.camera-security__hero {
+    background:
+        linear-gradient(90deg, rgba(2, 10, 31, .98) 0%, rgba(2, 10, 31, .95) 36%, rgba(2, 10, 31, .55) 54%, rgba(2, 10, 31, .08) 100%),
+        var(--hero-image, url("../images/cameraseguranca/imgBannerTopo.png")) 70% center / auto 100% no-repeat,
+        #041233 !important;
+}
+
+.camera-security__hero-title {
+    strong {
+        display: inline !important;
+        color: #1494ff !important;
+    }
+}
+
+.camera-security__hero-list {
+    i {
+        background: transparent !important;
+        color: #1494ff !important;
+    }
+}
+
+.camera-security__hero-actions {
+    display: none !important;
+}
+
+@media @notebook-small {
+    .camera-security__hero {
+        background:
+            linear-gradient(90deg, rgba(2, 10, 31, .98) 0%, rgba(2, 10, 31, .94) 41%, rgba(2, 10, 31, .5) 62%, rgba(2, 10, 31, .12) 100%),
+            var(--hero-image, url("../images/cameraseguranca/imgBannerTopo.png")) 82% center / auto 100% no-repeat,
+            #041233 !important;
+    }
+}
+
+@media @tablet {
+    .camera-security__hero {
+        background:
+            linear-gradient(180deg, rgba(2, 10, 31, .98) 0%, rgba(2, 10, 31, .92) 47%, rgba(2, 10, 31, .42) 72%, rgba(2, 10, 31, .1) 100%),
+            var(--hero-image, url("../images/cameraseguranca/imgBannerTopo.png")) center bottom / auto 70% no-repeat,
+            #041233 !important;
+    }
+}
+
+@media @mobile-large {
+    .camera-security__hero {
+        background:
+            linear-gradient(180deg, rgba(2, 10, 31, .98) 0%, rgba(2, 10, 31, .95) 54%, rgba(2, 10, 31, .35) 76%, rgba(2, 10, 31, .08) 100%),
+            var(--hero-image, url("../images/cameraseguranca/imgBannerTopo.png")) center bottom / 145% auto no-repeat,
+            #041233 !important;
+    }
+}

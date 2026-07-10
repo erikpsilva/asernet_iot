@@ -1,4 +1,7 @@
 .footer {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     padding: 36px 0 24px;
     background: #001f4f;
     color: @white;
@@ -20,11 +23,69 @@
         line-height: 1.2;
     }
 
-    &__top {
+    &__solutions {
+        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    &__solutions-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 18px;
+
+        span {
+            color: @white;
+            font-size: 18px;
+            font-weight: @semi-bold;
+        }
+
+        p {
+            max-width: 455px;
+            color: rgba(255, 255, 255, .76);
+            font-size: 13px;
+            line-height: 1.4;
+            text-align: right;
+        }
+    }
+
+    &__solutions-grid {
         display: grid;
-        grid-template-columns: 1.45fr repeat(4, minmax(0, 1fr));
+        grid-template-columns: 1.25fr 1.25fr 1fr .9fr;
+        gap: 14px;
+    }
+
+    &__solution-group {
+        min-height: 176px;
+        padding: 18px 18px 16px;
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, .035);
+
+        h2 {
+            margin-bottom: 13px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            display: grid;
+            gap: 8px;
+        }
+
+        a {
+            color: rgba(255, 255, 255, .9);
+            font-size: 13px;
+            line-height: 1.25;
+        }
+    }
+
+    &__main {
+        display: grid;
+        grid-template-columns: 1.35fr repeat(3, minmax(0, 1fr));
         gap: 42px;
-        padding-bottom: 30px;
+        padding: 28px 0 30px;
         border-bottom: 1px solid rgba(255, 255, 255, .14);
     }
 
@@ -48,6 +109,7 @@
             display: grid;
             gap: 11px;
         }
+
 
         a {
             color: @white;
@@ -188,7 +250,11 @@
     }
 
     @media @notebook-small {
-        &__top {
+        &__solutions-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &__main {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 30px;
         }
@@ -211,13 +277,45 @@
         padding: 32px 0 22px;
         text-align: center;
 
-        &__top,
+        &__solutions-head {
+            display: block;
+            margin-bottom: 16px;
+
+            p {
+                max-width: none;
+                margin-top: 7px;
+                text-align: center;
+            }
+        }
+
+        &__solutions-grid,
+        &__main,
         &__extras {
             grid-template-columns: 1fr;
         }
 
-        &__top {
+        &__solutions-grid {
+            gap: 12px;
+            padding-top: 6px;
+        }
+
+        &__solution-group {
+            min-height: 0;
+            padding: 4px 16px 0;
+
+            h2 {
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        &__main {
             gap: 26px;
+            padding-top: 26px;
         }
 
         &__brand {
@@ -233,6 +331,7 @@
         &__contact-links {
             justify-items: center;
         }
+
 
         &__contact a {
             width: auto;
@@ -269,7 +368,7 @@
             &.footer__contact .footer__contact-links {
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height .3s ease, padding-top .3s ease;
+                transition: max-height .3s ease, padding-top .3s ease, padding-bottom .3s ease;
             }
 
             &.footer--open {
@@ -285,6 +384,7 @@
                 .footer__contact-links {
                     max-height: 400px;
                     padding-top: 14px;
+                    padding-bottom: 16px;
                 }
             }
         }
@@ -305,6 +405,10 @@
     }
 
     @media @mobile-large {
+        > .container {
+            max-width: none;
+        }
+
         &__apps {
             flex-wrap: wrap;
             justify-content: center;

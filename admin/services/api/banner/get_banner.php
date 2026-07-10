@@ -185,4 +185,12 @@ try {
     }
 } catch (Throwable $e) {}
 
+if ($page === 'cameras' && strpos((string) $defaults['titulo'], 'Seguran') === 0 && strpos((string) $defaults['titulo_destaque'], 'sem complica') === 0) {
+    $defaults['titulo'] = 'AserNet';
+    $defaults['titulo_destaque'] = 'Segurança Inteligente';
+    $defaults['texto'] = 'Proteção completa para o que realmente importa.';
+    $defaults['bullets'] = ['Gravação em nuvem', 'Detecção de pessoas com IA', 'Acesso ao vivo onde estiver', 'Manutenção e troca de equipamentos', 'Suporte 24 horas'];
+    $defaults['preco'] = '';
+}
+
 echo json_encode(['ok' => true, 'content' => $defaults]);

@@ -124,7 +124,7 @@ $(document).ready(function () {
         var bulletsHtml = '';
         $.each(plano.bullets || [], function (j, b) { bulletsHtml += buildBulletRow(b); });
 
-        return '<div class="col-md-4">' +
+        return '<div class="col-md-3">' +
             '<div class="adminConteudo__card">' +
             '<p class="adminConteudo__cardLabel">Plano ' + (i + 1) + '</p>' +
 
@@ -134,10 +134,16 @@ $(document).ready(function () {
             '<div class="formGroup__item"><label class="formGroup__label">Descrição</label>' +
             '<input type="text" class="formGroup__input" id="plano-desc-' + i + '" value="' + escAttr(plano.descricao) + '" maxlength="120"></div>' +
 
-            '<div class="formGroup__item"><label class="formGroup__label">Bullets <small style="color:#8a9ab8">(até 5)</small></label>' +
+            '<div class="formGroup__item"><label class="formGroup__label">Quantidade</label>' +
+            '<input type="text" class="formGroup__input" id="plano-qtd-' + i + '" value="' + escAttr(plano.quantidade) + '" maxlength="30"></div>' +
+
+            '<div class="formGroup__item"><label class="formGroup__label">Taxa de instalação</label>' +
+            '<input type="text" class="formGroup__input" id="plano-taxa-' + i + '" value="' + escAttr(plano.taxa) + '" maxlength="100"></div>' +
+
+            '<div class="formGroup__item"><label class="formGroup__label">Bullets <small style="color:#8a9ab8">(até 6)</small></label>' +
             '<div id="planoBullets-' + i + '">' + bulletsHtml + '</div>' +
             '<button type="button" class="adminConteudo__addBulletBtn adminConteudo__addBulletBtn--sm" ' +
-                'data-bullets-target="planoBullets-' + i + '" data-bullets-max="5">+ Item</button></div>' +
+                'data-bullets-target="planoBullets-' + i + '" data-bullets-max="6">+ Item</button></div>' +
 
             '<div class="formGroup__item"><label class="formGroup__label">Preço <small style="color:#8a9ab8">(ex: 49,90)</small></label>' +
             '<input type="text" class="formGroup__input" id="plano-preco-' + i + '" value="' + escAttr(plano.preco) + '" maxlength="20"></div>' +
@@ -220,6 +226,8 @@ $(document).ready(function () {
             planos.push({
                 nome:      $('#plano-nome-'   + i).val().trim(),
                 descricao: $('#plano-desc-'   + i).val().trim(),
+                quantidade: $('#plano-qtd-'   + i).val().trim(),
+                taxa:      $('#plano-taxa-'  + i).val().trim(),
                 bullets:   collectBullets('planoBullets-' + i),
                 preco:     $('#plano-preco-'  + i).val().trim(),
                 imagem:    $('#plano-imagem-' + i).val()

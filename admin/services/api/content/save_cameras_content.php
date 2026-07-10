@@ -29,8 +29,10 @@ function sanitize_plan_cam(array $p): array {
     return [
         'nome'     => trim((string) ($p['nome']     ?? '')),
         'descricao'=> trim((string) ($p['descricao'] ?? '')),
+        'quantidade'=> trim((string) ($p['quantidade'] ?? '')),
+        'taxa'     => trim((string) ($p['taxa']     ?? '')),
         'imagem'   => trim((string) ($p['imagem']   ?? '')),
-        'bullets'  => sanitize_bullets_cam($p['bullets'] ?? []),
+        'bullets'  => sanitize_bullets_cam($p['bullets'] ?? [], 6),
         'preco'    => trim((string) ($p['preco']    ?? '')),
     ];
 }
@@ -63,7 +65,7 @@ $content = [
     'monitor_empresa_imagem' => $s('monitor_empresa_imagem'),
 
     'planos_titulo' => $s('planos_titulo'),
-    'planos'        => array_map('sanitize_plan_cam', array_slice(array_filter($body['planos'] ?? [], 'is_array'), 0, 3)),
+    'planos'        => array_map('sanitize_plan_cam', array_slice(array_filter($body['planos'] ?? [], 'is_array'), 0, 4)),
 
     'como_titulo'      => $s('como_titulo'),
     'como_texto'       => $s('como_texto'),

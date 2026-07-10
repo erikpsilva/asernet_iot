@@ -156,6 +156,112 @@
     </div>
 </header>
 
+<!-- ── Mobile Menu ── filho direto do body, overflow-y:scroll direto, sem overflow:hidden ancestral -->
+<div class="mobileMenu" id="mobileMenu" aria-hidden="true" role="dialog" aria-label="Menu principal">
+
+    <div class="mobileMenu__bar">
+        <img class="mobileMenu__logo" src="<?= BASE_URL ?>/images/logo-transparent.png" alt="AserNet">
+        <button class="mobileMenu__close" type="button" aria-label="Fechar menu">
+            <span></span><span></span>
+        </button>
+    </div>
+
+    <div class="mobileMenu__body">
+
+        <!-- Links rápidos (topo) -->
+        <div class="mobileMenu__quicklinks">
+            <a class="mobileMenu__link<?= $activeRoute === 'residencial' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
+            <a class="mobileMenu__link<?= $activeRoute === 'paraempresas' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a>
+        </div>
+
+        <!-- Para sua casa -->
+        <div class="mobileMenu__section mobileMenu__section--home">
+            <div class="mobileMenu__heading">
+                <i class="icon-home" aria-hidden="true"></i>
+                <span>Para sua casa</span>
+            </div>
+            <ul class="mobileMenu__list">
+                <li><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a></li>
+                <li><a href="<?= BASE_URL ?>/wifimesh">Wi-Fi Mesh</a></li>
+                <li><a href="<?= BASE_URL ?>/planomovel">Plano Móvel</a></li>
+                <li><a href="<?= BASE_URL ?>/skeelo">Skeelo</a></li>
+                <li><a href="<?= BASE_URL ?>/cruzeiro">Cruzeiro AserNet</a></li>
+            </ul>
+            <a class="mobileMenu__card mobileMenu__card--home" href="<?= BASE_URL ?>/combo">
+                <span><i class="icon-star"></i><strong>Casa Conectada</strong><small>Internet + Wi-Fi + Mobile</small></span>
+                <img src="<?= BASE_URL ?>/images/menu/imgCasaConectada.png" alt="">
+            </a>
+        </div>
+
+        <!-- Para empresas -->
+        <div class="mobileMenu__section mobileMenu__section--business">
+            <div class="mobileMenu__heading">
+                <i class="icon-office" aria-hidden="true"></i>
+                <span>Para empresas</span>
+            </div>
+            <ul class="mobileMenu__list">
+                <li><a href="<?= BASE_URL ?>/internetpme">Internet PME</a></li>
+                <li><a href="<?= BASE_URL ?>/wifiprofissional">Wi-Fi Profissional</a></li>
+                <li><a href="<?= BASE_URL ?>/telefoniaempresarial">Telefonia Empresarial</a></li>
+                <li><a href="<?= BASE_URL ?>/linkdedicado">Link Dedicado</a></li>
+                <li><a href="<?= BASE_URL ?>/controlecorporativo">Controle de Acesso Corporativo</a></li>
+            </ul>
+            <a class="mobileMenu__card mobileMenu__card--business" href="<?= BASE_URL ?>/paraempresas">
+                <span><i class="icon-star"></i><strong>Empresa Conectada</strong><small>Internet + Wi-Fi + Telefonia + Controle de Acesso</small></span>
+                <img src="<?= BASE_URL ?>/images/menu/imgSolucaoCompletaParaEmpresas.png" alt="">
+            </a>
+        </div>
+
+        <!-- Condomínios -->
+        <div class="mobileMenu__section mobileMenu__section--condo">
+            <div class="mobileMenu__heading">
+                <i class="icon-office" aria-hidden="true"></i>
+                <span>Condomínios</span>
+            </div>
+            <ul class="mobileMenu__list">
+                <li><a href="<?= BASE_URL ?>/condominiointeligente">Condomínio Inteligente</a></li>
+                <li><a href="<?= BASE_URL ?>/controleconcominial">Controle de Acesso Condominial</a></li>
+                <li><a href="<?= BASE_URL ?>/bairroseguro">Bairro Seguro</a></li>
+            </ul>
+            <a class="mobileMenu__card mobileMenu__card--condo" href="<?= BASE_URL ?>/condominiointeligente">
+                <span><i class="icon-star"></i><strong>Condomínio Inteligente</strong><small>Segurança + Conectividade + Gestão integrada</small></span>
+                <img src="<?= BASE_URL ?>/images/menu/imgConcominioIntelgiente.png" alt="">
+            </a>
+        </div>
+
+        <!-- Segurança inteligente -->
+        <div class="mobileMenu__section mobileMenu__section--security">
+            <div class="mobileMenu__heading">
+                <i class="icon-security" aria-hidden="true"></i>
+                <span>Segurança inteligente</span>
+            </div>
+            <ul class="mobileMenu__list">
+                <li><a href="<?= BASE_URL ?>/cameradeseguranca">Câmeras de Segurança</a></li>
+                <li><a href="<?= BASE_URL ?>/rastreamentoveicular">Rastreamento Veicular</a></li>
+            </ul>
+            <a class="mobileMenu__card mobileMenu__card--security" href="<?= BASE_URL ?>/cameradeseguranca">
+                <span><i class="icon-star"></i><strong>Soluções de Segurança</strong><small>Monitoramento + Rastreamento + Tecnologia</small></span>
+                <img src="<?= BASE_URL ?>/images/menu/imgSolucoesdeSeguranca.png" alt="">
+            </a>
+        </div>
+
+        <!-- Links de rodapé -->
+        <div class="mobileMenu__footer-links">
+            <a class="mobileMenu__link<?= $activeRoute === 'sobreasernet' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a>
+            <a class="mobileMenu__link<?= $activeRoute === 'faq' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/faq">Suporte</a>
+        </div>
+
+    </div><!-- /.mobileMenu__body -->
+
+    <div class="mobileMenu__cta">
+        <a class="mobileMenu__whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener">
+            <i class="icon-whatsapp" aria-hidden="true"></i>
+            Falar no WhatsApp
+        </a>
+    </div>
+
+</div><!-- /#mobileMenu -->
+
 <script>
     (function () {
         if (window.AserNetHeaderMenuReady) return;
@@ -163,14 +269,15 @@
         var header = document.querySelector('.header');
         if (!header) return;
 
-        var toggle = header.querySelector('.header__toggle');
-        var nav = header.querySelector('.header__nav');
-        var mega = header.querySelector('.header__mega');
-        var megaLink = header.querySelector('.header__nav-link--mega');
-        var megaPanel = header.querySelector('.header__mega-panel');
+        var toggle      = header.querySelector('.header__toggle');
+        var mobileMenu  = document.getElementById('mobileMenu');
+        var menuBody    = mobileMenu ? mobileMenu.querySelector('.mobileMenu__body') : null;
+        var mega        = header.querySelector('.header__mega');
+        var megaLink    = header.querySelector('.header__nav-link--mega');
+        var megaPanel   = header.querySelector('.header__mega-panel');
         var mobileQuery = window.matchMedia ? window.matchMedia('(max-width: 991px)') : null;
         var closeTimer;
-        var scrollY = 0;
+        var menuOpen = false;
 
         function isMobile() {
             return mobileQuery ? mobileQuery.matches : window.innerWidth <= 991;
@@ -182,81 +289,48 @@
 
         function alignMegaArrow() {
             if (isMobile() || !megaLink || !megaPanel) return;
-
             var panelRect = megaPanel.getBoundingClientRect();
-            var linkRect = megaLink.getBoundingClientRect();
-            var arrowLeft = linkRect.left + (linkRect.width / 2) - panelRect.left - 8;
-
-            megaPanel.style.setProperty('--arrow-left', arrowLeft + 'px');
+            var linkRect  = megaLink.getBoundingClientRect();
+            megaPanel.style.setProperty('--arrow-left', (linkRect.left + linkRect.width / 2 - panelRect.left - 8) + 'px');
         }
 
-        function lockBodyScroll() {
-            if (!isMobile()) return;
-
-            scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-            document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.top = '-' + scrollY + 'px';
-            document.body.style.left = '0';
-            document.body.style.right = '0';
-            document.body.style.width = '100%';
-        }
-
-        function unlockBodyScroll() {
-            var top = document.body.style.top;
-
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
-            document.body.style.width = '';
-
-            if (top) {
-                window.scrollTo(0, Math.abs(parseInt(top, 10)) || scrollY);
-            }
+        function openMenu() {
+            if (menuOpen || !mobileMenu) return;
+            menuOpen = true;
+            mobileMenu.classList.add('is-open');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            if (menuBody) menuBody.scrollTop = 0;
+            if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            document.documentElement.style.overflow = 'hidden';
         }
 
         function closeMenu() {
-            header.classList.remove('header--menu-open');
-            if (toggle) {
-                toggle.setAttribute('aria-expanded', 'false');
-                toggle.setAttribute('aria-label', 'Abrir menu');
+            if (!menuOpen) return;
+            menuOpen = false;
+            if (mobileMenu) {
+                mobileMenu.classList.remove('is-open');
+                mobileMenu.setAttribute('aria-hidden', 'true');
             }
-            unlockBodyScroll();
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            document.documentElement.style.overflow = '';
         }
 
         function toggleMenu(event) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-
+            if (event) { event.preventDefault(); event.stopPropagation(); }
             setViewportHeight();
-
-            var isOpen = header.classList.toggle('header--menu-open');
-            if (toggle) {
-                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
-            }
-
-            if (isOpen) {
-                if (nav) nav.scrollTop = 0;
-                lockBodyScroll();
-            } else {
-                unlockBodyScroll();
-            }
+            if (menuOpen) { closeMenu(); } else { openMenu(); }
         }
 
-        if (toggle) {
-            toggle.addEventListener('click', toggleMenu, false);
-        }
+        if (toggle) toggle.addEventListener('click', toggleMenu, false);
 
-        if (nav) {
-            nav.addEventListener('click', function (event) {
-                var link = event.target.closest('a');
-                if (link && isMobile()) closeMenu();
+        // Fechar ao clicar em qualquer link dentro do mobile menu
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function (e) {
+                if (e.target.closest('a')) closeMenu();
             }, false);
+            // Botão X interno do menu
+            var mobileMenuClose = mobileMenu.querySelector('.mobileMenu__close');
+            if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu, false);
         }
 
         if (mega && megaLink) {

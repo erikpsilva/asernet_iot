@@ -835,62 +835,20 @@
             touch-action: manipulation;
         }
 
-        &__nav {
-            // Só animação — sem overflow/padding aqui para não conflitar com scroll no iOS
-            width: 100%;
-            max-width: 100vw;
-            height: 100dvh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            background: #030b1b;
-            border: 0;
-            border-radius: 0;
-            box-shadow: 0 24px 70px rgba(3, 11, 27, .55);
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(-100%);
-            transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
-            visibility: hidden;
-
-            // Barra de fundo do topo — cobre o conteúdo que scrolla por baixo do logo
-            &::after {
-                content: "";
-                position: fixed;
-                left: 0;
-                top: 0;
-                right: 0;
-                height: 74px;
-                background: #030b1b;
-                z-index: 1;
-            }
-
-            // Logo posicionado acima da barra
-            &::before {
-                content: "";
-                width: 145px;
-                height: 40px;
-                background: url("../images/logo-transparent.png") left center / contain no-repeat;
-                position: fixed;
-                left: 20px;
-                top: 18px;
-                z-index: 2;
-            }
+        // Nav oculto no header em mobile — drawer (body root) cuida da exibição
+        & &__nav {
+            display: none;
         }
 
-        // Wrapper interno: responsável exclusivo pelo scroll no mobile
+        // Layout do conteúdo dentro do drawer
         &__nav-inner {
             display: flex;
             flex-direction: column;
             align-items: stretch;
             justify-content: flex-start;
             gap: 0;
-            height: 100%;
-            padding: 78px 20px 104px;
-            overflow-y: scroll;
-            overscroll-behavior-y: contain;
-            touch-action: pan-y;
+            min-height: calc(100% - 74px);
+            padding: 4px 20px 104px;
         }
 
         // Links de topo fora do mega (Sobre, Suporte) viram itens da lista mobile
@@ -1183,13 +1141,6 @@
         }
 
         &--menu-open {
-            .header__nav {
-                opacity: 1;
-                pointer-events: auto;
-                transform: translateX(0);
-                visibility: visible;
-            }
-
             .header__actions {
                 display: flex;
             }
@@ -1228,14 +1179,6 @@
     }
 
     @media @mobile-small {
-        &__nav {
-            width: 100%;
-        }
-
-        &__nav::before {
-            left: 18px;
-        }
-
         &__nav-inner {
             padding-left: 14px;
             padding-right: 14px;
@@ -1559,5 +1502,230 @@
     .header__mega-panel--catalog .header__mega-list {
         align-content: start;
         grid-auto-rows: max-content;
+    }
+}
+
+// ─── MOBILE MENU (componente separado) ───────────────────────────────────────
+// Filho direto do body — sem overflow:hidden ancestral.
+// Flex column: bar fixa, body scrollável (min-height:0 = iOS reconhece o scroll), cta fixa.
+.mobileMenu { display: none; }
+
+@media @tablet {
+    .mobileMenu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        background: #030b1b;
+        transform: translateX(-100%);
+        transition: transform .25s ease, visibility .25s ease;
+        visibility: hidden;
+
+        &.is-open {
+            transform: translateX(0);
+            visibility: visible;
+        }
+
+        &__bar {
+            flex: 0 0 auto;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            flex-shrink: 0;
+        }
+
+        &__logo {
+            height: 34px;
+            width: auto;
+            display: block;
+        }
+
+        &__close {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+
+            span {
+                width: 16px;
+                height: 2px;
+                background: #fff;
+                position: absolute;
+                border-radius: 2px;
+
+                &:nth-child(1) { transform: rotate(45deg); }
+                &:nth-child(2) { transform: rotate(-45deg); }
+            }
+        }
+
+        &__body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
+            padding: 6px 20px 0;
+        }
+
+        &__quicklinks {
+            padding: 4px 0 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        &__link {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            font-size: 15px;
+            font-weight: 600;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            transition: color .15s ease;
+
+            &:last-child { border-bottom: 0; }
+            &.is-active,
+            &:hover { color: #fff; }
+        }
+
+        &__section {
+            padding: 18px 0 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        &__heading {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 14px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, .14);
+
+            i {
+                font-size: 26px;
+                flex-shrink: 0;
+            }
+
+            span {
+                color: #fff;
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+        }
+
+        &__section--home    &__heading i { color: #0872ff; }
+        &__section--business &__heading i { color: #098b54; }
+        &__section--condo   &__heading i { color: #6425d6; }
+        &__section--security &__heading i { color: #df182e; }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            padding-left: 37px;
+            margin-bottom: 14px;
+
+            a {
+                color: rgba(255, 255, 255, .78);
+                font-size: 14px;
+                font-weight: 500;
+                padding: 7px 0 8px;
+                line-height: 1.3;
+                transition: color .15s ease;
+
+                &:hover { color: #fff; }
+            }
+        }
+
+        &__card {
+            display: grid;
+            grid-template-columns: 1fr 76px;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 13px;
+            border-radius: 10px;
+            overflow: hidden;
+
+            i {
+                font-size: 13px;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+
+            strong {
+                display: inline;
+                font-size: 14px;
+                font-weight: 700;
+            }
+
+            small {
+                display: block;
+                margin-top: 7px;
+                font-size: 11px;
+                line-height: 1.4;
+                color: #26375d;
+            }
+
+            img {
+                width: 76px;
+                max-height: 62px;
+                object-fit: contain;
+                justify-self: end;
+                align-self: end;
+            }
+
+            &--home     { background: linear-gradient(135deg,#f4f8ff,#eaf3ff); i,strong { color:#075bff; } }
+            &--business { background: linear-gradient(135deg,#f3fbf7,#edf8f1); i,strong { color:#098b54; } img { max-height:74px; } }
+            &--condo    { background: linear-gradient(135deg,#f7f3ff,#f0eaff); i,strong { color:#6425d6; } }
+            &--security { background: linear-gradient(135deg,#fff7f4,#fff0eb); i,strong { color:#df182e; } }
+        }
+
+        &__footer-links {
+            padding: 6px 0 18px;
+        }
+
+        &__cta {
+            flex: 0 0 auto;
+            flex-shrink: 0;
+            padding: 14px 20px 22px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            background: #031126;
+        }
+
+        &__whatsapp {
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            border-radius: 8px;
+            background: #13b84f;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+
+            i { font-size: 20px; }
+
+            &:hover { color: #fff; background: #0fa344; }
+        }
+    }
+}
+
+@media @mobile-small {
+    .mobileMenu {
+        &__bar   { padding: 0 18px; }
+        &__body  { padding-left: 16px; padding-right: 16px; }
+        &__cta   { padding-left: 16px; padding-right: 16px; }
     }
 }

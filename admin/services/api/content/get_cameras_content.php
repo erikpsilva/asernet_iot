@@ -32,9 +32,10 @@ $defaults = [
 
     'planos_titulo' => 'Escolha o plano ideal para você',
     'planos' => [
-        ['nome' => '1 CÂMERA',           'descricao' => 'Mais para entradas e monitoramento básico',    'imagem' => 'img1Camera.png',        'bullets' => ['1 câmera HD', 'Visão noturna', 'Acesso remoto pelo app', 'Armazenamento em nuvem'],                                    'preco' => '49,90'],
-        ['nome' => '2 CÂMERAS',          'descricao' => 'Cobertura ampliada para ambientes maiores',   'imagem' => 'imag2Cameras.png',      'bullets' => ['2 câmeras HD', 'Visão noturna', 'Acesso remoto pelo app', 'Armazenamento em nuvem'],                                   'preco' => '99,80'],
-        ['nome' => '2 CÂMERAS + ALARME', 'descricao' => 'Mais proteção com monitoramento inteligente', 'imagem' => 'img2CamerasAlarame.png','bullets' => ['2 câmeras HD', 'Central de alarme', 'Visão noturna', 'Acesso remoto pelo app', 'Armazenamento em nuvem'],             'preco' => '119,70'],
+        ['nome' => 'Essencial', 'descricao' => 'Ideal para apartamentos e pequenas residências.',       'quantidade' => '02 câmeras', 'taxa' => '+ R$ 120,00 Taxa de Instalação e Configuração', 'imagem' => 'img2cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '79,90'],
+        ['nome' => 'Plus',      'descricao' => 'Cobertura completa para residências médias.',          'quantidade' => '04 câmeras', 'taxa' => '+ R$ 240,00 Taxa de Instalação e Configuração', 'imagem' => 'img4cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '149,90'],
+        ['nome' => 'Premium',   'descricao' => 'Proteção ampliada para imóveis maiores.',              'quantidade' => '06 câmeras', 'taxa' => '+ R$ 360,00 Taxa de Instalação e Configuração', 'imagem' => 'img6cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '219,90'],
+        ['nome' => 'Total',     'descricao' => 'Proteção máxima para grandes residências e empresas.', 'quantidade' => '08 câmeras', 'taxa' => '+ R$ 480,00 Taxa de Instalação e Configuração', 'imagem' => 'img8cameras.png', 'bullets' => ['Aplicativo exclusivo', 'Visualização ao vivo em tempo real', 'Detecção de pessoas com IA', 'Gravação em nuvem', 'Manutenção inclusa e troca garantida', 'Suporte 24 horas'], 'preco' => '289,90'],
     ],
 
     'como_titulo'      => 'Como funciona',
@@ -71,10 +72,10 @@ try {
             foreach (['dor_items', 'monitor_bullets', 'como_steps', 'como_app_bullets'] as $k) {
                 if (!empty($db[$k]) && is_array($db[$k])) $defaults[$k] = $db[$k];
             }
-            if (!empty($db['planos']) && is_array($db['planos'])) {
+            if (!empty($db['planos']) && is_array($db['planos']) && count($db['planos']) >= count($defaults['planos'])) {
                 foreach ($db['planos'] as $i => $plano) {
                     if (isset($defaults['planos'][$i]) && is_array($plano)) {
-                        foreach (['nome', 'descricao', 'preco', 'imagem'] as $k) {
+                        foreach (['nome', 'descricao', 'preco', 'imagem', 'quantidade', 'taxa'] as $k) {
                             if (isset($plano[$k]) && strlen((string) $plano[$k])) $defaults['planos'][$i][$k] = $plano[$k];
                         }
                         if (!empty($plano['bullets']) && is_array($plano['bullets'])) $defaults['planos'][$i]['bullets'] = $plano['bullets'];
