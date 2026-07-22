@@ -410,3 +410,11 @@
             #041233 !important;
     }
 }
+
+// Padroniza o enquadramento horizontal das imagens dos banners no desktop.
+// A primeira camada e o degradê; a imagem do banner é a segunda camada.
+@media (min-width: 769px) {
+    [class$="__hero"] {
+        background-position: left top, 75% center !important;
+    }
+}

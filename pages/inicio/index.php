@@ -150,7 +150,7 @@ try {
                     <div class="home__cruise-partners">
                         <span>Uma experi&ecirc;ncia inesquec&iacute;vel em parceria com</span>
                         <div>
-                            <img src="<?= BASE_URL ?>/images/cruzeiro/logo.png" alt="AserNet IoT Services">
+                            <img src="<?= BASE_URL ?>/images/logo-transparent.png" alt="AserNet IoT Services">
                             <b aria-hidden="true">&times;</b>
                             <img src="<?= BASE_URL ?>/images/cruzeiro/logoBeFly.webp" alt="BeFly">
                         </div>

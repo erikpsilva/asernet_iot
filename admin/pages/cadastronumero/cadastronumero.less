@@ -151,15 +151,29 @@
         line-height: 1;
     }
 
-    &__successBtns {
-        width: 100%;
+    &__copyBox {
+        margin-top: 14px;
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+        gap: 10px;
+        text-align: left;
     }
 
-    &__btnWide {
-        min-height: 48px;
+    &__copyText {
+        width: 100%;
+        min-height: 96px;
+        padding: 12px 14px;
+        border: 1px solid @borderColor;
+        border-radius: 8px;
+        background: #f7faff;
+        color: @colorFont;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1.5;
+        resize: none;
+    }
+
+    &__copyBtn {
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -167,7 +181,7 @@
         padding: 0 18px;
         border: 0;
         border-radius: 8px;
-        background: #0abf54;
+        background: @primary;
         color: @white;
         cursor: pointer;
         font-family: inherit;
@@ -177,7 +191,7 @@
         .transition();
 
         &:hover {
-            background: #089a44;
+            background: @darkBlue;
             color: @white;
         }
     }

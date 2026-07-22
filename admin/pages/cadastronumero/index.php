@@ -102,18 +102,18 @@
                             <div class="cadNumerosPage__successBlock">
                                 <p class="cadNumerosPage__successTitle">Número da Sorte — Quem Indicou</p>
                                 <p class="cadNumerosPage__successNumber" id="numIndicou">—</p>
+                                <div class="cadNumerosPage__copyBox">
+                                    <textarea class="cadNumerosPage__copyText" id="msgIndicou" readonly></textarea>
+                                    <button class="cadNumerosPage__copyBtn" id="copyIndicou" type="button">Copiar texto</button>
+                                </div>
                             </div>
                             <div class="cadNumerosPage__successBlock">
                                 <p class="cadNumerosPage__successTitle">Número da Sorte — Novo Cliente AserNet</p>
                                 <p class="cadNumerosPage__successNumber" id="numNovoCliente">—</p>
-                            </div>
-                            <div class="cadNumerosPage__successBtns">
-                                <a class="cadNumerosPage__btnWide" id="whatsIndicou" href="#" target="_blank" rel="noopener">
-                                    Enviar no WhatsApp de quem indicou
-                                </a>
-                                <a class="cadNumerosPage__btnWide" id="whatsNovoCliente" href="#" target="_blank" rel="noopener">
-                                    Enviar no WhatsApp do novo cliente
-                                </a>
+                                <div class="cadNumerosPage__copyBox">
+                                    <textarea class="cadNumerosPage__copyText" id="msgNovoCliente" readonly></textarea>
+                                    <button class="cadNumerosPage__copyBtn" id="copyNovoCliente" type="button">Copiar texto</button>
+                                </div>
                             </div>
                             <button class="btn btn--gray" id="resetIndicacao" type="button">Nova indicação</button>
                         </div>
@@ -170,11 +170,10 @@
                             <div class="cadNumerosPage__successBlock">
                                 <p class="cadNumerosPage__successTitle">Número da Sorte</p>
                                 <p class="cadNumerosPage__successNumber" id="numSorteNovo">—</p>
-                            </div>
-                            <div class="cadNumerosPage__successBtns">
-                                <button class="cadNumerosPage__btnWide" id="whatsNovoAssinanteBtn" type="button">
-                                    Enviar no WhatsApp
-                                </button>
+                                <div class="cadNumerosPage__copyBox">
+                                    <textarea class="cadNumerosPage__copyText" id="msgSorteNovo" readonly></textarea>
+                                    <button class="cadNumerosPage__copyBtn" id="copySorteNovo" type="button">Copiar texto</button>
+                                </div>
                             </div>
                             <button class="btn btn--gray" id="resetNovo" type="button">Novo cadastro</button>
                         </div>

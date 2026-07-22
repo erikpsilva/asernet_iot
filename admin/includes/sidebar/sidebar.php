@@ -7,7 +7,7 @@ $_canSeeConteudo = in_array($_nivel, ['admin', 'editor', 'leitor']);
 
 $_crzRoutes        = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
 $_plataformaRoutes = ['meusdados', 'administrarusuarios', 'cadastrarusuario', 'configuracoes'];
-$_conteudoRoutes   = ['conteudoinicio', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial', 'conteudolinkdedicado', 'conteudocombo', 'conteudosobreasernet', 'conteudosuporte', 'conteudocontratoseregulamentos'];
+$_conteudoRoutes   = ['conteudoinicio', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh', 'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas', 'conteudowifiprofissional', 'conteudotelefoniaempresarial', 'conteudolinkdedicado', 'conteudocombo', 'conteudosobreasernet', 'conteudosuporte', 'conteudocontratoseregulamentos', 'conteudonossaslojas', 'conteudocontrolecorporativo', 'conteudobairroseguro', 'conteudocontroleconcominial', 'conteudocondominiointeligente'];
 
 $_plataformaOpen = in_array($subRoute, $_plataformaRoutes) ? 'open' : '';
 $_cruzeiroOpen   = in_array($subRoute, $_crzRoutes)        ? 'open' : '';
@@ -160,6 +160,36 @@ $_bannerPage     = $_GET['page'] ?? '';
                                 Contratos e Regulamentos
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudonossaslojas"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudonossaslojas') ? 'sidebar__sublink--active' : '' ?>">
+                                Nossas Lojas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudocontrolecorporativo"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudocontrolecorporativo') ? 'sidebar__sublink--active' : '' ?>">
+                                Controle Corporativo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudobairroseguro"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudobairroseguro') ? 'sidebar__sublink--active' : '' ?>">
+                                Bairro Seguro
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudocontroleconcominial"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudocontroleconcominial') ? 'sidebar__sublink--active' : '' ?>">
+                                Controle Condominial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL ?>/admin/conteudocondominiointeligente"
+                               class="sidebar__sublink <?= ($subRoute === 'conteudocondominiointeligente') ? 'sidebar__sublink--active' : '' ?>">
+                                Condom&iacute;nio Inteligente
+                            </a>
+                        </li>
                     </ul>
                 </details>
             </li>
@@ -186,6 +216,11 @@ $_bannerPage     = $_GET['page'] ?? '';
                             'linkdedicado'     => 'Banner Link Dedicado',
                             'combo'            => 'Banner Combo',
                             'sobreasernet'     => 'Banner Sobre AserNet',
+                            'nossaslojas'      => 'Banner Nossas Lojas',
+                            'controlecorporativo' => 'Banner Controle Corporativo',
+                            'bairroseguro'     => 'Banner Bairro Seguro',
+                            'controleconcominial' => 'Banner Controle Condominial',
+                            'condominiointeligente' => 'Banner Condomínio Inteligente',
                         ];
                         foreach ($bannerItems as $bKey => $bLabel):
                             $isActive = ($subRoute === 'banner' && $_bannerPage === $bKey);

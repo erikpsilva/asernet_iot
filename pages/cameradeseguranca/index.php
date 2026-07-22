@@ -429,7 +429,6 @@ try {
             <div class="container">
                 <span><i class="icon-engineer" aria-hidden="true"></i>Instalação inclusa</span>
                 <span><i class="icon-equipamentocomodato" aria-hidden="true"></i>Equipamentos em comodato</span>
-                <span><i class="icon-contrato" aria-hidden="true"></i>Contratos sem fidelidade</span>
                 <span><i class="icon-payment" aria-hidden="true"></i>Pagamento facilitado</span>
                 <span><i class="icon-support" aria-hidden="true"></i>Suporte local</span>
             </div>

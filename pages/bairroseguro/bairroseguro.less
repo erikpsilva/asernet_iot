@@ -6,7 +6,7 @@
         min-height: 650px;
         display: flex;
         align-items: center;
-        background: linear-gradient(90deg, rgba(1,9,29,.98), rgba(1,9,29,.82) 38%, rgba(1,9,29,.12) 70%), url("../images/bairroseguro/imgTopoBanner.png") 72% center / cover no-repeat, #01091d;
+        background: linear-gradient(90deg, rgba(1,9,29,.98), rgba(1,9,29,.82) 38%, rgba(1,9,29,.12) 70%), var(--hero-image, url("../images/bairroseguro/imgTopoBanner.png")) 72% center / cover no-repeat, #01091d;
     }
 
     &__hero-copy {
@@ -76,7 +76,7 @@
     }
 
     @media @tablet-small {
-        &__hero { min-height: 720px; align-items: flex-end; background: linear-gradient(180deg,rgba(1,9,29,.08),rgba(1,9,29,.7) 48%,#01091d 73%), url("../images/bairroseguro/imgTopoBanner.png") 65% top / auto 62% no-repeat, #01091d; }
+        &__hero { min-height: 720px; align-items: flex-end; background: linear-gradient(180deg,rgba(1,9,29,.08),rgba(1,9,29,.7) 48%,#01091d 73%), var(--hero-image, url("../images/bairroseguro/imgTopoBanner.png")) 65% top / auto 62% no-repeat, #01091d; }
         &__hero-copy { padding: 300px 0 40px; }
         &__shared img { margin-top: 25px; }
         &__faq-grid { grid-template-columns: 1fr; }

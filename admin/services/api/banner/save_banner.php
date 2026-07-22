@@ -12,7 +12,7 @@ if (empty($_SESSION['usuario']) || !in_array($_SESSION['usuario']['nivel_acesso'
 }
 
 $validPages = ['inicio','residencial','cameras','wifimesh','movel','rastreamento','skeelo',
-               'paraempresas','wifiprofissional','telefonia','linkdedicado','combo','sobreasernet'];
+               'paraempresas','wifiprofissional','telefonia','linkdedicado','combo','sobreasernet','nossaslojas','controlecorporativo','bairroseguro','controleconcominial','condominiointeligente'];
 
 $raw  = file_get_contents('php://input');
 $body = json_decode($raw, true);

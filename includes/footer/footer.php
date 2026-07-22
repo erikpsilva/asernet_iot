@@ -90,10 +90,10 @@
         </div>
         <div class="footer__extras">
             <div class="footer__apps" aria-label="Aplicativos AserNet">
-                <a href="https://play.google.com/store/search?q=asernet&c=apps&utm_source=latam_Med" target="_blank" rel="noopener">
+                <a href="https://play.google.com/store/apps/details?id=br.com.asernet" target="_blank" rel="noopener">
                     <img src="<?= BASE_URL ?>/images/footer/googleplay.png" alt="Dispon&iacute;vel no Google Play">
                 </a>
-                <a href="https://apps.apple.com/br/app/asernet/id6502834501" target="_blank" rel="noopener">
+                <a href="https://apps.apple.com/br/app/asernet/id6780853661" target="_blank" rel="noopener">
                     <img src="<?= BASE_URL ?>/images/footer/applestore.png" alt="Baixar na App Store">
                 </a>
             </div>

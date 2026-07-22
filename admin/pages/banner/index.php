@@ -18,6 +18,11 @@ $pageLabels = [
     'linkdedicado'     => 'Link Dedicado',
     'combo'            => 'Combo',
     'sobreasernet'     => 'Sobre AserNet',
+    'nossaslojas'      => 'Nossas Lojas',
+    'controlecorporativo' => 'Controle de Acesso Corporativo',
+    'bairroseguro'     => 'Bairro Seguro',
+    'controleconcominial' => 'Controle de Acesso Condominial',
+    'condominiointeligente' => 'Condomínio Inteligente',
 ];
 
 $pageKey = trim($_GET['page'] ?? '');

@@ -1,7 +1,5 @@
 $(function () {
     var API = ADMIN_BASE_URL + '/services/api/campaign';
-    var WHATS = '5508002225262';
-    var novoAssinantePhone = '';
 
     // ---- CPF mask ----
     function maskCpf(el) {
@@ -37,11 +35,26 @@ $(function () {
         $('#panel-' + tab).addClass('is-active');
     });
 
-    // ---- WhatsApp link helper ----
-    function buildWhats(phone, msg) {
-        var digits = phone ? phone.replace(/\D/g, '') : '';
-        var num = digits.length >= 10 ? '55' + digits : WHATS;
-        return 'https://wa.me/' + num + '?text=' + encodeURIComponent(msg);
+    // ---- Copiar texto ----
+    function copyText(text, $btn) {
+        var restore = function () {
+            setTimeout(function () { $btn.text('Copiar texto'); }, 1500);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+                $btn.text('Copiado!');
+                restore();
+            });
+            return;
+        }
+
+        var $tmp = $('<textarea>').val(text).css({ position: 'fixed', top: '-9999px' }).appendTo('body');
+        $tmp[0].select();
+        document.execCommand('copy');
+        $tmp.remove();
+        $btn.text('Copiado!');
+        restore();
     }
 
     function switchState(panel, state) {
@@ -84,11 +97,14 @@ $(function () {
                 $('#numIndicou').text(numR);
                 $('#numNovoCliente').text(numN);
 
-                var msgR = 'Parabéns, ' + name + '! Sua indicação foi registrada com sucesso 🎉\n\nSeu número da sorte para o Cruzeiro é: *' + numR + '*\n\nBoA sorte!';
-                var msgN = 'Bem-vindo(a) à AserNet, ' + nameN + '! 🎉\n\nSeu número da sorte para o sorteio do Cruzeiro é: *' + numN + '*\n\nBoA sorte!';
+                var msgR = 'Parabéns, ' + name + '! Sua indicação foi registrada com sucesso 🎉\n\nSeu número da sorte para o Cruzeiro é: *' + numR + '*\n\nBoa sorte!';
+                var msgN = 'Bem-vindo(a) à AserNet, ' + nameN + '! 🎉\n\nSeu número da sorte para o sorteio do Cruzeiro é: *' + numN + '*\n\nBoa sorte!';
 
-                $('#whatsIndicou').attr('href', buildWhats(phone, msgR));
-                $('#whatsNovoCliente').attr('href', buildWhats(phoneN, msgN));
+                $('#msgIndicou').val(msgR);
+                $('#msgNovoCliente').val(msgN);
+
+                $('#copyIndicou').off('click').on('click', function () { copyText(msgR, $(this)); });
+                $('#copyNovoCliente').off('click').on('click', function () { copyText(msgN, $(this)); });
 
                 switchState('panel-indicacao', 'indicacao-success');
             },
@@ -118,7 +134,6 @@ $(function () {
             return;
         }
 
-        novoAssinantePhone = tel;
         var $btn = $(this).prop('disabled', true).text('Enviando…');
 
         $.ajax({
@@ -132,10 +147,9 @@ $(function () {
                 var num = res.generated.number;
                 $('#numSorteNovo').text(num);
 
-                $('#whatsNovoAssinanteBtn').off('click').on('click', function () {
-                    var msg = 'Bem-vindo(a) à AserNet, ' + nome + '! 🎉\n\nSeu número da sorte para o sorteio do Cruzeiro é: *' + num + '*\n\nBoA sorte!';
-                    window.open(buildWhats(novoAssinantePhone, msg), '_blank');
-                });
+                var msg = 'Bem-vindo(a) à AserNet, ' + nome + '! 🎉\n\nSeu número da sorte para o sorteio do Cruzeiro é: *' + num + '*\n\nBoa sorte!';
+                $('#msgSorteNovo').val(msg);
+                $('#copySorteNovo').off('click').on('click', function () { copyText(msg, $(this)); });
 
                 switchState('panel-novo', 'novo-success');
             },

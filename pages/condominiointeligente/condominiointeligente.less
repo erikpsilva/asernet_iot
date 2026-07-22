@@ -6,7 +6,7 @@
         min-height: 590px;
         display: flex;
         align-items: center;
-        background: linear-gradient(90deg, rgba(1,9,29,.98), rgba(1,9,29,.82) 37%, rgba(1,9,29,.08) 68%), url("../images/condominiointeligente/imgTopoBanner.png") 70% center / cover no-repeat, #01091d;
+        background: linear-gradient(90deg, rgba(1,9,29,.98), rgba(1,9,29,.82) 37%, rgba(1,9,29,.08) 68%), var(--hero-image, url("../images/condominiointeligente/imgTopoBanner.png")) 70% center / cover no-repeat, #01091d;
     }
 
     &__hero-copy {
@@ -122,7 +122,7 @@
     }
 
     @media @tablet-small {
-        &__hero { min-height: 690px; align-items: flex-end; background: linear-gradient(180deg,rgba(1,9,29,.06),rgba(1,9,29,.68) 48%,#01091d 74%), url("../images/condominiointeligente/imgTopoBanner.png") 67% top / auto 62% no-repeat, #01091d; }
+        &__hero { min-height: 690px; align-items: flex-end; background: linear-gradient(180deg,rgba(1,9,29,.06),rgba(1,9,29,.68) 48%,#01091d 74%), var(--hero-image, url("../images/condominiointeligente/imgTopoBanner.png")) 67% top / auto 62% no-repeat, #01091d; }
         &__hero-copy { padding: 285px 0 38px; }
         &__hero-copy h1 { font-size: 46px; }
         &__hero-copy h2 { font-size: 19px; }
