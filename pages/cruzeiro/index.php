@@ -51,7 +51,7 @@ try {
                         <div>
                             <img src="<?= BASE_URL ?>/images/logo-transparent.png" alt="AserNet IoT Services">
                             <b aria-hidden="true">&times;</b>
-                            <img src="<?= BASE_URL ?>/images/cruzeiro/logoBeFly.webp" alt="BeFly">
+                            <img src="<?= BASE_URL ?>/images/cruzeiro/logoGrupo.png" alt="Grupo AserNet" width="300" height="100">
                         </div>
                     </div>
                 </div>
