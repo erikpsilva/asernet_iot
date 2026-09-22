@@ -81,6 +81,11 @@ if ($mainRoute === 'admin') {
     header('Location: https://asernet.vagas.solides.com.br/', true, 301);
     exit;
 
+} elseif ($mainRoute === 'controleconcominial') {
+
+    header('Location: ' . BASE_URL . '/controlecondominial', true, 301);
+    exit;
+
 // ── Páginas públicas ───────────────────────────────────────────────────────
 } else {
 

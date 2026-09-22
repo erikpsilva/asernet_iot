@@ -14,7 +14,7 @@
             <nav class="header__nav" aria-label="Menu principal"><div class="header__nav-inner">
                 <?php
                 $activeRoute = $mainRoute ?? '';
-                $solutionActiveRoutes = ['solucoes', 'residencial', 'wifimesh', 'planomovel', 'skeelo', 'cruzeiro', 'internetpme', 'wifiprofissional', 'telefoniaempresarial', 'linkdedicado', 'controlecorporativo', 'condominiointeligente', 'controleconcominial', 'bairroseguro', 'cameradeseguranca', 'rastreamentoveicular', 'combo', 'paraempresas'];
+                $solutionActiveRoutes = ['solucoes', 'residencial', 'wifimesh', 'planomovel', 'skeelo', 'cruzeiro', 'internetpme', 'wifiprofissional', 'telefoniaempresarial', 'linkdedicado', 'controlecorporativo', 'condominiointeligente', 'controlecondominial', 'bairroseguro', 'cameradeseguranca', 'rastreamentoveicular', 'combo', 'paraempresas'];
                 $solutionActive = in_array($activeRoute, $solutionActiveRoutes, true) ? ' header__nav-link--active' : '';
                 ?>
 
@@ -72,7 +72,7 @@
                                 </div>
                                 <ul class="header__mega-list">
                                     <li><a href="<?= BASE_URL ?>/condominiointeligente"><i class="icon-office"></i><span><strong>Condomínio Inteligente</strong><small>Solução completa para gestão, segurança e conectividade</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/controleconcominial"><i class="icon-view"></i><span><strong>Controle de Acesso Condominial</strong><small>Mais segurança e praticidade para moradores e visitantes</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/controlecondominial"><i class="icon-view"></i><span><strong>Controle de Acesso Condominial</strong><small>Mais segurança e praticidade para moradores e visitantes</small></span></a></li>
                                     <li><a href="<?= BASE_URL ?>/bairroseguro"><i class="icon-security"></i><span><strong>Bairro Seguro</strong><small>Monitoramento colaborativo para comunidades mais protegidas</small></span></a></li>
                                 </ul>
                                 <a class="header__mega-card header__mega-card--condo" href="<?= BASE_URL ?>/condominiointeligente">
@@ -220,7 +220,7 @@
             </div>
             <ul class="mobileMenu__list">
                 <li><a href="<?= BASE_URL ?>/condominiointeligente">Condomínio Inteligente</a></li>
-                <li><a href="<?= BASE_URL ?>/controleconcominial">Controle de Acesso Condominial</a></li>
+                <li><a href="<?= BASE_URL ?>/controlecondominial">Controle de Acesso Condominial</a></li>
                 <li><a href="<?= BASE_URL ?>/bairroseguro">Bairro Seguro</a></li>
             </ul>
             <a class="mobileMenu__card mobileMenu__card--condo" href="<?= BASE_URL ?>/condominiointeligente">

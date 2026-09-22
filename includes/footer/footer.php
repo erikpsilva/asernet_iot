@@ -35,7 +35,7 @@
                     <h2>Condom&iacute;nios<span class="footer__arrow" aria-hidden="true"></span></h2>
                     <ul>
                         <li><a href="<?= BASE_URL ?>/condominiointeligente">Condom&iacute;nio Inteligente</a></li>
-                        <li><a href="<?= BASE_URL ?>/controleconcominial">Controle de Acesso Condominial</a></li>
+                        <li><a href="<?= BASE_URL ?>/controlecondominial">Controle de Acesso Condominial</a></li>
                         <li><a href="<?= BASE_URL ?>/bairroseguro">Bairro Seguro</a></li>
                     </ul>
                 </nav>
