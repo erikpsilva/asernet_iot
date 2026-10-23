@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-function getDbConnection(): PDO {
+function getDbConnection(bool $throwOnError = false): PDO {
     static $pdo = null;
     if ($pdo instanceof PDO) return $pdo;
 
@@ -51,6 +51,9 @@ function getDbConnection(): PDO {
         return $pdo;
     } catch (Throwable $e) {
         error_log('DB CONNECT ERROR: ' . $e->getMessage());
+        if ($throwOnError) {
+            throw $e;
+        }
         http_response_code(500);
         header('Content-Type: application/json');
         echo json_encode(['ok' => false, 'message' => 'Erro de conexão com o banco de dados.']);

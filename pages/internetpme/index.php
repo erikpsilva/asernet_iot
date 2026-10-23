@@ -70,8 +70,8 @@
         <section class="internet-pme-page__plans">
             <div class="container">
                 <header class="internet-pme-page__section-header">
-                    <h2 class="internet-pme-page__section-title">Planos feitos para empresas</h2>
-                    <p>Escolha o plano ideal para o tamanho e a necessidade do seu negócio.</p>
+                    <h2 class="internet-pme-page__section-title">Planos de internet para pequenas e médias empresas</h2>
+                    <p>Escolha a conexão ideal para as necessidades do seu negócio.</p>
                 </header>
 
                 <div class="internet-pme-page__plans-grid">
@@ -80,7 +80,7 @@
                         <p>Ideal para pequenas empresas</p>
                         <div class="internet-pme-page__speed"><i class="icon-wifi" aria-hidden="true"></i><strong>1 GIGA</strong><span>de velocidade</span></div>
                         <ul>
-                            <li><i class="icon-checkmark" aria-hidden="true"></i>Conexão estável e dedicada</li>
+                            <li><i class="icon-checkmark" aria-hidden="true"></i>Conexão em fibra óptica com estabilidade e desempenho para a rotina da sua empresa.</li>
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Suporte técnico AserNet</li>
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Até 3 pontos de rede cabeados</li>
                             <li><i class="icon-checkmark" aria-hidden="true"></i>Wi-Fi básico incluso</li>
@@ -106,6 +106,15 @@
                         <a href="https://wa.me/5508002225262?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20o%20plano%20Internet%20PME%20Business%20Pro." target="_blank" rel="noopener">Contratar agora</a>
                     </article>
                 </div>
+
+                <a class="internet-pme-page__dedicated-banner" href="https://www.asernet.com.br/linkdedicado">
+                    <span class="internet-pme-page__dedicated-copy">
+                        <span class="internet-pme-page__dedicated-label">Link Dedicado AserNet</span>
+                        <strong>Sua operação exige uma conexão exclusiva?</strong>
+                        <span>Conheça o Link Dedicado AserNet: conectividade com banda dedicada, desempenho e níveis de serviço definidos para operações que não podem depender de uma conexão convencional.</span>
+                    </span>
+                    <span class="internet-pme-page__dedicated-action">Conheça o Link Dedicado <i class="icon-arrowright" aria-hidden="true"></i></span>
+                </a>
             </div>
         </section>
 

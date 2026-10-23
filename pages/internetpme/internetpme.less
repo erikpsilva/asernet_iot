@@ -257,6 +257,89 @@
         gap: 18px;
     }
 
+    &__dedicated-banner {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 36px;
+        overflow: hidden;
+        margin-top: 20px;
+        padding: 30px 34px;
+        border: 1px solid #184c9d;
+        border-radius: 10px;
+        background: radial-gradient(circle at 95% 0, rgba(7, 95, 255, .28), transparent 40%), linear-gradient(110deg, #030b1b, #061d48);
+        color: @white;
+        text-decoration: none;
+        transition: border-color .2s ease, box-shadow .2s ease;
+
+        &:hover,
+        &:focus-visible {
+            border-color: #5ea0ff;
+            box-shadow: 0 12px 28px rgba(3, 11, 27, .18);
+            color: @white;
+            text-decoration: none;
+        }
+
+        &:focus-visible {
+            outline: 3px solid #5ea0ff;
+            outline-offset: 3px;
+        }
+
+        &:hover .internet-pme-page__dedicated-action,
+        &:focus-visible .internet-pme-page__dedicated-action {
+            background: #3580ff;
+        }
+    }
+
+    &__dedicated-copy {
+        display: grid;
+        gap: 8px;
+        min-width: 0;
+
+        > strong {
+            color: @white;
+            font-size: 24px;
+            font-weight: @semi-bold;
+            line-height: 1.2;
+        }
+
+        > span:last-child {
+            max-width: 660px;
+            color: #d8e6ff;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    }
+
+    &__dedicated-label {
+        color: #70aaff;
+        font-size: 12px;
+        font-weight: @semi-bold;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    &__dedicated-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-height: 48px;
+        padding: 11px 18px;
+        border-radius: 6px;
+        background: #075fff;
+        color: @white;
+        font-size: 14px;
+        font-weight: @semi-bold;
+        white-space: nowrap;
+        transition: background .2s ease;
+
+        i {
+            font-size: 17px;
+        }
+    }
+
     &__plan {
         min-height: 410px;
         position: relative;
@@ -623,6 +706,15 @@
     }
 
     @media @tablet {
+        &__dedicated-banner {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        &__dedicated-action {
+            justify-self: start;
+        }
+
         &__hero {
             min-height: auto;
             background:
@@ -666,6 +758,28 @@
     }
 
     @media @mobile-large {
+        &__dedicated-banner {
+            gap: 18px;
+            margin-top: 12px;
+            padding: 22px 18px;
+        }
+
+        &__dedicated-copy {
+            > strong {
+                font-size: 20px;
+            }
+
+            > span:last-child {
+                font-size: 13px;
+            }
+        }
+
+        &__dedicated-action {
+            width: 100%;
+            white-space: normal;
+            text-align: center;
+        }
+
         &__hero {
             min-height: 698px;
             align-items: flex-start;

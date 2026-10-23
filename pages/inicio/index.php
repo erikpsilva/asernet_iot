@@ -13,7 +13,7 @@ $_bn_inicio = [
 ];
 try {
     require_once ROOT . '/config/database.php';
-    $_pdo_bn = getDbConnection();
+    $_pdo_bn = getDbConnection(true);
     $_row_bn = $_pdo_bn->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'inicio_banner' LIMIT 1");
     $_row_bn->execute();
     $_row_bn = $_row_bn->fetch();
@@ -54,7 +54,7 @@ $_homeContent = [
 ];
 try {
     require_once ROOT . '/config/database.php';
-    $_pdo  = getDbConnection();
+    $_pdo  = getDbConnection(true);
     $_stmt = $_pdo->query("SELECT setting_key, setting_value FROM system_settings WHERE setting_key IN ('sorteio_date','regulamento_titulo','regulamento_pdf','home_content')");
     $_cfg  = [];
     foreach ($_stmt->fetchAll() as $r) { $_cfg[$r['setting_key']] = $r['setting_value']; }
@@ -79,6 +79,12 @@ try {
     }
     unset($_pdo, $_stmt, $_cfg, $_db, $_k, $_i, $_c);
 } catch (Throwable $_e) { unset($_e); }
+foreach ($_homeContent['cards_casa'] as &$_homeCard) {
+    if (($_homeCard['link_href'] ?? '') === '/cameradesegurancav2') {
+        $_homeCard['link_href'] = '/cameradeseguranca';
+    }
+}
+unset($_homeCard);
 ?>
 <!DOCTYPE html>
 <html>

@@ -24,7 +24,7 @@ $_route = $subRoute ?? '';
 $_adminOnlyRoutes = ['administrarusuarios', 'cadastrarusuario', 'configuracoes'];
 $_cruzeiroRoutes  = ['cruzeiroconfiguracao', 'cadastronumero', 'consultarnumero', 'relatorio', 'bilhetessorteio'];
 $_conteudoRoutes  = [
-    'banner',
+    'banner', 'menu',
     'conteudoinicio', 'conteudoresidencial', 'conteudocameras', 'conteudowifimesh',
     'conteudomovel', 'conteudorastreamento', 'conteudoskeelo', 'conteudoparaempresas',
     'conteudowifiprofissional', 'conteudotelefoniaempresarial', 'conteudolinkdedicado',

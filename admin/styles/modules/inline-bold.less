@@ -1,0 +1,19 @@
+.adminInlineBold {
+    width: 100%;
+    border: 1px solid #cbd8eb;
+    border-radius: 9px;
+    overflow: hidden;
+    background: #fff;
+    &:focus-within { border-color: #075fff; box-shadow: 0 0 0 3px rgba(7,95,255,.12); }
+    &__toolbar { display: flex; align-items: center; gap: 12px; padding: 5px 8px; border-bottom: 1px solid #e3ebf6; background: #f5f8ff; color: #617492; font-size: 11px; }
+    &__button { display: grid; place-items: center; width: 31px; height: 29px; border: 1px solid #cad9f0; border-radius: 6px; background: #fff; color: #17365c; cursor: pointer; font: 600 15px @font;
+        &:hover, &:focus-visible { background: #e5eeff; outline: none; border-color: #075fff; }
+    }
+    &__editor { min-height: 44px; padding: 10px 13px; color: #17365c; font: 400 14px/1.55 @font; white-space: pre-wrap; overflow-wrap: anywhere; outline: none;
+        &--heading { font-weight: 600; }
+        strong, b { font-weight: 600; }
+    }
+}
+.adminInlineBold__source { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; opacity: 0 !important; pointer-events: none !important; }
+.adminInlineBold--multiline .adminInlineBold__editor { min-height: 105px; }
+.siteInlineBold { font-weight: 600; }

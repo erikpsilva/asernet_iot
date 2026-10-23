@@ -20,8 +20,11 @@ $_https    = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
 $_scheme   = $_https ? 'https' : 'http';
 $_host     = $_SERVER['HTTP_HOST'];  // já inclui porta se não-padrão (ex: localhost:3000)
 $_basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-define('BASE_URL', $_scheme . '://' . $_host . $_basePath);
-unset($_https, $_scheme, $_host, $_basePath);
+// Em desenvolvimento, URLs relativas ao host preservam a porta usada no navegador
+// (por exemplo localhost:3000, que pode chegar ao Apache como localhost:80).
+$_localHost = preg_match('/^(?:localhost|127\.0\.0\.1)(?::\d+)?$/i', $_host) === 1;
+define('BASE_URL', $_localHost ? $_basePath : $_scheme . '://' . $_host . $_basePath);
+unset($_https, $_scheme, $_host, $_basePath, $_localHost);
 
 define('ADMIN_BASE_URL', BASE_URL . '/admin');
 
@@ -50,6 +53,11 @@ if ($mainRoute === 'admin') {
             header('Content-Type: application/json');
             echo json_encode(['ok' => false, 'message' => 'Serviço não encontrado.']);
         }
+        exit;
+    }
+
+    if ($subRoute === 'conteudocamerasv2') {
+        header('Location: ' . BASE_URL . '/admin/conteudocameras', true, 301);
         exit;
     }
 
@@ -84,6 +92,11 @@ if ($mainRoute === 'admin') {
 } elseif ($mainRoute === 'controleconcominial') {
 
     header('Location: ' . BASE_URL . '/controlecondominial', true, 301);
+    exit;
+
+} elseif ($mainRoute === 'cameradesegurancav2') {
+
+    header('Location: ' . BASE_URL . '/cameradeseguranca', true, 301);
     exit;
 
 // ── Páginas públicas ───────────────────────────────────────────────────────

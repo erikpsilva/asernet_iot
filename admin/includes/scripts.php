@@ -7,5 +7,7 @@ $version = time();
 echo '
 <script type="text/javascript" src="' . ADMIN_BASE_URL . '/scripts/plugins/slick.js?v' . $version . '"></script>
 <script type="text/javascript" src="' . ADMIN_BASE_URL . '/scripts/common.js?v' . $version . '"></script>
+<script type="text/javascript" src="' . ADMIN_BASE_URL . '/scripts/inline-bold-editor.js?v' . $version . '"></script>
+<script type="text/javascript" src="' . BASE_URL . '/scripts/inline-bold.js?v' . $version . '"></script>
 ';
 ?>

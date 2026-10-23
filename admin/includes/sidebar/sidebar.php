@@ -64,6 +64,18 @@ $_bannerPage     = $_GET['page'] ?? '';
                 </details>
             </li>
 
+            <!-- MENU -->
+            <?php if ($_canSeeConteudo): ?>
+            <li class="sidebar__section-accordion">
+                <details <?= $subRoute === 'menu' ? 'open' : '' ?>>
+                    <summary class="sidebar__section-toggle">Menu</summary>
+                    <ul class="sidebar__submenu">
+                        <li><a href="<?= BASE_URL ?>/admin/menu" class="sidebar__sublink <?= $subRoute === 'menu' ? 'sidebar__sublink--active' : '' ?>">Textos e imagens</a></li>
+                    </ul>
+                </details>
+            </li>
+            <?php endif; ?>
+
             <!-- CONTEÚDO -->
             <?php if ($_canSeeConteudo): ?>
             <li class="sidebar__section-accordion">

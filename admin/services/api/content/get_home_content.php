@@ -20,7 +20,7 @@ $defaults = [
     'cards_casa' => [
         ['titulo' => 'Internet Residencial', 'descricao' => '1 Giga com estabilidade e cobertura inteligente.', 'imagem' => 'imgInternetResidencial.png', 'link_texto' => 'Ver planos', 'link_href' => '/residencial'],
         ['titulo' => 'Wi-Fi Mesh', 'descricao' => 'Cobertura inteligente para toda a casa.', 'imagem' => 'imgWifiMesh.png', 'link_texto' => 'Conhecer solução', 'link_href' => '/solucoes'],
-        ['titulo' => 'Câmeras de Segurança', 'descricao' => 'Monitoramento em tempo real pelo celular.', 'imagem' => 'imgCameraDeSeguranca.png', 'link_texto' => 'Ver solução', 'link_href' => '/solucoes'],
+        ['titulo' => 'Câmeras de Segurança', 'descricao' => 'Monitoramento em tempo real pelo celular.', 'imagem' => 'imgCameraDeSeguranca.png', 'link_texto' => 'Ver solução', 'link_href' => '/cameradeseguranca'],
         ['titulo' => 'Aser Mobile', 'descricao' => 'Conectividade dentro e fora de casa.', 'imagem' => 'imgAserMobile.png', 'link_texto' => 'Ver planos', 'link_href' => '/residencial'],
     ],
     'cards_empresa' => [

@@ -183,13 +183,14 @@ $_seoKeywords    = $seoKeywords    ?? 'AserNet, internet fibra óptica Socorro S
 }
 </script>
 
-<!-- ── Google Analytics 4 ────────────────────────────────────────────────── -->
+<!-- ── Google tag: Analytics 4 + Google Ads ─────────────────────────────── -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVJQM81YF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-XVJQM81YF4');
+  gtag('config', 'AW-11087801189');
 </script>
 
 <!-- ── Meta Pixel (Facebook) ────────────────────────────────────────────── -->

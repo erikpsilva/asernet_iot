@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/menu-content.php'; ?>
 <header class="header">
     <div class="container">
         <div class="header__content">
@@ -18,12 +19,12 @@
                 $solutionActive = in_array($activeRoute, $solutionActiveRoutes, true) ? ' header__nav-link--active' : '';
                 ?>
 
-                <a class="header__nav-link header__nav-link--desktop-hidden<?= $activeRoute === 'residencial' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
-                <a class="header__nav-link header__nav-link--desktop-hidden<?= $activeRoute === 'paraempresas' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a>
+                <a class="header__nav-link header__nav-link--desktop-hidden<?= $activeRoute === 'residencial' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/residencial"><?= hm('nav_home') ?></a>
+                <a class="header__nav-link header__nav-link--desktop-hidden<?= $activeRoute === 'paraempresas' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/paraempresas"><?= hm('nav_business') ?></a>
 
                 <div class="header__mega">
                     <a class="header__nav-link header__nav-link--mega<?= $solutionActive ?>" href="<?= BASE_URL ?>/combo" aria-haspopup="true" aria-expanded="false">
-                        Soluções
+                        <?= hm('nav_solutions') ?>
                         <span class="header__nav-arrow" aria-hidden="true"></span>
                     </a>
 
@@ -32,97 +33,97 @@
                             <section class="header__mega-column header__mega-column--home">
                                 <div class="header__mega-heading">
                                     <i class="icon-home" aria-hidden="true"></i>
-                                    <div><h2>Para sua casa</h2><p>Conexão, mobilidade e entretenimento para toda a família.</p></div>
+                                    <div><h2><?= hm('home_title') ?></h2><p><?= hm('home_intro') ?></p></div>
                                 </div>
                                 <ul class="header__mega-list">
-                                    <li><a href="<?= BASE_URL ?>/residencial"><i class="icon-wifi"></i><span><strong>Internet Residencial</strong><small>Planos de alta velocidade e estabilidade</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/wifimesh"><i class="icon-wifimesh"></i><span><strong>Wi-Fi Mesh</strong><small>Cobertura completa em todos os ambientes</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/planomovel"><i class="icon-mobile-phone"></i><span><strong>Plano Móvel</strong><small>Internet para levar com você</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/skeelo"><i class="icon-skeelo"></i><span><strong>Skeelo</strong><small>Livros digitais e audiobooks no seu plano</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/cruzeiro"><i class="icon-cruise"></i><span><strong>Cruzeiro AserNet</strong><small>Conectividade exclusiva durante seu cruzeiro</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/residencial"><i class="icon-wifi"></i><span><strong><?= hm('home_residential_title') ?></strong><small><?= hm('home_residential_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/wifimesh"><i class="icon-wifimesh"></i><span><strong><?= hm('home_mesh_title') ?></strong><small><?= hm('home_mesh_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/planomovel"><i class="icon-mobile-phone"></i><span><strong><?= hm('home_mobile_title') ?></strong><small><?= hm('home_mobile_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/skeelo"><i class="icon-skeelo"></i><span><strong><?= hm('home_skeelo_title') ?></strong><small><?= hm('home_skeelo_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/cruzeiro"><i class="icon-cruise"></i><span><strong><?= hm('home_cruise_title') ?></strong><small><?= hm('home_cruise_text') ?></small></span></a></li>
                                 </ul>
                                 <a class="header__mega-card header__mega-card--home" href="<?= BASE_URL ?>/combo">
-                                    <span><i class="icon-star"></i><strong>Casa Conectada</strong><small>Internet + Wi-Fi<br>+ Mobile</small></span>
-                                    <img src="<?= BASE_URL ?>/images/menu/imgCasaConectada.png" alt="">
+                                    <span><i class="icon-star"></i><strong><?= hm('home_card_title') ?></strong><small><?= hm('home_card_text') ?></small></span>
+                                    <img src="<?= hmi('home_card_image') ?>" alt="">
                                 </a>
                             </section>
 
                             <section class="header__mega-column header__mega-column--business">
                                 <div class="header__mega-heading">
                                     <i class="icon-office" aria-hidden="true"></i>
-                                    <div><h2>Para empresas</h2><p>Soluções completas para seu negócio não parar.</p></div>
+                                    <div><h2><?= hm('business_title') ?></h2><p><?= hm('business_intro') ?></p></div>
                                 </div>
                                 <ul class="header__mega-list">
-                                    <li><a href="<?= BASE_URL ?>/internetpme"><i class="icon-office"></i><span><strong>Internet PME</strong><small>Estabilidade e performance para sua empresa</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/wifiprofissional"><i class="icon-wifipro"></i><span><strong>Wi-Fi Profissional</strong><small>Rede de alta performance para seu negócio</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/telefoniaempresarial"><i class="icon-phone"></i><span><strong>Telefonia Empresarial</strong><small>Comunicação profissional e ilimitada</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/linkdedicado"><i class="icon-servidor"></i><span><strong>Link Dedicado</strong><small>Máxima estabilidade para operações críticas</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/controlecorporativo"><i class="icon-view"></i><span><strong>Controle de Acesso Corporativo</strong><small>Gestão de colaboradores, visitantes e áreas restritas</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/internetpme"><i class="icon-office"></i><span><strong><?= hm('business_pme_title') ?></strong><small><?= hm('business_pme_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/wifiprofissional"><i class="icon-wifipro"></i><span><strong><?= hm('business_wifi_title') ?></strong><small><?= hm('business_wifi_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/telefoniaempresarial"><i class="icon-phone"></i><span><strong><?= hm('business_phone_title') ?></strong><small><?= hm('business_phone_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/linkdedicado"><i class="icon-servidor"></i><span><strong><?= hm('business_link_title') ?></strong><small><?= hm('business_link_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/controlecorporativo"><i class="icon-view"></i><span><strong><?= hm('business_access_title') ?></strong><small><?= hm('business_access_text') ?></small></span></a></li>
                                 </ul>
                                 <a class="header__mega-card header__mega-card--business-new" href="<?= BASE_URL ?>/paraempresas">
-                                    <span><i class="icon-star"></i><strong>Empresa Conectada</strong><small>Internet + Wi-Fi + Telefonia<br>+ Controle de Acesso</small></span>
-                                    <img src="<?= BASE_URL ?>/images/menu/imgSolucaoCompletaParaEmpresas.png" alt="">
+                                    <span><i class="icon-star"></i><strong><?= hm('business_card_title') ?></strong><small><?= hm('business_card_text') ?></small></span>
+                                    <img src="<?= hmi('business_card_image') ?>" alt="">
                                 </a>
                             </section>
 
                             <section class="header__mega-column header__mega-column--condo">
                                 <div class="header__mega-heading">
                                     <i class="icon-office" aria-hidden="true"></i>
-                                    <div><h2>Condomínios</h2><p>Tecnologia e segurança para síndicos e moradores.</p></div>
+                                    <div><h2><?= hm('condo_title') ?></h2><p><?= hm('condo_intro') ?></p></div>
                                 </div>
                                 <ul class="header__mega-list">
-                                    <li><a href="<?= BASE_URL ?>/condominiointeligente"><i class="icon-office"></i><span><strong>Condomínio Inteligente</strong><small>Solução completa para gestão, segurança e conectividade</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/controlecondominial"><i class="icon-view"></i><span><strong>Controle de Acesso Condominial</strong><small>Mais segurança e praticidade para moradores e visitantes</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/bairroseguro"><i class="icon-security"></i><span><strong>Bairro Seguro</strong><small>Monitoramento colaborativo para comunidades mais protegidas</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/condominiointeligente"><i class="icon-office"></i><span><strong><?= hm('condo_smart_title') ?></strong><small><?= hm('condo_smart_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/controlecondominial"><i class="icon-view"></i><span><strong><?= hm('condo_access_title') ?></strong><small><?= hm('condo_access_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/bairroseguro"><i class="icon-security"></i><span><strong><?= hm('condo_neighborhood_title') ?></strong><small><?= hm('condo_neighborhood_text') ?></small></span></a></li>
                                 </ul>
                                 <a class="header__mega-card header__mega-card--condo" href="<?= BASE_URL ?>/condominiointeligente">
-                                    <span><i class="icon-star"></i><strong>Condomínio Inteligente</strong><small>Segurança + Conectividade<br>+ Gestão integrada</small></span>
-                                    <img src="<?= BASE_URL ?>/images/menu/imgConcominioIntelgiente.png" alt="">
+                                    <span><i class="icon-star"></i><strong><?= hm('condo_card_title') ?></strong><small><?= hm('condo_card_text') ?></small></span>
+                                    <img src="<?= hmi('condo_card_image') ?>" alt="">
                                 </a>
                             </section>
 
                             <section class="header__mega-column header__mega-column--security">
                                 <div class="header__mega-heading">
                                     <i class="icon-security" aria-hidden="true"></i>
-                                    <div><h2>Segurança inteligente</h2><p>Proteção inteligente para pessoas, patrimônios e veículos.</p></div>
+                                    <div><h2><?= hm('security_title') ?></h2><p><?= hm('security_intro') ?></p></div>
                                 </div>
                                 <ul class="header__mega-list">
-                                    <li><a href="<?= BASE_URL ?>/cameradeseguranca"><i class="icon-casino-cctv"></i><span><strong>Câmeras de Segurança</strong><small>Monitore o que realmente importa com alta definição</small></span></a></li>
-                                    <li><a href="<?= BASE_URL ?>/rastreamentoveicular"><i class="icon-car"></i><span><strong>Rastreamento Veicular</strong><small>Localização em tempo real e histórico de rotas</small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/cameradeseguranca"><i class="icon-casino-cctv"></i><span><strong><?= hm('security_camera_title') ?></strong><small><?= hm('security_camera_text') ?></small></span></a></li>
+                                    <li><a href="<?= BASE_URL ?>/rastreamentoveicular"><i class="icon-car"></i><span><strong><?= hm('security_tracking_title') ?></strong><small><?= hm('security_tracking_text') ?></small></span></a></li>
                                 </ul>
                                 <a class="header__mega-card header__mega-card--security" href="<?= BASE_URL ?>/cameradeseguranca">
-                                    <span><i class="icon-star"></i><strong>Soluções de Segurança</strong><small>Monitoramento visual<br>+ Rastreamento<br>+ Tecnologia integrada</small></span>
-                                    <img src="<?= BASE_URL ?>/images/menu/imgSolucoesdeSeguranca.png" alt="">
+                                    <span><i class="icon-star"></i><strong><?= hm('security_card_title') ?></strong><small><?= hm('security_card_text') ?></small></span>
+                                    <img src="<?= hmi('security_card_image') ?>" alt="">
                                 </a>
                             </section>
 
                             <aside class="header__mega-feature header__mega-feature--brand">
-                                <h2>AserNet<br><strong>IoT Services</strong></h2>
-                                <h3>Internet. Segurança. Tecnologia.</h3>
-                                <p><b>Conectar bem<br><strong>é cuidar.</strong></b></p>
-                                <small>Soluções inteligentes que simplificam sua rotina e protegem o que importa para você.</small>
-                                <img src="<?= BASE_URL ?>/images/menu/imgConhecaAsernet.png" alt="Família conectada pela AserNet IoT Services">
-                                <a href="<?= BASE_URL ?>/sobreasernet">Conheça a AserNet<br>IoT Services <i class="icon-arrowright"></i></a>
+                                <h2><?= hm('brand_name') ?><br><strong><?= hm('brand_service') ?></strong></h2>
+                                <h3><?= hm('brand_tagline') ?></h3>
+                                <p><b><?= hm('brand_callout') ?><br><strong><?= hm('brand_callout_emphasis') ?></strong></b></p>
+                                <small><?= hm('brand_text') ?></small>
+                                <img src="<?= hmi('brand_image') ?>" alt="Família conectada pela AserNet IoT Services">
+                                <a href="<?= BASE_URL ?>/sobreasernet"><?= hm('brand_button') ?> <i class="icon-arrowright"></i></a>
                             </aside>
                         </div>
 
                         <div class="header__mega-benefits">
-                            <div><i class="icon-customersupport"></i><span><strong><a href="<?= BASE_URL ?>/nossaslojas">Atendimento local</a></strong><small>Equipe perto de você<br>quando precisar</small></span></div>
-                            <div><i class="icon-gear"></i><span><strong>Instalação profissional</strong><small>Equipamentos e serviços<br>de qualidade</small></span></div>
-                            <div><i class="icon-security"></i><span><strong>Suporte de verdade</strong><small>Rápido, humano<br>e eficiente</small></span></div>
-                            <div><i class="icon-diagram"></i><span><strong>Soluções integradas</strong><small>Tudo conectado para<br>mais segurança</small></span></div>
+                            <div><i class="icon-customersupport"></i><span><strong><a href="<?= BASE_URL ?>/nossaslojas"><?= hm('benefit_local_title') ?></a></strong><small><?= hm('benefit_local_text') ?></small></span></div>
+                            <div><i class="icon-gear"></i><span><strong><?= hm('benefit_install_title') ?></strong><small><?= hm('benefit_install_text') ?></small></span></div>
+                            <div><i class="icon-security"></i><span><strong><?= hm('benefit_support_title') ?></strong><small><?= hm('benefit_support_text') ?></small></span></div>
+                            <div><i class="icon-diagram"></i><span><strong><?= hm('benefit_integrated_title') ?></strong><small><?= hm('benefit_integrated_text') ?></small></span></div>
                         </div>
                     </div>
                 </div>
 
-                <a class="header__nav-link<?= $activeRoute === 'sobreasernet' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a>
-                <a class="header__nav-link<?= $activeRoute === 'faq' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/faq">Suporte</a>
+                <a class="header__nav-link<?= $activeRoute === 'sobreasernet' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet"><?= hm('nav_about') ?></a>
+                <a class="header__nav-link<?= $activeRoute === 'faq' ? ' header__nav-link--active' : '' ?>" href="<?= BASE_URL ?>/faq"><?= hm('nav_support') ?></a>
             </div></nav>
 
             <div class="header__actions">
                 <a class="header__whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener">
                     <i class="icon-whatsapp" aria-hidden="true"></i>
-                    <span>Falar no WhatsApp</span>
+                    <span><?= hm('nav_whatsapp') ?></span>
                 </a>
             </div>
 
@@ -170,26 +171,26 @@
 
         <!-- Links rápidos (topo) -->
         <div class="mobileMenu__quicklinks">
-            <a class="mobileMenu__link<?= $activeRoute === 'residencial' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/residencial">Residencial</a>
-            <a class="mobileMenu__link<?= $activeRoute === 'paraempresas' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/paraempresas">Empresas (PME)</a>
+            <a class="mobileMenu__link<?= $activeRoute === 'residencial' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/residencial"><?= hm('nav_home') ?></a>
+            <a class="mobileMenu__link<?= $activeRoute === 'paraempresas' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/paraempresas"><?= hm('nav_business') ?></a>
         </div>
 
         <!-- Para sua casa -->
         <div class="mobileMenu__section mobileMenu__section--home">
             <div class="mobileMenu__heading">
                 <i class="icon-home" aria-hidden="true"></i>
-                <span>Para sua casa</span>
+                <span><?= hm('home_title') ?></span>
             </div>
             <ul class="mobileMenu__list">
-                <li><a href="<?= BASE_URL ?>/residencial">Internet Residencial</a></li>
-                <li><a href="<?= BASE_URL ?>/wifimesh">Wi-Fi Mesh</a></li>
-                <li><a href="<?= BASE_URL ?>/planomovel">Plano Móvel</a></li>
-                <li><a href="<?= BASE_URL ?>/skeelo">Skeelo</a></li>
-                <li><a href="<?= BASE_URL ?>/cruzeiro">Cruzeiro AserNet</a></li>
+                <li><a href="<?= BASE_URL ?>/residencial"><?= hm('home_residential_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/wifimesh"><?= hm('home_mesh_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/planomovel"><?= hm('home_mobile_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/skeelo"><?= hm('home_skeelo_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/cruzeiro"><?= hm('home_cruise_title') ?></a></li>
             </ul>
             <a class="mobileMenu__card mobileMenu__card--home" href="<?= BASE_URL ?>/combo">
-                <span><i class="icon-star"></i><strong>Casa Conectada</strong><small>Internet + Wi-Fi + Mobile</small></span>
-                <img src="<?= BASE_URL ?>/images/menu/imgCasaConectada.png" alt="">
+                <span><i class="icon-star"></i><strong><?= hm('home_card_title') ?></strong><small><?= hm('mobile_home_card_text') ?></small></span>
+                <img src="<?= hmi('home_card_image') ?>" alt="">
             </a>
         </div>
 
@@ -197,18 +198,18 @@
         <div class="mobileMenu__section mobileMenu__section--business">
             <div class="mobileMenu__heading">
                 <i class="icon-office" aria-hidden="true"></i>
-                <span>Para empresas</span>
+                <span><?= hm('business_title') ?></span>
             </div>
             <ul class="mobileMenu__list">
-                <li><a href="<?= BASE_URL ?>/internetpme">Internet PME</a></li>
-                <li><a href="<?= BASE_URL ?>/wifiprofissional">Wi-Fi Profissional</a></li>
-                <li><a href="<?= BASE_URL ?>/telefoniaempresarial">Telefonia Empresarial</a></li>
-                <li><a href="<?= BASE_URL ?>/linkdedicado">Link Dedicado</a></li>
-                <li><a href="<?= BASE_URL ?>/controlecorporativo">Controle de Acesso Corporativo</a></li>
+                <li><a href="<?= BASE_URL ?>/internetpme"><?= hm('business_pme_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/wifiprofissional"><?= hm('business_wifi_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/telefoniaempresarial"><?= hm('business_phone_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/linkdedicado"><?= hm('business_link_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/controlecorporativo"><?= hm('business_access_title') ?></a></li>
             </ul>
             <a class="mobileMenu__card mobileMenu__card--business" href="<?= BASE_URL ?>/paraempresas">
-                <span><i class="icon-star"></i><strong>Empresa Conectada</strong><small>Internet + Wi-Fi + Telefonia + Controle de Acesso</small></span>
-                <img src="<?= BASE_URL ?>/images/menu/imgSolucaoCompletaParaEmpresas.png" alt="">
+                <span><i class="icon-star"></i><strong><?= hm('business_card_title') ?></strong><small><?= hm('mobile_business_card_text') ?></small></span>
+                <img src="<?= hmi('business_card_image') ?>" alt="">
             </a>
         </div>
 
@@ -216,16 +217,16 @@
         <div class="mobileMenu__section mobileMenu__section--condo">
             <div class="mobileMenu__heading">
                 <i class="icon-office" aria-hidden="true"></i>
-                <span>Condomínios</span>
+                <span><?= hm('condo_title') ?></span>
             </div>
             <ul class="mobileMenu__list">
-                <li><a href="<?= BASE_URL ?>/condominiointeligente">Condomínio Inteligente</a></li>
-                <li><a href="<?= BASE_URL ?>/controlecondominial">Controle de Acesso Condominial</a></li>
-                <li><a href="<?= BASE_URL ?>/bairroseguro">Bairro Seguro</a></li>
+                <li><a href="<?= BASE_URL ?>/condominiointeligente"><?= hm('condo_smart_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/controlecondominial"><?= hm('condo_access_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/bairroseguro"><?= hm('condo_neighborhood_title') ?></a></li>
             </ul>
             <a class="mobileMenu__card mobileMenu__card--condo" href="<?= BASE_URL ?>/condominiointeligente">
-                <span><i class="icon-star"></i><strong>Condomínio Inteligente</strong><small>Segurança + Conectividade + Gestão integrada</small></span>
-                <img src="<?= BASE_URL ?>/images/menu/imgConcominioIntelgiente.png" alt="">
+                <span><i class="icon-star"></i><strong><?= hm('condo_card_title') ?></strong><small><?= hm('mobile_condo_card_text') ?></small></span>
+                <img src="<?= hmi('condo_card_image') ?>" alt="">
             </a>
         </div>
 
@@ -233,22 +234,22 @@
         <div class="mobileMenu__section mobileMenu__section--security">
             <div class="mobileMenu__heading">
                 <i class="icon-security" aria-hidden="true"></i>
-                <span>Segurança inteligente</span>
+                <span><?= hm('security_title') ?></span>
             </div>
             <ul class="mobileMenu__list">
-                <li><a href="<?= BASE_URL ?>/cameradeseguranca">Câmeras de Segurança</a></li>
-                <li><a href="<?= BASE_URL ?>/rastreamentoveicular">Rastreamento Veicular</a></li>
+                <li><a href="<?= BASE_URL ?>/cameradeseguranca"><?= hm('security_camera_title') ?></a></li>
+                <li><a href="<?= BASE_URL ?>/rastreamentoveicular"><?= hm('security_tracking_title') ?></a></li>
             </ul>
             <a class="mobileMenu__card mobileMenu__card--security" href="<?= BASE_URL ?>/cameradeseguranca">
-                <span><i class="icon-star"></i><strong>Soluções de Segurança</strong><small>Monitoramento + Rastreamento + Tecnologia</small></span>
-                <img src="<?= BASE_URL ?>/images/menu/imgSolucoesdeSeguranca.png" alt="">
+                <span><i class="icon-star"></i><strong><?= hm('security_card_title') ?></strong><small><?= hm('mobile_security_card_text') ?></small></span>
+                <img src="<?= hmi('security_card_image') ?>" alt="">
             </a>
         </div>
 
         <!-- Links de rodapé -->
         <div class="mobileMenu__footer-links">
-            <a class="mobileMenu__link<?= $activeRoute === 'sobreasernet' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet">Sobre a AserNet</a>
-            <a class="mobileMenu__link<?= $activeRoute === 'faq' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/faq">Suporte</a>
+            <a class="mobileMenu__link<?= $activeRoute === 'sobreasernet' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/sobreasernet"><?= hm('nav_about') ?></a>
+            <a class="mobileMenu__link<?= $activeRoute === 'faq' ? ' is-active' : '' ?>" href="<?= BASE_URL ?>/faq"><?= hm('nav_support') ?></a>
         </div>
 
     </div><!-- /.mobileMenu__body -->
@@ -256,7 +257,7 @@
     <div class="mobileMenu__cta">
         <a class="mobileMenu__whatsapp" href="https://wa.me/5508002225262" target="_blank" rel="noopener">
             <i class="icon-whatsapp" aria-hidden="true"></i>
-            Falar no WhatsApp
+            <?= hm('nav_whatsapp') ?>
         </a>
     </div>
 
